@@ -10,7 +10,6 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import com.ithr.ppe.test.cucumber.steps.GbSkyOfferSteps;
 
 // There will be offers and subscriptions
 // initially there will be no subscriptions - we hope! And this we should check
@@ -49,6 +48,20 @@ public class UserEntertainmentPage extends PageBase{
 		  
 	  }
 	  
+	  public boolean checkOfferImage(String offer) {
+		  Iterator <WebElement> iterator = offerIcons.iterator();
+		  Boolean valid = false;
+		  while (iterator.hasNext()) {
+			  WebElement element = iterator.next();
+			  String thetext = element.getAttribute("src");
+			  log.debug("checking element :" + thetext);
+			  if ( thetext.endsWith(offer)) {
+				  log.debug("Offer is present");
+				  valid = true;	  
+			  }
+		  }
+		  return valid;
+	  }
 	  public String getMSISDN () {
 		  return msisdn.getText();
 		  

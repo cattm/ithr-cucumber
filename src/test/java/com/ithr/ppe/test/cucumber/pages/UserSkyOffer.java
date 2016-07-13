@@ -30,14 +30,16 @@ public class UserSkyOffer extends PageBase{
 	@FindBy(css="div.table-panel-top.main-offer-content div.notification-jsx.pulse")
 	private WebElement confirmationText;
 	
-	// TODO: make this more efficient - dont want to parse a list - use findbys?
+	// TODO: make this more efficient - dont want to parse a list - use findbys? multiple finby or xpath - yuck
+	////html/body/div/div/article/div[1]/div/div[1]/div[1]/div[2]/div[1]/div[3]
 	////html/body/div/div/article/div[1]/div/div[1]/div[1]/div[2]/div[1]/div[3]
 	//html body.gb.js div#content.cf div#layout-wrapper.success.layout-jsx.app article#content__wrapper.gb-sky-hardbundle.sky.offer-jsx.success-jsx.cf div.wrapper.always-show.cf.can-be-closed div#gb-sky-hardbundle.offer-details-jsx.can-be-closed.offer__module.success__page div.offer-panel.rounded.cf.showing div.panel-inner-pad div.all-panels.cf div.table-panel-top.main-offer-content div.details-content	
 	//html body.gb.js div#content.cf div#layout-wrapper.success.layout-jsx.app article#content__wrapper.gb-sky-hardbundle.sky.offer-jsx.success-jsx.cf div.wrapper.always-show.cf.can-be-closed div#gb-sky-hardbundle.offer-details-jsx.can-be-closed.offer__module.success__page div.offer-panel.rounded.cf.showing div.panel-inner-pad div.all-panels.cf div.table-panel-top.main-offer-content	
 	//html body.gb.js div#content.cf div#layout-wrapper.success.layout-jsx.app article#content__wrapper.gb-sky-hardbundle.sky.offer-jsx.success-jsx.cf div.wrapper.always-show.cf.can-be-closed div#gb-sky-hardbundle.offer-details-jsx.can-be-closed.offer__module.success__page div.offer-panel.rounded.cf.showing div.panel-inner-pad div.all-panels.cf div.table-panel-top.main-offer-content div.details-content p.content_heading
 	//html body.gb.js div#content.cf div#layout-wrapper.success.layout-jsx.app article#content__wrapper.gb-sky-hardbundle.sky.offer-jsx.success-jsx.cf div.wrapper.always-show.cf.can-be-closed div#gb-sky-hardbundle.offer-details-jsx.can-be-closed.offer__module.success__page div.offer-panel.rounded.cf.showing div.panel-inner-pad div.all-panels.cf div.table-panel-top.main-offer-content div.details-content p
-
-	@FindBy(css="div#gb-sky-hardbundle.offer-details-jsx.can-be-closed.offer__module.success__page div.offer-panel.rounded.cf.showing div.panel-inner-pad div.all-panels.cf div.table-panel-top.main-offer-content div.details-content")
+	//@FindBy(css="div#gb-sky-standalone.offer-details-jsx.can-be-closed.offer__module.success__page div.offer-panel.rounded.cf.showing div.panel-inner-pad div.all-panels.cf div.table-panel-top.main-offer-content div.details-content")
+	//@FindBy(css="div#gb-sky-hardbundle.offer-details-jsx.can-be-closed.offer__module.success__page div.offer-panel.rounded.cf.showing div.panel-inner-pad div.all-panels.cf div.table-panel-top.main-offer-content div.details-content")
+	@FindBy(xpath="/html/body/div/div/article/div[1]/div/div[1]/div[1]/div[2]/div[1]/div[3]")
 	private WebElement whatHappensNext;
 	
 	@FindBy(css="div.btn-jsx.cf.large-screens.purple a.btn.event-btn.cf.btn-tertiary")

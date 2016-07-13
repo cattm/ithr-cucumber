@@ -30,6 +30,11 @@ public class AdminHome extends PageBase{
 	  @FindBy(xpath="//div/div[2]/div/p/a")
 	  private WebElement subsriptionUrl;
 	  
+	  ///html/body/div[2]/div/div[1]/div/form/div[3]/label
+	  //html.ng-scope body div#wrap.ng-scope div.container.ng-scope div.row div.col-md-offset-3.col-md-6.jumbotron form.ng-valid.ng-valid-maxlength.ng-dirty.ng-valid-parse div.checkbox
+	  @FindBy(xpath="/html/body/div[2]/div/div[1]/div/form/div[3]/label")
+	  private WebElement noUserGroup;
+	  
 	  public AdminHome (WebDriver driver) {
 		  super (driver);
 		  PageFactory.initElements(driver, this);
@@ -71,6 +76,10 @@ public class AdminHome extends PageBase{
 		  
 		  Select dropdown = new Select(userGroupSelect);
 		  dropdown.selectByValue(usergroup);
+	  }
+	  
+	  public void setNoUserGroup() {
+		  noUserGroup.click();
 	  }
 	  
 	  public String getSbuscriptionCheckUrl() {

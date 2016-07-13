@@ -34,6 +34,8 @@ public class PurchaseGBOffersSteps extends StepBase {
 	private String userGroup;
 	private String checkUrl;
 	private JsonParser jsonParse; 	
+	private Boolean refFileValid = false;
+	private Boolean userGroupValid = false;
 	public PurchaseGBOffersSteps() {
 		super(propertyFile);
 	}
@@ -60,21 +62,34 @@ public class PurchaseGBOffersSteps extends StepBase {
 	public void InGroup(String usergroup) throws Throwable {
 		log.info("Then: I am in Group " + usergroup);
 		this.userGroup = usergroup;
+		if (!usergroup.contains("Not Valid")) {
+			userGroupValid = true;
+			log.info("User Group is Valid");
+		}
 		AdminHome adminhome = new AdminHome(driver);
-		  adminhome.setOpco(opco);
-		  adminhome.setSubscription(subscription);
-		  adminhome.setUserGroup(userGroup);
-		  shortMsisdn = adminhome.getShortMSISDN();
-		  log.info("MSISN is : " + shortMsisdn);
-		  // can put a check in hear to check the contents of the subscription
-		  checkUrl = adminhome.getSbuscriptionCheckUrl();		
-		  driver.get(checkUrl);
+		adminhome.setOpco(opco);
+		
+		if (userGroupValid) {
+			adminhome.setSubscription(subscription);
+			adminhome.setUserGroup(userGroup);
+		} else {
+			adminhome.setNoUserGroup();
+		}
+		shortMsisdn = adminhome.getShortMSISDN();
+		log.info("MSISN is : " + shortMsisdn);
+		// can put a check in hear to check the contents of the subscription
+		checkUrl = adminhome.getSbuscriptionCheckUrl();		
+		driver.get(checkUrl);
 	}
 
 	@Then("^my offer will come from ([^\"]*)$")
 	public void OfferContainsStringsFrom(String reffilename) throws Throwable {
 		log.info("Then: my offer will come from " + reffilename + "file");
 		fileToCheck = reffilename;
+		if (!fileToCheck.contains("Not Valid")) {
+			refFileValid = true;
+			log.info("The reference file is Valid");
+		}
 
 		try {
 
@@ -103,23 +118,33 @@ public class PurchaseGBOffersSteps extends StepBase {
 			  entpage.bodyLoaded();
 			  
 			  
-			  // There should be avaialable offers for THIS MSISDN -
+			  // There should be available offers for THIS MSISDN -
 			  // the manage subscriptions section should be empty "you have no subscriptions...."
 			  Assert.assertTrue(entpage.getSubscriptionText().equals("You have no subscriptions. Please take a look at the available offers."));
 			  log.info("selecting offer");
+			  
+			  // at this point if there is no reference file then we should not try to select offer
+			  // because it is probably not there!
 			  // TODO: need a better Click than this - then we can make it a general model
-			  entpage.ClickOfferImage("sky.png");
+			  if (entpage.checkOfferImage("sky.png")) {
+				  entpage.ClickOfferImage("sky.png");
 
 			  
-			  UserSkyOffer skyoffer = new UserSkyOffer(driver);
-			  // TODO A check here o time
-			  skyoffer.bodyLoaded();
-			  skyoffer.setTnC();
+				  UserSkyOffer skyoffer = new UserSkyOffer(driver);
+				  // TODO A check here o time
+				  skyoffer.bodyLoaded();
+				  skyoffer.setTnC();
 			  
-			  String displayoffer = skyoffer.getUserOffer();
-			  jsonParse = new JsonParser(refDir + fileToCheck);
-			  String title = jsonParse.getOffersTitle();		  
-			  Assert.assertTrue(displayoffer.equals(title));
+				  String displayoffer = skyoffer.getUserOffer();
+				  if (refFileValid) {
+					  jsonParse = new JsonParser(refDir + fileToCheck);
+					  String title = jsonParse.getOffersTitle();		  
+					  Assert.assertTrue(displayoffer.equals(title));
+				  }
+			  }
+			  else {
+				  log.info("NO VALID OFFER");
+			  }
 		}
 		catch(Exception e){
 			log.info("caught Exception: " + e);
@@ -129,39 +154,50 @@ public class PurchaseGBOffersSteps extends StepBase {
 	
 	@And("^I will accept the offer$")
 	public void AcceptTheOffer() throws Throwable {
-		log.info("And: I Will Accept the Offer ");
-		try {
+		if (!refFileValid) {
+			log.info("And: I Will NOT Accept the Offer ");
+		}
+		else {
+			log.info("And: I Will Accept the Offer ");
+			try {
+				String buttontext = jsonParse.getOffersOkButton();
 			
-			  // need to accept the offer based on the text!
-			  String buttontext = jsonParse.getOffersOkButton();
-			  // the button is all upper case!
-			  String ucbuttontext = buttontext.toUpperCase();
-			  log.info(ucbuttontext);
-			  UserSkyOffer skyoffer = new UserSkyOffer(driver);
-			  skyoffer.clickAcceptOffer(buttontext);
+			    // the button is all upper case!
+			    String ucbuttontext = buttontext.toUpperCase();
+			    log.info(ucbuttontext);
+			    UserSkyOffer skyoffer = new UserSkyOffer(driver);
+				skyoffer.clickAcceptOffer(buttontext);
 			  
-			  // check the page displayed
-			  String confirmation = skyoffer.getSuccessText();
-			  log.info(confirmation);
-			  Assert.assertTrue(confirmation.equals("Your entertainment selection has been confirmed"));
-			  String checkhappens = jsonParse.getSubscribeSuccessText();
-			  checkhappens = jsonParse.stripHTML(checkhappens);
-			  log.info("happens next from file: " + checkhappens);
 			  
-			  String happens = skyoffer.getHappensNextText();
-			  String myhappens = StringUtils.replace(happens, "\n", " ");
-			  log.info("happens next from page: " + myhappens);
 			  
-			  // Assert check the text and this will do for now
-			  Assert.assertTrue(myhappens.equals(checkhappens));  
+				// check the page displayed
+				String confirmation = skyoffer.getSuccessText();
+				log.info(confirmation);
+				Assert.assertTrue(confirmation.equals("Your entertainment selection has been confirmed"));
 			  
-			  // then finally there is another page which we can get by clicking additional offer
-			  skyoffer.clickAdditionalOffer();
-			  Thread.sleep(5000);
 			  
-		}catch(Exception e){
-			log.info("caught Exception: " + e);
-			Assert.fail(); //To fail test in case of any element identification failure		
+				String happens = skyoffer.getHappensNextText();
+				String myhappens = StringUtils.replace(happens, "\n", " ");
+				log.info("happens next from page: " + myhappens);
+			  
+			  
+				String checkhappens = jsonParse.getSubscribeSuccessText();
+				checkhappens = jsonParse.stripHTML(checkhappens);
+				log.info("happens next from file: " + checkhappens);
+				// Assert check the text and this will do for now
+				Assert.assertTrue(myhappens.equals(checkhappens));
+			  
+			  
+				  // then finally there is another page which we can get by clicking additional offer
+				  skyoffer.clickAdditionalOffer();
+			  
+				  // hold this one just for now on last page
+				  Thread.sleep(5000);
+			  
+			}catch(Exception e){
+				log.info("caught Exception: " + e);
+				Assert.fail(); //To fail test in case of any element identification failure		
+			}
 		}
 	}
-}
+} // end class
