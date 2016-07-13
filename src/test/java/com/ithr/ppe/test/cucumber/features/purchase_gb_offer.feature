@@ -8,15 +8,15 @@ Feature: Purchasing the offers for GB
     And I will accept the offer
 
     Examples: 
-      | package         | usergroup    | contained in           |
- #     | PK_4GTariff      | 4glarge      | Sky hardbundle v1.json |
- #     | PK_4GTariff      | 4gextralarge | Sky hardbundle v1.json |
- #     | PK_4GTariff      | 4gmedium      | Sky hardbundle v1.json |
- #     | PK_4GTariff      | 4gsmall      | Sky hardbundle v1.json |
+      | package          | usergroup    | contained in           |
+      | PK_4GTariff      | 4glarge      | Sky hardbundle v1.json |
+      | PK_4GTariff      | 4gextralarge | Sky hardbundle v1.json |
+      | PK_4GTariff      | 4gmedium     | Sky hardbundle v1.json |
+      | PK_4GTariff      | 4gsmall      | Sky hardbundle v1.json |
       | PK_4GTariff      | 4gmbblarge   | Sky standalone v1.json |
       | PK_4GTariff      | 4gmbbmedium  | Sky standalone v1.json |
       | PK_4GTariff      | 4gmbbsmall   | Sky standalone v1.json |
- #     | PK_4GTariffPromo | 4glargel     | Sky hardbundle v1.json |
- #     | PK_4GTariff      | 4gextralarge | Sky hardbundle v1.json |
- #     | PK_TVTariff      | ugstb        | Not Valid              |
- #     | PK_4GTariff      | Not Valid    | Sky standalone v1.json |
+      | PK_4GTariffPromo | 4glarge      | Sky hardbundle v1.json |
+      | PK_4GTariffPromo | 4gextralarge | Sky hardbundle v1.json |
+      | PK_TVTariff      | ugstb        | Not Valid              |
+      | PK_4GTVTariff    | Not Valid    | Sky standalone v1.json |
