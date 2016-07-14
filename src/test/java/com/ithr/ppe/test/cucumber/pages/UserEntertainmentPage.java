@@ -40,7 +40,7 @@ public class UserEntertainmentPage extends PageBase{
 			  WebElement element = iterator.next();
 			  String thetext = element.getAttribute("src");
 			  log.debug("checking element :" + thetext);
-			  if ( thetext.endsWith(offer)) {
+			  if ( thetext.contains(offer)) {
 				  log.debug("Clicking offer");
 				  element.click();	  
 			  }
@@ -55,8 +55,8 @@ public class UserEntertainmentPage extends PageBase{
 			  WebElement element = iterator.next();
 			  String thetext = element.getAttribute("src");
 			  log.debug("checking element :" + thetext);
-			  if ( thetext.endsWith(offer)) {
-				  log.debug("Offer is present");
+			  if ( thetext.contains(offer)) {
+				  log.info("Offer is present");
 				  valid = true;	  
 			  }
 		  }
