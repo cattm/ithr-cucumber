@@ -35,6 +35,8 @@ public class AdminHome extends PageBase{
 	  @FindBy(xpath="/html/body/div[2]/div/div[1]/div/form/div[3]/label")
 	  private WebElement noUserGroup;
 	  
+	  private String opco;
+	  
 	  public AdminHome (WebDriver driver) {
 		  super (driver);
 		  PageFactory.initElements(driver, this);
@@ -54,7 +56,8 @@ public class AdminHome extends PageBase{
 		  if (!opco.equals("gb")) {
 			  log.error("Something BAD has happened = wrong OPCO " + opco);
 		  }
-		  
+		  this.opco=opco;
+			
 		  Select dropdown = new Select(opcoSelect);
 		  dropdown.selectByValue(opco);
 	  }

@@ -48,14 +48,15 @@ public class PurchaseSkyOffersSteps extends StepBase {
 	}
 	
 
-	@Before("@xpurchase")
+	@Before("@skypurchase")
 	public void setUp() throws Exception {
 	    System.out.println("PurchaseGBOffersSteps SetUp");
 		super.setUp();
 	}
 	
-	@After("@xpurchase")
+	@After("@skypurchase")
 	public void tearDown(Scenario scenario) throws Exception {
+		System.out.println("PurchaseGBOffersSteps TearDown");
 		super.tearDown(scenario);
 	}
 	
@@ -159,14 +160,15 @@ public class PurchaseSkyOffersSteps extends StepBase {
 				  }
 			  }
 			  else {
-				  log.info("NO VALID OFFER");
+				  log.info("NO VALID OFFER For Sky Visible");
+				  // this may be correct behavior for some combinations
 				  Assert.fail();
 			  }
 		}
 		catch(Exception e){
 			log.info("caught Exception: " + e);
 			File scrFile = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-			FileUtils.copyFile(scrFile, new File("target/testScreenShot_169.jpg"));
+			FileUtils.copyFile(scrFile, new File("target/testScreenShot_170.jpg"));
 			Assert.fail(); //To fail test in case of any element identification failure		
 		}
 	}
@@ -218,7 +220,7 @@ public class PurchaseSkyOffersSteps extends StepBase {
 			}catch(Exception e){
 				log.info("caught Exception: " + e);
 				File scrFile = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-				FileUtils.copyFile(scrFile, new File("target/testScreenShot_219.jpg"));
+				FileUtils.copyFile(scrFile, new File("target/testScreenShot_220.jpg"));
 				Assert.fail(); //To fail test in case of any element identification failure		
 			}
 		}

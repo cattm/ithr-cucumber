@@ -96,7 +96,7 @@ public class GbSkyOfferSteps extends StepBase {
 		  //firefoxProfile.setPreference("browser.private.browsing.autostart",true);
 		  //driver = new FirefoxDriver();	      
 	     
-		  driver.get(baseUserUrl);
+		  driver.get(baseUserUrl + opco);
 		  
 		  // Entry page - MSISDN and PIN challenge
 		  UserMSISDNEntry msisdnentry = new UserMSISDNEntry(driver);
@@ -136,7 +136,7 @@ public class GbSkyOfferSteps extends StepBase {
 		  // check ALL the offer text is correct
 		  
 		  String displayoffer = skyoffer.getUserOffer();
-		  jsonParse = new JsonParser(refDir + fileToCheck);
+		  jsonParse = new JsonParser(refDir + opco + "/" + fileToCheck);
 		  String title = jsonParse.getOffersTitle();		  
 		  Assert.assertTrue(displayoffer.equals(title));
 		  
