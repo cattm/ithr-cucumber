@@ -19,7 +19,6 @@ public class JsonParser {
 		jsonObject = getStartPoint();
 		
 	}
-	
 	public String stripHTML(String withhtml) {
 		return Jsoup.parse(withhtml).text();
 	}

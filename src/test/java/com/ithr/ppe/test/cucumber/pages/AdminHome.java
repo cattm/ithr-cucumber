@@ -45,16 +45,16 @@ public class AdminHome extends PageBase{
 	  
 	  public String getShortMSISDN() {
 		  String mv = shortMsisdn.getAttribute("value");
-		  log.info("MSISDN value is " + mv);
+		  log.debug("MSISDN value is " + mv);
 		
 		  return mv;
 		  
 	  }
 	  
 	  public void setOpco (String opco) {
-		  // if the opco is not gb then error for the moment only
-		  if (!opco.equals("gb")) {
-			  log.error("Something BAD has happened = wrong OPCO " + opco);
+		  // 
+		  if (opco.equals("")) {
+			  log.error("Something BAD has happened = No OPCO " + opco);
 		  }
 		  this.opco=opco;
 			

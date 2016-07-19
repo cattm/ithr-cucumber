@@ -33,16 +33,18 @@ public class PurchaseSkyOffersSteps extends StepBase {
 	
 	// TODO: Check which of these are always required and promote
 	private static String propertyFile = "test.properties";
+	private opcoTextChecker textChecker = null;
 	private String fileToCheck =  "";
 	private String opco = "gb"; //default
+	private Boolean refFileValid = false;
+	private Boolean userGroupValid = false;
+	
 	private String shortMsisdn;
 	private String subscription;
 	private String userGroup;
 	private String checkUrl;
 	private JsonParser jsonParse; 	
-	private Boolean refFileValid = false;
-	private Boolean userGroupValid = false;
-	
+
 	public PurchaseSkyOffersSteps() {
 		super(propertyFile);
 	}
@@ -50,13 +52,13 @@ public class PurchaseSkyOffersSteps extends StepBase {
 
 	@Before("@skypurchase")
 	public void setUp() throws Exception {
-	    System.out.println("PurchaseGBOffersSteps SetUp");
 		super.setUp();
+		log.info("SetUp");
 	}
 	
 	@After("@skypurchase")
 	public void tearDown(Scenario scenario) throws Exception {
-		System.out.println("PurchaseGBOffersSteps TearDown");
+		log.info("TearDown");
 		super.tearDown(scenario);
 	}
 	
@@ -65,6 +67,9 @@ public class PurchaseSkyOffersSteps extends StepBase {
 	   log.info("Given: I am a " + opco + " customer with " + mypackage);
 	   this.subscription = mypackage;
 	   this.opco = opco.toLowerCase();
+	   
+	   // set up first check file for standard text
+	   textChecker = new opcoTextChecker(testReferenceDir, opco);
 	}
 
 	@When("^I am in ([^\"]*)$")
@@ -104,7 +109,7 @@ public class PurchaseSkyOffersSteps extends StepBase {
 
 			  driver.get(baseUserUrl + opco);
 			  
-			  // Entry page - MSISDN and PIN challenge
+			  // Entry page - AAA MSISDN and PIN challenge
 			  UserMSISDNEntry msisdnentry = new UserMSISDNEntry(driver);
 			  msisdnentry.elementLoaded(By.id("nextButton"));
 			  //msisdnentry.waitClickable(By.id("nextButton"));
@@ -130,14 +135,14 @@ public class PurchaseSkyOffersSteps extends StepBase {
 			  // There should be available offers for THIS MSISDN -
 			  // the manage subscriptions section should be empty "you have no subscriptions...."
 			  String subtext = entpage.getSubscriptionText();
-			  log.info(subtext);
-			  opcoTextChecker checker = new opcoTextChecker();
-			  boolean ok = checker.checkSubscriptionText(opco, subtext);
-			  Assert.assertTrue(ok);
+			  log.info("Text to check is: " + subtext);			  			
+			  boolean ok = textChecker.checkSubscriptionText(subtext);
+			  
+			  if (checkAsserts) Assert.assertTrue(ok);
 			  log.info("selecting offer");
 			  
 			  // at this point if there is no reference file then we should not try to select offer
-			  // because it is probably not there!
+			  // because it probably isnt there and also probably should not be!
 			  // TODO: need a better Click than this - then we can make it a general model
 			  // e.g its its sky.png in uk and skytv.png in de!
 			  if (entpage.checkOfferImage("sky")) {
@@ -152,23 +157,27 @@ public class PurchaseSkyOffersSteps extends StepBase {
 				  
 				  if (refFileValid) {
 					  String displayoffer = skyoffer.getUserOffer();
-					  log.info("display offer: " + displayoffer);
+					  log.info("Text to Check is:  " + displayoffer);
+					  
+					  // can now set up JSON parser reference file
 					  jsonParse = new JsonParser(refDir + opco + "/" + fileToCheck);
 					  String title = jsonParse.getOffersTitle();
-					  log.info("File offer title: " + title);
-					  Assert.assertTrue(displayoffer.equals(title));
+					  log.info("Reference Text is: " + title);
+					  if (checkAsserts) Assert.assertTrue(displayoffer.equals(title));
 				  }
 			  }
 			  else {
 				  log.info("NO VALID OFFER For Sky Visible");
+				  // TODO: check this out what is the correct behavior
 				  // this may be correct behavior for some combinations
 				  Assert.fail();
 			  }
 		}
 		catch(Exception e){
+			// TODO: hard coded directory path to fix
 			log.info("caught Exception: " + e);
 			File scrFile = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-			FileUtils.copyFile(scrFile, new File("target/testScreenShot_170.jpg"));
+			FileUtils.copyFile(scrFile, new File("/Users/marcus/Documents/ithr/cucumber/target/testScreenShot_172.jpg"));
 			Assert.fail(); //To fail test in case of any element identification failure		
 		}
 	}
@@ -185,42 +194,49 @@ public class PurchaseSkyOffersSteps extends StepBase {
 			
 			    // the button is all upper case!
 			    String ucbuttontext = buttontext.toUpperCase();
-			    log.info(ucbuttontext);
+			    log.info("Button String is : " +  ucbuttontext);
 			    UserSkyOffer skyoffer = new UserSkyOffer(driver);
 				skyoffer.clickAcceptOffer(buttontext);
 			  
-			  
-			  
+			 			  
 				// check the page displayed
 				String confirmation = skyoffer.getSuccessText();
-				log.info(confirmation);
-				opcoTextChecker checker = new opcoTextChecker();
-				boolean ok = checker.checkConfirmText(opco, confirmation);
-				Assert.assertTrue(ok);
+				log.info("Text to Check is : " + confirmation);
+				
+				// get a reference to the property value text
+				boolean ok = textChecker.checkConfirmText(confirmation);
+				if (checkAsserts) Assert.assertTrue(ok);
 			  
+				
 			 	String happens = skyoffer.getHappensNextText();
 				String myhappens = StringUtils.replace(happens, "\n", " ");
-				log.info("happens next from page: " + myhappens);
-			  
+				log.info("happens next to check is:  " + myhappens);
 			  
 				String checkhappens = jsonParse.getSubscribeSuccessText();
 				checkhappens = jsonParse.stripHTML(checkhappens);
-				log.info("happens next from file: " + checkhappens);
+				log.info("happens next Reference is: " + checkhappens);
 				// Assert check the text and this will do for now
-				Assert.assertTrue(myhappens.equals(checkhappens));
+				if (checkAsserts) Assert.assertTrue(myhappens.equals(checkhappens));
 			  
 			  
-				// then finally there is another page which we can get by clicking additional offer
+				// TODO: Here the journey varies a little dependent upon OPCO
+				// we want to check that the offer is now a subscription
+				// so we will have a page with
+				// offers and
+				// subscriptions to delete!
+				
 				if (opco.equals("gb")) {
 				   skyoffer.clickAdditionalOffer();
+				   // we should check the subscriptions text now
 				}
+				
 				// hold this one just for now on last page
-				Thread.sleep(5000);
+				// Thread.sleep(15000);
 			  
 			}catch(Exception e){
 				log.info("caught Exception: " + e);
 				File scrFile = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-				FileUtils.copyFile(scrFile, new File("target/testScreenShot_220.jpg"));
+				FileUtils.copyFile(scrFile, new File("/Users/marcus/Documents/ithr/cucumber/target/testScreenShot_226.jpg"));
 				Assert.fail(); //To fail test in case of any element identification failure		
 			}
 		}

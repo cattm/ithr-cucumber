@@ -24,6 +24,7 @@ public class StepBase {
 	protected String baseUserUrl;
 	protected String testReferenceDir;
 	protected String refDir;
+	protected Boolean checkAsserts;
 	protected StringBuffer verificationErrors = new StringBuffer();
 	
 	public static Logger log = Logger.getLogger(StepBase.class);
@@ -38,11 +39,13 @@ public class StepBase {
 		  baseAdminUrl = TestProperties.ADMIN_BASEURL;
 		  baseUserUrl = TestProperties.USER_BASEURL;
 		  testReferenceDir = TestProperties.TEST_REFDIR;
-		  refDir = TestProperties.TEST_REFDIR;
+		  refDir = TestProperties.TEST_REFDIR + "offers/";
+		  checkAsserts = TestProperties.DO_ASSERTCHECKS;
 	}
 
 	protected void setUp() throws Exception {	
-    	loadProperties();	     
+    	loadProperties();
+    	log.info("Setting up Driver");
     	// TODO: may need to make this static
 	    driver = new FirefoxDriver();	      
 	    driver.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
