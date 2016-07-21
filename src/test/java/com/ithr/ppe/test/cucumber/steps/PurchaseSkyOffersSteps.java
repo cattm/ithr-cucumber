@@ -10,6 +10,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
+import org.openqa.selenium.WebElement;
 
 import com.ithr.ppe.test.base.StepBase;
 import com.ithr.ppe.test.cucumber.pages.AdminHome;
@@ -31,7 +32,7 @@ import cucumber.api.java.en.When;
 public class PurchaseSkyOffersSteps extends StepBase {
 	public static Logger log = Logger.getLogger(PurchaseSkyOffersSteps.class);
 	
-	// TODO: Check which of these are always required and promote
+	// TODO: Check which of these are always required and promote to baseclass
 	private static String propertyFile = "test.properties";
 	private opcoTextChecker textChecker = null;
 	private String fileToCheck =  "";
@@ -49,6 +50,22 @@ public class PurchaseSkyOffersSteps extends StepBase {
 		super(propertyFile);
 	}
 	
+	public void loginToPPE (String msisdn) throws InterruptedException {
+		driver.get(baseUserUrl + opco);
+		log.info("LoginToPPE -");
+		// Entry page - AAA MSISDN and PIN challenge
+		UserMSISDNEntry msisdnentry = new UserMSISDNEntry(driver);
+		msisdnentry.elementLoaded(By.id("nextButton"));
+		//msisdnentry.waitClickable(By.id("nextButton"));
+		msisdnentry.setShortMobile(msisdn);
+		msisdnentry.clickNextButton();
+		log.info("Have Set Mobile Number");
+		// SMS Challenge - pin
+		UserSMSChallenge smschallenge = new UserSMSChallenge(driver);
+		smschallenge.setSMS("0000");
+		log.info("Have Set Pin");
+		smschallenge.clickRegistertButton();
+	}
 
 	@Before("@skypurchase")
 	public void setUp() throws Exception {
@@ -94,6 +111,18 @@ public class PurchaseSkyOffersSteps extends StepBase {
 		// can put a check in hear to check the contents of the subscription
 		checkUrl = adminhome.getSbuscriptionCheckUrl();		
 		driver.get(checkUrl);
+		
+		try {
+			  loginToPPE(shortMsisdn);
+			  
+		} catch(Exception e) {
+			log.info("caught Exception: " + e);
+			Integer linenumber = Thread.currentThread().getStackTrace()[2].getLineNumber();
+			String line = linenumber.toString(); 
+			if (!checkAsserts) GetDebugScreenShot(line);
+			Assert.fail(); //To fail test in case of any element identification failure		
+		}
+
 	}
 
 	@Then("^my offer will come from ([^\"]*)$")
@@ -105,27 +134,10 @@ public class PurchaseSkyOffersSteps extends StepBase {
 			log.info("The reference file is Valid");
 		}
 
-		try {
-
-			  driver.get(baseUserUrl + opco);
-			  
-			  // Entry page - AAA MSISDN and PIN challenge
-			  UserMSISDNEntry msisdnentry = new UserMSISDNEntry(driver);
-			  msisdnentry.elementLoaded(By.id("nextButton"));
-			  //msisdnentry.waitClickable(By.id("nextButton"));
-			  msisdnentry.setShortMobile(shortMsisdn);
-			  msisdnentry.clickNextButton();
-			  log.info("Have Set Mobile Number");
-			  // SMS Challenge - pin
-			  UserSMSChallenge smschallenge = new UserSMSChallenge(driver);
-			  smschallenge.setSMS("0000");
-			  log.info("Have Set Pin");
-			  smschallenge.clickRegistertButton();
-			  
+		try {	  
 			  /////////////////////////////////////////////////////////
 			  // might be a short wait here....while new page loads...
-			  driver.manage().window().setSize(new Dimension(600, 600));
-		
+			  driver.manage().window().setSize(new Dimension(600, 600));		
 			  
 			  // Entertainment page - offer page directly or click on image icon to get text
 			  UserEntertainmentPage entpage = new UserEntertainmentPage(driver);
@@ -133,11 +145,13 @@ public class PurchaseSkyOffersSteps extends StepBase {
 			  
 			  
 			  // There should be available offers for THIS MSISDN -
+			  // if there are no offers this is probably an error
 			  // the manage subscriptions section should be empty "you have no subscriptions...."
+			  log.info("TEST: Check Available Offers page");
 			  String subtext = entpage.getSubscriptionText();
 			  log.info("Text to check is: " + subtext);			  			
 			  boolean ok = textChecker.checkSubscriptionText(subtext);
-			  
+		
 			  if (checkAsserts) Assert.assertTrue(ok);
 			  log.info("selecting offer");
 			  
@@ -150,12 +164,13 @@ public class PurchaseSkyOffersSteps extends StepBase {
 
 			  
 				  UserSkyOffer skyoffer = new UserSkyOffer(driver);
-				  // TODO A check here o time
+				  // TODO A check here of time?
 				  skyoffer.bodyLoaded();
 				  skyoffer.setTnC();
 			  
 				  
 				  if (refFileValid) {
+					  log.info("TEST: Check Sky Offer");
 					  String displayoffer = skyoffer.getUserOffer();
 					  log.info("Text to Check is:  " + displayoffer);
 					  
@@ -176,8 +191,9 @@ public class PurchaseSkyOffersSteps extends StepBase {
 		catch(Exception e){
 			// TODO: hard coded directory path to fix
 			log.info("caught Exception: " + e);
-			File scrFile = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-			FileUtils.copyFile(scrFile, new File("/Users/marcus/Documents/ithr/cucumber/target/testScreenShot_172.jpg"));
+			Integer linenumber = Thread.currentThread().getStackTrace()[2].getLineNumber();
+			String line = linenumber.toString(); 
+			if (!checkAsserts) GetDebugScreenShot(line);
 			Assert.fail(); //To fail test in case of any element identification failure		
 		}
 	}
@@ -200,6 +216,7 @@ public class PurchaseSkyOffersSteps extends StepBase {
 			  
 			 			  
 				// check the page displayed
+				log.info("TEST: Check on confirm page after accepting offer");
 				String confirmation = skyoffer.getSuccessText();
 				log.info("Text to Check is : " + confirmation);
 				
@@ -207,7 +224,7 @@ public class PurchaseSkyOffersSteps extends StepBase {
 				boolean ok = textChecker.checkConfirmText(confirmation);
 				if (checkAsserts) Assert.assertTrue(ok);
 			  
-				
+				log.info("TEST: Check Success text");
 			 	String happens = skyoffer.getHappensNextText();
 				String myhappens = StringUtils.replace(happens, "\n", " ");
 				log.info("happens next to check is:  " + myhappens);
@@ -219,24 +236,27 @@ public class PurchaseSkyOffersSteps extends StepBase {
 				if (checkAsserts) Assert.assertTrue(myhappens.equals(checkhappens));
 			  
 			  
-				// TODO: Here the journey varies a little dependent upon OPCO
-				// we want to check that the offer is now a subscription
-				// so we will have a page with
-				// offers and
-				// subscriptions to delete!
 				
-				if (opco.equals("gb")) {
-				   skyoffer.clickAdditionalOffer();
-				   // we should check the subscriptions text now
-				}
+				log.info("TEST: Check reopen on home page displays correct offers");
+				driver.get(baseUserUrl + opco);
+			
+				UserEntertainmentPage entpage = new UserEntertainmentPage(driver);
+				entpage.bodyLoaded();
+				// TODO: this is not a brilliant test -- I dont think it checks its in the correct place
+				String textfound = entpage.getSkySubscriptionText();
+				log.info("Text to Check is: " + textfound);
+			    ok = textChecker.checkSkySubscibedText(textfound);
+			    if (checkAsserts) Assert.assertTrue(ok);
+			    
+			    // just hold this last page for a while 
+				Thread.sleep(5000);
 				
-				// hold this one just for now on last page
-				// Thread.sleep(15000);
 			  
 			}catch(Exception e){
 				log.info("caught Exception: " + e);
-				File scrFile = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-				FileUtils.copyFile(scrFile, new File("/Users/marcus/Documents/ithr/cucumber/target/testScreenShot_226.jpg"));
+				Integer linenumber = Thread.currentThread().getStackTrace()[2].getLineNumber();
+				String line = linenumber.toString(); 
+				if (!checkAsserts) GetDebugScreenShot(line);
 				Assert.fail(); //To fail test in case of any element identification failure		
 			}
 		}

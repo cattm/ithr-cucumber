@@ -8,6 +8,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.FindBys;
 import org.openqa.selenium.support.PageFactory;
 
 import com.ithr.ppe.test.cucumber.steps.GbSkyOfferSteps;
@@ -30,26 +31,16 @@ public class UserSkyOffer extends PageBase{
 	@FindBy(css="div.table-panel-top.main-offer-content div.notification-jsx.pulse")
 	private WebElement confirmationText;
 	
-	// TODO: 
-	// make this more efficient - dont want to parse a list - use findbys? multiple finby or xpath - yuck
-	// //html/body/div/div/article/div[1]/div/div[1]/div[1]/div[2]/div[1]/div[3]
-	// //html/body/div/div/article/div[1]/div/div[1]/div[1]/div[2]/div[1]/div[3]
-	//html body.gb.js div#content.cf div#layout-wrapper.success.layout-jsx.app article#content__wrapper.gb-sky-hardbundle.sky.offer-jsx.success-jsx.cf div.wrapper.always-show.cf.can-be-closed div#gb-sky-hardbundle.offer-details-jsx.can-be-closed.offer__module.success__page div.offer-panel.rounded.cf.showing div.panel-inner-pad div.all-panels.cf div.table-panel-top.main-offer-content div.details-content	
-	//html body.gb.js div#content.cf div#layout-wrapper.success.layout-jsx.app article#content__wrapper.gb-sky-hardbundle.sky.offer-jsx.success-jsx.cf div.wrapper.always-show.cf.can-be-closed div#gb-sky-hardbundle.offer-details-jsx.can-be-closed.offer__module.success__page div.offer-panel.rounded.cf.showing div.panel-inner-pad div.all-panels.cf div.table-panel-top.main-offer-content	
-	//html body.gb.js div#content.cf div#layout-wrapper.success.layout-jsx.app article#content__wrapper.gb-sky-hardbundle.sky.offer-jsx.success-jsx.cf div.wrapper.always-show.cf.can-be-closed div#gb-sky-hardbundle.offer-details-jsx.can-be-closed.offer__module.success__page div.offer-panel.rounded.cf.showing div.panel-inner-pad div.all-panels.cf div.table-panel-top.main-offer-content div.details-content p.content_heading
-	//html body.gb.js div#content.cf div#layout-wrapper.success.layout-jsx.app article#content__wrapper.gb-sky-hardbundle.sky.offer-jsx.success-jsx.cf div.wrapper.always-show.cf.can-be-closed div#gb-sky-hardbundle.offer-details-jsx.can-be-closed.offer__module.success__page div.offer-panel.rounded.cf.showing div.panel-inner-pad div.all-panels.cf div.table-panel-top.main-offer-content div.details-content p
-	//@FindBy(css="div#gb-sky-standalone.offer-details-jsx.can-be-closed.offer__module.success__page div.offer-panel.rounded.cf.showing div.panel-inner-pad div.all-panels.cf div.table-panel-top.main-offer-content div.details-content")
-	//@FindBy(css="div#gb-sky-hardbundle.offer-details-jsx.can-be-closed.offer__module.success__page div.offer-panel.rounded.cf.showing div.panel-inner-pad div.all-panels.cf div.table-panel-top.main-offer-content div.details-content")
+	// TODO: make this more intelligent
 	@FindBy(xpath="/html/body/div/div/article/div[1]/div/div[1]/div[1]/div[2]/div[1]/div[3]")
 	private WebElement whatHappensNext;
 	
-	// this is a crap find - PURPLE really!
+	// TODO: this is a crap find - PURPLE really!
 	@FindBy(css="div.btn-jsx.cf.large-screens.purple a.btn.event-btn.cf.btn-tertiary")
 	private WebElement additionalOffer;
 	
-	// odder confirm 
-	// css div.table-panel-top.main-offer-content div.notification-jsx.pulse p
-	// list of 3 - div.table-panel-top.main-offer-content div.details-content
+	
+	private List <WebElement> managedSubs;
 	
 	public  UserSkyOffer (WebDriver driver) {
 		  super(driver);
@@ -94,6 +85,22 @@ public class UserSkyOffer extends PageBase{
 				  element.click();	  
 			 }
 		}
+   }
+   
+   public String getSkyManagedSubscription(String check) {
+	   String foundtext = "";
+	   Iterator <WebElement> iterator = managedSubs.iterator();
+		while (iterator.hasNext()) {
+			WebElement element = iterator.next();
+			String thetext = element.getText();
+			log.info("checking element :" + thetext);
+			
+			if ( thetext.equalsIgnoreCase(check)) {
+				  foundtext = thetext;
+				  
+			 }
+		}
+		return foundtext;
    }
 		
 }

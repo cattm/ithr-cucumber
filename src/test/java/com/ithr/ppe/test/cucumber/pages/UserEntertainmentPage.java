@@ -9,6 +9,7 @@ import org.apache.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.FindBys;
 import org.openqa.selenium.support.PageFactory;
 
 // There will be offers and subscriptions
@@ -25,6 +26,12 @@ public class UserEntertainmentPage extends PageBase{
 	  
 	  @FindBy(css="div.wrapper.subscriptions-wrapper")
 	  private WebElement subscriptionText;
+	   
+	  @FindBy(xpath="//article[@id='content__wrapper']/div[2]/div/div/div/div/div/div[2]/h3/span[2]") 
+	  private WebElement skyManageSubscription; 
+	  
+	  @FindBy(xpath="//article[@id='content__wrapper']/div[2]/h2")
+	  private WebElement manage;
 	  
 	  public  UserEntertainmentPage (WebDriver driver) {
 		  super(driver);
@@ -69,6 +76,10 @@ public class UserEntertainmentPage extends PageBase{
 	  
 	  public String getSubscriptionText() {
 		  return subscriptionText.getText();
+	  }
+	  
+	  public String getSkySubscriptionText() {
+		  return skyManageSubscription.getText();
 	  }
 	  
 }
