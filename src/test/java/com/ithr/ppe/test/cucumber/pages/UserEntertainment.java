@@ -6,6 +6,7 @@ import java.util.Iterator;
 import java.util.List;
 
 import org.apache.log4j.Logger;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -14,8 +15,8 @@ import org.openqa.selenium.support.PageFactory;
 
 // There will be offers and subscriptions
 // initially there will be no subscriptions - we hope! And this we should check
-public class UserEntertainmentPage extends PageBase{
-	 public static Logger log = Logger.getLogger(UserEntertainmentPage.class);
+public class UserEntertainment extends PageBase{
+	 public static Logger log = Logger.getLogger(UserEntertainment.class);
 	
 		
 	  @FindBy(css="div.panel-inner-full.fl img.logo")
@@ -28,12 +29,12 @@ public class UserEntertainmentPage extends PageBase{
 	  private WebElement subscriptionText;
 	   
 	  @FindBy(xpath="//article[@id='content__wrapper']/div[2]/div/div/div/div/div/div[2]/h3/span[2]") 
-	  private WebElement skyManageSubscription; 
+	  private WebElement manageSubscription; 
 	  
 	  @FindBy(xpath="//article[@id='content__wrapper']/div[2]/h2")
 	  private WebElement manage;
 	  
-	  public  UserEntertainmentPage (WebDriver driver) {
+	  public  UserEntertainment (WebDriver driver) {
 		  super(driver);
 		  PageFactory.initElements(driver, this);
 		  
@@ -78,8 +79,19 @@ public class UserEntertainmentPage extends PageBase{
 		  return subscriptionText.getText();
 	  }
 	  
+	  public String getManageText() {
+		  return manage.getText();
+	  }
+	  
 	  public String getSkySubscriptionText() {
-		  return skyManageSubscription.getText();
+		  return manageSubscription.getText();
+	  }
+	  
+	  public String getSpotifySubscriptionText() {
+		  return manageSubscription.getText();
+	  }
+	  public boolean isSpotifySubscriptionTextPresent() throws InterruptedException {	  
+		return elementLoaded(By.xpath("//article[@id='content__wrapper']/div[2]/div/div/div/div/div/div[2]/h3/span[2]"));		
 	  }
 	  
 }

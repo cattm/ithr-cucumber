@@ -16,7 +16,10 @@ import com.ithr.ppe.test.cucumber.steps.GbSkyOfferSteps;
 public class UserSkyOffer extends PageBase{
 	public static Logger log = Logger.getLogger(UserSkyOffer.class);
 	
-	@FindBy(name="accept")
+	// 26/7/2016 - DIT stopped working  
+	// identifier changed - This is not Good
+	@FindBy(css="div.table-panel-top.main-offer-content div.checkbox-wrap-jsx div.form-el-wrap input.checkbox-jsx")
+	//@FindBy(name="accept")
 	private WebElement tnc;
 	  	
 	@FindBy(css="div.btn-jsx.cf.main-offer-btn")
@@ -93,11 +96,10 @@ public class UserSkyOffer extends PageBase{
 		while (iterator.hasNext()) {
 			WebElement element = iterator.next();
 			String thetext = element.getText();
-			log.info("checking element :" + thetext);
+			log.debug("checking element :" + thetext);
 			
 			if ( thetext.equalsIgnoreCase(check)) {
-				  foundtext = thetext;
-				  
+				  foundtext = thetext;				  
 			 }
 		}
 		return foundtext;

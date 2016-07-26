@@ -1,8 +1,14 @@
 package com.ithr.ppe.test.cucumber.steps.utils;
 
+import org.apache.log4j.Logger;
 import org.junit.Assert;
 
+import com.ithr.ppe.test.cucumber.steps.PurchaseSpotifyOffersSteps;
+
 public class ErrorCollector {
+	public static Logger log = Logger.getLogger(ErrorCollector.class);
+	private static StringBuffer verificationErrors = new StringBuffer();
+	
 	public static void assertTrue(boolean condition) {
     	Assert.assertTrue(condition);
     }
@@ -101,12 +107,23 @@ public class ErrorCollector {
     }
     
 	public static String getVerificationFailures() {
-		String e = "";
-		return e;
+		String verificationErrorString = verificationErrors.toString();
+
+		return verificationErrorString;
 	}
 	
 	public static void addVerificationFailure(Throwable e) {
-		return;
+
+		verificationErrors.append(e.toString());
 	}
 	
+	public static boolean failedVerification() {
+		 String verificationErrorString = verificationErrors.toString();
+		 if (!"".equals(verificationErrorString)) {
+
+		    	return true;
+		 }
+		 return false;
+		    
+	}
 }

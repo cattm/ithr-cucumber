@@ -8,7 +8,7 @@ import org.openqa.selenium.Dimension;
 
 import com.ithr.ppe.test.base.StepBase;
 import com.ithr.ppe.test.cucumber.pages.AdminHome;
-import com.ithr.ppe.test.cucumber.pages.UserEntertainmentPage;
+import com.ithr.ppe.test.cucumber.pages.UserEntertainment;
 import com.ithr.ppe.test.cucumber.pages.UserMSISDNEntry;
 import com.ithr.ppe.test.cucumber.pages.UserSMSChallenge;
 import com.ithr.ppe.test.cucumber.pages.UserSkyOffer;
@@ -24,7 +24,7 @@ import cucumber.api.java.en.Then;
 public class GbSkyOfferSteps extends StepBase {
 	public static Logger log = Logger.getLogger(GbSkyOfferSteps.class);
 	
-	private static String propertyFile = "test.properties";
+	
 	private String fileToCheck =  "";
 	// examples are:
 	 // = "Sky bolton v1.json";
@@ -40,7 +40,7 @@ public class GbSkyOfferSteps extends StepBase {
 	private JsonParser jsonParse; 
 	
 	public GbSkyOfferSteps() {
-		super(propertyFile);	
+		super();	
 	}
 	
 	@Before("@xdemo")
@@ -80,7 +80,7 @@ public class GbSkyOfferSteps extends StepBase {
 		  shortMsisdn = adminhome.getShortMSISDN();
 		  log.info("MSISN is : " + shortMsisdn);
 		  // can put a check in hear to check the contents of the subscription
-		  checkUrl = adminhome.getSbuscriptionCheckUrl();		
+		  checkUrl = adminhome.getSubscriptionCheckUrl();		
 		  driver.get(checkUrl);
 		  //Thread.sleep(5000);
 	}
@@ -109,7 +109,7 @@ public class GbSkyOfferSteps extends StepBase {
 		  UserSMSChallenge smschallenge = new UserSMSChallenge(driver);
 		  smschallenge.setSMS("0000");
 		  log.info("Have Set Pin");
-		  smschallenge.clickRegistertButton();
+		  smschallenge.clickRegisterButton();
 		  
 		  /////////////////////////////////////////////////////////
 		  // might be a short wait here....while new page loads...
@@ -117,7 +117,7 @@ public class GbSkyOfferSteps extends StepBase {
 		  //Thread.sleep(5000);
 		  
 		  // Entertainment page - offer page directly or click on image icon to get text
-		  UserEntertainmentPage entpage = new UserEntertainmentPage(driver);
+		  UserEntertainment entpage = new UserEntertainment(driver);
 		  entpage.bodyLoaded();
 		  //Thread.sleep(5000);
 		  

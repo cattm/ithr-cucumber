@@ -17,18 +17,10 @@ public class opcoTextChecker {
 	FileInputStream inputStream;
 	private static Properties prop = new Properties();
 	
-    // TODO move these so the are read in from a file once we know how many we need to do 
-	// they actually come from a file in ppe-parent/web/src/main/resources
-	// named like PPEWebapp-GB.properties
-	// so we locate the correct key and grabe the text
-	// UK : partneroffers.88c34b82.renderOffers.noText.subscription=You have no subscriptions. Please take a look at the available offers.
-    // DE : partneroffers.88c34b82.renderOffers.noText.subscription=Du hast noch kein aktives Entertainment-Paket
-	
-
 	private String formFileRef() {
 		// actual file is "file" and "opco" and "path"
-		String tmpopco = opco.toUpperCase();
-		String actFile = file.replace("XX", tmpopco);
+		String tmpopco = opco;
+		String actFile = file.replace("XX", tmpopco.toUpperCase());
 		log.info(reference + actFile);
 		return  reference + actFile; 
 	}
@@ -58,7 +50,9 @@ public class opcoTextChecker {
 	}
 	
 	public boolean checkConfirmText(String onpage) {
+		//TODO resolve correct string to parse
 		//find the property then compare it
+		// or is it completing.processMsg
 		String tocompare = GetProperty(offset + "success.notificationMsg.offer");
 		log.info("Reference Text is:        " + tocompare);
 		return onpage.equals(tocompare);
@@ -69,11 +63,36 @@ public class opcoTextChecker {
 		String destr1 = "partneroffers.landing-hard.heading.skytv";
 		String gbstr1 = "partneroffers.landing-hard.confirmation.heading.sky";
 		String tocompare = "";
+	
 		switch (opco) {
 		case "gb" :	tocompare=GetProperty(gbstr1);
+					break;
 		case "de" : tocompare=GetProperty(destr1);
+					break;
 		case "ie" :	tocompare=GetProperty(gbstr1);
-		default: ;
+					break;
+		default: break;
+		}
+		log.info("Reference Text is:        " + tocompare);
+		return onpage.equals(tocompare);
+	}
+	public boolean checkSpotifySubscibedText(String onpage) {
+		// TODO: this is probably the wrong string to check - and it should not be hardcoded
+		String destr1 = "partneroffers.landing-hard.heading.spotify";
+		String gbstr1 = "partneroffers.landing-hard.confirmation.heading.spotify";
+		String itstr1 = "partneroffers.landing-hard.heading.spotify";
+		String tocompare = "";
+		
+		switch (opco) {
+				case "gb" :	tocompare=GetProperty(gbstr1);
+							break;
+				case "de" : tocompare=GetProperty(destr1);
+							break;
+				case "ie" :	tocompare=GetProperty(gbstr1);
+							break;
+				case "it" :	tocompare=GetProperty(itstr1);
+							break;
+				default: break;
 		}
 		log.info("Reference Text is:        " + tocompare);
 		return onpage.equals(tocompare);

@@ -12,6 +12,8 @@ public class TestProperties {
 	public static String ADMIN_BASEURL;
 	public static String TEST_REFDIR;
 	public static String LOGGERFILE;
+	public static String SPOTIFYBASE;
+	public static String PINCODE;
 	public static boolean DO_ASSERTCHECKS;
 	private static boolean loaded = false;
 	
@@ -34,8 +36,10 @@ public class TestProperties {
 	 private static void loadProperties() {
          USER_BASEURL = prop.getProperty("userbase");
          ADMIN_BASEURL = prop.getProperty("adminbase");
+         SPOTIFYBASE = prop.getProperty("spotifybase");
          TEST_REFDIR = prop.getProperty("testrefdir");
          LOGGERFILE = prop.getProperty("logger");
+         PINCODE = prop.getProperty("pintouse");
          DO_ASSERTCHECKS = Boolean.parseBoolean(prop.getProperty("doasserts"));
 	 }
 

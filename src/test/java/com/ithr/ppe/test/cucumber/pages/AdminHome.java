@@ -85,7 +85,7 @@ public class AdminHome extends PageBase{
 		  noUserGroup.click();
 	  }
 	  
-	  public String getSbuscriptionCheckUrl() {
+	  public String getSubscriptionCheckUrl() {
 		  return subsriptionUrl.getText();
 	  }
 	  

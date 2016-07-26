@@ -22,7 +22,7 @@ public class UserSMSChallenge extends PageBase{
 		  
 	  }
 	  
-	  public void clickRegistertButton() {
+	  public void clickRegisterButton() {
 		  registerButton.click();
 	  }
 	  
