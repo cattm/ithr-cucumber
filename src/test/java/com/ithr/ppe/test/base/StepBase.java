@@ -43,7 +43,6 @@ public class StepBase {
 	protected String opco = "gb"; //default
 	protected String subscription;
 	protected String userGroup;
-	protected String checkUrl;
 	protected String shortMsisdn;
 	
 	//checks

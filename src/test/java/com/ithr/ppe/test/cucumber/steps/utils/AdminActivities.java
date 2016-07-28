@@ -9,8 +9,7 @@ import com.ithr.ppe.test.cucumber.pages.AdminVerify;
 public class AdminActivities {
 	public static Logger log = Logger.getLogger(AdminActivities.class);
 	
-	public static String msisdnFromAdmin(WebDriver driver, String opco, String subscription, 
-													String usergroup, String checkurl) {
+	public static String msisdnFromAdmin(WebDriver driver, String opco, String subscription, String usergroup) {
 		// open admin page and setup subscription in ER
 		AdminHome adminhome = new AdminHome(driver);
 		adminhome.setOpco(opco);
@@ -31,7 +30,7 @@ public class AdminActivities {
 		log.info("MSISN is : " + msisdn);
 		
 		// TODO: Put a Proper test here
-		checkurl = adminhome.getSubscriptionCheckUrl();		
+		String checkurl = adminhome.getSubscriptionCheckUrl();		
 		driver.get(checkurl);
 		
 		// check/test goes here

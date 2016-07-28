@@ -111,7 +111,7 @@ public class PurchaseSkyOffersSteps extends StepBase {
 		this.userGroup = usergroup;	
 		try {	
 			// set up msisdn	
-			shortMsisdn = AdminActivities.msisdnFromAdmin(driver, opco, subscription, userGroup, checkUrl);
+			shortMsisdn = AdminActivities.msisdnFromAdmin(driver, opco, subscription, userGroup);
 			// handle the AA aspect
 	
 			String url = baseUserUrl + opco;

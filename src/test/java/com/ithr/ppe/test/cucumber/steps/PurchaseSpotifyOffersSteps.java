@@ -4,16 +4,10 @@ import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
 import org.junit.Assert;
 import org.openqa.selenium.Dimension;
-import org.openqa.selenium.WebDriver;
 
 import com.ithr.ppe.test.base.StepBase;
-import com.ithr.ppe.test.commons.DateStamp;
-import com.ithr.ppe.test.cucumber.pages.SpotifyHelper;
 import com.ithr.ppe.test.cucumber.pages.UserEntertainment;
 import com.ithr.ppe.test.cucumber.pages.UserSpotifyOffer;
-import com.ithr.ppe.test.cucumber.pages.partners.SpotifyLoginOrRegister;
-import com.ithr.ppe.test.cucumber.pages.partners.SpotifyRegistration;
-import com.ithr.ppe.test.cucumber.pages.partners.SpotifySuccess;
 import com.ithr.ppe.test.cucumber.steps.utils.AdminActivities;
 import com.ithr.ppe.test.cucumber.steps.utils.ErrorCollector;
 import com.ithr.ppe.test.cucumber.steps.utils.IdentityActivities;
@@ -46,21 +40,8 @@ public class PurchaseSpotifyOffersSteps extends StepBase {
 		userNameToUse = uname;
 	}
 
-	private String getSpotifyUser () throws Exception {
-		DateStamp myds = new DateStamp();
-		String rn = myds.getRanDateFormat();
-		String urlString = baseSpotifyHelper + "?username=ithrtest" +  rn + "&opco=" + opco;
-		log.info(urlString);
-		driver.get(urlString);
-		SpotifyHelper spotpage = new SpotifyHelper(driver);
-		
-		return spotpage.getUserName();
-	}
-	
-	private boolean AcceptTheOffer() throws Exception {
+	private boolean AcceptTheOffer() throws Exception {	
 		String buttontext = jsonParse.getOffersOkButton();			
-		// ACCEPT THE OFFER
-	    // the button is all upper case!
 	    String ucbuttontext = buttontext.toUpperCase();
 	    log.info("Button String is : " +  ucbuttontext);
 	    
@@ -92,8 +73,10 @@ public class PurchaseSpotifyOffersSteps extends StepBase {
 			return true;
 		}
 					    
-	    return false;
+	    return false;  
+
 	}
+	
 	private boolean ReOpenPPE () throws Exception {
 		log.info("TEST: Check reopen on home page displays correct offers");
 		//TODO need to fix needing this - VERY FLAKY
@@ -136,7 +119,6 @@ public class PurchaseSpotifyOffersSteps extends StepBase {
 	   textChecker = new opcoTextChecker(testReferenceDir, this.opco);
 	}
 
-
 	@When("^my spotify profile has a ([^\"]*) with a ([^\"]*)$")
 	public void PackageInGroup(String mypackage, String usergroup) throws Exception {
 		log.info("When: I have a " + mypackage + " with a " + usergroup);
@@ -146,9 +128,9 @@ public class PurchaseSpotifyOffersSteps extends StepBase {
 		try {
 			// set up msisdn
 			///shortMsisdn = msisdnFromAdmin();
-			shortMsisdn = AdminActivities.msisdnFromAdmin(driver, opco, subscription, userGroup, checkUrl);
+			shortMsisdn = AdminActivities.msisdnFromAdmin(driver, opco, subscription, userGroup);
 			// get Spotify user
-			userNameToUse = getSpotifyUser ();
+			userNameToUse = SpotifyActivities.getSpotifyUser (driver, baseSpotifyHelper, opco);
 			log.info("username is " + userNameToUse);
 			if (userNameToUse.contains("ERROR")) {
 				log.error("spotify helper did not return a valid username");

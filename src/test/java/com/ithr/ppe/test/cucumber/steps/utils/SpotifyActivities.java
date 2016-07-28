@@ -3,6 +3,8 @@ package com.ithr.ppe.test.cucumber.steps.utils;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 
+import com.ithr.ppe.test.commons.DateStamp;
+import com.ithr.ppe.test.cucumber.pages.SpotifyHelper;
 import com.ithr.ppe.test.cucumber.pages.partners.SpotifyLoginOrRegister;
 import com.ithr.ppe.test.cucumber.pages.partners.SpotifyRegistration;
 import com.ithr.ppe.test.cucumber.pages.partners.SpotifySuccess;
@@ -54,5 +56,16 @@ public class SpotifyActivities {
 	public static boolean LoginToSpotify () {
 		// TODO: fill in code for this activity
 		return false;
+	}
+	
+	public static String getSpotifyUser (WebDriver driver, String baseurl, String opco) throws Exception {
+		DateStamp myds = new DateStamp();
+		String rn = myds.getRanDateFormat();
+		String urlString = baseurl + "?username=ithrtest" +  rn + "&opco=" + opco;
+		log.info(urlString);
+		driver.get(urlString);
+		SpotifyHelper spotpage = new SpotifyHelper(driver);
+		
+		return spotpage.getUserName();
 	}
 }
