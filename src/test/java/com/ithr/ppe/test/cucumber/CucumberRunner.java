@@ -6,15 +6,12 @@ import cucumber.api.junit.Cucumber;
 
 @RunWith(Cucumber.class)
 @CucumberOptions(
-		/*plugin = {"html:reports/cucumber-html-report", 
-				  "json:reports/cucumber.json", 
-				  "pretty",
-				  "usage:reports/cucumber-usage.json", 
-				  "junit:reports/cucumber-results.xml"},*/
 		plugin = { "html:reports/cucumber-html-report",
 				   "json:reports/cucumber.json", 
 				  "pretty"},
 		features = {"src/test/java/com/ithr/ppe/test/cucumber/features"},
+//		tags = {"@skypurchase", "@spotifypurchase", "~@ignore"},
+				tags = {"~@ignore"},
 		glue = {"com.ithr.ppe.test.cucumber.steps"}
 		)
 public class CucumberRunner {

@@ -8,7 +8,9 @@ import org.openqa.selenium.Dimension;
 import com.ithr.ppe.test.base.StepBase;
 import com.ithr.ppe.test.cucumber.pages.UserEntertainment;
 import com.ithr.ppe.test.cucumber.pages.UserSkyOffer;
+import com.ithr.ppe.test.cucumber.steps.utils.AdminActivities;
 import com.ithr.ppe.test.cucumber.steps.utils.ErrorCollector;
+import com.ithr.ppe.test.cucumber.steps.utils.IdentityActivities;
 import com.ithr.ppe.test.cucumber.steps.utils.JsonParser;
 import com.ithr.ppe.test.cucumber.steps.utils.opcoTextChecker;
 
@@ -22,21 +24,13 @@ import cucumber.api.java.en.When;
 
 public class PurchaseSkyOffersSteps extends StepBase {
 	public static Logger log = Logger.getLogger(PurchaseSkyOffersSteps.class);
-	
-	// TODO: Check which of these are always required and promote to baseclass
-	private opcoTextChecker textChecker = null;
-	private String fileToCheck =  "";
-	private Boolean refFileValid = false;
-	
-	
-
-	private JsonParser jsonParse; 	
+	 	
 
 	public PurchaseSkyOffersSteps() {
 		super();
 	}
 	
-	private boolean AcceptTheOffer () throws Throwable {
+	private boolean AcceptTheOffer () throws Exception {
 		
 		String buttontext = jsonParse.getOffersOkButton();		
 	    // the button is all upper case!
@@ -71,7 +65,7 @@ public class PurchaseSkyOffersSteps extends StepBase {
 	    
 	}
 	
-	private boolean ReOpenPPE () throws Throwable {		
+	private boolean ReOpenPPE () throws Exception {		
 		log.info("TEST: Check reopen on home page displays correct offers");
 		//TODO need to fix needing this!
 		Thread.sleep(5000);
@@ -95,13 +89,13 @@ public class PurchaseSkyOffersSteps extends StepBase {
 	}
 	
 	@After("@skypurchase")
-	public void tearDown(Scenario scenario) throws Exception {
+	public void tearDown(Scenario scenario) {
 		log.info("TearDown");
 		super.tearDown(scenario);
 	}
 	
 	@Given("^I am a \"([^\"]*)\" customer purchasing sky package$")
-	public void SkyCustomer(String opco) throws Throwable {
+	public void SkyCustomer(String opco) throws Exception {
 	   log.info("Given: I am a " + opco);
 	   this.opco = opco.toLowerCase();
 	   
@@ -110,16 +104,18 @@ public class PurchaseSkyOffersSteps extends StepBase {
 	}
 	
 	@When("^my sky profile has a ([^\"]*) with a ([^\"]*)$")
-	public void PackageInGroup(String mypackage, String usergroup) throws Throwable {
+	public void PackageInGroup(String mypackage, String usergroup) throws Exception {
 		log.info("When: I have a  " + mypackage + " with a " + usergroup);
 
 		this.subscription = mypackage;
 		this.userGroup = usergroup;	
 		try {	
-			// set up msisdn
-			shortMsisdn = msisdnFromAdmin();		
+			// set up msisdn	
+			shortMsisdn = AdminActivities.msisdnFromAdmin(driver, opco, subscription, userGroup, checkUrl);
 			// handle the AA aspect
-			loginToPPE(shortMsisdn);
+	
+			String url = baseUserUrl + opco;
+			IdentityActivities.loginToPPE (driver, shortMsisdn , pinCode, url);
 		
 		} catch(Exception e) {
 			log.info("caught Exception: " + e);
@@ -131,7 +127,7 @@ public class PurchaseSkyOffersSteps extends StepBase {
 	}
 
 	@Then("^my sky offer will come from ([^\"]*)$")
-	public void OfferContainsStringsFrom(String reffilename) throws Throwable {
+	public void OfferContainsStringsFrom(String reffilename) throws Exception {
 		log.info("Then: my offer will come from " + reffilename + "file");
 		fileToCheck = reffilename;
 		if (!fileToCheck.contains("Not Valid")) {
@@ -202,15 +198,15 @@ public class PurchaseSkyOffersSteps extends StepBase {
 	}
 	
 	@And("^I will accept the sky offer$")
-	public void AcceptTheSkyOffer() throws Throwable {
+	public void AcceptTheSkyOffer() throws Exception {
 		if (!refFileValid) {
 			log.info("And: I Will NOT Accept the sky Offer ");
 		}
 		else {
 			log.info("And: I Will Accept the sky Offer ");
-			try {				
-				boolean offeraccepted = AcceptTheOffer();
-				
+			try {	
+				// TODO: alter logic based on booleans 
+				boolean offeraccepted = AcceptTheOffer();				
 				boolean ppeopen = ReOpenPPE();			
 				  
 			} catch(Exception e){

@@ -50,7 +50,7 @@ public class GbSkyOfferSteps extends StepBase {
 	}
 	
 	@After("@xdemo")
-	public void tearDown(Scenario scenario) throws Exception {
+	public void tearDown(Scenario scenario) {
 		super.tearDown(scenario);
 	}
 

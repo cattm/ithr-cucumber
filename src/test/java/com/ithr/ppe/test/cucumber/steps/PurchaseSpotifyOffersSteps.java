@@ -1,12 +1,10 @@
 package com.ithr.ppe.test.cucumber.steps;
 
-import java.io.IOException;
-
 import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
 import org.junit.Assert;
-import org.openqa.selenium.By;
 import org.openqa.selenium.Dimension;
+import org.openqa.selenium.WebDriver;
 
 import com.ithr.ppe.test.base.StepBase;
 import com.ithr.ppe.test.commons.DateStamp;
@@ -16,8 +14,11 @@ import com.ithr.ppe.test.cucumber.pages.UserSpotifyOffer;
 import com.ithr.ppe.test.cucumber.pages.partners.SpotifyLoginOrRegister;
 import com.ithr.ppe.test.cucumber.pages.partners.SpotifyRegistration;
 import com.ithr.ppe.test.cucumber.pages.partners.SpotifySuccess;
+import com.ithr.ppe.test.cucumber.steps.utils.AdminActivities;
 import com.ithr.ppe.test.cucumber.steps.utils.ErrorCollector;
+import com.ithr.ppe.test.cucumber.steps.utils.IdentityActivities;
 import com.ithr.ppe.test.cucumber.steps.utils.JsonParser;
+import com.ithr.ppe.test.cucumber.steps.utils.SpotifyActivities;
 import com.ithr.ppe.test.cucumber.steps.utils.opcoTextChecker;
 
 import cucumber.api.Scenario;
@@ -30,17 +31,22 @@ import cucumber.api.java.en.When;
 
 public class PurchaseSpotifyOffersSteps extends StepBase {
 	public static Logger log = Logger.getLogger(PurchaseSpotifyOffersSteps.class);
-	private opcoTextChecker textChecker = null;
-	private String fileToCheck =  "";
-	private Boolean refFileValid = false;
+		
+	
 	private String userNameToUse = "";
-	private JsonParser jsonParse; 	
 	
 	public PurchaseSpotifyOffersSteps() {
 		super();
 	}
 	
-	private String getSpotifyUser () throws Throwable {
+	public String getSpotifyUserName () {
+		return userNameToUse;
+	}
+	public void setSpotifyUserName (String uname) {
+		userNameToUse = uname;
+	}
+
+	private String getSpotifyUser () throws Exception {
 		DateStamp myds = new DateStamp();
 		String rn = myds.getRanDateFormat();
 		String urlString = baseSpotifyHelper + "?username=ithrtest" +  rn + "&opco=" + opco;
@@ -51,35 +57,7 @@ public class PurchaseSpotifyOffersSteps extends StepBase {
 		return spotpage.getUserName();
 	}
 	
-	private boolean RegisterForSpotify () throws Throwable  {
-		// Spotify choose to register
-		SpotifyLoginOrRegister logorreg = new SpotifyLoginOrRegister(driver);
-		logorreg.clickRegister();
-  
-		// fill in registration form
-		SpotifyRegistration regpage = new SpotifyRegistration(driver);
-		regpage.setUser(userNameToUse);
-		regpage.setPassword("password");
-		regpage.setEmail(userNameToUse + "@ithr.com");
-		regpage.setEmailConfirm(userNameToUse + "@ithr.com");
-		regpage.setDob("1960", "May", "23");
-		regpage.setMale();
-		regpage.clickSubmit();
-  
-		// get success page and check (for piece of mind that we are on the correct page)
-		SpotifySuccess spotsuccess = new SpotifySuccess(driver);
-		spotsuccess.bodyLoaded(); // give the page a chance to load
-		
-		if (spotsuccess.getHello().contentEquals("hello world")) {
-			spotsuccess.hitOk();
-			return true;
-		} else {
-			// Well it all went wrong 
-			return false;
-		}
-	}
-	
-	private boolean AcceptTheOffer() throws Throwable {
+	private boolean AcceptTheOffer() throws Exception {
 		String buttontext = jsonParse.getOffersOkButton();			
 		// ACCEPT THE OFFER
 	    // the button is all upper case!
@@ -90,7 +68,7 @@ public class PurchaseSpotifyOffersSteps extends StepBase {
 		spotifyoffer.clickAcceptOffer(buttontext);		
 	
 		// if this is true we are ok
-		if (RegisterForSpotify()) {
+		if (SpotifyActivities.RegisterForSpotify(driver, opco, userNameToUse)) {
 			
 			// check the page displayed
 			log.info("TEST: Check on confirm page after accepting offer");
@@ -116,9 +94,7 @@ public class PurchaseSpotifyOffersSteps extends StepBase {
 					    
 	    return false;
 	}
-	
-	
-	private boolean ReOpenPPE () throws Throwable {
+	private boolean ReOpenPPE () throws Exception {
 		log.info("TEST: Check reopen on home page displays correct offers");
 		//TODO need to fix needing this - VERY FLAKY
 		Thread.sleep(5000);
@@ -146,13 +122,13 @@ public class PurchaseSpotifyOffersSteps extends StepBase {
 	}
 	
 	@After("@spotifypurchase")
-	public void tearDown(Scenario scenario) throws Exception {
+	public void tearDown(Scenario scenario) {
 		log.info("TearDown");
 		super.tearDown(scenario);
 	}
 	
 	@Given("^I am a \"([^\"]*)\" customer purchasing spotify$")
-	public void SpotifyCustomer(String opco) throws Throwable {
+	public void SpotifyCustomer(String opco) throws Exception {
 	   log.info("Given: I am a " + opco + " customer purchasing spotify");
 	   this.opco = opco.toLowerCase();
 	   
@@ -162,15 +138,15 @@ public class PurchaseSpotifyOffersSteps extends StepBase {
 
 
 	@When("^my spotify profile has a ([^\"]*) with a ([^\"]*)$")
-	public void PackageInGroup(String mypackage, String usergroup) throws Throwable {
+	public void PackageInGroup(String mypackage, String usergroup) throws Exception {
 		log.info("When: I have a " + mypackage + " with a " + usergroup);
 		this.subscription = mypackage;
 		this.userGroup = usergroup;	
 		
 		try {
 			// set up msisdn
-			shortMsisdn = msisdnFromAdmin();
-		
+			///shortMsisdn = msisdnFromAdmin();
+			shortMsisdn = AdminActivities.msisdnFromAdmin(driver, opco, subscription, userGroup, checkUrl);
 			// get Spotify user
 			userNameToUse = getSpotifyUser ();
 			log.info("username is " + userNameToUse);
@@ -180,7 +156,8 @@ public class PurchaseSpotifyOffersSteps extends StepBase {
 			}
 			
 			// handle the AA aspect
-			loginToPPE(shortMsisdn);
+			String url = baseUserUrl + opco;
+			IdentityActivities.loginToPPE (driver, shortMsisdn , pinCode, url);
 			
 		} catch (Exception e){
 			log.error("caught Exception: " + e);
@@ -192,7 +169,7 @@ public class PurchaseSpotifyOffersSteps extends StepBase {
 		
 	}
 	@Then("^my spotify offer will come from ([^\"]*)$")
-	public void OfferContainsStringsFrom(String reffilename) throws Throwable {
+	public void OfferContainsStringsFrom(String reffilename) throws Exception {
 		log.info("Then: my offer will come from " + reffilename + "file");
 		fileToCheck = reffilename;
 		if (!fileToCheck.contains("Not Valid")) {
@@ -222,7 +199,6 @@ public class PurchaseSpotifyOffersSteps extends StepBase {
 				  
 				  //  on journey to accept offer
 				  UserSpotifyOffer spotifyoffer = new UserSpotifyOffer(driver);
-				 
 				  spotifyoffer.bodyLoaded();
 				  spotifyoffer.setTnC();
 				  // - click......
@@ -244,7 +220,7 @@ public class PurchaseSpotifyOffersSteps extends StepBase {
 				  log.error("NO VALID OFFER For Spotify Visible");
 				  // TODO: check this out what is the correct behavior
 				  // this may be correct behavior for some combinations
-				  Assert.fail("No Valid Offer - Aborting Test");
+				  Assert.fail("No Valid Offer for Spotify - Aborting Test");
 			  }
 		} catch (Exception e){
 			log.error("caught Exception: " + e);
@@ -257,7 +233,7 @@ public class PurchaseSpotifyOffersSteps extends StepBase {
 
 	
 	@And("^I will accept the spotify offer$")
-	public void AcceptTheSpotifyOffer() throws Throwable {
+	public void AcceptTheSpotifyOffer() throws Exception {
 		
 		if (!refFileValid) {
 			log.info("And: I Will NOT Accept the Spotify Offer ");
@@ -277,8 +253,7 @@ public class PurchaseSpotifyOffersSteps extends StepBase {
 				if (!checkAsserts) GetDebugScreenShot(line);
 				Assert.fail("Aborting Test"); //To fail test in case of any element identification failure		
 			}
-		}		  				
-	
+		}		  					
 	}
 
 

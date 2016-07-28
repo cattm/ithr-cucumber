@@ -18,9 +18,12 @@ import org.openqa.selenium.firefox.FirefoxProfile;
 
 import com.ithr.ppe.test.commons.TestProperties;
 import com.ithr.ppe.test.cucumber.pages.AdminHome;
+import com.ithr.ppe.test.cucumber.pages.AdminVerify;
 import com.ithr.ppe.test.cucumber.pages.UserMSISDNEntry;
 import com.ithr.ppe.test.cucumber.pages.UserSMSChallenge;
 import com.ithr.ppe.test.cucumber.steps.utils.ErrorCollector;
+import com.ithr.ppe.test.cucumber.steps.utils.JsonParser;
+import com.ithr.ppe.test.cucumber.steps.utils.opcoTextChecker;
 
 import cucumber.api.Scenario;
 
@@ -42,6 +45,12 @@ public class StepBase {
 	protected String userGroup;
 	protected String checkUrl;
 	protected String shortMsisdn;
+	
+	//checks
+	protected opcoTextChecker textChecker = null;
+	protected String fileToCheck =  "";
+	protected Boolean refFileValid = false;
+	protected JsonParser jsonParse; 
 	
 	public static Logger log = Logger.getLogger(StepBase.class);
 		  
@@ -81,7 +90,7 @@ public class StepBase {
 	    driver.get(baseAdminUrl);
 	}
 	
-	protected void tearDown(Scenario scenario) throws Exception {
+	protected void tearDown(Scenario scenario) {
 		try {
 			if (scenario.isFailed()) {
 				log.error("Scenario has failed - taking screenshot to embed in report");
@@ -96,61 +105,6 @@ public class StepBase {
 			  }
 			 
 		}		
-	}
-	
-	protected String msisdnFromAdmin() {
-		// open admin page and setup subscription in ER
-		AdminHome adminhome = new AdminHome(driver);
-		adminhome.setOpco(opco);
-		
-		if (!subscription.contains("Not Valid")) {
-			log.info("subscription is Valid");
-			adminhome.setSubscription(subscription);
-		}
-				
-		if (!userGroup.contains("Not Valid")) {			
-			log.info("User Group is Valid");
-			adminhome.setUserGroup(userGroup);
-		} else {
-			adminhome.setNoUserGroup();
-		}
-			
-		String msisdn = adminhome.getShortMSISDN();
-		log.info("MSISN is : " + msisdn);
-		
-		// TODO: put a test in here to check the contents of the subscription
-		checkUrl = adminhome.getSubscriptionCheckUrl();		
-		driver.get(checkUrl);	
-		return msisdn;
-	}
-	
-	
-	protected void loginToPPE (String msisdn) throws InterruptedException, IOException {
-		try {
-			driver.get(baseUserUrl + opco);
-			log.info("LoginToPPE -");
-		
-			// Entry page - AAA MSISDN and PIN challenge
-			UserMSISDNEntry msisdnentry = new UserMSISDNEntry(driver);
-			msisdnentry.elementLoaded(By.id("nextButton"));
-	
-			msisdnentry.setShortMobile(msisdn);
-			msisdnentry.clickNextButton();
-			log.info("Have Set Mobile Number");
-		
-			// SMS Challenge - pin
-			UserSMSChallenge smschallenge = new UserSMSChallenge(driver);
-			smschallenge.setSMS(pinCode);
-			log.info("Have Set Pin");
-		
-			smschallenge.clickRegisterButton();
-		} catch(Exception e) {
-			log.info("caught Exception: " + e);
-			Integer linenumber = Thread.currentThread().getStackTrace()[2].getLineNumber();
-			String line = linenumber.toString(); 
-			if (!checkAsserts) GetDebugScreenShot(line);
-			Assert.fail("LoginToPPE could not succeed Aborting Test"); //To fail test in case of any element identification failure		
-		}
 	}
 	
 }// end class
