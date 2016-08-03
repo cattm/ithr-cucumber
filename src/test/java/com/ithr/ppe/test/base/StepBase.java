@@ -76,14 +76,14 @@ public class StepBase {
 	
 	protected void loadPJSDriver () {
 		 // TODO: this needs to be better defined - command line arg or property
-		 File file = new File("/Users/marcus/Downloads/phantomjs-2.1.1-macosx/bin/phantomjs");				
-         System.setProperty("phantomjs.binary.path", file.getAbsolutePath());		
+		 //File file = new File("/Users/marcus/Downloads/phantomjs-2.1.1-macosx/bin/phantomjs");				
+         //System.setProperty("phantomjs.binary.path", file.getAbsolutePath());		
          //DesiredCapabilities caps = new DesiredCapabilities();
          //caps.setJavascriptEnabled(true);
          //caps.setCapability(PhantomJSDriverService.PHANTOMJS_EXECUTABLE_PATH_PROPERTY, "/Users/marcus/Downloads/phantomjs-2.1.1-macosx/bin/phantomjs");
-         driver = new PhantomJSDriver();
+         //driver = new PhantomJSDriver();
          
-         driver.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
+         //driver.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
 	}
 	
 	protected void loadFFDriver() {

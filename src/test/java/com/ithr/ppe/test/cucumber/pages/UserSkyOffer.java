@@ -39,7 +39,7 @@ public class UserSkyOffer extends PageBase{
 	@FindBy(xpath="/html/body/div/div/article/div[1]/div/div[1]/div[1]/div[2]/div[1]/div[3]")
 	private WebElement whatHappensNext;
 	
-	// TODO: this is a crap find - PURPLE really!
+	// TODO: this is a crap find - PURPLE really!! you should be ashamed
 	@FindBy(css="div.btn-jsx.cf.large-screens.purple a.btn.event-btn.cf.btn-tertiary")
 	private WebElement additionalOffer;
 	
