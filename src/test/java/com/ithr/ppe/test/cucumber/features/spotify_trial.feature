@@ -13,7 +13,9 @@ Feature: Spotify Trial demonstration
   # as is loginToPPE
   # registerForSpotify and getSpotifyUser require some work
   # need a model "operation"
-  Scenario: Delete spotify user and Purchase Offer
+  Scenario: Delete spotify user and Purchase Offer with new MSISDN
     Given I a have deleted my user in spotify
     When I subscribe to spotify with a new msisdn
     Then I will purchase spotify trial
+
+    # we can then repeat with same msisdn and we should not get trial - but chargeable instead

@@ -1,3 +1,4 @@
+@ignore
 Feature: GB Sky Offer
   This is a simple demonstration for a GB MSIDN of the sky offer
   Its pretty poor BDD but it will do to check the basic logic

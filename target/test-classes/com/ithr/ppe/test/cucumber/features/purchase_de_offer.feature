@@ -1,6 +1,6 @@
+@ignore
 Feature: Purchasing the offers for DE Prototype
 
-  @skypurchase
   Scenario Outline: Purchase Offers from sky
     Given I am a "DE" customer with <package>
     When I am in <usergroup>
