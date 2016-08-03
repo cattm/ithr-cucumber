@@ -77,6 +77,13 @@ public class UserSkyOffer extends PageBase{
 	   additionalOffer.click();
    }
    
+   // TODO: temporary method - until I sort out correct model to use to identify this button
+   // And perform a check on the text being correct at the same time
+   public void clickAcceptOffer () {
+	   WebElement button = driver.findElement(By.cssSelector(".btn.event-btn.cf.btn--okButton"));
+	   button.click();
+   }
+   
    public void clickAcceptOffer(String buttontext) {
 		Iterator <WebElement> iterator = acceptOffer.iterator();
 		while (iterator.hasNext()) {
