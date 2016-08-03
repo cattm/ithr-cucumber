@@ -17,9 +17,10 @@ public class UserSkyOffer extends PageBase{
 	public static Logger log = Logger.getLogger(UserSkyOffer.class);
 	
 	// 26/7/2016 - DIT stopped working  
+	//29/7/2016 changed back
 	// identifier changed - This is not Good
-	@FindBy(css="div.table-panel-top.main-offer-content div.checkbox-wrap-jsx div.form-el-wrap input.checkbox-jsx")
-	//@FindBy(name="accept")
+	//@FindBy(css="div.table-panel-top.main-offer-content div.checkbox-wrap-jsx div.form-el-wrap input.checkbox-jsx")
+	@FindBy(name="accept")
 	private WebElement tnc;
 	  	
 	@FindBy(css="div.btn-jsx.cf.main-offer-btn")
@@ -81,10 +82,10 @@ public class UserSkyOffer extends PageBase{
 		while (iterator.hasNext()) {
 			WebElement element = iterator.next();
 			String thetext = element.getText();
-			log.debug("checking element :" + thetext);
+			log.info("checking element :" + thetext);
 			
 			if ( thetext.equalsIgnoreCase(buttontext)) {
-				  log.debug("Clicking Accept");
+				  log.info("Clicking Accept");
 				  element.click();	  
 			 }
 		}

@@ -154,7 +154,7 @@ public class PurchaseSkyOffersSteps extends StepBase {
 			  boolean ok = textChecker.checkSubscriptionText(subtext);
 		
 			  if (checkAsserts) ErrorCollector.verifyTrue(ok);
-			  log.info("selecting offer");
+			  log.info("Selecting sky Offer");
 			  
 			  // at this point if there is no reference file then we should not try to select offer
 			  // because it probably isnt there and also probably should not be!

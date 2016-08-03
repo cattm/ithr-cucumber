@@ -25,7 +25,10 @@ public class UserEntertainment extends PageBase{
 	  @FindBy(xpath="/html/body/div/div/header/div[2]/p")
 	  private WebElement msisdn;
 	  
-	  @FindBy(css="div.wrapper.subscriptions-wrapper")
+	  // TODO: experiments for phantomJS
+	  //@FindBy(css="div.wrapper.subscriptions-wrapper")
+	  //@FindBy(xpath="//*[@id='content__wrapper']/div[2]/div/div/p")
+	  @FindBy(css="p.nothing-to-display")
 	  private WebElement subscriptionText;
 	   
 	  @FindBy(xpath="//article[@id='content__wrapper']/div[2]/div/div/div/div/div/div[2]/h3/span[2]") 
@@ -47,10 +50,11 @@ public class UserEntertainment extends PageBase{
 		  while (iterator.hasNext()) {
 			  WebElement element = iterator.next();
 			  String thetext = element.getAttribute("src");
-			  log.debug("checking element :" + thetext);
+			  log.info("checking element :" + thetext);
 			  if ( thetext.contains(offer)) {
-				  log.debug("Clicking offer");
-				  element.click();	  
+				  log.info("Clicking offer");
+				  element.click();
+				  return;
 			  }
 		  }
 		  

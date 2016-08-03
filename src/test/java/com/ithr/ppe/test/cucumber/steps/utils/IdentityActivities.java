@@ -21,6 +21,7 @@ public class IdentityActivities {
 		
 		// Entry page - AAA MSISDN and PIN challenge
 		UserMSISDNEntry msisdnentry = new UserMSISDNEntry(driver);
+		// TODO: see if we can get rid of this very specific wait
 		msisdnentry.elementLoaded(By.id("nextButton"));
 	
 		msisdnentry.setShortMobile(msisdn);
@@ -29,6 +30,7 @@ public class IdentityActivities {
 		
 		// SMS Challenge - pin
 		UserSMSChallenge smschallenge = new UserSMSChallenge(driver);
+		smschallenge.bodyLoaded();
 		smschallenge.setSMS(pin);
 		log.info("Have Set Pin");
 		

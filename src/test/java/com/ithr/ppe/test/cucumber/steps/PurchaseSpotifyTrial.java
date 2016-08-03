@@ -46,7 +46,7 @@ public class PurchaseSpotifyTrial extends StepBase{
 		super.tearDown(scenario);
 	}
 	
-	private boolean PerformBasicSpotifyPurchase (String opco, String mypackage, String usergroup, String contained ) throws Exception {
+	private boolean PerformBasicSpotifyPurchase ( ) throws Exception {
 		// for demo only
 		// admin gets the msisdn
 		// msisdnFromAdmin(WebDriver driver, String opco, String subscription, String usergroup);
@@ -78,11 +78,11 @@ public class PurchaseSpotifyTrial extends StepBase{
 			UserSpotifyOffer spotifyoffer = new UserSpotifyOffer(driver);
 			spotifyoffer.bodyLoaded();
 			spotifyoffer.setTnC();
-				  	
+			log.info("1");	  	
 			String buttontext = jsonParse.getOffersOkButton();			
 	    	String ucbuttontext = buttontext.toUpperCase();
 	    	log.info("Button String is : " +  ucbuttontext);
-	    	   
+	    	log.info("2");	  
 			spotifyoffer.clickAcceptOffer(buttontext);		
 	
 			// if this is true we are ok we have registered on spotify
@@ -110,6 +110,7 @@ public class PurchaseSpotifyTrial extends StepBase{
 	    // For automatic transformation, change DataTable to one of
 	    // List<YourType>, List<List<E>>, List<Map<K,V>> or Map<K,V>.
 	    // E,K,V must be a scalar (String, Integer, Date, enum etc)
+		this.opco = opco.toLowerCase();
 		log.info("Already Purchased Spotify");
 		String thepackage = null;
 	    String usergroup  = null;
@@ -120,9 +121,12 @@ public class PurchaseSpotifyTrial extends StepBase{
 	        containedin = map.get("contained in");
 	        log.info("we have :" + thepackage + " and " + usergroup + " and " + containedin);
 		}
-		CommandExecutor.testCmnd();
-		log.info(System.getProperty("user.dir"));
-		//PerformBasicSpotifyPurchase(opco, thepackage, usergroup, containedin);
+		this.subscription = thepackage;
+		this.userGroup = usergroup;
+		this.fileToCheck = containedin;
+		//CommandExecutor.testCmnd();
+		//log.info(System.getProperty("user.dir"));
+		PerformBasicSpotifyPurchase();
 	}
 
 	@Given("^I a have deleted my user in spotify$")

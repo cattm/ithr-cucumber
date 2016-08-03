@@ -65,4 +65,12 @@ public class CommandExecutor {
 	public static String getErrorOutput () {
 		return sr;
 	}
+	
+	/*
+	 * TODO: 02/08/2016
+	 * Ion has modified the status helper so that
+	 * https://dit.offers.vodafone.com/spotifyHelper?opco=xx&username=yy - creates account then gives status on subsequent calls
+	 * action= terminate - will terminate offers
+	 * use this!!! 
+	 */
 }
