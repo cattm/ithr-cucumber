@@ -1,0 +1,60 @@
+{
+   "comment": "Initial import by DEV",
+   "opco": "it",
+   "name": "InfinityTV standalone all",
+   "version": 2,
+   "partner": "infinitytv",
+   "type": "standalone",
+   "switchable": false,
+   "trial": false,
+   "enabled": {
+      "purchase": true,
+      "cancellation": true
+   },
+   "heading": "Infinity TV",
+   "pages": {
+      "purchase": {
+         "details": {
+            "text": "<p>Grazie a Vodafone hai migliaia di film,serie tv, cartoni in super HD inclusi per 2 mesi, poi il servizio si rinnova a 5,99 euro per i primi 12 mesi, e a 7,99 euro per I mesi successivi.</p>",
+            "checkbox": {
+               "label": "Cliccando su attiva dichiari di accettare i <a href=\"http://www.infinitytv.it/info/condizioni-servizio-scegli-infinity.pdf\" class=\"terms_link\">termini e le condizioni</a> del servizio",
+               "errorMessage": "Prima di poter attivare Infinity devi accettare i nostri termini e condizioni.",
+               "order": 1,
+               "mandatory": true
+            },
+            "accordion": {
+               "label": "Infinity TV",
+               "text": "<p class=\"content_heading\">Film, Serie TV, cartoni e molto altro senza limiti. Solo con Infinity il super HD ed il download sono inclusi.</p><p>Grazie alla tua offerta Vodafone hai 2 mesi inclusi, senza costi aggiuntivi!</p><p>Scopri tutti i vantaggi di Infinity:</p><ul><li>Download&Go: scarica i tuoi contenuti e portali sempre con te. Anche senza connessione!</li><li>Accedi da 5 dispositivi diversi e guardi da 2 contemporaneamente.</li><li>Senza interruzioni pubblicitarie ed in super HD.</li></ul><p>L’offerta dà diritto a 2 mesi di Infinity offerti da Vodafone a 0 euro al mese anziché 7,99 euro al mese; il periodo di gratuità è valido finché la tua offerta è attiva: se disattivi la tua offerta il servizio Infinity viene disattivato.</p><p>Dopo i due mesi di promozionalità, il servizio si rinnova a 5,99 euro al mese per i successivi 12 mesi. Successivamente Infinity si rinnova a 6,99 euro al mese.</p><p>Se hai già sottoscritto uno dei contenuti dell’offerta Vodafone Entertainment, non potrai usufruire di questa promozione.</p><p>Se hai già usufruito di un periodo di promozionalità per il servizio Infinity, non potrai usufruire di questa promozione.</p>"
+            },
+            "okButton": {
+               "label": "Attiva Infinity",
+               "action": "#next"
+            }
+         }
+      },
+      "cancellation": {
+         "details": {
+            "text": "<p>E' attiva l’offerta che ti  dà diritto a 2 mesi di Infinity offerti da Vodafone a 0 euro al mese anziché 7,99 euro al mese; il periodo di gratuità è valido finché la tua offerta è attiva: se disattivi la tua offerta il servizio Infinity viene disattivato.</p><p>Dopo i due mesi di promozionalità, il servizio si rinnova a 5,99 euro al mese per i successivi 12 mesi. Successivamente Infinity si rinnova a 6,99 euro al mese. Se hai già sottoscritto uno dei contenuti dell’offerta Vodafone Entertainment, non potrai usufruire di questa promozione. Se hai già usufruito di un periodo di promozionalità per il servizio Infinity, non potrai usufruire di questa promozione</p><p>Se non l'hai gia' fatto scarica l'APP premendo il bottone qui sotto</p>",
+            "getAppButton": {
+               "label": "Scarica l'APP di Chili",
+               "action": "#getApp"
+            },
+            "okButton": {
+               "label": "Disattiva",
+               "action": "#next"
+            }
+         },
+         "details2": {
+            "text": "<p>La tua sottoscrizione Chili sarà disattivata al termine del mese di promozione o del periodo per cui hai già pagato.</p><p>Per confermare la disattivazione di Infinity clicca su &#171;Conferma Disattivazione&#187;</p>",
+            "okButton": {
+               "label": "Conferma Disattivazione",
+               "action": "#next"
+            }
+         },
+         "success": {
+            "text": "<p>Il tuo account Chili sarà disattivato al termine del mese di promozione o del periodo per cui hai già pagato.</p><p>La tua richiesta di disattivazione dell'abbonamento a Chili è stata completata.</p>"
+         }
+      }
+   },
+   "uniqueName": "it/InfinityTV%20standalone%20all"
+}

@@ -1,0 +1,86 @@
+{
+   "comment": "Initial import by DEV",
+   "cancellable": true,
+   "cancelled": false,
+   "opco": "ie",
+   "name": "Spotify standalone payg",
+   "version": 8,
+   "partner": "spotify",
+   "type": "standalone",
+   "switchable": false,
+   "trial": false,
+   
+   "enabled": {
+      "purchase": true,
+      "cancellation": true
+   },
+   "heading": "Spotify Premium",
+   
+   "usergroups": [
+      "roverpayg",
+      "roverprempayg",
+      "rover"
+   ],
+   "deviceAvailability": [
+      "android",
+      "iPhone"
+   ],
+   "pages": {
+      "purchase": {
+         "details": {
+            "title": "With Spotify Premium, your music is everywhere",
+            "text": "<ul><li>Instant access to over 30 million songs, Ad free<br></li><li>Ability to save songs offline for data free listening<br></li><li>Millions of playlists for every moment<br></li><li>Listen on all your devices<br></li><li>Amazing sound quality&nbsp;</li></ul><p class=\"p2\">Please note, Spotify is not available on a Blackberry 10.</p>",
+            "checkbox": {
+               "label": "Vodafone <a href=\"#\">terms and conditions</a>",
+               "errorMessage": "Please check the Vodafone terms and conditions box to continue",
+               "order": 1,
+               "mandatory": true
+            },
+            "accordion": {
+               "label": "Spotify Premium",
+               "text": "<p class=\"p1 content_heading\">Premium</p><p class=\"p1\">You get unlimited music from Spotify for only €5.00 per month which includes an additional 500mb of data</p><p class=\"p1\">If you already have a Spotify account we can help you upgrade or transfer it</p><p class=\"p1 content_heading\">Internet charges</p><p class=\"p1\">You pay standard internet charges while roaming or if your have exceeded your monthly allowance</p><p class=\"p1 content_heading\">Supported phones</p><p class=\"p1\">Spotify is supported by a wide range of mobile phones and home entertainment devices, including, android, windows, apple IOS, web and many more. Please note, It is not supported by Blackberry 10.</p>"
+            },
+            "okButton": {
+               "label": "Add Spotify Premium",
+               "action": "#next"
+            }
+         },
+         "success": {
+            "title": "What happens next?",
+            "text": "<p class=\"p1\">Congratulations, you’re now ready to get your Spotify Premium app and start listening to some great music. Follow the sign up process and you will be directed to downloading the app.</p><p class=\"p1\">Please note, you need to be on the Vodafone network for the first time you access the app. Remember to switch off the WiFi</p><p class=\"p1\">I accept terms and conditions.</p><p class=\"p1 content_heading\">Subscription</p><p class=\"p1\">You get unlimited access to Spotify Premium</p><p class=\"p1 content_heading\">Internet charges</p><p class=\"p1\">You pay standard internet charges while roaming or if your have exceeded your monthly allowance</p><p class=\"p1 content_heading\">Supported phones</p>\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n<p class=\"p1\">Spotify is supported by a wide range of mobile phones and home entertainment devices, including, android, windows, apple IOS, web and many more. Please note, it is not supported by Blackberry 10.</p>",
+            "getAppButton": {
+               "label": "Get Spotify app",
+               "action": "#getApp"
+            }
+         }
+      },
+      "cancellation": {
+         "details": {
+            "text": "<p class=\"p1\">With Spotify Premium, your music is everywhere</p><ul><li>Instant access to over 30 million songs, Ad free<br></li><li>Ability to save songs offline for data free listening<br></li><li>Millions of playlists for every moment<br></li><li>Listen on all your devices<br></li><li>Amazing sound quality<br></li></ul><p class=\"p1\">Please note, Spotify is not available on a Blackberry 10.</p><p class=\"p1\">To stop your subscription please click the button below.</p>",
+            "accordion": {
+               "label": "Spotify Premium",
+               "text": "<p class=\"p1 content_heading\">Premium</p><p class=\"p1\">You get unlimited music from Spotify for only €5.00 per month which includes an additional 500mb of data</p><p class=\"p1\">If you already have a Spotify account we can help you upgrade or transfer it</p><p class=\"p1 content_heading\">Internet charges</p><p class=\"p1\">You pay standard internet charges while roaming or if your have exceeded your monthly allowance</p><p class=\"p1 content_heading\">Supported phones</p><p class=\"p1\">Spotify is supported by a wide range of mobile phones and home entertainment devices, including, android, windows, apple IOS, web and many more. Please note, It is not supported by Blackberry 10.</p>"
+            },
+            "okButton": {
+               "label": "Please confirm you wish to cancel Spotify Premium",
+               "action": "#next"
+            },
+            "getAppButton": {
+               "label": "Get Spotify app",
+               "action": "#getApp"
+            }
+         },
+         "details2": {
+            "text": "<ul><li>Instant access to over 30 million songs, Ad free<br></li><li>Ability to save songs offline for data free listening<br></li><li>Millions of playlists for every moment<br></li><li>Listen on all your devices<br></li><li>Amazing sound quality<br></li></ul><p class=\"p1\">Please note, Spotify is not available on a Blackberry 10 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</p><p>To stop your subscription please click the button below.</p>",
+            "okButton": {
+               "label": "Cancel Spotify Premium (€5.00 per month with 500mb of additional data)",
+               "action": "#next"
+            }
+         },
+         "success": {
+            "text": "<p class=\"p1\">You've been unsubscribed successfully from Spotify Premium.</p>"
+         }
+      }
+   },
+   "uniqueName": "ie/Spotify%20standalone"
+}

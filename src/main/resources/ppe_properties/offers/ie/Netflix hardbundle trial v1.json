@@ -1,0 +1,57 @@
+{
+	"comment": "Initial import by DEV",
+
+	"opco": "ie",
+	"name": "Netflix hardbundle trial",
+	"version": 1,
+	"partner": "netflix",
+	"type": "hardbundle",
+	"switchable": false,
+	"trial": true,
+
+	"enabled": {
+		"purchase": false,
+		"cancellation": true
+	},
+
+	"heading": "Netflix",
+
+	"pages": {
+		"cancellation": {
+			"details": {
+				"title": "You will be stopping your monthly subscription to Netflix.",
+				"text": "<p>To stop the subscription please click the button below.</p>",
+				"getAppButton": {
+					"label": "Get Netflix app",
+					"action": "#getApp"
+				},
+				"okButton": {
+					"label": "Cancel Netflix now",
+					"action": "#next"
+				}
+			},
+
+			"details2": {
+				"title": "You'll no longer be subscribed to Netflix each month.",
+				"text": "<p>To stop this subscription please click the button below.</p>",
+				"okButton": {
+					"label": "Cancel Netflix now",
+					"action": "#next"
+				}
+			},
+
+			"success": {
+				"text": "<p>You've been unsubscribed successfully from Netflix.</p>",
+				"getAppButton": {
+					"label": "Get Netflix app",
+					"action": "#getApp"
+				},
+				"customButton": {
+					"label": "Add more offers",
+					"action": "#moreOffers",
+					"description": "You might also be interested in these additional offers"
+				}
+			}
+		}
+	}
+}

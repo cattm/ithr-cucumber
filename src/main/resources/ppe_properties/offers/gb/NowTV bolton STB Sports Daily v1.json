@@ -1,0 +1,62 @@
+{
+	"comment": "Initial import by DEV",
+
+	"opco": "gb",
+	"name": "NowTV bolton STB Sports Daily",
+	"version": 1,
+	"partner": "nowtv",
+	"type": "bolton",
+	"switchable": false,
+	"trial": false,
+	"packageId": "PK_STB_NowTVSportsDay",
+
+	"enabled": {
+		"purchase": true,
+		"cancellation": false
+	},
+
+	"usergroups": ["ugstb"],
+
+	"heading": "NOW TV Sky SPORTS Day Pass",
+
+	"deviceAvailability": [
+		"android",
+		"iPhone",
+		"desktop"
+	],
+
+	"pages": {
+		"purchase": {
+			"details": {
+                "settop": true,
+                "title": "<p >Only pay for the days you want to watch with a Day or Week Pass, or get a whole month of live sport with the new Month Pass.</p>",
+                "text": "<p>That's the biggest live matches and events from just £6.99. No contract.</p><p class=\"content_heading\">Sky Sports Day Pass</p><p>The best Sky Sports action for 24 glorious hours.</p>",
+                "checkbox": {
+                  "label": "I accept <a href=\"#\" class=\"terms_link\">terms and conditions</a>",
+                  "errorMessage": "To continue, you must agree to the terms & conditions",
+                  "order": 1,
+                  "mandatory": true
+               },
+               "okButton": {
+                  "label": "ADD NOW TV SKY SPORTS PASS £6.99",
+                  "action": "#next"
+               }
+            },
+
+            "success": {
+               "title": "Your NOW TV Sky SPORTS Day Pass is ready.",
+               "text": "<p>Congratulations, your NOW TV Sky SPORTS Day Pass is ready to use on Vodafone TV or other devices.</p>",
+               "getAppButton": {
+                  "label": "Get NOW TV app",
+                  "action": "#getApp"
+               }
+            }
+		},
+
+		"cancellation": {
+			"details": {
+               "text": "<p>NOW TV Sky SPORTS Day Pass cannot be cancelled.</p>"
+            }
+		}
+	}
+}

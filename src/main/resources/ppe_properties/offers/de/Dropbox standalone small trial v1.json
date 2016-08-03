@@ -1,0 +1,90 @@
+{
+	"comment": "Initial import by DEV",
+
+	"opco": "de",
+	"name": "Dropbox standalone small trial",
+	"version": 1,
+	"partner": "dropbox",
+	"type": "standalone",
+	"switchable": false,
+	"trial": true,
+
+	"enabled": {
+		"purchase": true,
+		"cancellation": true
+	},
+
+	"heading": "Dropbox",
+
+	"usergroups": ["ug_storage_small"],
+
+	"deviceAvailability": [
+		"android",
+		"iPhone"
+	],
+
+	"pages": {
+		"purchase": {
+			"details": {
+				"title": "Dein persönliches Angebot!",
+				"text": "<p>Mit Deinem Vodafone-Vertrag bekommst Du 25 GB Dropbox-Speicherplatz für 3 Monate geschenkt.</p><ul><li>Danach bezahlst Du 1.99 € pro Monat</li><li>Du kannst jeden Monat kündigen!</li><li>Zum Aktivieren löse mindestens 5 von 7 Aufgaben in den Ersten Schritten Deiner Dropbox.</li></ul>",
+				"checkbox": {
+					"label": "<a href=\"http://www.vodafone.com/content/apps/external-redirects/backupplus/promo_general/DE\" target=\"_blank\">Ich akzeptiere die AGB</a>",
+					"errorMessage": "Akzeptier bitte unsere AGB. Erst dann kannst du das Angebot buchen.",
+					"confirmationMessage": "Klick auf \"Jetzt anmelden\". So aktivierst Du Dein gratis Dropbox-Angebot für 3 Monate. Danach wird's automatisch ein Abo für 1.99 € pro Monat. Du kannst jeden Monat während Deines gratis Angebots kündigen. Dann bezahlst Du nichts.",
+					"order": 1,
+					"mandatory": true
+				},
+				"accordion": {
+					"label": "Details",
+					"text": "<p class=\"content_heading\">Get Started</p><p>Bestätige jetzt Dein Angebot und Du erhältst direkt 3 GB extra Dropbox-Speicher. Willst Du Deine vollen 25 GB Speicherplatz freischalten? Dann löse mindestens 5 von 7 Aufgaben im \"Erste Schritte\"-Guide auf www.dropbox.com/gs</p><p class=\"content_heading\">Zusätzlicher Speicher</p><p>Hast Du schon ein Dropbox-Konto mit Speicherplatz? Dann erhältst Du diesen Speicherplatz noch zusätzlich.</p><p class=\"content_heading\">Internetkosten</p><p>Du nutzt zuerst Dein Datenvolumen. Du bezahlst die Preise Deines Tarifs, wenn Du den Service im Ausland nutzt oder Du Deine Frei-GB aufgebraucht hast. Nutz den Service im WLAN kostenlos.</p><p class=\"content_heading\">Angebot beenden</p><p>Dieses Angebot gilt 3 Monate. Zum Ende dieser 3 Monate bekommst Du eine Info, dass Dein Angebot ein kostenpflichtiges Abo wird. Du kannst es jederzeit über die Mein Angebot-Seite in Deiner Backup+ App kündigen.</p>"
+				},
+				"okButton": {
+					"label": "Zu meinem Angebot",
+					"action": "#next"
+				},
+				"customButton": {
+					"label": "Nicht jetzt",
+					"action": "http://www.vodafone.com/content/apps/external-redirects/backupplus/open/DE"
+				}
+			},
+
+			"success": {
+				"title": "Glückwunsch!",
+				"text": "<p class=\"content_heading\">Das hat geklappt. Du hast jetzt 3 GB zusätzlichen Speicherplatz für Dein Dropbox-Konto!</p><p>Denk daran: Löse mindestens 5 von 7 der Ersten Schritte Deiner Dropbox. So schaltest Du Deine vollen 25 GB frei.</p><p>Hast du schon die \"Ersten Schritte\" gemeistert?</p><p>Du erhälst 25 GB zusätzlichen Dropbox-Speicherplatz.</p>",
+				"customButton": {
+					"label": "Weiter",
+					"action": "http://www.vodafone.com/content/apps/external-redirects/backupplus/open/DE"
+				}
+			}
+		},
+
+		"cancellation": {
+			"details": {
+				"title": "Dein Angebot",
+				"text": "<p>Mit Deinem Vodafone-Vertrag bekommst Du 25 GB Dropbox-Speicherplatz für 3 Monate geschenkt.</p><ul><li>Danach bezahlst Du 1,99 € pro Monat</li><li>Du kannst jeden Monat kündigen!</li><li>Zum Aktivieren löse mindestens 5 der 7 Ersten Schritte Deiner Dropbox.</li></ul></p><p><a href=\"http://www.vodafone.com/content/apps/external-redirects/backupplus/promo_general/DE\" target=\"_blank\">Es gelten die Angebotsbedingungen</a></p>",
+				"accordion": {
+					"label": "Details",
+					"text": "<p class=\"content_heading\">Get Started</p><p>Bestätige jetzt Dein Angebot und Du erhältst direkt 3 GB extra Dropbox-Speicher. Willst Du Deine vollen 25 GB Speicherplatz freischalten? Dann löse mindestens 5 von 7 Aufgaben im \"Erste Schritte\"-Guide auf www.dropbox.com/gs</p><p class=\"content_heading\">Zusätzlicher Speicher</p><p>Hast Du schon ein Dropbox-Konto mit Speicherplatz? Dann erhältst Du diesen Speicherplatz noch zusätzlich.</p><p class=\"content_heading\">Internetkosten</p><p>Du nutzt zuerst Dein Datenvolumen. Du bezahlst die Preise Deines Tarifs, wenn Du den Service im Ausland nutzt oder Du Deine Frei-GB aufgebraucht hast. Nutz den Service im WLAN kostenlos.</p><p class=\"content_heading\">Angebot beenden</p><p>Dieses Angebot gilt 3 Monate. Zum Ende dieser 3 Monate bekommst Du eine Info, dass Dein Angebot ein kostenpflichtiges Abo wird. Du kannst es jederzeit über die Mein Angebot-Seite in Deiner Backup+ App kündigen.</p>"
+				},
+				"okButton": {
+					"label": "Kündigen",
+					"action": "#next"
+				}
+			},
+
+			"details2": {
+				"title": "Dein Angebot kündigen",
+				"text": "<p>Wenn Du Dein Angebot beendest, verlierst Du Deine zusätzlichen 25 GB Dropbox-Speicherplatz.</p><p>Du kannst Backup+ trotzdem weiterhin nutzen. Z.B. um Deine Kontakte zu synchronisieren und Deine Daten mit der Dropbox zu sichern. Dazu brauchst Du ausreichend Dropbox-Speicherplatz. Keine Sorge! Deine schon gespeicherten Daten werden nicht gelöscht. Du kannst sie weiterhin jederzeit nutzen.</p><p>Bist Du sicher, dass Du kündigen möchtest?</p>",
+				"okButton": {
+					"label": "Jetzt kündigen",
+					"action": "#next"
+				}
+			},
+
+			"success": {
+				"text": "Das hat geklappt"
+			}
+		}
+	}
+}

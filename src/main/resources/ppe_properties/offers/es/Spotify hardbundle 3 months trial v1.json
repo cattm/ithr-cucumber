@@ -1,0 +1,86 @@
+{
+	"comment": "Initial import by DEV",
+
+	"opco": "es",
+	"name": "Spotify hardbundle 3 months trial",
+	"version": 1,
+	"partner": "spotify",
+	"type": "hardbundle",
+	"switchable": false,
+	"trial": true,
+
+	"enabled": {
+		"purchase": true,
+		"cancellation": true
+	},
+
+	"usergroups": [
+		"bundling_low",
+		"onetivo_high"
+	],
+	
+	"heading": "Spotify Premium",
+
+	"pages": {
+		"purchase": {
+			"details": {
+				"title": "Spotify Premium. Ahora, con tu tarifa Vodafone, 3 meses de prueba gratis",
+				"text": "<ul><li>Música ilimitada. Encuentra tus canciones preferidas, todas las novedades y crea tus propias listas.</li><li>Escucha en alta definición</li><li>Guarda tus canciones en tu dispositivo para escucharlas aunque no estés conectado.</li><li>Accede a toda tu música de forma sincronizada desde tu Smartphone, Tablet y PC/MAC.</li><li>Sin publicidad</li><li>Sin permanencia</li></ul>",
+				"checkbox": {
+					"label": "<p>Una vez hagas clic en “Activar Spotify Premium”, serás redirigido a una página de Spotify para completar el alta en el servicio.</p><p>Pulsando en “Activar Spotify Premium” estás solicitando la activación de la promoción de 3 meses gratis en el servicio Spotify Premium. Después de ese periodo, pagarás 8,5€/mes (impuestos incluidos). Antes de que esto suceda, recibirás un SMS gratuito avisándote.  Recuerda que podrás ver los cargos de forma sencilla en tu factura Vodafone.</p>",
+					"errorMessage": "Por favor, debes aceptar y marcar la casilla inferior para continuar con el proceso de alta.",
+					"order": 1,
+					"mandatory": true
+				},
+				"accordion": {
+					"label": "Más info",
+					"text": "<p>Y además:</p><p>Para cualquier duda sobre el funcionamiento del servicio, accede a <a href=\"http://www.vodafone.es/ayuda/spotify\" target=\"_blank\">www.vodafone.es/ayuda/spotify</a></p> "
+				},
+				"okButton": {
+					"label": "Activar Spotify Premium",
+					"action": "#next"
+				}
+			},
+
+			"success": {
+				"title": "¡Proceso completado!",
+				"text": "<p>Tu promoción del servicio de Spotify Premium se ha activado correctamente.</p>",
+				"getAppButton": {
+					"label": "Descargar app",
+					"action": "#getApp"
+				}
+			}
+		},
+
+		"cancellation": {
+			"details": {
+				"text": "<p>Escucha tu música preferida, con o sin conexión de datos, sin anuncios y en alta definición.</p><p>Para darse de baja del servicio Spotify Premium, haz clic en el botón inferior. </p>",
+				"getAppButton": {
+					"label": "Descargar app",
+					"action": "#getApp"
+				},
+				"okButton": {
+					"label": "Darse de baja",
+					"action": "#next"
+				}
+			},
+
+			"details2": {
+				"title" : "<p>¿Estas seguro que quieres darte de baja?</p>",
+				"text": "<p>Recuerda, la baja en el servicio será efectiva al final de tu ciclo de facturación.</p>",
+				"okButton": {
+					"label": "Darse de baja",
+					"action": "#next"
+				}
+			},
+
+			"success": {
+				"text": "<p>Te confirmamos que la baja de tu suscripción al servicio de Spotify Premium se ha realizado correctamente.</p>",
+				"getAppButton": {
+					"label": "Descargar app",
+					"action": "#getApp"
+				}
+			}
+		}
+	}
+}

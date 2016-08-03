@@ -1,0 +1,70 @@
+{
+	"comment": "Initial import by DEV",
+
+	"opco": "gb",
+	"name": "NowTV bolton STB Sports",
+	"version": 1,
+	"partner": "nowtv",
+	"type": "bolton",
+	"switchable": false,
+	"trial": false,
+	"packageId": "PK_STB_NowTVSports",
+
+	"enabled": {
+		"purchase": true,
+		"cancellation": false
+	},
+
+	"usergroups": ["ugstb"],
+
+	"heading": "NOW TV Sky SPORTS Month Pass",
+
+	"deviceAvailability": [
+		"android",
+		"iPhone",
+		"desktop"
+	],
+
+	"pages": {
+		"purchase": {
+			"details": {
+               "settop": true,
+               "title": "<p>Only pay for the days you want to watch with a Day or Week Pass, or get a whole month of live sport with the new Month Pass.</p>",
+               "text": "<p>That's the biggest live matches and events from just £31.99. No contract.</p><p class=\"content_heading\">Sky Sports Month Pass</p><p>Or get a whole month of live sport.</p><p>Automatically renews each month, unless cancelled. To cancel got to offers.vodafone.com/gb</p>",
+               "checkbox": {
+                  "label": "I accept <a href=\"#\" class=\"terms_link\">terms and conditions</a>",
+                  "errorMessage": "To continue, you must agree to the terms & conditions",
+                  "order": 1,
+                  "mandatory": true
+               },
+               "okButton": {
+                  "label": "ADD NOW TV SKY SPORTS PASS £31.99",
+                  "action": "#next"
+               }
+            },
+
+            "success": {
+               "title": "Your NOW TV Sky SPORTS Month Pass is ready.",
+               "text": "<p>Congratulations, your NOW TV Sky SPORTS Month Pass is ready to use on Vodafone TV or other devices.</p>",
+               "getAppButton": {
+                  "label": "Get NOW TV app",
+                  "action": "#getApp"
+               }
+            }
+		},
+
+		"cancellation": {
+			"details": {
+               "text": "<p>You'll be stopping your NOW TV Sky SPORTS Month Pass. Remember you can always come back to start again when you want.</p>",
+               "okButton": {
+                  "label": "Cancel NOW TV Sky SPORTS Month Pass",
+                  "action": "#next"
+               }
+            },
+            "success": {
+               "title": "You've been unsubscribed successfully from NOW TV Sky SPORTS Month Pass.",
+               "text": "<p>Remember you can come back at any time to sign up again.</p>"
+            }
+		}
+	}
+}

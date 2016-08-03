@@ -1,0 +1,92 @@
+﻿{
+	"comment": "Initial import by DEV",
+
+	"opco": "es",
+	"name": "Dropbox standalone promo 24 months free trial",
+	"version": 1,
+	"partner": "dropbox",
+	"type": "standalone",
+	"switchable": false,
+	"trial": true,
+
+	"enabled": {
+		"purchase": true,
+		"cancellation": true
+	},
+
+	"usergroups": [
+		"ug_storage_xlarge"
+	],
+
+	"heading": "Dropbox",
+
+	"deviceAvailability": [
+		"android",
+		"iPhone"
+	],
+
+	"pages": {
+		"purchase": {
+			"details": {
+				"title": "¡Enhorabuena!",
+				"text": "<p>Tu tarifa incluye 25 GB de espacio gratuito en Dropbox durante 2 años para guardar tus contactos, fotos y videos:</p><ul class=\"offers_list\"><li>Luego paga tan sólo 2€ al mes.</li><li>Cancélalo cuando quieras.</li><li>Completa los primeros pasos de Dropbox para activarlos si no lo has hecho ya.</li></ul>",
+				"checkbox": {
+					"label": "Acepto los <a href=\"http://www.vodafone.com/content/apps/external-redirects/backupplus/promo_general/ES\" target=\"_blank\">términos y condiciones</a>",
+					"errorMessage": "Por favor, debes aceptar los términos y condiciones",
+					"confirmationMessage": "Seleccionando \"Suscribirse ahora\", activarás la promoción. Después del periodo de promoción empezarás a pagar 2€ al mes. Si no te suscribes ahora continuarás disfrutando de 2GB de espacio gratuito en Dropbox.Recuerda que podrás cancelar la suscripción en cualquier momento de la promoción sin ningún cargo adicional.",
+					"order": 1,
+					"mandatory": true
+				},
+				"accordion": {
+					"label": "Detalles de la oferta",
+					"text": "<p class=\"content_heading\">Primeros Pasos</p><p>Al aceptar tu oferta recibirás 3GB de espacio en Dropbox. Para conseguir los 25GB debes completar al menos 5 pasos de los siete disponibles en el proceso Primeros Pasos de Dropbox después de vincular tu cuenta de Dropbox a Backup+ (por favor visita <a href=\"https://www.dropbox.com/gs\">https://www.dropbox.com/gs</a> para obtener más información).</p><p class=\"content_heading\">Espacio adicional</p><p>El espacio propocionado se añadirá al espacio que previamente tuvieras en Dropbox.</p><p class=\"content_heading\">Cargos de navegación por internet</p><p>Las conexiones  a internet realizadas por el servicio cuando estés en extranjero o cuando hayas superado tu asignación de datos se tarificarán según tu plan.</p><p class=\"content_heading\">Cancelar la promoción</p><p>La promoción tendrá una duración de 24 meses. Al final de la promoción te informaremos de su finalización y que pasarás a pagar 2€ al mes. Podrás darte de baja de la promoción en cualquier momento a través de Mi oferta en la aplicación de Backup+</p>"
+				},
+				"okButton": {
+					"label": "Suscribirse ahora",
+					"action": "#next"
+				},
+				"customButton": {
+					"label": "Ahora no",
+					"action": "http://www.vodafone.com/content/apps/external-redirects/backupplus/open/ES"
+				}
+			},
+
+			"success": {
+				"title": "¡Enhorabuena!",
+				"text": "<p>Completa la guía de Primeros Pasos en Dropbox para disfrutar de tus  25 GB si no lo has hecho ya. Hasta que la completes, dispondrás de 3 GB.</p>",
+				"customButton": {
+					"label": "Continuar",
+					"action": "http://www.vodafone.com/content/apps/external-redirects/backupplus/open/ES"
+				}
+			}
+		},
+
+		"cancellation": {
+			"details": {
+				"title": "Tu suscripción a Backup+",
+				"text": "<p>Dispones de 25GB de espacio en Dropbox</p><ul><li>Por tan sólo 2€ al mes</li><li>Cancélalo cuando quieras</li></ul><p><a href=\"http://www.vodafone.com/content/apps/external-redirects/backupplus/promo_general/ES\" target=\"_blank\">Términos y condiciones de la promoción</a></p>",
+				"accordion": {
+					"label": "Los detalles de la oferta",
+					"text": "<p class=\"content_heading\">Primeros Pasos</p><p>Al aceptar tu oferta recibirás 3GB de espacio en Dropbox. Para conseguir los 25GB debes completar al menos 5 pasos de los siete disponibles en el proceso Primeros Pasos de Dropbox después de vincular tu cuenta de Dropbox a Backup+ (por favor visita <a href=\"https://www.dropbox.com/gs\">https://www.dropbox.com/gs</a> para obtener más información).</p><p class=\"content_heading\">Espacio adicional</p><p>El espacio propocionado se añadirá al espacio que previamente tuvieras en Dropbox.</p><p class=\"content_heading\">Cargos de navegación por internet</p><p>Las conexiones  a internet realizadas por el servicio cuando estés en extranjero o cuando hayas superado tu asignación de datos se tarificarán según tu plan.</p><p class=\"content_heading\">Cancelar la promoción</p><p>La promoción tendrá una duración de 24 meses. Al final de la promoción te informaremos de su finalización y que pasarás a pagar 2€ al mes. Podrás darte de baja de la promoción en cualquier momento a través de Mi oferta en la aplicación de Backup+</p>"
+				},
+				"okButton": {
+					"label": "Darse de baja",
+					"action": "#next"
+				}
+			},
+
+			"details2": {
+				"title": "Dar de baja tu promoción",
+				"text": "<p>Al dar de baja tu suscripción no dispondrás de los 25GB de espacio adicional en Dropbox</p><p>Recuerda que podrás seguir usando Backup+ y guardando tus  fotos, videos o música  mientras tengas espacio disponible en Dropbox.</p><p>Para dar de baja tu suscripción, por favor pincha más abajo.</p>",
+				"okButton": {
+					"label": "Darse de baja ahora",
+					"action": "#next"
+				}
+			},
+
+			"success": {
+				"text": "<p class=\"intro-text\">Tu baja de la subscripción a Backup+ se ha realizado correctamente.</p>"
+			}
+		}
+	}
+}

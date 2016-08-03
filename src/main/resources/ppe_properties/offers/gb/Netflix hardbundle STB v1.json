@@ -1,0 +1,33 @@
+{
+	"comment": "Initial import by DEV",
+
+	"opco": "gb",
+	"name": "Netflix hardbundle STB",
+	"version": 1,
+	"partner": "netflix",
+	"type": "hardbundle",
+	"switchable": false,
+	"trial": false,
+
+	"enabled": {
+		"purchase": false,
+		"cancellation": true
+	},
+
+	"packageId": "PK_NetflixSTB",
+
+	"heading": "Netflix",
+
+	"pages": {
+		"cancellation": {
+			"details": {
+				"title": "You will be stopping your monthly subscription to Netflix.",
+				"text": "<p>To stop the subscription please click the button below.</p>",
+				"getAppButton": {
+					"label": "Get Netflix app",
+					"action": "#getApp"
+				}
+			}
+		}
+	}
+}

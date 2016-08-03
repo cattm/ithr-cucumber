@@ -1,0 +1,45 @@
+{
+   "comment": "Initial import by DEV",
+   "opco": "de",
+   "name": "Deezer standalone trial",
+   "version": 2,
+   "partner": "deezer",
+   "type": "standalone",
+   "switchable": false,
+   "trial": true,
+   "enabled": {
+      "purchase": true,
+      "cancellation": true
+   },
+   "heading": "Deezer Musik-Flat",
+   "pages": {
+      "purchase": {
+         "details": {
+            "title": "Hör Deine Lieblingsmusik jederzeit und überall",
+            "text": "<ul><li>Musik-Streaming mit über 35 Millionen Songs und tausenden Hörbüchern</li><li>Nutzbar auf Deinem Smartphone, Tablet, PC und vielem mehr</li><li>Du bezahlst nur 7,99 Euro pro Monat</li><li>Du kannst monatlich kündigen</li></ul>",
+            "accordion": {
+               "label": "Mehr Infos",
+               "text": "<p class=\"content_heading\">Produktdetails:</p><ul><li>Stream all Deine Lieblingssongs – von alten Klassikern bis hin zu den neuesten Hits aus den Charts</li><li>Lad Dir mit dem Offline-Modus Playlists oder Alben auf Dein Gerät herunter und hör sie auch ohne Daten-Verbindung</li><li>Werbefrei und in bester Soundqualität</li></ul><p class=\"content_heading\">Buchungsdetails:</p><ul><li>Du bezahlst nur 7,99 Euro pro Monat, bequem über Deine Mobilfunk-Rechnung</li><li>Bei Nutzung über das Mobilfunknetz werden Deine Frei-MB angerechnet</li><li>Durch Klicken auf „Jetzt kaufen“ beginnt die Inklusiv-Phase. Kündigst du innerhalb der Inklusiv-Phase, fallen keine Kosten an</li></ul>"
+            },
+            "okButton": {
+               "label": "JETZT KAUFEN",
+               "action": "#next"
+            }
+         }
+      },
+      "cancellation": {
+         "details": {
+            "text": "<p>Wenn Du Deine Deezer-Musik-Flat jetzt kündigst, kannst Du diese nach Laufzeitende nicht mehr nutzen. <Br />Innerhalb der Testphase wirst Du per SMS informiert, kurz bevor Deine Testphase ausläuft. Bis dahin kannst Du es wie gewohnt weiter nutzen.</p>",
+            "okButton": {
+               "label": "Deezer Musik-Flat kündigen",
+               "action": "#next"
+            }
+         },
+         "success": {
+            "title": "Kündigung erfolgreich",
+            "text": "<p>Du hast Deine Deezer Musik-Flat erfolgreich gekündigt.</p><p>Dein Paket bleibt bis zum Ende der Laufzeit weiterhin nutzbar.</p>"
+         }
+      }
+   },
+   "uniqueName": "de/Deezer%20standalone%20trial"
+}

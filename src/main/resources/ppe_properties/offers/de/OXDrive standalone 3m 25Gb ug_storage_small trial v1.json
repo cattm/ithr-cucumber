@@ -1,0 +1,90 @@
+{
+	"comment": "Initial import by DEV",
+
+	"opco": "de",
+	"name": "OXDrive standalone 3m 25Gb ug_storage_small trial",
+	"version": 1,
+	"partner": "oxdrive",
+	"type": "standalone",
+	"switchable": false,
+	"trial": true,
+
+	"enabled": {
+		"purchase": true,
+		"cancellation": true
+	},
+
+	"heading": "25Gb",
+
+	"usergroups": ["ug_storage_small"],
+
+	"deviceAvailability": [
+		"android",
+		"iPhone"
+	],
+
+	"pages": {
+		"purchase": {
+			"details": {
+				"title": "Dein persönliches Angebot!",
+				"text": "<p class=\"content_heading\">Mit Deinem Vodafone-Vertrag bekommst Du 25 GB Secure MyData-Speicherplatz für 3 Monate geschenkt.</p><ul><li>Danach bezahlst Du 1.99 € pro Monat</li><li>Du kannst jeden Monat kündigen!</li></ul>",
+				"checkbox": {
+					"label": "<a href=\"http://www.vodafone.com/content/apps/external-redirects/backupplus/promo_ox/DE\" target=\"_blank\">Ich akzeptiere die Nutzungsbedingungen</a>",
+					"errorMessage": "Akzeptier bitte unsere Nutzungsbedingungen. Erst dann kannst Du das Angebot buchen.",
+					"confirmationMessage": "Klick auf \"Jetzt anmelden\". So aktivierst Du Dein gratis  Secure MyData-Angebot für 3 Monate. Danach wird's automatisch ein Abo für 1.99 € pro Monat. Du kannst jeden Monat während Deines gratis Angebots kündigen. Dann bezahlst Du nichts.",
+					"order": 1,
+					"mandatory": true
+				},
+				"accordion": {
+					"label": "Details",
+					"text": "<p class=\"content_heading\">Zusätzlicher Speicher</p><p>Hast Du schon ein  Secure MyData-Konto mit Speicherplatz? Dann erhältst Du diesen Speicherplatz noch zusätzlich.</p><p class=\"content_heading\">Internetkosten</p><p>Du nutzt zuerst Dein Datenvolumen. Du bezahlst die Preise Deines Tarifs, wenn Du den Service im Ausland nutzt oder Du Deine Frei-GB aufgebraucht hast.</p><p class=\"content_heading\">Angebot beenden</p><p>Du kannst das Angebot jederzeit über die Mein Angebot-Seite in Deiner Backup+ App kündigen.</p>"
+				},
+				"okButton": {
+					"label": "Jetzt anmelden",
+					"action": "#next"
+				},
+				"customButton": {
+					"label": "Nicht jetzt",
+					"action": "http://www.vodafone.com/content/apps/external-redirects/backupplus/open/DE"
+				}
+			},
+
+			"success": {
+				"title": "Glückwunsch!",
+				"text": "<p>Du erhälst 25 GB zusätzlichen  Secure MyData-Speicherplatz.</p>",
+				"customButton": {
+					"label": "Weiter",
+					"action": "http://www.vodafone.com/content/apps/external-redirects/backupplus/open/DE"
+				}
+			}
+		},
+
+		"cancellation": {
+			"details": {
+				"title": "Dein Angebot",
+				"text": "<p>Mit Deinem Vodafone-Vertrag bekommst Du 25 GB Secure MyData-Speicherplatz für 3 Monate geschenkt.</p><ul><li>Danach bezahlst Du 1.99 € pro Monat</li><li>Du kannst jeden Monat kündigen!</li></ul><a href=\"http://www.vodafone.com/content/apps/external-redirects/backupplus/promo_ox/DE\" target=\"_blank\">Es gelten die Angebotsbedingungen</a>",
+				"accordion": {
+					"label": "Details",
+					"text": "<p class=\"content_heading\">Zusätzlicher Speicher</p><p>Hast Du schon ein  Secure MyData-Konto mit Speicherplatz? Dann erhältst Du diesen Speicherplatz noch zusätzlich.</p><p class=\"content_heading\">Internetkosten</p><p>Du nutzt zuerst Dein Datenvolumen. Du bezahlst die Preise Deines Tarifs, wenn Du den Service im Ausland nutzt oder Du Deine Frei-GB aufgebraucht hast.</p><p class=\"content_heading\">Angebot beenden</p><p>Du kannst das Angebot jederzeit über die Mein Angebot-Seite in Deiner Backup+ App kündigen.</p>"
+				},
+				"okButton": {
+					"label": "Kündigen",
+					"action": "#next"
+				}
+			},
+
+			"details2": {
+				"title": "Dein Angebot kündigen",
+				"text": "<p>Wenn Du Dein Angebot beendest, verlierst Du Deine zusätzlichen 25GB Secure MyData-Speicherplatz.</p><p>Du kannst Backup+ trotzdem weiterhin nutzen. Z.B. um Deine Kontakte zu synchronisieren und Deine Daten mit der  Secure MyData zu sichern. Dazu brauchst Du ausreichend  Secure MyData-Speicherplatz. Keine Sorge! Deine schon gespeicherten Daten werden nicht gelöscht. Du kannst sie weiterhin jederzeit nutzen.</p><p>Bist Du sicher, dass Du kündigen möchtest?</p>",
+				"okButton": {
+					"label": "Jetzt kündigen",
+					"action": "#next"
+				}
+			},
+
+			"success": {
+				"text": "Das hat geklappt"
+			}
+		}
+	}
+}

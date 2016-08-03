@@ -1,0 +1,133 @@
+[
+  {
+    "id": "purchasing-the-offers-for-sky",
+    "tags": [
+      {
+        "name": "@skypurchase",
+        "line": 1
+      }
+    ],
+    "description": "",
+    "name": "Purchasing the offers for SKY",
+    "keyword": "Feature",
+    "line": 2,
+    "elements": [
+      {
+        "after": [
+          {
+            "result": {
+              "duration": 140550000,
+              "status": "passed"
+            },
+            "match": {
+              "location": "PurchaseSkyOffersSteps.tearDown(Scenario)"
+            }
+          }
+        ],
+        "id": "purchasing-the-offers-for-sky;purchase-offers-from-sky;;2",
+        "tags": [
+          {
+            "name": "@skypurchase",
+            "line": 1
+          }
+        ],
+        "before": [
+          {
+            "result": {
+              "duration": 12699476000,
+              "status": "passed"
+            },
+            "match": {
+              "location": "PurchaseSkyOffersSteps.setUp()"
+            }
+          }
+        ],
+        "description": "",
+        "name": "Purchase Offers from sky",
+        "keyword": "Scenario Outline",
+        "line": 13,
+        "steps": [
+          {
+            "result": {
+              "duration": 137666000,
+              "status": "passed"
+            },
+            "name": "I am a \"GB\" customer purchasing sky package",
+            "keyword": "Given ",
+            "line": 6,
+            "match": {
+              "arguments": [
+                {
+                  "val": "GB",
+                  "offset": 8
+                }
+              ],
+              "location": "PurchaseSkyOffersSteps.SkyCustomer(String)"
+            }
+          },
+          {
+            "result": {
+              "duration": 148135449000,
+              "status": "passed"
+            },
+            "name": "my sky profile has a PK_4GTariff with a 4glarge",
+            "keyword": "When ",
+            "line": 7,
+            "match": {
+              "arguments": [
+                {
+                  "val": "PK_4GTariff",
+                  "offset": 21
+                },
+                {
+                  "val": "4glarge",
+                  "offset": 40
+                }
+              ],
+              "location": "PurchaseSkyOffersSteps.PackageInGroup(String,String)"
+            },
+            "matchedColumns": [
+              0,
+              1
+            ]
+          },
+          {
+            "result": {
+              "duration": 14996153000,
+              "status": "passed"
+            },
+            "name": "my sky offer will come from Sky hardbundle v1.json",
+            "keyword": "Then ",
+            "line": 8,
+            "match": {
+              "arguments": [
+                {
+                  "val": "Sky hardbundle v1.json",
+                  "offset": 28
+                }
+              ],
+              "location": "PurchaseSkyOffersSteps.OfferContainsStringsFrom(String)"
+            },
+            "matchedColumns": [
+              2
+            ]
+          },
+          {
+            "result": {
+              "duration": 36933482000,
+              "status": "passed"
+            },
+            "name": "I will accept the sky offer",
+            "keyword": "And ",
+            "line": 9,
+            "match": {
+              "location": "PurchaseSkyOffersSteps.AcceptTheSkyOffer()"
+            }
+          }
+        ],
+        "type": "scenario"
+      }
+    ],
+    "uri": "purchase_sky_offer.feature"
+  }
+]

@@ -1,0 +1,70 @@
+{
+	"comment": "Initial import by DEV",
+
+	"opco": "gb",
+	"name": "NowTV hardbundle",
+	"version": 1,
+	"partner": "nowtv",
+	"type": "hardbundle",
+	"switchable": false,
+	"trial": false,
+
+	"enabled": {
+		"purchase": true,
+		"cancellation": false
+	},
+
+	"usergroups": ["4gsmall", "4gextralarge", "4glarge", "4gmedium"],
+
+	"heading": "NOW TV Entertainment",
+
+	"deviceAvailability": [
+		"android",
+		"iPhone",
+		"desktop"
+	],
+
+	"pages": {
+		"purchase": {
+			"details": {
+               "title": "Watch the latest must see pay TV Shows live or on catch up with a NOW TV Entertainment Pass.",
+               "text": "<ul class=\"offers_list\"><li>13 top channels you won't find on Freeview.</li><li>Incredible Box Sets of the latest and best pay TV shows from the UK and US.</li><li>Available on iPhone, selected Android devices, tablet, Chromecast and more.</li></ul>",
+               "checkbox": {
+                  "label": "I accept <a href=\"#\" class=\"terms_link\">terms and conditions</a>",
+                  "errorMessage": "To continue, you must agree to the terms & conditions.",
+                  "order": 1,
+                  "mandatory": true
+               },
+               "accordion": {
+               	  "label": "NOW TV Entertainment Pass",
+                  "text": "<p class=\"content_heading\">Subscription information</p><p>Red 4G Plans &amp; Red 4GB Value Bundle</p><ul><li>Unlimited access for 6 months.</li></ul><p>Red 4G L, XL, XXL Plans &amp; Red 8GB, 15GB, 25GB Value Bundles</p><ul><li>Unlimited access for the duration of your plan, up to a maximum of 2 years.</li></ul><p class=\"content_heading\">All customers</p><ul><li>At the end of your Vodafone price plan, your Entertainment Pass will automatically renew and NOW TV will charge you the current price for the pass on a monthly basis (currently £6.99pm) unless you cancel in accordance with the NOW TV terms and conditions.</span></li><li>You have the option to disable auto-payment after you sign up for the NOW TV Entertainment Pass.</li><li>If you are an existing NOW TV Entertainment subscriber, regular NOW TV Entertainment billing will resume at the end of the free period.</li><li>You will be required to create an account and sign up to NOW TV if you are not already a NOW TV customer. Credit/debit card details are required to set up a NOW TV account.</li><li>Existing NOW TV customers with an Entertainment Pass will not be able to apply this service as part of their Vodafone price plan until existing pass has expired.</li><li>Please see terms and conditions for full details.</li></ul><p>Please contact Vodafone if you have any questions.</p><p class=\"content_heading\">Data charges</p><ul><li>Data will be used to view content unless connected to wifi.</li><li>This data usage will be taken from your monthly allowance.</li><li>If you exceed your monthly data allowance data usage after this will be charged at our standard rates.</span><br></li></ul><p class=\"content_heading\">Phones that work with NOW TV Entertainment</p><p>NOW TV Entertainment is available on iPhone and selected Android smartphones. Please note that NOW TV Entertainment is not available on Windows devices or on Blackberry 10. In addition NOW TV Entertainment is available on PC or Mac, PS3, PS4, XBOX 360, XBOX One, NOW TV Box, Roku and LG SmartTV. See <a href=\"http://www.nowtv.com/\" target=\"_blank\" data-mce-href=\"http://www.nowtv.com/\">nowtv.com</a> for full details of device compatibility.</p>"
+               },
+               "okButton": {
+                  "label": "Add NOW TV Entertainment Pass",
+                  "action": "#next"
+               }
+            },
+
+            "success": {
+               "title": "Congratulations, your NOW TV Entertainment Pass is ready to use.",
+               "text": "<p>If you don't already have the mobile app, you can get it by clicking the button below.</p>",
+               "getAppButton": {
+                  "label": "Get NOW TV app",
+                  "action": "#getApp",
+                  "txInformation": "<p>Mad Men: Season 1-7 Box Set - available now &copy; AMC</p>"
+               }
+            }
+		},
+
+		"cancellation": {
+			"details": {
+               "text": "<p>Watch the latest must see pay TV Shows live or on catch up with a NOW TV Entertainment Pass.</p><p>This offer cannot be cancelled.</p>",
+               "getAppButton": {
+                  "label": "Get NOW TV app",
+                  "action": "#getApp",
+                  "txInformation": "<p>Mad Men: Season 1-7 Box Set - available now &copy; AMC</p>"
+               }
+            }
+		}
+	}
+}

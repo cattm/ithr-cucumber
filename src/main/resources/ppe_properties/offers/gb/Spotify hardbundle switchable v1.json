@@ -1,0 +1,52 @@
+{
+	"comment": "Initial import by DEV",
+
+	"opco": "gb",
+	"name": "Spotify hardbundle switchable",
+	"version": 1,
+	"partner": "spotify",
+	"type": "hardbundle",
+	"switchable": true,
+	"trial": false,
+
+	"enabled": {
+		"purchase": true
+	},
+
+	"usergroups": [
+		"4gsmall",
+		"4gmedium",
+		"4glarge",
+		"4gxlarge"
+	],
+
+	"heading": "Spotify Premium",
+
+	"pages": {
+		"purchase": {
+			"details": {
+               "title": "You  currently have an active Spotify Premium subscription for £9.99 a month.",
+               "text": "<p>You can cancel this paid subscription and activate Spotify Premium included with your Red Value Bundle. To activate your inclusive subscription please press continue.</p>",
+               "checkbox": {
+                  "label": "<a href=\"#\" class=\"terms_link\">Terms and conditions</a>",
+                  "errorMessage": "Please agree to the Vodafone terms and conditions before adding this bundle.",
+                  "order": 1,
+                  "mandatory": true
+               },
+               "okButton": {
+                  "label": "Continue",
+                  "action": "#next"
+               }
+            },
+
+            "success": {
+               "title": "Your subscription has been successfully updated.",
+               "text": "<p>Continue enjoying your music everywhere; you don’t need to register again. Go to the app now.</p>",
+               "getAppButton": {
+                  "label": "Get Spotify app",
+                  "action": "#getApp"
+              }
+            }
+		}
+	}
+}

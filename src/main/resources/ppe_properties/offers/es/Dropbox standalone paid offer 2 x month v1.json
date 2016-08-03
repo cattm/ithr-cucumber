@@ -1,0 +1,90 @@
+{
+	"comment": "Initial import by DEV",
+
+	"opco": "es",
+	"name": "Dropbox standalone paid offer 2 x month",
+	"version": 1,
+	"partner": "dropbox",
+	"type": "standalone",
+	"switchable": false,
+	"trial": false,
+
+	"enabled": {
+		"purchase": true,
+		"cancellation": true
+	},
+
+	"usergroups": [
+		"ug_storage_standalone"
+	],
+
+	"heading": "Dropbox",
+
+	"deviceAvailability": [
+		"android",
+		"iPhone"
+	],
+
+	"pages": {
+		"purchase": {
+			"details": {
+				"title": "¡Enhorabuena!",
+				"text": "<p>Dispones de 25GB de espacio en Dropbox por sólo 2€ al mes</p><ul class=\"offers_list\"><li>25GB de espacio adicional</li><li>Tan sólo 2€ al mes</li><li>Cancélalo cuando quieras.</li></ul>",
+				"checkbox": {
+					"label": "Acepto los <a href=\"http://www.vodafone.com/content/apps/external-redirects/backupplus/promo_general/ES\" target=\"_blank\">términos y condiciones</a>",
+					"errorMessage": "Por favor, debes aceptar los términos y condiciones",
+					"confirmationMessage": "Seleccionando \"Suscribirse ahora\", por sólo 2€ al mes, dispondrás de 25GB de espacio en Dropbox.",
+					"order": 1,
+					"mandatory": true
+				},
+				"accordion": {
+					"label": "Detalles de la oferta",
+					"text": "<p class=\"content_heading\">Espacio adicional</p><p>El espacio propocionado se añadirá al espacio que previamente tuvieras en Dropbox.</p><p class=\"content_heading\">Cargos de navegación por internet</p><p>Las conexiones  a internet realizadas por el servicio cuando estés en extranjero o cuando hayas superado tu asignación de datos se tarificarán según tu plan.</p><p class=\"content_heading\">Cancelar la promoción</p><p>Podrás darte de baja del servicio en cualquier momento a través de Mi oferta en la aplicación de Backup+</p>"
+				},
+				"okButton": {
+					"label": "Suscribirse ahora",
+					"action": "#next"
+				},
+				"customButton": {
+					"label": "Ahora no",
+					"action": "http://www.vodafone.com/content/apps/external-redirects/backupplus/open/ES"
+				}
+			},
+
+			"success": {
+				"title": "¡Enhorabuena!",
+				"text": "<p>Dispones de 25 GB de espacio adicional en tu cuenta de Dropbox por 2€ al mes.<br>Podrás cancelar esta oferta en cualquier momento a través de \"Mi oferta\" en la aplicación de Backup+</p>",
+				"customButton": {
+					"label": "Continuar",
+					"action": "http://www.vodafone.com/content/apps/external-redirects/backupplus/open/ES"
+				}
+			}
+		},
+
+		"cancellation": {
+			"details": {
+				"text": "<p>Tu suscripción a Backup+</p><p>Dispones de 25GB de espacio en Dropbox</p><ul><li>Por tan sólo 2€ al mes</li><li>Cancélalo cuando quieras</li></ul><p><a href=\"http://www.vodafone.com/content/apps/external-redirects/backupplus/promo_general/ES\" target=\"_blank\">Términos y condiciones de la promoción</a></p>",
+				"accordion": {
+					"label": "Los detalles de la oferta",
+					"text": "<p class=\"content_heading\">Espacio adicional</p><p>El espacio propocionado se añadirá al espacio que previamente tuvieras en Dropbox.</p><p class=\"content_heading\">Cargos de navegación por internet</p><p>Las conexiones  a internet realizadas por el servicio cuando estés en extranjero o cuando hayas superado tu asignación de datos se tarificarán según tu plan.</p><p class=\"content_heading\">Cancelar la promoción</p><p>Podrás darte de baja del servicio en cualquier momento a través de Mi oferta en la aplicación de Backup+</p>"
+				},
+				"okButton": {
+					"label": "Darse de baja",
+					"action": "#next"
+				}
+			},
+
+			"details2": {
+				"text": "<p>Dar de baja tu promoción</p><p>Al dar de baja tu suscripción no dispondrás de los 25GB de espacio adicional en Dropbox</p><p>Recuerda que podrás seguir usando Backup+ y guardando tus  fotos, videos o música  mientras tengas espacio disponible en Dropbox.</p><p>Para dar de baja tu suscripción, por favor pincha más abajo.</p>",
+				"okButton": {
+					"label": "Darse de baja ahora",
+					"action": "#next"
+				}
+			},
+
+			"success": {
+				"text": "<p class=\"intro-text\">Tu baja de la subscripción a Backup+ se ha realizado correctamente.</p>"
+			}
+		}
+	}
+}

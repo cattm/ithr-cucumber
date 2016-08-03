@@ -1,0 +1,36 @@
+{
+	"comment": "Initial import by DEV",
+
+	"opco": "it",
+	"name": "Backupplus standalone",
+	"version": 1,
+	"partner": "backupplus",
+	"type": "standalone",
+	"switchable": false,
+	"trial": false,
+
+	"enabled": {
+		"purchase": true,
+		"cancellation": false
+	},
+	"heading": "Backup+",
+
+	"deviceAvailability": [
+		"android",
+		"iPhone",
+		"desktop"
+	],
+
+	"pages": {
+		"purchase": {
+			"details": {
+				"title": "Non perdere i ricordi che hai!",
+				"text": "<p>Con Vodafone Backup+  foto, video, contatti e musica sono sempre al sicuro su Dropbox e recuperabili da qualsiasi dispositivo.</p><p>Il backup è immediato, automatico e non consuma i tuoi Giga.</p>",
+				"okButton": {
+					"label": "Scopri Backup+",
+					"action": "#next"
+				}
+			}
+		}
+	}
+}

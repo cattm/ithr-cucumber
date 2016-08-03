@@ -1,0 +1,88 @@
+{
+	"comment": "Initial import by DEV",
+
+	"opco": "nz",
+	"name": "Dropbox standalone paid",
+	"version": 1,
+	"partner": "dropbox",
+	"type": "standalone",
+	"switchable": false,
+	"trial": false,
+
+	"enabled": {
+		"purchase": true,
+		"cancellation": true
+	},
+
+	"heading": "Dropbox",
+
+	"deviceAvailability": [
+		"android",
+		"iPhone"
+	],
+
+	"pages": {
+		"purchase": {
+			"details": {
+				"title": "Never lose the things that matter.",
+				"text": "<p>With Vodafone Backup+ you can get 25GB of Dropbox storage for only $2.99 per month!</p><ul class=\"offers_list\"><li>25GB for $2.99 per month</li><li>No mobile data charges to upload a your precious things</li><li>Complete Dropbox Get Started steps to activate</li></ul>",
+				"checkbox": {
+					"label": "I accept the <a href=\"http://www.vodafone.co.nz/legal/terms-conditions/backup-plus/promo\" target=\"_blank\">terms</a>",
+					"errorMessage": "Please accept the terms to get this offer",
+					"confirmationMessage": "By accepting to subscribe now you will activate your Dropbox offer of 25GB for $2.99 per month. You will see this charge on your Vodafone bill. You can cancel at any time.",
+					"order": 1,
+					"mandatory": true
+				},
+				"accordion": {
+					"label": "Important things to know",
+					"text": "<p class=\"content_heading\">Additional space</p><p>Your Backup+ storage is on top of any Dropbox storage you may already have. If you unsubscribe, change plans, or leave Vodafone your Dropbox storage amount may change but you can continue to access and retrieve the files you've already saved</p><p class=\"content_heading\">Upload data charges</p><p>Uploading photos and files to Dropbox using the Backup+ app is free in NZ, so the mobile data won't come off your plan. Make sure your 'How to upload' setting in the Dropbox app is set to 'Wi-Fi only' to send your mobile data uploads via Backup+ only. Standard mobile data charges apply when roaming.</p><p class=\"content_heading\">Download data charges</p><p>Standard data allowances apply, as per your mobile or broadband plan, to download files from Backup+ and Dropbox.</p><p class=\"content_heading\">Stopping the offer</p><p>You can unsubscribe from the offer any time via the My account page in the Backup+ app.</p>"
+				},
+				"okButton": {
+					"label": "Subscribe now",
+					"action": "#next"
+				},
+				"customButton": {
+					"label": "Not now",
+					"action": "http://www.vodafone.com/content/apps/external-redirects/backupplus/open/NZ"
+				}
+			},
+
+			"success": {
+				"title": "Congratulations!",
+				"text": "<p>You now have 25GB Dropbox storage with your Vodafone plan for $2.99 per month.</p><p>You can cancel any time via the 'My Offer' tab in your Backup+ app.</p>",
+				"customButton": {
+					"label": "Continue",
+					"action": "http://www.vodafone.com/content/apps/external-redirects/backupplus/open/NZ"
+				}
+			}
+		},
+
+		"cancellation": {
+			"details": {
+				"title": "Your Offer",
+				"text": "<p>You have 25GB Dropbox storage:</p><ul><li>25GB</li><li>$2.99 per month</li><li>Unsubscribe at any time</li></ul><p><u><a href=\"http://www.vodafone.com/content/apps/external-redirects/backupplus/promo_general/NZ\" target=\"_blank\">Promo terms apply</a></u></p>",
+				"accordion": {
+					"label": "Important things to know",
+					"text": "<p class=\"content_heading\">Additional space</p><p>Your Backup+ storage is on top of any Dropbox storage you may already have. If you unsubscribe, change plans, or leave Vodafone your Dropbox storage amount may change but you can continue to access and retrieve the files you've already saved</p><p class=\"content_heading\">Upload data charges</p><p>Uploading photos and files to Dropbox using the Backup+ app is free in NZ, so the mobile data won't come off your plan. Make sure your 'How to upload' setting in the Dropbox app is set to 'Wi-Fi only' to send your mobile data uploads via Backup+ only. Standard mobile data charges apply when roaming.</p><p class=\"content_heading\">Download data charges</p><p>Standard data allowances apply, as per your mobile or broadband plan, to download files from Backup+ and Dropbox.</p><p class=\"content_heading\">Stopping the offer</p><p>You can unsubscribe from the offer any time via the My account page in the Backup+ app.</p>"
+				},
+				"okButton": {
+					"label": "Unsubscribe",
+					"action": "#next"
+				}
+			},
+
+			"details2": {
+				"title": "Unsubscribe",
+				"text": "<p>By ending your subscription you will no longer be entitled to 25GB additional Dropbox storage to upload and save your items.</p><p>You can still use Backup+ and Dropbox for free to access and retrieve the files you've already saved.</p><p>To end your subscription, please click below</p>",
+				"okButton": {
+					"label": "Unsubscribe",
+					"action": "#next"
+				}
+			},
+
+			"success": {
+				"text": "<p class=\"content_heading\">You have successfully unsubscribed</p>"
+			}
+		}
+	}
+}
