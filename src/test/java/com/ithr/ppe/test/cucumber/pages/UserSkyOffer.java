@@ -79,12 +79,13 @@ public class UserSkyOffer extends PageBase{
    
    // TODO: temporary method - until I sort out correct model to use to identify this button
    // And perform a check on the text being correct at the same time
+   // this method returns two buttons - they both accept the offer!
    public void clickAcceptOffer () {
 	   WebElement button = driver.findElement(By.cssSelector(".btn.event-btn.cf.btn--okButton"));
 	   button.click();
    }
    
-   public void clickAcceptOffer(String buttontext) {
+   public boolean clickAcceptOffer(String buttontext) {
 		Iterator <WebElement> iterator = acceptOffer.iterator();
 		while (iterator.hasNext()) {
 			WebElement element = iterator.next();
@@ -94,8 +95,10 @@ public class UserSkyOffer extends PageBase{
 			if ( thetext.equalsIgnoreCase(buttontext)) {
 				  log.info("Clicking Accept");
 				  element.click();	  
+				  return true;
 			 }
 		}
+		return false;
    }
    
    public String getSkyManagedSubscription(String check) {
@@ -107,7 +110,7 @@ public class UserSkyOffer extends PageBase{
 			log.debug("checking element :" + thetext);
 			
 			if ( thetext.equalsIgnoreCase(check)) {
-				  foundtext = thetext;				  
+				  return foundtext = thetext;				  
 			 }
 		}
 		return foundtext;

@@ -38,9 +38,9 @@ public class PurchaseSkyOffersSteps extends StepBase {
 	    log.info("Button String is : " +  ucbuttontext);
 	    
 	    UserSkyOffer skyoffer = new UserSkyOffer(driver);
-		//skyoffer.clickAcceptOffer(buttontext);
+		// boolean found = skyoffer.clickAcceptOffer(buttontext);
 	    // TODO: until the text changes back on string
-	    // this will work - but it is not quite how I intended
+	    // this will work - but it is not quite how I intended - need to check the text on the button is correct
 	    skyoffer.clickAcceptOffer();
 	 			  
 		// check the page displayed
