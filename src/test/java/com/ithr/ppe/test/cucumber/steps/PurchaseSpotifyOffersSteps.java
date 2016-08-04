@@ -6,6 +6,7 @@ import org.junit.Assert;
 import org.openqa.selenium.Dimension;
 
 import com.ithr.ppe.test.base.StepBase;
+import com.ithr.ppe.test.cucumber.pages.PageBase;
 import com.ithr.ppe.test.cucumber.pages.UserEntertainment;
 import com.ithr.ppe.test.cucumber.pages.UserSpotifyOffer;
 import com.ithr.ppe.test.cucumber.steps.utils.AdminActivities;
@@ -52,7 +53,21 @@ public class PurchaseSpotifyOffersSteps extends StepBase {
 		// if this is true we are ok
 		if (SpotifyActivities.RegisterForSpotify(driver, opco, userNameToUse)) {
 			
-			// check the page displayed
+			//TODO: need to add a NICE confirmation text check that the purchase has completed and then it is safe to check all the text and reopen ppe
+			boolean done = false;
+			for (int i = 0; i < 10 && !done; i++) {
+				String notice = spotifyoffer.getSuccessText();		
+				log.info(notice);
+				if (!notice.contains("Completing purchase"))  {
+						log.info("purchase process complete");
+						done = true;
+				} else {
+					log.info("Waiting for purchase notification.....");
+					Thread.sleep(PageBase.SLOW);
+				}
+			}
+			
+			// check the page actually displayed
 			log.info("TEST: Check on confirm page after accepting offer");
 			String confirmation = spotifyoffer.getSuccessText();
 			log.info("Text to Check is : " + confirmation);
@@ -80,6 +95,7 @@ public class PurchaseSpotifyOffersSteps extends StepBase {
 	
 	private boolean ReOpenPPE () throws Exception {
 		log.info("TEST: Check reopen on home page displays correct offers");
+		
 		//TODO need to fix needing this - VERY FLAKY
 		Thread.sleep(5000);
 		driver.get(baseUserUrl + opco);
@@ -178,7 +194,7 @@ public class PurchaseSpotifyOffersSteps extends StepBase {
 			  
 			  log.info("selecting offer");
 			  if (entpage.checkOfferImage("spotify")) {
-				  entpage.ClickOfferImage("spotify");
+				  entpage.clickOfferImage("spotify");
 				  
 				  //  on journey to accept offer
 				  UserSpotifyOffer spotifyoffer = new UserSpotifyOffer(driver);

@@ -11,7 +11,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class PageBase {
-	private static final long SLOW = 3000;
+	public static final long SLOW = 3000;
 	protected WebDriver driver;
 	
 	public PageBase(WebDriver driver) {
@@ -94,10 +94,9 @@ public class PageBase {
 	
 	public boolean elementLoaded(By by) throws InterruptedException {
 		
-	 	boolean present = false;
-	 	
-	 	// this will loop until the driver timeout is triggered or it becomes true
-	 	while (!present) {
+	 	boolean present = false;	
+	 	// loop for max of 5 times SLOW to check if its there
+	 	for (int i = 0; (i < 5 && !present); i++) {
 	 		present = isElementPresent (by);
 	 		Thread.sleep(SLOW);
 	 	}

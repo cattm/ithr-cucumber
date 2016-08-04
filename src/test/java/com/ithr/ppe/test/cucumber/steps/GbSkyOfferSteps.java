@@ -126,7 +126,7 @@ public class GbSkyOfferSteps extends StepBase {
 		  Assert.assertTrue(entpage.getSubscriptionText().equals("You have no subscriptions. Please take a look at the available offers."));
 		  
 		  // TODO: need a better Click than this - then we can make it a general model
-		  entpage.ClickOfferImage("sky.png");
+		  entpage.clickOfferImage("sky.png");
 		  //Thread.sleep(5000);
 		  
 		  UserSkyOffer skyoffer = new UserSkyOffer(driver);
@@ -145,6 +145,7 @@ public class GbSkyOfferSteps extends StepBase {
 		  // need to strip the html to just leave the text - or do we?
 		  offerlist = jsonParse.stripHTML(offerlist);
 		  log.info("Offer from file: " + offerlist);
+		  
 		  // interestingly the formatting appears to add a \n into the mix that isn't visible in firebug!
 		  String offerdetail = skyoffer.getOfferDetail();
 		  String myoffer = StringUtils.replace(offerdetail, "\n", " ");

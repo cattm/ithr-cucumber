@@ -4,14 +4,12 @@ import java.util.Map;
 
 import org.apache.log4j.Logger;
 import org.openqa.selenium.Dimension;
-import org.openqa.selenium.WebDriver;
 
 import com.ithr.ppe.test.base.StepBase;
-import com.ithr.ppe.test.commons.CommandExecutor;
+import com.ithr.ppe.test.cucumber.pages.PageBase;
 import com.ithr.ppe.test.cucumber.pages.UserEntertainment;
 import com.ithr.ppe.test.cucumber.pages.UserSpotifyOffer;
 import com.ithr.ppe.test.cucumber.steps.utils.AdminActivities;
-import com.ithr.ppe.test.cucumber.steps.utils.ErrorCollector;
 import com.ithr.ppe.test.cucumber.steps.utils.IdentityActivities;
 import com.ithr.ppe.test.cucumber.steps.utils.SpotifyActivities;
 
@@ -32,14 +30,14 @@ public class PurchaseSpotifyTrial extends StepBase{
 	public PurchaseSpotifyTrial() {
 		// return
 	}
-	@Before("@ignore")
+	@Before("@trial")
 	public void setUp() throws Exception {
 		
 		super.setUp();
 		log.info("SetUp");
 	}
 	
-	@After("@ignore")
+	@After("@trial")
 	public void tearDown(Scenario scenario) {
 		log.info("TearDown");
 	
@@ -47,59 +45,60 @@ public class PurchaseSpotifyTrial extends StepBase{
 	}
 	
 	private boolean PerformBasicSpotifyPurchase ( ) throws Exception {
-		// for demo only
-		// admin gets the msisdn
-		// msisdnFromAdmin(WebDriver driver, String opco, String subscription, String usergroup);
-		// login to ppe
-		// loginToPPE (WebDriver driver, String msisdn , String pin, String url)
-		// drive through accepting the offer - go to spotify using spotify activities
-		// RegisterForSpotify (WebDriver driver, String opco, String usernametouse)
-		// then check its ok
-		// done
-		 
+		// Very little checking here - assume it works otherwise its not worth it
+		// this is a Background step activity
 		shortMsisdn = AdminActivities.msisdnFromAdmin(driver, opco, subscription, userGroup);		
 		userNameToUse = SpotifyActivities.getSpotifyUser(driver, baseSpotifyHelper, opco);
 		String url = baseUserUrl + opco;
+		log.info ("msisdn is: " + shortMsisdn + " username is: " + userNameToUse);
 		IdentityActivities.loginToPPE (driver, shortMsisdn , pinCode, url);
 			
 		driver.manage().window().setSize(new Dimension(600, 600));		
-			  
+		Thread.sleep(10000); 
+		
 		// Entertainment page - offer page directly or click on image icon to get text
-		UserEntertainment entpage = new UserEntertainment(driver);
+		UserEntertainment entpage = new UserEntertainment(driver);	
 		entpage.bodyLoaded();
-			 		  
-			  // There should be available offers for THIS MSISDN -
-			  // if there are no offers this is probably an error
-			  // the manage subscriptions section should be empty "you have no subscriptions...."
-			 
+		Thread.sleep(10000);
+		
+		log.info("going to check for spotify button");	 		  
 		if (entpage.checkOfferImage("spotify")) {
-			entpage.ClickOfferImage("spotify");
-				  
+			entpage.clickOfferImage("spotify");
+		  
 			UserSpotifyOffer spotifyoffer = new UserSpotifyOffer(driver);
 			spotifyoffer.bodyLoaded();
 			spotifyoffer.setTnC();
-			log.info("1");	  	
-			String buttontext = jsonParse.getOffersOkButton();			
-	    	String ucbuttontext = buttontext.toUpperCase();
-	    	log.info("Button String is : " +  ucbuttontext);
-	    	log.info("2");	  
-			spotifyoffer.clickAcceptOffer();		
-	
+			spotifyoffer.clickAcceptOffer();				
 			// if this is true we are ok we have registered on spotify
 			if (SpotifyActivities.RegisterForSpotify(driver, opco, userNameToUse)) {
-			
-				String confirmation = spotifyoffer.getSuccessText();
-								
-				driver.get(baseUserUrl + opco);
-				entpage.bodyLoaded();
-						
-				String textfound = "";
-				if (entpage.isSpotifySubscriptionTextPresent()) {		
-			 		textfound = entpage.getSpotifySubscriptionText();
+				boolean done = false;
+				// TODO: test code to tidy up and add a check  
+				for (int i = 0; i < 6 && !done; i++) {
+					String notice = spotifyoffer.getSuccessText();		
+					log.info(notice);
+					if (!notice.contains("Completing purchase"))  {
+						log.info("purchase complete");
+						done = true;
+					} else {
+						log.info("Waiting.......");
+						Thread.sleep(PageBase.SLOW);
+					}
 				}
-		
-	    		return textChecker.checkSpotifySubscibedText(textfound);
+	    		return true; 
 	    	}
+		}
+		log.info("return false");
+		return false;
+	}
+	
+	private boolean CheckSpotifyIsPurchased () throws InterruptedException {
+		driver.get(baseUserUrl + opco);		
+		UserEntertainment newentpage = new UserEntertainment(driver);
+		newentpage.bodyLoaded();	
+		String textfound = "";
+		if (newentpage.isSpotifySubscriptionTextPresent()) {		
+	 		textfound = newentpage.getSpotifySubscriptionText();
+	 		log.info(textfound);
 		}
 		return false;
 	}
@@ -126,7 +125,11 @@ public class PurchaseSpotifyTrial extends StepBase{
 		this.fileToCheck = containedin;
 		//CommandExecutor.testCmnd();
 		//log.info(System.getProperty("user.dir"));
-		PerformBasicSpotifyPurchase();
+		if (PerformBasicSpotifyPurchase()) {
+			// lets check the purchase moved from offers
+			CheckSpotifyIsPurchased();
+		}
+		
 	}
 
 	@Given("^I a have deleted my user in spotify$")
@@ -141,6 +144,6 @@ public class PurchaseSpotifyTrial extends StepBase{
 
 	@Then("^I will purchase spotify trial$")
 	public void Succeed() throws Throwable {
-	
+		log.info("purchase trial");
 	}
 }

@@ -72,5 +72,9 @@ public class CommandExecutor {
 	 * https://dit.offers.vodafone.com/spotifyHelper?opco=xx&username=yy - creates account then gives status on subsequent calls
 	 * action= terminate - will terminate offers
 	 * use this!!! 
+	 * https://dit.offers.vodafone.com/spotifyHelper?opco=gb&username=marcus127 creates an account
+	 * https://dit.offers.vodafone.com/spotifyHelper?opco=gb&username=marcus127 called again will return status of customer account
+	 * https://dit.offers.vodafone.com/spotifyHelper?opco=gb&username=marcus1278&action=terminate 
+	 * will terminate on spotify. if there are a number of orders it will list them all
 	 */
 }

@@ -1,8 +1,5 @@
 package com.ithr.ppe.test.cucumber.pages;
 
-import java.util.Iterator;
-import java.util.List;
-
 import org.apache.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -31,7 +28,7 @@ public class UserSpotifyOffer extends PageBase{
 	@FindBy(css="div.table-panel-top.main-offer-content div.details-content")
 	private WebElement thedetail;
 	
-	@FindBy(css="div.table-panel-top.main-offer-content div.notification-jsx.pulse")
+	@FindBy(css=".notification-jsx.pulse>p")
 	private WebElement confirmationText;
 	
 	@FindBy(xpath="/html/body/div/div/article/div[1]/div/div[1]/div[1]/div[2]/div[1]/div[3]")
@@ -43,6 +40,7 @@ public class UserSpotifyOffer extends PageBase{
 	}
 	
 	 public void setTnC() {
+		 log.info("set TNC");
 			tnc.click();
 	   }
 
@@ -55,9 +53,7 @@ public class UserSpotifyOffer extends PageBase{
 	}
 
 	public void clickAcceptOffer () {
-		//div [class="table-panel-top main-offer-content"] a[class="btn event-btn cf btn--okButton"]
 		acceptOffer.click();
-
 	}
 	   
 	public String getAcceptOfferText () {

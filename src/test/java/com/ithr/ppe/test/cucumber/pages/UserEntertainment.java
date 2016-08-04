@@ -27,7 +27,7 @@ public class UserEntertainment extends PageBase{
 	  
 	  @FindBy(css="p.nothing-to-display")
 	  private WebElement subscriptionText;
-	   
+	    
 	  // TODO: - This is horrible
 	  @FindBy(xpath="//article[@id='content__wrapper']/div[2]/div/div/div/div/div/div[2]/h3/span[2]") 
 	  private WebElement manageSubscription; 
@@ -43,7 +43,7 @@ public class UserEntertainment extends PageBase{
 	  }
 	
 	  
-	  public void ClickOfferImage(String offer) {
+	  public void clickOfferImage(String offer) {
 		  //iterate through the list and click on it
 		  Iterator <WebElement> iterator = offerIcons.iterator();
 		  while (iterator.hasNext()) {
@@ -86,7 +86,8 @@ public class UserEntertainment extends PageBase{
 		  return manage.getText();
 	  }
 	  
-	  // TODO: see if we can make these specific methods generic and sort the finders
+	  
+	  // TODO: see if we can make these VERY specific methods generic and sort the finders
 	  public String getSkySubscriptionText() {
 		  return manageSubscription.getText();
 	  }
@@ -94,7 +95,7 @@ public class UserEntertainment extends PageBase{
 	  public String getSpotifySubscriptionText() {
 		  return manageSubscription.getText();
 	  }
-	  public boolean isSpotifySubscriptionTextPresent() throws InterruptedException {	  
+	  public boolean isSpotifySubscriptionTextPresent() throws InterruptedException {
 		return elementLoaded(By.xpath("//article[@id='content__wrapper']/div[2]/div/div/div/div/div/div[2]/h3/span[2]"));		
 	  }
 	  

@@ -29,14 +29,14 @@ public class AdminActivities {
 		String msisdn = adminhome.getShortMSISDN();
 		log.info("MSISN is : " + msisdn);
 		
-		// TODO: Put a Proper test here
+		// TODO: Put a Proper test here and if there is a proble then we need to advise - so test can exit or otherwise
 		String checkurl = adminhome.getSubscriptionCheckUrl();		
 		driver.get(checkurl);
 		
 		// check/test goes here
 		AdminVerify verify = new AdminVerify(driver);
 		if (verify.isIndividualCreated()) {
-			log.info(" ER Admin Created: " + msisdn);
+			log.info(" Admin Created This: " + msisdn);
 		}
 		return msisdn;
 	}

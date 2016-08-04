@@ -161,7 +161,7 @@ public class PurchaseSkyOffersSteps extends StepBase {
 			  // TODO: need a better Click than this - then we can make it a general model
 			  // e.g its its sky.png in uk and skytv.png in de!
 			  if (entpage.checkOfferImage("sky")) {
-				  entpage.ClickOfferImage("sky");
+				  entpage.clickOfferImage("sky");
 
 			  
 				  UserSkyOffer skyoffer = new UserSkyOffer(driver);
