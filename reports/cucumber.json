@@ -16,7 +16,7 @@
         "after": [
           {
             "result": {
-              "duration": 140550000,
+              "duration": 93365000,
               "status": "passed"
             },
             "match": {
@@ -24,7 +24,7 @@
             }
           }
         ],
-        "id": "purchasing-the-offers-for-sky;purchase-offers-from-sky;;2",
+        "id": "purchasing-the-offers-for-sky;purchase-gb-offers-from-sky;;2",
         "tags": [
           {
             "name": "@skypurchase",
@@ -34,7 +34,7 @@
         "before": [
           {
             "result": {
-              "duration": 12699476000,
+              "duration": 7074213000,
               "status": "passed"
             },
             "match": {
@@ -43,13 +43,13 @@
           }
         ],
         "description": "",
-        "name": "Purchase Offers from sky",
+        "name": "Purchase GB Offers from sky",
         "keyword": "Scenario Outline",
         "line": 13,
         "steps": [
           {
             "result": {
-              "duration": 137666000,
+              "duration": 106766000,
               "status": "passed"
             },
             "name": "I am a \"GB\" customer purchasing sky package",
@@ -67,7 +67,7 @@
           },
           {
             "result": {
-              "duration": 148135449000,
+              "duration": 17796281000,
               "status": "passed"
             },
             "name": "my sky profile has a PK_4GTariff with a 4glarge",
@@ -93,7 +93,7 @@
           },
           {
             "result": {
-              "duration": 14996153000,
+              "duration": 79010526000,
               "status": "passed"
             },
             "name": "my sky offer will come from Sky hardbundle v1.json",
@@ -114,7 +114,7 @@
           },
           {
             "result": {
-              "duration": 36933482000,
+              "duration": 51577397000,
               "status": "passed"
             },
             "name": "I will accept the sky offer",
@@ -129,5 +129,136 @@
       }
     ],
     "uri": "purchase_sky_offer.feature"
+  },
+  {
+    "id": "purchasing-the-offers-for-spotify",
+    "tags": [
+      {
+        "name": "@spotifypurchase",
+        "line": 1
+      }
+    ],
+    "description": "",
+    "name": "Purchasing the offers for Spotify",
+    "keyword": "Feature",
+    "line": 2,
+    "elements": [
+      {
+        "after": [
+          {
+            "result": {
+              "duration": 140148000,
+              "status": "passed"
+            },
+            "match": {
+              "location": "PurchaseSpotifyOffersSteps.tearDown(Scenario)"
+            }
+          }
+        ],
+        "id": "purchasing-the-offers-for-spotify;purchase-it-offers-from-spotify;;2",
+        "tags": [
+          {
+            "name": "@spotifypurchase",
+            "line": 1
+          }
+        ],
+        "before": [
+          {
+            "result": {
+              "duration": 7189928000,
+              "status": "passed"
+            },
+            "match": {
+              "location": "PurchaseSpotifyOffersSteps.setUp()"
+            }
+          }
+        ],
+        "description": "",
+        "name": "Purchase IT Offers from Spotify",
+        "keyword": "Scenario Outline",
+        "line": 13,
+        "steps": [
+          {
+            "result": {
+              "duration": 4035000,
+              "status": "passed"
+            },
+            "name": "I am a \"IT\" customer purchasing spotify",
+            "keyword": "Given ",
+            "line": 6,
+            "match": {
+              "arguments": [
+                {
+                  "val": "IT",
+                  "offset": 8
+                }
+              ],
+              "location": "PurchaseSpotifyOffersSteps.SpotifyCustomer(String)"
+            }
+          },
+          {
+            "result": {
+              "duration": 32382475000,
+              "status": "passed"
+            },
+            "name": "my spotify profile has a Not Valid with a 4guser",
+            "keyword": "When ",
+            "line": 7,
+            "match": {
+              "arguments": [
+                {
+                  "val": "Not Valid",
+                  "offset": 25
+                },
+                {
+                  "val": "4guser",
+                  "offset": 42
+                }
+              ],
+              "location": "PurchaseSpotifyOffersSteps.PackageInGroup(String,String)"
+            },
+            "matchedColumns": [
+              0,
+              1
+            ]
+          },
+          {
+            "result": {
+              "duration": 15339117000,
+              "status": "passed"
+            },
+            "name": "my spotify offer will come from Spotify standalone all v1.json",
+            "keyword": "Then ",
+            "line": 8,
+            "match": {
+              "arguments": [
+                {
+                  "val": "Spotify standalone all v1.json",
+                  "offset": 32
+                }
+              ],
+              "location": "PurchaseSpotifyOffersSteps.OfferContainsStringsFrom(String)"
+            },
+            "matchedColumns": [
+              2
+            ]
+          },
+          {
+            "result": {
+              "duration": 96555429000,
+              "status": "passed"
+            },
+            "name": "I will accept the spotify offer",
+            "keyword": "And ",
+            "line": 9,
+            "match": {
+              "location": "PurchaseSpotifyOffersSteps.AcceptTheSpotifyOffer()"
+            }
+          }
+        ],
+        "type": "scenario"
+      }
+    ],
+    "uri": "purchase_spotify_offer.feature"
   }
 ]
