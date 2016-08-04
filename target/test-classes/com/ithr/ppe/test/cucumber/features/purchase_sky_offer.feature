@@ -2,7 +2,7 @@
 Feature: Purchasing the offers for SKY
 
 
-  Scenario Outline: Purchase Offers from sky
+  Scenario Outline: Purchase GB Offers from sky
     Given I am a "GB" customer purchasing sky package
     When my sky profile has a <package> with a <usergroup>
     Then my sky offer will come from <contained in>
@@ -22,7 +22,7 @@ Feature: Purchasing the offers for SKY
 #        | PK_TVTariff      | ugstb        | Not Valid              |
 #        | PK_4GTVTariff    | Not Valid    | Sky standalone v1.json |
  
-  Scenario Outline: Purchase Offers from sky
+  Scenario Outline: Purchase DE Offers from sky
     Given I am a "DE" customer purchasing sky package
     When my sky profile has a <package> with a <usergroup>
     Then my sky offer will come from <contained in>
@@ -37,7 +37,7 @@ Feature: Purchasing the offers for SKY
 #      |    PK_RedTariff                | Not Valid        | Not Valid                                   |
 
 
- Scenario Outline: Purchase Offers from sky
+ Scenario Outline: Purchase IE Offers from sky
     Given I am a "IE" customer purchasing sky package
     When my sky profile has a <package> with a <usergroup>
     Then my sky offer will come from <contained in>

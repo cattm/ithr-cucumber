@@ -2,7 +2,7 @@
 Feature: Purchasing the offers for Spotify
 
  
-  Scenario Outline: Purchase Offers from Spotify
+  Scenario Outline: Purchase IT Offers from Spotify
     Given I am a "IT" customer purchasing spotify
     When my spotify profile has a <package> with a <usergroup>
     Then my spotify offer will come from <contained in>
@@ -17,7 +17,7 @@ Feature: Purchasing the offers for Spotify
  #     | Not Valid | summer    | Spotify standalone switchable summer v1.json |
 
 
-  Scenario Outline: Purchase Offers from spotify
+  Scenario Outline: Purchase GB Offers from spotify
     Given I am a "GB" customer purchasing spotify
     When my spotify profile has a <package> with a <usergroup>
     Then my spotify offer will come from <contained in>
