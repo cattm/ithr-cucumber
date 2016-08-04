@@ -25,7 +25,6 @@ import cucumber.api.java.en.When;
 
 public class PurchaseSpotifyOffersSteps extends StepBase {
 	public static Logger log = Logger.getLogger(PurchaseSpotifyOffersSteps.class);
-		
 	
 	private String userNameToUse = "";
 	
@@ -43,10 +42,12 @@ public class PurchaseSpotifyOffersSteps extends StepBase {
 	private boolean AcceptTheOffer() throws Exception {	
 		String buttontext = jsonParse.getOffersOkButton();			
 	    String ucbuttontext = buttontext.toUpperCase();
-	    log.info("Button String is : " +  ucbuttontext);
+	    log.info("Button String should be : " +  ucbuttontext);
 	    
 	    UserSpotifyOffer spotifyoffer = new UserSpotifyOffer(driver);
-		spotifyoffer.clickAcceptOffer(buttontext);		
+	    log.info("Button String is : " + spotifyoffer.getAcceptOfferText());
+	    
+		spotifyoffer.clickAcceptOffer();		
 	
 		// if this is true we are ok
 		if (SpotifyActivities.RegisterForSpotify(driver, opco, userNameToUse)) {

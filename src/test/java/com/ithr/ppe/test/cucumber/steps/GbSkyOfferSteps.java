@@ -169,7 +169,7 @@ public class GbSkyOfferSteps extends StepBase {
 		  String ucbuttontext = buttontext.toUpperCase();
 		  log.info(ucbuttontext);
 		  UserSkyOffer skyoffer = new UserSkyOffer(driver);
-		  skyoffer.clickAcceptOffer(buttontext);
+		  skyoffer.clickAcceptOffer();
 		  //Thread.sleep(5000);
 		  
 		  // check the page displayed

@@ -83,7 +83,7 @@ public class PurchaseSpotifyTrial extends StepBase{
 	    	String ucbuttontext = buttontext.toUpperCase();
 	    	log.info("Button String is : " +  ucbuttontext);
 	    	log.info("2");	  
-			spotifyoffer.clickAcceptOffer(buttontext);		
+			spotifyoffer.clickAcceptOffer();		
 	
 			// if this is true we are ok we have registered on spotify
 			if (SpotifyActivities.RegisterForSpotify(driver, opco, userNameToUse)) {

@@ -23,8 +23,12 @@ public class UserSkyOffer extends PageBase{
 	@FindBy(name="accept")
 	private WebElement tnc;
 	  	
-	@FindBy(css="div.btn-jsx.cf.main-offer-btn")
-	private List <WebElement> acceptOffer;
+	
+	// Note - this find will return a single item if the display is set to the correct size
+	// if it is a full size browser it will return a list of items to iterate through
+	//@FindBy(css="div.btn-jsx.cf.main-offer-btn")
+	@FindBy(css="div [class='table-panel-top main-offer-content'] a[class='btn event-btn cf btn--okButton']")
+	private WebElement acceptOffer;
 	
 	@FindBy(css="h4.offer-subtitle.bold-font")
 	private WebElement theoffer;
@@ -35,7 +39,8 @@ public class UserSkyOffer extends PageBase{
 	@FindBy(css="div.table-panel-top.main-offer-content div.notification-jsx.pulse")
 	private WebElement confirmationText;
 	
-	// TODO: make this more intelligent
+	// TODO: When Matt has adjusted the page constructs sort the finders
+	// These are horrible
 	@FindBy(xpath="/html/body/div/div/article/div[1]/div/div[1]/div[1]/div[2]/div[1]/div[3]")
 	private WebElement whatHappensNext;
 	
@@ -43,8 +48,8 @@ public class UserSkyOffer extends PageBase{
 	@FindBy(css="div.btn-jsx.cf.large-screens.purple a.btn.event-btn.cf.btn-tertiary")
 	private WebElement additionalOffer;
 	
-	
 	private List <WebElement> managedSubs;
+	
 	
 	public  UserSkyOffer (WebDriver driver) {
 		  super(driver);
@@ -81,10 +86,15 @@ public class UserSkyOffer extends PageBase{
    // And perform a check on the text being correct at the same time
    // this method returns two buttons - they both accept the offer!
    public void clickAcceptOffer () {
-	   WebElement button = driver.findElement(By.cssSelector(".btn.event-btn.cf.btn--okButton"));
-	   button.click();
+	   //div [class="table-panel-top main-offer-content"] a[class="btn event-btn cf btn--okButton"]
+	   acceptOffer.click();
+
    }
    
+   public String getAcceptOfferText () {
+	   return acceptOffer.getText();
+   }
+   /* TODO: remove
    public boolean clickAcceptOffer(String buttontext) {
 		Iterator <WebElement> iterator = acceptOffer.iterator();
 		while (iterator.hasNext()) {
@@ -100,7 +110,7 @@ public class UserSkyOffer extends PageBase{
 		}
 		return false;
    }
-   
+   */
    public String getSkyManagedSubscription(String check) {
 	   String foundtext = "";
 	   Iterator <WebElement> iterator = managedSubs.iterator();

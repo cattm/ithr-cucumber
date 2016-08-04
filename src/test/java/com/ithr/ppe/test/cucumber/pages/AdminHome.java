@@ -12,27 +12,27 @@ import com.ithr.ppe.test.cucumber.steps.GbSkyOfferSteps;
 public class AdminHome extends PageBase{
 	  
 	  public static Logger log = Logger.getLogger(AdminHome.class);
-	  // TODO: these are horrible - tidy them up
-	  @FindBy(xpath="/html/body/div[2]/div/div[1]/div/form/div[1]/input")
+	
+	  @FindBy(css="input[ng-model='manualMsisdn']")
 	  private WebElement shortMsisdn;
 	  
-	  @FindBy(xpath="//div/form/div[2]/select")
+	
+	  @FindBy(css="select[ng-model='opco']")
 	  private WebElement opcoSelect;
 	  
-	  @FindBy(xpath="//div/form/div[4]/select")
+	  
+	  @FindBy(css="select[ng-model='parentSubscription']")
 	  private WebElement parentSubscriptionSelect;
 	  
 	  // only visible once subscription chosen
-	  @FindBy(xpath="//div/form/div[5]/select")
+	  @FindBy(css="select[ng-model='usergroup']")
 	  private WebElement userGroupSelect;
 	  
 	  // only visable when setup is complete
 	  @FindBy(xpath="//div/div[2]/div/p/a")
 	  private WebElement subsriptionUrl;
 	  
-	  ///html/body/div[2]/div/div[1]/div/form/div[3]/label
-	  //html.ng-scope body div#wrap.ng-scope div.container.ng-scope div.row div.col-md-offset-3.col-md-6.jumbotron form.ng-valid.ng-valid-maxlength.ng-dirty.ng-valid-parse div.checkbox
-	  @FindBy(xpath="/html/body/div[2]/div/div[1]/div/form/div[3]/label")
+	  @FindBy(css="input[ng-model='noUsergroup']")
 	  private WebElement noUserGroup;
 	  
 	  private String opco;

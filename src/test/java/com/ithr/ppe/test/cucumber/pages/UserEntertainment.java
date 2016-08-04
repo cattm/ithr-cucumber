@@ -22,18 +22,17 @@ public class UserEntertainment extends PageBase{
 	  @FindBy(css="div.panel-inner-full.fl img.logo")
 	  private List<WebElement> offerIcons;
 	  
-	  @FindBy(xpath="/html/body/div/div/header/div[2]/p")
+	  @FindBy(css="p[class*='phone-number']")
 	  private WebElement msisdn;
 	  
-	  // TODO: experiments for phantomJS
-	  //@FindBy(css="div.wrapper.subscriptions-wrapper")
-	  //@FindBy(xpath="//*[@id='content__wrapper']/div[2]/div/div/p")
 	  @FindBy(css="p.nothing-to-display")
 	  private WebElement subscriptionText;
 	   
+	  // TODO: - This is horrible
 	  @FindBy(xpath="//article[@id='content__wrapper']/div[2]/div/div/div/div/div/div[2]/h3/span[2]") 
 	  private WebElement manageSubscription; 
 	  
+	// TODO: - This is horrible
 	  @FindBy(xpath="//article[@id='content__wrapper']/div[2]/h2")
 	  private WebElement manage;
 	  
@@ -87,6 +86,7 @@ public class UserEntertainment extends PageBase{
 		  return manage.getText();
 	  }
 	  
+	  // TODO: see if we can make these specific methods generic and sort the finders
 	  public String getSkySubscriptionText() {
 		  return manageSubscription.getText();
 	  }

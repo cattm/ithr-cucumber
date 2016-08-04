@@ -15,13 +15,16 @@ public class UserSpotifyOffer extends PageBase{
 	
 	// 26/7/2016 - DIT stopped working  
 	// identifier changed - This is not Good
-	@FindBy(css="div.table-panel-top.main-offer-content div.checkbox-wrap-jsx div.form-el-wrap input.checkbox-jsx")	
-	//@FindBy(name="accept")
+	// 01.8/2016 changed back
+	//@FindBy(css="div.table-panel-top.main-offer-content div.checkbox-wrap-jsx div.form-el-wrap input.checkbox-jsx")	
+	@FindBy(name="accept")
 	private WebElement tnc;
 	
-	@FindBy(css="div.btn-jsx.cf.main-offer-btn")
-	private List <WebElement> acceptOffer;
+	//@FindBy(css="div.btn-jsx.cf.main-offer-btn")
+	@FindBy(css="div [class='table-panel-top main-offer-content'] a[class='btn event-btn cf btn--okButton']")
+	private WebElement acceptOffer;
 	
+	// TODO: When Matt has adjusted the page constructs sort the finders
 	@FindBy(css="h4.offer-subtitle.bold-font")
 	private WebElement theoffer;
 	
@@ -51,6 +54,16 @@ public class UserSpotifyOffer extends PageBase{
 		return thedetail.getText();
 	}
 
+	public void clickAcceptOffer () {
+		//div [class="table-panel-top main-offer-content"] a[class="btn event-btn cf btn--okButton"]
+		acceptOffer.click();
+
+	}
+	   
+	public String getAcceptOfferText () {
+		return acceptOffer.getText();
+	}
+	/* TODO: remove
 	 public void clickAcceptOffer(String buttontext) {
 			Iterator <WebElement> iterator = acceptOffer.iterator();
 			while (iterator.hasNext()) {
@@ -64,7 +77,7 @@ public class UserSpotifyOffer extends PageBase{
 				 }
 			}
 	   }
-
+	*/
 	public String getSuccessText() {
 		   return confirmationText.getText();
 	}

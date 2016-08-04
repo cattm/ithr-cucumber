@@ -33,14 +33,12 @@ public class PurchaseSkyOffersSteps extends StepBase {
 	private boolean AcceptTheOffer () throws Exception {
 		
 		String buttontext = jsonParse.getOffersOkButton();		
-	    // the button is all upper case!
+	    // the button text is all upper case!
 	    String ucbuttontext = buttontext.toUpperCase();
-	    log.info("Button String is : " +  ucbuttontext);
-	    
+	    log.info("Button String should be : " +  ucbuttontext);
 	    UserSkyOffer skyoffer = new UserSkyOffer(driver);
-		// boolean found = skyoffer.clickAcceptOffer(buttontext);
-	    // TODO: until the text changes back on string
-	    // this will work - but it is not quite how I intended - need to check the text on the button is correct
+	    log.info("Button String is : " + skyoffer.getAcceptOfferText());
+	    
 	    skyoffer.clickAcceptOffer();
 	 			  
 		// check the page displayed
@@ -206,10 +204,11 @@ public class PurchaseSkyOffersSteps extends StepBase {
 		}
 		else {
 			log.info("And: I Will Accept the sky Offer ");
-			try {	
-				// TODO: alter logic based on booleans 
-				boolean offeraccepted = AcceptTheOffer();				
-				boolean ppeopen = ReOpenPPE();			
+			try {	 
+				boolean offeraccepted = AcceptTheOffer();		
+				if (checkAsserts) ErrorCollector.verifyTrue(offeraccepted);
+				boolean ppeopen = ReOpenPPE();
+				if (checkAsserts) ErrorCollector.verifyTrue(ppeopen);
 				  
 			} catch(Exception e){
 				log.info("caught Exception: " + e);
