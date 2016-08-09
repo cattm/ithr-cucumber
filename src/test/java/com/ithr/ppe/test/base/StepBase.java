@@ -168,10 +168,10 @@ public class StepBase {
     	browser = System.getProperty("test.driver", "firefox");
     	selectDriver(); 
     	
-    	log.info("set up location of JSON files");
+    	
     	testReferenceDir = System.getProperty("test.testrefdir", TestProperties.TEST_REFDIR);
     	refDir = testReferenceDir + "offers/";		
-    	
+    	log.info("set up location of JSON files - " + testReferenceDir);
     	// TODO: move this line of code it should not be here!
 	    driver.get(baseAdminUrl);
 	}
