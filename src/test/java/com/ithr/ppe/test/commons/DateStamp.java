@@ -22,4 +22,12 @@ public class DateStamp {
 	public String getRanDateFormat() {
 		return new SimpleDateFormat("yyyyMMddHHmmss", theLocaleToUse).format(new Date());
 	}
+	
+	public String getFileDayFormat() {
+		return new SimpleDateFormat("yyyyMMdd", theLocaleToUse).format(new Date());
+	}
+	
+	public String getFileTimeFormat() {
+		return new SimpleDateFormat("HHmmss", theLocaleToUse).format(new Date());
+	}
 }

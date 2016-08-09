@@ -116,15 +116,15 @@ public class PurchaseSpotifyOffersSteps extends StepBase {
 	}
 	
 	@Before("@spotifypurchase")
-	public void setUp() throws Exception {
-		super.setUp();
+	public void setUp(Scenario scenario) throws Exception {
+		super.setUp(scenario);
 		log.info("SetUp");
 	}
 	
 	@After("@spotifypurchase")
-	public void tearDown(Scenario scenario) {
+	public void tearDown() {
 		log.info("TearDown");
-		super.tearDown(scenario);
+		super.tearDown();
 	}
 	
 	@Given("^I am a \"([^\"]*)\" customer purchasing spotify$")
@@ -159,11 +159,11 @@ public class PurchaseSpotifyOffersSteps extends StepBase {
 			IdentityActivities.loginToPPE (driver, shortMsisdn , pinCode, url);
 			
 		} catch (Exception e){
-			log.error("caught Exception: " + e);
-			Integer linenumber = Thread.currentThread().getStackTrace()[2].getLineNumber();
-			String line = linenumber.toString(); 
-			if (!checkAsserts) GetDebugScreenShot(line);
-			Assert.fail("Aborting Test"); //To fail test in case of any element identification failure		
+			log.info("caught Exception: " + e);
+			StackTraceElement[] stackTrace = e.getStackTrace(); 	
+			StackTraceElement mystackline = stackTrace[stackTrace.length - 1];			
+			ReportStack(mystackline);
+			Assert.fail("Package In Group - Abort Test on Exception : MSISDN" + shortMsisdn); //To fail test in case of any element identification failure				
 		}
 		
 	}
@@ -193,7 +193,7 @@ public class PurchaseSpotifyOffersSteps extends StepBase {
 			  if (checkAsserts) ErrorCollector.verifyTrue(ok);
 			  
 			  log.info("selecting offer");
-			  if (entpage.checkOfferImage("spotify")) {
+			  if (entpage.checkOfferImagePresent("spotify")) {
 				  entpage.clickOfferImage("spotify");
 				  
 				  //  on journey to accept offer
@@ -222,11 +222,11 @@ public class PurchaseSpotifyOffersSteps extends StepBase {
 				  Assert.fail("No Valid Offer for Spotify - Aborting Test");
 			  }
 		} catch (Exception e){
-			log.error("caught Exception: " + e);
-			Integer linenumber = Thread.currentThread().getStackTrace()[2].getLineNumber();
-			String line = linenumber.toString(); 
-			if (!checkAsserts) GetDebugScreenShot(line);
-			Assert.fail("Aborting Test"); //To fail test in case of any element identification failure		
+			log.info("caught Exception: " + e);
+			StackTraceElement[] stackTrace = e.getStackTrace(); 	
+			StackTraceElement mystackline = stackTrace[stackTrace.length - 1];			
+			ReportStack(mystackline);
+			Assert.fail("Offer Contains Strings From - Abort Test on Exception : MSISDN" + shortMsisdn); //To fail test in case of any element identification failure				
 		}
 	}
 
@@ -246,11 +246,11 @@ public class PurchaseSpotifyOffersSteps extends StepBase {
 				if (checkAsserts) ErrorCollector.verifyTrue(ppeopen);
 				
 			}catch(Exception e){
-				log.error("caught Exception: " + e);
-				Integer linenumber = Thread.currentThread().getStackTrace()[2].getLineNumber();
-				String line = linenumber.toString(); 
-				if (!checkAsserts) GetDebugScreenShot(line);
-				Assert.fail("Aborting Test"); //To fail test in case of any element identification failure		
+				log.info("caught Exception: " + e);
+				StackTraceElement[] stackTrace = e.getStackTrace(); 	
+				StackTraceElement mystackline = stackTrace[stackTrace.length - 1];			
+				ReportStack(mystackline);
+				Assert.fail("Accept Spotify Offer - Abort Test on Exception : MSISDN" + shortMsisdn); //To fail test in case of any element identification failure			
 			}
 		}		  					
 	}

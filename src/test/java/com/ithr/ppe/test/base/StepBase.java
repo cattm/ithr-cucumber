@@ -17,6 +17,11 @@ import org.openqa.selenium.phantomjs.PhantomJSDriver;
 //import org.openqa.selenium.phantomjs.PhantomJSDriverService;
 //import org.openqa.selenium.remote.DesiredCapabilities;
 
+
+
+
+
+import com.ithr.ppe.test.commons.DateStamp;
 import com.ithr.ppe.test.commons.TestProperties;
 import com.ithr.ppe.test.cucumber.steps.utils.ErrorCollector;
 import com.ithr.ppe.test.cucumber.steps.utils.JsonParser;
@@ -27,7 +32,7 @@ import cucumber.api.Scenario;
 public class StepBase {
 	public static String propertyFile = "test.properties";
 	protected WebDriver driver;
-	
+	protected Scenario scenario;
 	// from properties
 	protected String 	baseAdminUrl;
 	protected String 	baseUserUrl;
@@ -36,7 +41,6 @@ public class StepBase {
 	protected String 	refDir;
 	protected Boolean 	checkAsserts;
 	protected String 	pinCode;
-	private String 		browserModel;
 	
 	//required
 	protected String opco = "gb"; //default
@@ -66,56 +70,88 @@ public class StepBase {
 		  refDir = TestProperties.TEST_REFDIR + "offers/";
 		  checkAsserts = TestProperties.DO_ASSERTCHECKS;
 		  pinCode = TestProperties.PINCODE;
-		  browserModel = TestProperties.DRIVER;
+		  //browserModel = TestProperties.DRIVER;
 	}
 
-	protected void GetDebugScreenShot(String line) throws IOException {
+	protected void GetDebugScreenShot(String reference)  {
+		DateStamp mydate = new DateStamp();	
 		File scrFile = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-		FileUtils.copyFile(scrFile, new File("target/screenshots/testScreenShot_" + line + ".jpg"));
+		String location = "reports/screenshots/" + mydate.getFileDayFormat() + "/" + mydate.getFileTimeFormat() + "_"+ reference + ".jpg";
+		log.info("Storing picture to : " + location);
+		try {
+			FileUtils.copyFile(scrFile, new File(location));
+		} catch (IOException e) {
+			log.error("Cannot create File " + location);
+		}
 	}
 	
-	protected void loadPJSDriver () {
-		 // TODO: this needs to be better defined - command line arg or property
-		 //File file = new File("/Users/marcus/Downloads/phantomjs-2.1.1-macosx/bin/phantomjs");				
-         //System.setProperty("phantomjs.binary.path", file.getAbsolutePath());		
-         //DesiredCapabilities caps = new DesiredCapabilities();
-         //caps.setJavascriptEnabled(true);
-         //caps.setCapability(PhantomJSDriverService.PHANTOMJS_EXECUTABLE_PATH_PROPERTY, "/Users/marcus/Downloads/phantomjs-2.1.1-macosx/bin/phantomjs");
-         //driver = new PhantomJSDriver();
-         
-         //driver.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
+	protected void ScenarioScreenshot () {
+		final byte[] screenshot = ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
+		  scenario.embed(screenshot, "image/png");
+	}
+	
+	protected void ReportStack(StackTraceElement element)  {
+		Integer linenumber = element.getLineNumber();
+		String line = linenumber.toString(); 
+		String methodn = element.getMethodName();
+		String classn = element.getClassName();
+		if (!checkAsserts) {
+			GetDebugScreenShot(classn + "_"+ methodn + "_" + line);
+		} else {
+			ScenarioScreenshot ();
+		}
+		
+	}
+	protected void loadMCPJSDriver () {
+		log.info("loadMCJSDriver");
+		String pathtophantom = System.getProperty("phantom.path","/Users/marcus/Downloads/phantomjs-2.1.1-macosx/bin/phantomjs");
+		File file = new File(pathtophantom);				
+        System.setProperty("phantomjs.binary.path", file.getAbsolutePath());		
+        driver = new PhantomJSDriver();       
+        driver.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
+	}
+	protected void loadJenkinsPJSDriver () {
+		log.info("loadJenkinsPJSDriver");
+		driver = new PhantomJSDriver();       
+        driver.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
 	}
 	
 	protected void loadFFDriver() {
+		log.info("loadFFDriver");
 		FirefoxProfile firefoxProfile = new FirefoxProfile();    
 		firefoxProfile.setPreference("browser.private.browsing.autostart",true);
 		driver = new FirefoxDriver();	      
 	    driver.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
 	}
 	
-	protected void setUp() throws Exception {	
+	protected void setUp(Scenario scenario) throws Exception {	
+		this.scenario = scenario;
     	loadProperties();
+    	
     	log.info("Setting up Driver");
-    	
-    	// TODO: drive this from property browserModel
-    	
-    	boolean condition = browserModel.equals("firefox");
-    	if (condition) {
-    		loadFFDriver();
-    	} else {
-    		loadPJSDriver();
+    	String browser = System.getProperty("test.driver", "firefox");
+    	switch (browser) {
+    	case "firefox"   : 	loadFFDriver();
+    						break;
+    	case "phantomjs" :  loadJenkinsPJSDriver();
+    						break;
+    	case "mcphantom" :  loadMCPJSDriver();
+    						break;
+    	default : loadFFDriver();
+    			  break;
+  
     	}
+    
     	
     	// TODO: move this line of code it should not be here!
 	    driver.get(baseAdminUrl);
 	}
 	
-	protected void tearDown(Scenario scenario) {
+	protected void tearDown() {
 		try {
 			if (scenario.isFailed()) {
 				log.error("Scenario has failed - taking screenshot to embed in report");
-				final byte[] screenshot = ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
-				  scenario.embed(screenshot, "image/png");
+				ScenarioScreenshot();
 			}
 		} finally {
 			  driver.quit();			  

@@ -43,15 +43,21 @@ public class UserEntertainment extends PageBase{
 	  }
 	
 	  
-	  public void clickOfferImage(String offer) {
+	  public void clickOfferImage(String offer) throws InterruptedException {
 		  //iterate through the list and click on it
 		  Iterator <WebElement> iterator = offerIcons.iterator();
 		  while (iterator.hasNext()) {
 			  WebElement element = iterator.next();
 			  String thetext = element.getAttribute("src");
 			  log.info("checking element :" + thetext);
+			  // The offer has to be in the page and displayed to be click-able
+			  // TODO: write a safer model than this - it needs a serious refactor and should not be checking the image anyway
 			  if ( thetext.contains(offer)) {
-				  log.info("Clicking offer");
+				  while (!element.isDisplayed()) {
+					  Thread.sleep(SLOW);
+					  log.info("Not displayed yet");
+				  }
+				  log.info("Click Element");
 				  element.click();
 				  return;
 			  }
@@ -59,7 +65,7 @@ public class UserEntertainment extends PageBase{
 		  
 	  }
 	  
-	  public boolean checkOfferImage(String offer) {
+	  public boolean checkOfferImagePresent(String offer) {
 		  Iterator <WebElement> iterator = offerIcons.iterator();
 		  Boolean valid = false;
 		  while (iterator.hasNext()) {

@@ -27,7 +27,7 @@ public class AdminActivities {
 		}
 			
 		String msisdn = adminhome.getShortMSISDN();
-		log.info("MSISN is : " + msisdn);
+		log.info("MSISDN is : " + msisdn);
 		
 		// TODO: Put a Proper test here and if there is a proble then we need to advise - so test can exit or otherwise
 		String checkurl = adminhome.getSubscriptionCheckUrl();		

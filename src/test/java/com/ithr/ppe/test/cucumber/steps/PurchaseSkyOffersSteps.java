@@ -83,15 +83,15 @@ public class PurchaseSkyOffersSteps extends StepBase {
 	}
 
 	@Before("@skypurchase")
-	public void setUp() throws Exception {
-		super.setUp();
+	public void setUp(Scenario scenario) throws Exception {
+		super.setUp(scenario);
 		log.info("SetUp");
 	}
 	
 	@After("@skypurchase")
-	public void tearDown(Scenario scenario) {
+	public void tearDown() {
 		log.info("TearDown");
-		super.tearDown(scenario);
+		super.tearDown();
 	}
 	
 	@Given("^I am a \"([^\"]*)\" customer purchasing sky package$")
@@ -119,10 +119,10 @@ public class PurchaseSkyOffersSteps extends StepBase {
 		
 		} catch(Exception e) {
 			log.info("caught Exception: " + e);
-			Integer linenumber = Thread.currentThread().getStackTrace()[2].getLineNumber();
-			String line = linenumber.toString(); 
-			if (!checkAsserts) GetDebugScreenShot(line);
-			Assert.fail("Aborting Test"); //To fail test in case of any element identification failure		
+			StackTraceElement[] stackTrace = e.getStackTrace(); 	
+			StackTraceElement mystackline = stackTrace[stackTrace.length - 1];			
+			ReportStack(mystackline);
+			Assert.fail("Package In Group - Abort Test on Exception : MSISDN" + shortMsisdn); //To fail test in case of any element identification failure		
 		}
 	}
 
@@ -160,7 +160,7 @@ public class PurchaseSkyOffersSteps extends StepBase {
 			  // because it probably isnt there and also probably should not be!
 			  // TODO: need a better Click than this - then we can make it a general model
 			  // e.g its its sky.png in uk and skytv.png in de!
-			  if (entpage.checkOfferImage("sky")) {
+			  if (entpage.checkOfferImagePresent("sky")) {
 				  entpage.clickOfferImage("sky");
 
 			  
@@ -190,10 +190,10 @@ public class PurchaseSkyOffersSteps extends StepBase {
 		}
 		catch (Exception e){
 			log.info("caught Exception: " + e);
-			Integer linenumber = Thread.currentThread().getStackTrace()[2].getLineNumber();
-			String line = linenumber.toString(); 
-			if (!checkAsserts) GetDebugScreenShot(line);
-			Assert.fail("Aborting Test"); 		
+			StackTraceElement[] stackTrace = e.getStackTrace(); 	
+			StackTraceElement mystackline = stackTrace[stackTrace.length - 1];			
+			ReportStack(mystackline);
+			Assert.fail("Offer Contains String From - Abort Test on Exception : MSISDN" + shortMsisdn); //To fail test in case of any element identification failure	
 		}
 	}
 	
@@ -212,10 +212,10 @@ public class PurchaseSkyOffersSteps extends StepBase {
 				  
 			} catch(Exception e){
 				log.info("caught Exception: " + e);
-				Integer linenumber = Thread.currentThread().getStackTrace()[2].getLineNumber();
-				String line = linenumber.toString(); 
-				if (!checkAsserts) GetDebugScreenShot(line);
-				Assert.fail("Aborting Test"); 		
+				StackTraceElement[] stackTrace = e.getStackTrace(); 	
+				StackTraceElement mystackline = stackTrace[stackTrace.length - 1];			
+				ReportStack(mystackline);
+				Assert.fail("Accept Sky Offer - Abort Test on Exception : MSISDN" + shortMsisdn); //To fail test in case of any element identification failure	
 			}
 		}
 	}

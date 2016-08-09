@@ -31,17 +31,17 @@ public class PurchaseSpotifyTrial extends StepBase{
 		// return
 	}
 	@Before("@trial")
-	public void setUp() throws Exception {
+	public void setUp(Scenario scenario) throws Exception {
 		
-		super.setUp();
+		super.setUp(scenario);
 		log.info("SetUp");
 	}
 	
 	@After("@trial")
-	public void tearDown(Scenario scenario) {
+	public void tearDown() {
 		log.info("TearDown");
 	
-		super.tearDown(scenario);
+		super.tearDown();
 	}
 	
 	private boolean PerformBasicSpotifyPurchase ( ) throws Exception {
@@ -62,7 +62,7 @@ public class PurchaseSpotifyTrial extends StepBase{
 		Thread.sleep(10000);
 		
 		log.info("going to check for spotify button");	 		  
-		if (entpage.checkOfferImage("spotify")) {
+		if (entpage.checkOfferImagePresent("spotify")) {
 			entpage.clickOfferImage("spotify");
 		  
 			UserSpotifyOffer spotifyoffer = new UserSpotifyOffer(driver);
@@ -105,10 +105,7 @@ public class PurchaseSpotifyTrial extends StepBase{
 	
 	@Given("^I am a \"([^\"]*)\" customer already purchased Spotify with:$")
 	public void AlreadyPurchasedSpotify(String opco, DataTable params) throws Throwable {
-	    // Write code here that turns the phrase above into concrete actions
-	    // For automatic transformation, change DataTable to one of
-	    // List<YourType>, List<List<E>>, List<Map<K,V>> or Map<K,V>.
-	    // E,K,V must be a scalar (String, Integer, Date, enum etc)
+
 		this.opco = opco.toLowerCase();
 		log.info("Already Purchased Spotify");
 		String thepackage = null;
@@ -123,27 +120,40 @@ public class PurchaseSpotifyTrial extends StepBase{
 		this.subscription = thepackage;
 		this.userGroup = usergroup;
 		this.fileToCheck = containedin;
-		//CommandExecutor.testCmnd();
-		//log.info(System.getProperty("user.dir"));
 		if (PerformBasicSpotifyPurchase()) {
-			// lets check the purchase moved from offers
+			// lets check the purcse moved from offersha
 			CheckSpotifyIsPurchased();
 		}
 		
 	}
 
-	@Given("^I a have deleted my user in spotify$")
-	public void HaveDeletedSpotifyUser() throws Throwable {
+	@Given("^I can delete my user in spotify$")
+	public void CanDeleteSpotifyUser() throws Throwable {
 		log.info("have deleted Spotify User");
+		// we can do this with curl or within a browser
+		
 	}
 
 	@When("^I subscribe to spotify with a new msisdn$")
-	public void useNewMsisdnToPurchaseSpotify() throws Throwable {
-		log.info("New Subscription succeeds");
+	public void UseNewMsisdnToPurchaseSpotify() throws Throwable {
+		log.info("New Subscription Old Spotify User");
+		// get a new MSISDN
+		// use old spotify username
+		// it should be trial
 	}
 
 	@Then("^I will purchase spotify trial$")
-	public void Succeed() throws Throwable {
+	public void TrialPurchase() throws Throwable {
 		log.info("purchase trial");
+	}
+	
+	@When("^I subscribe to spotify with same msisdn$")
+	public void UseOldMsisdnTpPurchaseSpotify() {
+		log.info("Old MSISDN Old Spotify User");
+	}
+	
+	@Then("^I will purchase spotify paid$")
+	public void PaidPurchase() throws Throwable {
+		log.info("purchase paid");
 	}
 }

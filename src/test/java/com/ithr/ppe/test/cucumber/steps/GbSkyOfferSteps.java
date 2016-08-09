@@ -44,14 +44,14 @@ public class GbSkyOfferSteps extends StepBase {
 	}
 	
 	@Before("@xdemo")
-	public void setUp() throws Exception {	
+	public void setUp(Scenario scenario) throws Exception {	
 		System.out.println("GbSkyOfferSteps SetUp");
-		super.setUp();
+		super.setUp(scenario);
 	}
 	
 	@After("@xdemo")
-	public void tearDown(Scenario scenario) {
-		super.tearDown(scenario);
+	public void tearDown() {
+		super.tearDown();
 	}
 
 		
