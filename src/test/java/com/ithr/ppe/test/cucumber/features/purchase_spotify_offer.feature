@@ -15,10 +15,10 @@ Variant behaviour will be verified in more complex and specific features
     Examples: 
       | package   | usergroup | contained in                                 |
       | Not Valid | 4guser    | Spotify standalone all v1.json               |
-      | Not Valid | gold      | Spotify standalone gold trial v1.json        |
-      | Not Valid | silver    | Spotify standalone switchable all v1.json    |
-      | Not Valid | bronze    | Spotify standalone switchable summer v1.json |
-      | Not Valid | summer    | Spotify standalone switchable summer v1.json |
+ #     | Not Valid | gold      | Spotify standalone gold trial v1.json        |
+ #     | Not Valid | silver    | Spotify standalone switchable all v1.json    |
+ #     | Not Valid | bronze    | Spotify standalone switchable summer v1.json |
+ #     | Not Valid | summer    | Spotify standalone switchable summer v1.json |
 
 
   Scenario Outline: Purchase GB Offers from spotify
@@ -29,8 +29,8 @@ Variant behaviour will be verified in more complex and specific features
 
     Examples: 
       | package     | usergroup    | contained in               |
-      | PK_4GTariff | 4glarge      | Spotify hardbundle v1.json |
-      | PK_4GTariff | 4gextralarge | Spotify hardbundle v1.json |
-      | PK_4GTariff | 4gmedium     | Spotify hardbundle v1.json |
-      | PK_4GTariff | 4gsmall      | Spotify hardbundle v1.json |
-      | PK_4GTariff | 4gmbblarge   | Spotify standalone v1.json |
+  #    | PK_4GTariff | 4glarge      | Spotify hardbundle v1.json |
+  #    | PK_4GTariff | 4gextralarge | Spotify hardbundle v1.json |
+  #    | PK_4GTariff | 4gmedium     | Spotify hardbundle v1.json |
+  #    | PK_4GTariff | 4gsmall      | Spotify hardbundle v1.json |
+  #    | PK_4GTariff | 4gmbblarge   | Spotify standalone v1.json |

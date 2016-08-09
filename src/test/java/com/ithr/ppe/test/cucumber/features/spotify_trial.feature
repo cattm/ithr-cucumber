@@ -1,8 +1,8 @@
 @trial
 Feature: Spotify Trial demonstration
-This feature will test two spotify scenarios where the suer terminates an already purchased trial offer
-and then looks to repeat the operation with either the same or changed MSISDN
-the trail should still be available if the MSISDN is changed
+  This feature will test two spotify scenarios where the suer terminates an already purchased trial offer
+  and then looks to repeat the operation with either the same or changed MSISDN
+  the trail should still be available if the MSISDN is changed
 
   Background: Previously Purchased Spotify
     Given I am a "GB" customer already purchased Spotify with:
@@ -15,7 +15,9 @@ the trail should still be available if the MSISDN is changed
     Then I will purchase spotify trial
 
   # we can then repeat with same msisdn and we should not get trial - but chargeable instead
-  Scenario: Delete spotify user and Purchase Offer with  SameMSISDN
-    Given I can delete my user in spotify
-    When I subscribe to spotify with same msisdn
-    Then I will purchase spotify paid
+  # we will need the next chargeable end point to have been reached to complete the termination - ER Dependency to resolve
+  
+#  Scenario: Delete spotify user and Purchase Offer with  SameMSISDN
+#    Given I can delete my user in spotify
+#    When I subscribe to spotify with same msisdn
+#    Then I will purchase spotify paid
