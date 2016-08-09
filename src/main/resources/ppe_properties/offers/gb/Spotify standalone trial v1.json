@@ -78,5 +78,12 @@
 				}
 			}
 		}
+	},
+
+	"entitlement": {
+		"description": "Listen to your favourite music everywhere with Vodafone and Spotify.",
+		"pricingDetails": "£9.99 a month",
+		"banner": "/newui/assets/img/download-panels/spotify.jpg"
 	}
+
 }

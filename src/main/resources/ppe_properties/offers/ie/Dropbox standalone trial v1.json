@@ -70,7 +70,7 @@
          },
          "details2": {
             "title": "Unsubscribe from your offer",
-            "text": "<p>By ending your offer you will lose your bonus 25GB of Dropbox space.</p><p>You’ll still will be able to use Backup+ for syncing your contacts and backing up to Dropobx as long as you have enough Dropbox space.</p><p>Are you sure you want to unsubscribe?</p>",
+            "text": "<p>By ending your offer you will lose your bonus 25GB of Dropbox space.</p><p>You will still be able to use Backup+ for syncing your contacts and backing up to Dropbox as long as you have enough Dropbox space.</p><p>Are you sure you want to unsubscribe?</p>",
             "okButton": {
                "label": "Unsubscribe",
                "action": "#next"

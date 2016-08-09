@@ -53,7 +53,8 @@
 				"customButton": {
 					"label": "Continuar",
 					"action": "http://www.vodafone.com/content/apps/external-redirects/backupplus/open/PT"
-				}
+				},
+				"notificationMsg": "Ativação concluída com sucesso"
 			}
 		},
 
@@ -73,7 +74,7 @@
 
 			"details2": {
 				"title": "Cancelar a sua oferta",
-				"text": "<p>Ao cancelar a sua subscrição deixará de ter direito aos 50GB de espaço adicional na Dropbox que lhe foram atribuídos com o Backup+.</p><p>Poderá continuar a utilizar o Backup+ para sincronizar os seus contactos e guardar os seus conteúdos na Dropbox desde que possua espaço suficiente para o fazer.</p><p>Tem a certeza que pretende cancelar a subscrição?</p>",
+				"text": "<p>Ao cancelar a sua subscrição deixará de ter direito aos 25GB de espaço adicional na Dropbox que lhe foram atribuídos com o Backup+.</p><p>Poderá continuar a utilizar o Backup+ para sincronizar os seus contactos e guardar os seus conteúdos na Dropbox desde que possua espaço suficiente para o fazer.</p><p>Tem a certeza que pretende cancelar a subscrição?</p>",
 				"okButton": {
 					"label": "Cancelar agora",
 					"action": "#next"
@@ -81,7 +82,8 @@
 			},
 
 			"success": {
-				"text": "<p>A sua subscrição foi cancelada com sucesso.</p>"
+				"text": "<p>Pode continuar a usar o Vodafone Backup+ até à respetiva data de renovação da subscrição.</p>",
+				"notificationMsg": "Cancelou com sucesso a renovação da sua subscrição"
 			}
 		}
 	}

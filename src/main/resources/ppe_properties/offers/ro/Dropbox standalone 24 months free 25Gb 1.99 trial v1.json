@@ -39,7 +39,7 @@
 				},
 				"accordion": {
 					"label": "Detaliile ofertei",
-					"text": "<p class=\"content_heading\">Pentru inceput</p><p>Odata ce accepti oferta, vei primi bonus 3GB de la Dropbox. Pentru a obtine intregul spatiu de stocare al ofertei, 25 GB, trebuie sa completezi cel putin 5 pasi din ghidul de initere Dropbox de aici: www.dropbox.com/gs</p><p class=\"content_heading\">Spatiu suplimentar</p><p>Spatiul de stocare obtinut va fi adaugat la volumul de spatiu actual pe care il ai in contul Dropbox.</p><p class=\"content_heading\">Taxe pentru internet</p><p>Pentru Internet se vor aplica tarifele standard atunci cand esti in roaming sau cand ai depasit oferta inclusa in abonament sau extraoptiune.</p><p class=\"content_heading\">Dezabonare</p><p>Aceasta oferta are o durata de 24 luni. La sfarsitul celor 24 luni te vom informa ca vei fi transferat catre o oferta platita. Te poti dezabona de la oferta oricand din pagina 'Abonamentul meu' din aplicatia Backup+.</p>"
+					"text": "<p class=\"content_heading\">Pentru inceput</p><p>Odata ce accepti oferta, vei primi bonus 3GB de la Dropbox. Pentru a obtine intregul spatiu de stocare al ofertei, 25 GB, trebuie sa completezi cel putin 5 pasi din ghidul de initere Dropbox de aici: http://www.vodafone.com/content/apps/external-redirects/backupplus/gs/RO</p><p class=\"content_heading\">Spatiu suplimentar</p><p>Spatiul de stocare obtinut va fi adaugat la volumul de spatiu actual pe care il ai in contul Dropbox.</p><p class=\"content_heading\">Taxe pentru internet</p><p>Pentru Internet se vor aplica tarifele standard atunci cand esti in roaming sau cand ai depasit oferta inclusa in abonament sau extraoptiune.</p><p class=\"content_heading\">Dezabonare</p><p>Aceasta oferta are o durata de 24 luni. La sfarsitul celor 24 luni te vom informa ca vei fi transferat catre o oferta platita. Te poti dezabona de la oferta oricand din pagina 'Abonamentul meu' din aplicatia Backup+.</p>"
 				},
 				"okButton": {
 					"label": "Activeaza oferta",
@@ -53,7 +53,7 @@
 
 			"success": {
 				"title": "Felicitari!",
-				"text": "<p>Deja ai obtinut 3GB de spatiu suplimentar in contul tau Dropbox!</p><p><strong>Pentru a beneficia de cei 25 GB spatiu de stocare in Dropbox, va trebui sa parcurgi <a href=\"http://dropbox.com/gs\">ghidul de initiere</a>.</strong></p>",
+				"text": "<p>Deja ai obtinut 3GB de spatiu suplimentar in contul tau Dropbox!</p><p><strong>Pentru a beneficia de cei 25 GB spatiu de stocare in Dropbox, va trebui sa parcurgi <a href=\"http://www.vodafone.com/content/apps/external-redirects/backupplus/gs/RO\">ghidul de initiere</a>.</strong></p>",
 				"customButton": {
 					"label": "Continua",
 					"action": "http://www.vodafone.com/content/apps/external-redirects/backupplus/open/RO"
@@ -67,7 +67,7 @@
 				"text": "<p>Acum ai 25GB spatiu de stocare Dropbox, inclusi in abonamentul tau Vodafone, gratuit pentru 24 luni:</p><ul><li>Apoi vei fi taxat cu 1.99€ pe luna</li><li>Te poti dezabona oricand!</li><li>Completeaza ghidul de initiere Dropbox pentru a beneficia de oferta completa</li></ul><p><u><a href=\"http://www.vodafone.com/content/apps/external-redirects/backupplus/promo_general/RO\" target=\"_blank\">Se aplica termenii si conditiile ofertei</a></u></p>",
 				"accordion": {
 					"label": "Detaliile ofertei",
-					"text": "<p class=\"content_heading\">Pentru inceput</p><p>Odata ce accepti oferta, vei primi bonus 3GB de la Dropbox. Pentru a obtine intregul spatiu de stocare al ofertei, 25 GB, trebuie sa completezi cel putin 5 pasi din ghidul de initere Dropbox de aici: www.dropbox.com/gs</p><p class=\"content_heading\">Spatiu suplimentar</p><p>Spatiul de stocare obtinut va fi adaugat la volumul de spatiu actual pe care il ai in contul Dropbox.</p><p class=\"content_heading\">Taxe pentru internet</p><p>Pentru Internet se vor aplica tarifele standard atunci cand esti in roaming sau cand ai depasit oferta inclusa in abonament sau extraoptiune.</p><p class=\"content_heading\">Dezabonare</p><p>Aceasta oferta are o durata de 24 luni. La sfarsitul celor 24 luni te vom informa ca vei fi transferat catre o oferta platita. Te poti dezabona de la oferta oricand din pagina 'Abonamentul meu' din aplicatia Backup+.</p>"
+					"text": "<p class=\"content_heading\">Pentru inceput</p><p>Odata ce accepti oferta, vei primi bonus 3GB de la Dropbox. Pentru a obtine intregul spatiu de stocare al ofertei, 25 GB, trebuie sa completezi cel putin 5 pasi din ghidul de initere Dropbox de aici: http://www.vodafone.com/content/apps/external-redirects/backupplus/gs/RO</p><p class=\"content_heading\">Spatiu suplimentar</p><p>Spatiul de stocare obtinut va fi adaugat la volumul de spatiu actual pe care il ai in contul Dropbox.</p><p class=\"content_heading\">Taxe pentru internet</p><p>Pentru Internet se vor aplica tarifele standard atunci cand esti in roaming sau cand ai depasit oferta inclusa in abonament sau extraoptiune.</p><p class=\"content_heading\">Dezabonare</p><p>Aceasta oferta are o durata de 24 luni. La sfarsitul celor 24 luni te vom informa ca vei fi transferat catre o oferta platita. Te poti dezabona de la oferta oricand din pagina 'Abonamentul meu' din aplicatia Backup+.</p>"
 				},
 				"okButton": {
 					"label": "Dezabonare",

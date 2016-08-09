@@ -28,7 +28,7 @@
             },
             "accordion": {
                "label": "Spotify Premium",
-               "text": "<p>Ouve as tuas músicas favoritas onde quer que estejas com a Vodafone e o Spotify.</p>"
+               "text": "<p>Ouça as suas músicas favoritas onde quer que esteja com a Vodafone e o Spotify.</p>"
             },
             "okButton": {
                "label": "Obter o Spotify Premium",
@@ -36,7 +36,7 @@
             }
          },
          "success": {
-            "title": "A sua subscrição foi efetuada com sucesso.",
+            "title": "Ativação concluída com sucesso",
             "text": "<p>Conta Spotify Premium ativa. Está pronto para começar a utilizar o serviço.</p>",
             "customButton": {
                "label": "Adicionar mais ofertas",
@@ -51,7 +51,7 @@
       },
       "cancellation": {
          "details": {
-            "text": "<p>Ouve as tuas músicas favoritas onde quer que estejas com a Vodafone e o Spotify.</p>",
+            "text": "<p>Ouça as suas músicas favoritas onde quer que esteja com a Vodafone e o Spotify.</p>",
             "getAppButton": {
                "label": "Download da app Spotify",
                "action": "#getApp"
@@ -61,8 +61,17 @@
                "action": "#next"
             }
          },
+         
+         "details2": {
+				"text": "<p>A sua subscrição do serviço Spotify Premium vai ser cancelada.</p><p>Para concluir o pedido de cancelamento do Spotify Premium, clique no botão abaixo.</p>",
+				"okButton": {
+					"label": "Cancelar Spotify Premium",
+					"action": "#next"
+				}
+		},
+			
          "success": {
-            "text": "<p>O cancelamento da sua subscrição Spotify Premium ficará concluído no final do ciclo de renovação do serviço.</p>",
+            "text": "<p>O cancelamento da sua subscrição ficará concluído no final do ciclo de renovação do serviço.</p>",
             "getAppButton": {
                "label": "Download da app Spotify",
                "action": "#getApp"

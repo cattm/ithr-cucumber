@@ -100,5 +100,12 @@
                }
             }
 		}
+	},
+
+	"entitlement": {
+		"description": "Experience thrilling sporting moments with Sky Sports Mobile TV for just £4.99 a month.",
+		"pricingDetails": "£4.99 a month",
+		"banner": "/newui/assets/img/download-panels/sky.jpg"
 	}
+
 }

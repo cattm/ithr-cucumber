@@ -94,5 +94,11 @@
 				}
 			}
 		}
+	},
+
+	"entitlement": {
+		"description": "Must-see TV shows and movies, award-winning Netflix originals, and a special section just for kids, there’s something to watch for everyone.",
+		"pricingDetails": "Free",
+		"banner": "/newui/assets/img/download-panels/netflix.jpg"
 	}
 }

@@ -1,4 +1,4 @@
-{
+﻿{
 	"comment": "Initial import by DEV",
 
 	"opco": "es",
@@ -29,17 +29,17 @@
 		"purchase": {
 			"details": {
 				"title": "¡Enhorabuena!",
-				"text": "<p>Dispones de 25GB de espacio en Dropbox por sólo 2€ al mes</p><ul class=\"offers_list\"><li>25GB de espacio adicional</li><li>Tan sólo 2€ al mes</li><li>Cancélalo cuando quieras.</li></ul>",
+				"text": "<p>Tu tarifa incluye 25GB de espacio en Dropbox y RealTimes ilimitado por 3€/mes.</p><p>RealTimes crea automáticamente montajes personalizados, seleccionando las mejores fotos y vídeos de tu móvil y Dropbox para compartir con quien quieras.</p>",
 				"checkbox": {
 					"label": "Acepto los <a href=\"http://www.vodafone.com/content/apps/external-redirects/backupplus/promo_general/ES\" target=\"_blank\">términos y condiciones</a>",
 					"errorMessage": "Por favor, debes aceptar los términos y condiciones",
-					"confirmationMessage": "Seleccionando \"Suscribirse ahora\", por sólo 2€ al mes, dispondrás de 25GB de espacio en Dropbox.",
+					"confirmationMessage": "Seleccionando \"Suscribirse ahora\" activarás la oferta. Si no te suscribes ahora, continuarás disfrutando de 2GB de espacio gratuito en Dropbox y RealTimes ilimitado 1 mes. Recuerda que podrás cancelarla cuando quieras sin ningún cargo adicional.",
 					"order": 1,
 					"mandatory": true
 				},
 				"accordion": {
 					"label": "Detalles de la oferta",
-					"text": "<p class=\"content_heading\">Espacio adicional</p><p>El espacio propocionado se añadirá al espacio que previamente tuvieras en Dropbox.</p><p class=\"content_heading\">Cargos de navegación por internet</p><p>Las conexiones  a internet realizadas por el servicio cuando estés en extranjero o cuando hayas superado tu asignación de datos se tarificarán según tu plan.</p><p class=\"content_heading\">Cancelar la promoción</p><p>Podrás darte de baja del servicio en cualquier momento a través de Mi oferta en la aplicación de Backup+</p>"
+					"text": "<p class=\"content_heading\">Espacio adicional</p><p>El espacio propocionado se añadirá al espacio que previamente tuvieras en Dropbox.</p><p class=\"content_heading\">Cargos de navegación por Internet</p><p>Subir contenido desde Backup+ a Dropbox no consume datos de tu tarifa, excepto si estás en roaming.</p><p class=\"content_heading\">Cancelar la promoción</p><p>Podrás darte de baja del servicio en cualquier momento a través de Mi oferta en la aplicación de Backup+</p>"
 				},
 				"okButton": {
 					"label": "Suscribirse ahora",
@@ -53,7 +53,7 @@
 
 			"success": {
 				"title": "¡Enhorabuena!",
-				"text": "<p>Dispones de 25 GB de espacio adicional en tu cuenta de Dropbox por 2€ al mes.<br>Podrás cancelar esta oferta en cualquier momento a través de \"Mi oferta\" en la aplicación de Backup+</p>",
+				"text": "<p>Dispones de 25GB de espacio adicional en Dropbox y RealTimes ilimitado por 3€ al mes.</p><p>Podrás cancelar esta oferta cuando quieras accediendo a “Mi oferta” en Backup+ </p><p>Para disfrutar de RealTimes descarga la app desde Backup+ pinchando en el banner correspondiente o directamente desde Google Play. Crea montajes de tus mejores fotos y videos con RealTimes ilimitado.</p>",
 				"customButton": {
 					"label": "Continuar",
 					"action": "http://www.vodafone.com/content/apps/external-redirects/backupplus/open/ES"
@@ -63,10 +63,10 @@
 
 		"cancellation": {
 			"details": {
-				"text": "<p>Tu suscripción a Backup+</p><p>Dispones de 25GB de espacio en Dropbox</p><ul><li>Por tan sólo 2€ al mes</li><li>Cancélalo cuando quieras</li></ul><p><a href=\"http://www.vodafone.com/content/apps/external-redirects/backupplus/promo_general/ES\" target=\"_blank\">Términos y condiciones de la promoción</a></p>",
+				"text": "<p>Tu suscripción a Backup+</p><p>Dispones de 25GB de espacio en Dropbox y RealTimes ilimitado por 3€ al mes.</p><p><a href=\"http://www.vodafone.com/content/apps/external-redirects/backupplus/promo_general/ES\" target=\"_blank\">Términos y condiciones de la promoción</a></p>",
 				"accordion": {
 					"label": "Los detalles de la oferta",
-					"text": "<p class=\"content_heading\">Espacio adicional</p><p>El espacio propocionado se añadirá al espacio que previamente tuvieras en Dropbox.</p><p class=\"content_heading\">Cargos de navegación por internet</p><p>Las conexiones  a internet realizadas por el servicio cuando estés en extranjero o cuando hayas superado tu asignación de datos se tarificarán según tu plan.</p><p class=\"content_heading\">Cancelar la promoción</p><p>Podrás darte de baja del servicio en cualquier momento a través de Mi oferta en la aplicación de Backup+</p>"
+					"text": "<p class=\"content_heading\">Espacio adicional</p><p>El espacio propocionado se añadirá al espacio que previamente tuvieras en Dropbox.</p><p class=\"content_heading\">Cargos de navegación por Internet</p><p>Subir contenido desde Backup+ a Dropbox no consume datos de tu tarifa, excepto si estás en roaming.</p><p class=\"content_heading\">Cancelar la promoción</p><p>Podrás darte de baja del servicio en cualquier momento a través de Mi oferta en la aplicación de Backup+</p>"
 				},
 				"okButton": {
 					"label": "Darse de baja",
@@ -75,7 +75,7 @@
 			},
 
 			"details2": {
-				"text": "<p>Dar de baja tu promoción</p><p>Al dar de baja tu suscripción no dispondrás de los 25GB de espacio adicional en Dropbox</p><p>Recuerda que podrás seguir usando Backup+ y guardando tus  fotos, videos o música  mientras tengas espacio disponible en Dropbox.</p><p>Para dar de baja tu suscripción, por favor pincha más abajo.</p>",
+				"text": "<p>Dar de baja tu oferta</p><p>Al dar de baja tu suscripción a Backup+ premium no dispondrás de los 25GB de espacio adicional en Dropbox ni de RealTimes ilimitado.</p><p>Recuerda que podrás seguir usando Backup+ y guardando tus fotos, videos o música mientras tengas espacio disponible en Dropbox.</p><p>Para dar de baja tu suscripción, por favor pincha más abajo.</p>",
 				"okButton": {
 					"label": "Darse de baja ahora",
 					"action": "#next"
@@ -83,7 +83,7 @@
 			},
 
 			"success": {
-				"text": "<p class=\"intro-text\">Tu baja de la subscripción a Backup+ se ha realizado correctamente.</p>"
+				"text": "<p class=\"intro-text\">Tu cancelación de la oferta de Backup+ premium se ha realizado correctamente. Se procederá a dar la baja de esta suscripción al final de tu ciclo de facturación en el servicio.</p>"
 			}
 		}
 	}

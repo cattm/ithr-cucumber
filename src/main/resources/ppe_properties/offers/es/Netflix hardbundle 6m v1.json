@@ -24,17 +24,17 @@
 	"pages": {
 		"purchase": {
 			"details": {
-				"title": "Netflix. Ahora, con tu tarifa Vodafone, 6 meses de regalo",
-				"text": "<ul class=\"offers_list\"><li>Tus  series y películas favoritas: El lobo de Wall Street, Sin límites, Breaking Bad,  Gotham, Arrow… los contenidos originales de Netflix como Love, Madres Forzosas, Narcos o Marvel – Daredevil 2, documentales aclamados por la crítica como Virunga o Mission Blue,  y una sección especial para niños con títulos como Kung Fu Panda, LEGO Ninjago: Masters of Spinjitzu o Madagascar.  Ves todo lo que quieres y cuando quieres. Sin publicidad.</li><li>Integrado en Vodafone TV, La TV inteligente. Además, podrás disfrutar del servicio en tu Smartphone, Tablet, PC/MAC y muchos más dispositivos.</li><li>Sin permanencia</li></ul>",
+				"title": "Ahora, con tu tarifa Vodafone, 6 meses de regalo",
+				"text": "<ul class=\"offers_list\"><li>Tus  series y películas favoritas: El lobo de Wall Street, Sin límites, Breaking Bad,  Gotham, Arrow… los contenidos originales de Netflix como Narcos, Marvel - Daredevil, Marco Polo, House of Cards, Orange is the New Black, documentales aclamados por la crítica como Virunga o Mission Blue,  y una sección especial para niños con títulos como Kung Fu Panda, LEGO Ninjago: Masters of Spinjitzu o Madagascar.  Ves todo lo que quieres y cuando quieres. Sin publicidad</li><li>Integrado en Vodafone TV. Además, podrás disfrutar de todo el contenido en tu Smartphone, Tablet, PC/MAC y muchos más dispositivos</li><li>Sin compromiso</li></ul>",
 				"checkbox": {
 					"label": "Una vez hagas clic en \"Activar Netflix\", serás redirigido a una página de Netflix para completar el alta en el servicio.",
-					"errorMessage": "Por favor, debes aceptar y marcar la casilla inferior para continuar con el proceso de alta.",
+					"errorMessage": "Por favor, debes aceptar y marcar la casilla para continuar con el proceso de alta.",
 					"order": 1,
 					"mandatory": true
 				},
 				"accordion": {
 					"label": "Más info",
-					"text": "<p class=\"content_heading\">Y además:</p><ol><li>La promoción incluye 6 meses de suscripción al paquete Netflix con 2 accesos simultáneos valorado en 9,99€ mensuales. Para poder aplicar la promoción a los clientes existentes de Netflix, ésta les descontará 59,94€.</li><li>El paquete Netflix con 2 accesos simultáneos permite a sus clientes utilizar su cuenta de Netflix de forma simultánea en dos dispositivos y con calidad HD.</li><li> Para poder disfrutar del paquete Netflix con 2 accesos simultáneos, el cliente deberá disponer de un ordenador u otro dispositivo compatible.</li><li>La promoción no puede canjearse por dinero ni sustituirse por otras promociones de Netflix de distinto valor y ello conforme a la legislación aplicable.</li><li>La promoción de Netflix podrá activarse hasta el 23/01/2017</li><li>La promoción se aplicará respecto de la cuota mensual.</li><li>La promoción es personal e intransferible.</li><li>Si un cliente no activa su promoción antes de que expire, no tendrá derecho a compensación alguna por parte de Netflix.</li><li>Los términos y condiciones de la promoción están disponibles en www.netflix.com/Términos de uso.</li></ol><p>Para cualquier duda sobre el funcionamiento del servicio, accede directamente al \"centro de ayuda\" en http://www.netflix.com. Podrás consultar preguntas frecuentes, mantener un chat con un agente o ponerte en contacto de forma gratuita con el Servicio de Atención al Cliente de Netflix. El horario de atención en castellano es de Lunes a Domingo de 10h a 22h.</p>"
+					"text": "<p class=\"content_heading\">Y además:</p><ol><li>La promoción incluye 6 meses de suscripción al paquete Netflix con 2 accesos simultáneos valorado en 9,99€ mensuales. Para poder aplicar la promoción a los clientes existentes de Netflix, ésta les descontará 59,94€.</li><li>El paquete Netflix con 2 accesos simultáneos permite a sus clientes utilizar su cuenta de Netflix de forma simultánea en dos dispositivos y con calidad HD.</li><li> Para poder disfrutar del paquete Netflix con 2 accesos simultáneos, el cliente deberá disponer de un ordenador u otro dispositivo compatible.</li><li>La promoción no puede canjearse por dinero ni sustituirse por otras promociones de Netflix de distinto valor y ello conforme a la legislación aplicable.</li><li>La promoción de Netflix podrá activarse hasta el 23/01/2017</li><li>La promoción se aplicará respecto de la cuota mensual.</li><li>La promoción es personal e intransferible.</li><li>Si un cliente no activa su promoción antes de que expire, no tendrá derecho a compensación alguna por parte de Netflix.</li><li>Los términos y condiciones de la promoción están disponibles en <a href=\"https://help.netflix.com/legal/termsofuse\" target=\"_blank\">www.netflix.com/Términos de uso</a>.</li></ol><p>Para cualquier duda sobre el funcionamiento del servicio, accede directamente al \"centro de ayuda\" en <a href=\"http://www.netflix.com\" target=\"_blank\">http://www.netflix.com</a>. Podrás consultar preguntas frecuentes, mantener un chat con un agente o ponerte en contacto de forma gratuita con el Servicio de Atención al Cliente de Netflix. El horario de atención en castellano es de Lunes a Domingo de 10h a 22h.</p>"
 				},
 				"okButton": {
 					"label": "Activar Netflix",
@@ -66,7 +66,7 @@
 			},
 
 			"details2": {
-				"text": "<p>Recuerda, la baja en el servicio será efectiva al final de tu ciclo de facturación.</p><p>Para darse de baja del servicio Netflix, haz clic en el botón inferior.</p>",
+				"text": "<p>Recuerda, la baja en el servicio será efectiva al final de tu mes de suscripción.</p><p>Para darse de baja del servicio Netflix, haz clic en el botón inferior.</p>",
 				"okButton": {
 					"label": "Darse de baja",
 					"action": "#next"
@@ -75,7 +75,7 @@
 
 			"success": {
 				"title": "Darse de baja",
-				"text": "<p>Te confirmamos que el proceso para darse de baja de tu suscripción al servicio de Netflix se ha realizado correctamente.</p>",
+				"text": "<p>Te confirmamos que la baja de tu suscripción al servicio de Netflix se ha realizado correctamente.</p>",
 				"getAppButton": {
 					"label": "Descargar app",
 					"action": "#getApp"

@@ -93,5 +93,11 @@
                }
             }
 		}
+	},
+
+	"entitlement": {
+		"description": "Experience thrilling sporting moments with Sky Sports Mobile TV.",
+		"pricingDetails": "£5.00 per month",
+		"banner": "/newui/assets/img/download-panels/sky.jpg"
 	}
 }

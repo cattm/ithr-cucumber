@@ -1,4 +1,4 @@
-{
+﻿{
 	"comment": "Initial import by DEV",
 
 	"opco": "nz",
@@ -29,20 +29,20 @@
 		"purchase": {
 			"details": {
 				"title": "Never lose the things that matter.",
-				"text": "<p>Your plan includes 25GB of Dropbox storage free!</p><ul class=\"offers_list\"><li>25GB FREE for the life of your plan</li><li>No mobile data charges to upload a your precious things</li><li>Complete Dropbox Get Started steps to activate</li></ul>",
+				"text": "<p>Your plan includes 25GB of Dropbox storage free!</p><ul class=\"offers_list\"><li>25GB storage</li><li>FREE for the life of your plan</li><li>Complete Dropbox Get Started steps to activate</li></ul>",
 				"checkbox": {
-					"label": "I accept the <a href=\"http://www.vodafone.co.nz/legal/terms-conditions/backup-plus/promo\" target=\"_blank\">terms</a>",
+					"label": "I accept the offer <a href=\"http://www.vodafone.co.nz/legal/terms-conditions/backup-plus/promo\" target=\"_blank\">terms</a>",
 					"errorMessage": "Please accept the terms to get this offer",
-					"confirmationMessage": "By selecting to subscribe now you will activate the free 25GB free Dropbox offer.",
+					"confirmationMessage": "By selecting Activate Offer now you will activate the 25GB free Dropbox offer.",
 					"order": 1,
 					"mandatory": true
 				},
 				"accordion": {
 					"label": "Important things to know",
-					"text": "<p class=\"content_heading\">Get Started</p><p>When you accept your offer you will receive 3GB of bonus Dropbox space. In order to get your full 25GB you need to complete 5 steps in the Dropbox Get Started guide. For more info see www.dropbox.com/gs</p><p class=\"content_heading\">Additional space</p><p>Your Backup+ storage is on top of any Dropbox storage you may already have. If you unsubscribe, change plans, or leave Vodafone your Dropbox storage amount may change but you can continue to access and retrieve the files you've already saved</p><p class=\"content_heading\">Upload data charges</p><p>Uploading photos and files to Dropbox using the Backup+ app is free in NZ, so the mobile data won't come off your plan. Make sure your 'How to upload' setting in the Dropbox app is set to 'Wi-Fi only' to send your mobile data uploads via Backup+ only. Standard mobile data charges apply when roaming.</p><p class=\"content_heading\">Download data charges</p><p>Standard data allowances apply, as per your mobile or broadband plan, to download files from Backup+ and Dropbox.</p><p class=\"content_heading\">Stopping the offer</p><p>You can unsubscribe from the offer any time via the My account page in the Backup+ app.</p>"
+					"text": "<p class=\"content_heading\">Get Started</p><p>When you accept your offer you'll automatically receive 3GB of bonus Dropbox storage. To get your full 25GB you need to complete 5 steps in the Dropbox Get Started guide. For more info see www.dropbox.com/gs</p><p class=\"content_heading\">Additional space</p><p>Your Backup+ storage is on top of any Dropbox storage you may already have. If you unsubscribe, change plans, or leave Vodafone your Dropbox storage amount may change but you can continue to access and retrieve the files you've already saved.</p><p class=\"content_heading\">Internet charges</p><p>Standard data allowances apply, as per your mobile or broadband plan, to use Backup+ and Dropbox. </p><p class=\"content_heading\">Stopping the offer</p><p>You can unsubscribe from the offer any time via the Account page in the Backup+ app.</p>"
 				},
 				"okButton": {
-					"label": "Subscribe now",
+					"label": "Activate Offer",
 					"action": "#next"
 				},
 				"customButton": {
@@ -53,21 +53,22 @@
 
 			"success": {
 				"title": "Congratulations!",
-				"text": "<p>You now have 3GB of additional space in your Dropbox account, thanks to Backup+!</p><p>Don’t forget, to activate your full 25GB allowance you need to complete the Dropbox Get Started steps</p><p>Find out more: go to www.dropbox.com/gs</p>",
+				"text": "<p>You now have 3GB of additional space in your Dropbox account, thanks to Backup+!</p><p>Don’t forget, to activate your full 25GB allowance you need to complete the Dropbox Get Started steps</p><p>Using your computer, go to www.dropbox.com/gs</p>",
 				"customButton": {
 					"label": "Continue",
 					"action": "http://www.vodafone.com/content/apps/external-redirects/backupplus/open/NZ"
-				}
+				},
+            	"notificationMsg": "Your Backup+ Offer has been activated"
 			}
 		},
 
 		"cancellation": {
 			"details": {
 				"title": "Your Offer",
-				"text": "<p>Your plan includes 25GB of Dropbox storage free!</p><ul><li>25GB</li><li>FREE for the life of your plan</li><li>Unsusbscribe at any time</li></ul><p><u><a href=\"http://www.vodafone.com/content/apps/external-redirects/backupplus/promo_general/NZ\" target=\"_blank\">Promo terms apply</a></u></p>",
+				"text": "<p>Your plan includes 25GB of Dropbox storage free!</p><ul><li>25GB</li><li>FREE for the life of your plan</li><li>Haven't got your full 25GB? Make sure you've completed the Dropbox Get Started guide at www.dropbox/GS</li></ul><p><u><a href=\"http://www.vodafone.co.nz/legal/terms-conditions/backup-plus/promo\" target=\"_blank\">Promo terms apply</a></u></p>",
 				"accordion": {
 					"label": "Important things to know",
-					"text": "<p class=\"content_heading\">Get Started</p><p>When you accept your offer you will receive 3GB of bonus Dropbox space. In order to get your full 25GB you need to complete 5 steps in the Dropbox Get Started guide. For more info see www.dropbox.com/gs</p><p class=\"content_heading\">Additional space</p><p>Your Backup+ storage is on top of any Dropbox storage you may already have. If you unsubscribe, change plans, or leave Vodafone your Dropbox storage amount may change but you can continue to access and retrieve the files you've already saved</p><p class=\"content_heading\">Upload data charges</p><p>Uploading photos and files to Dropbox using the Backup+ app is free in NZ, so the mobile data won't come off your plan. Make sure your 'How to upload' setting in the Dropbox app is set to 'Wi-Fi only' to send your mobile data uploads via Backup+ only. Standard mobile data charges apply when roaming.</p><p class=\"content_heading\">Download data charges</p><p>Standard data allowances apply, as per your mobile or broadband plan, to download files from Backup+ and Dropbox.</p><p class=\"content_heading\">Stopping the offer</p><p>You can unsubscribe from the offer any time via the My account page in the Backup+ app.</p>"				},
+					"text": "<p class=\"content_heading\">Get Started</p><p>When you accept your offer you'll automatically receive 3GB of bonus Dropbox storage. To get your full 25GB you need to complete 5 steps in the Dropbox Get Started guide. For more info see www.dropbox.com/gs</p><p class=\"content_heading\">Additional space</p><p>Your Backup+ storage is on top of any Dropbox storage you may already have. If you unsubscribe, change plans, or leave Vodafone your Dropbox storage amount may change but you can continue to access and retrieve the files you've already saved.</p><p class=\"content_heading\">Internet charges</p><p>Standard data allowances apply, as per your mobile or broadband plan, to use Backup+ and Dropbox. </p><p class=\"content_heading\">Stopping the offer</p><p>You can unsubscribe from the offer any time via the Account page in the Backup+ app.</p>"				},
 					"okButton": {
 					"label": "Unsubscribe",
 					"action": "#next"

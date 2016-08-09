@@ -64,13 +64,21 @@
 					"action": "#getApp"
 				},
 				"okButton": {
-					"label": "Subscrever Netflix",
+					"label": "Cancelar agora a subscrição Netflix",
 					"action": "#next"
 				}
 			},
 
+			"details2": {
+					"text": "<p>A sua subscrição do serviço Netflix vai ser cancelada.</p><p>Para concluir o pedido de cancelamento da Netflix, clique no botão abaixo.</p>",
+					"okButton": {
+						"label": "Cancelar Netflix",
+						"action": "#next"
+					}
+			},
+		
 			"success": {
-				"text": "<p>O cancelamento da sua subscrição Netflix ficará concluído no final do ciclo de renovação do serviço.</p>",
+				"text": "<p>O cancelamento da sua subscrição ficará concluído no final do ciclo de renovação do serviço.</p>",
 				"getAppButton": {
 					"label": "Download da app Netflix",
 					"action": "#getApp"

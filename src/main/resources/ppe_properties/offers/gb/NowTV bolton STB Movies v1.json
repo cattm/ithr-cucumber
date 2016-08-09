@@ -17,11 +17,12 @@
 
 	"usergroups": ["ugstb"],
 
-	"heading": "NOW TV Sky Movies Month Pass",
+	"heading": "NOW TV Sky Cinema Month Pass",
 
 	"deviceAvailability": [
 		"android",
 		"iPhone",
+      "setTopBox",
 		"desktop"
 	],
 
@@ -44,33 +45,38 @@
             },
 
             "success": {
-               "title": "Your NOW TV Sky MOVIES Month Pass is ready.",
-               "text": "<p>Congratulations, your NOW TV Sky MOVIES Month Pass is ready to use on Vodafone TV or other devices.</p>",
+               "title": "Your NOW TV Sky Cinema Month Pass is ready.",
+               "text": "<p>Congratulations, your NOW TV Sky Cinema Month Pass is ready to use on Vodafone TV or other devices.</p>",
                "getAppButton": {
                   "label": "Get NOW TV app",
-                  "action": "#getApp",
-                  "txInformation": "<p>Mad Men: Season 1-7 Box Set - available now &copy; AMC</p>"
+                  "action": "#getApp"
                }
             }
 		},
 
 		"cancellation": {
 			"details": {
-               "text": "<p>You'll be stopping your NOW TV Sky Movies Month Pass. Remember you can always come back to start again when you want.</p>",
+               "settop": true,
+               "text": "<p>You'll be stopping your NOW TV Sky Cinema Month Pass. Remember you can always come back to start again when you want.</p>",
                "okButton": {
-                  "label": "Cancel NOW TV Sky Movies Month Pass",
+                  "label": "Cancel NOW TV Sky Cinema Month Pass",
                   "action": "#next"
                },
                "getAppButton": {
                   "label": "Get NOW TV app",
-                  "action": "#getApp",
-                  "txInformation": "<p>Mad Men: Season 1-7 Box Set - available now &copy; AMC</p>"
+                  "action": "#getApp"
                }
             },
             "success": {
-               "title": "You've been unsubscribed successfully from NOW TV Sky Movies Month Pass.",
+               "title": "You've been unsubscribed successfully from NOW TV Sky Cinema Month Pass.",
                "text": "<p>Remember you can come back at any time to sign up again.</p>"
             }
 		}
+	},
+
+	"entitlement": {
+		"description": "NOW TV Sky Movies Month Pass",
+		"pricingDetails": "£9.99",
+		"banner": "/newui/assets/img/download-panels/nowtv.jpg"
 	}
 }

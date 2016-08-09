@@ -84,5 +84,11 @@
                }
             }
 		}
+	},
+
+	"entitlement": {
+		"description": "Spotify Premium gives you instant access to over 30 million songs.",
+		"pricingDetails": "Free",
+		"banner": "/newui/assets/img/download-panels/spotify.jpg"
 	}
 }

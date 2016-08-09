@@ -23,7 +23,8 @@
 
 	"longPackageIds": [
 		"PK_OXDrive__X__package:PK_OXDrive_TAX_3_4_999_999_50_*_*_*_false_false_*",
-		"PK_OXDrive__X__package:PK_OXDrive_TAX_2_4_999_999_50_*_*_*_false_false_*"
+		"PK_OXDrive__X__package:PK_OXDrive_TAX_2_4_999_999_50_*_*_*_false_false_*",
+		"PK_OXDrive__X__package:PK_OXDrive_TAX_3_4_999_999_50_*_*_ug_storage_small_false_false_*"
 	],
 
 	"pages": {

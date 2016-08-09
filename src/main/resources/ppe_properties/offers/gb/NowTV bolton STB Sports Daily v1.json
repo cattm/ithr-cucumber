@@ -17,11 +17,12 @@
 
 	"usergroups": ["ugstb"],
 
-	"heading": "NOW TV Sky SPORTS Day Pass",
+	"heading": "NOW TV Sky Sports Day Pass",
 
 	"deviceAvailability": [
 		"android",
 		"iPhone",
+        "setTopBox",
 		"desktop"
 	],
 
@@ -44,8 +45,8 @@
             },
 
             "success": {
-               "title": "Your NOW TV Sky SPORTS Day Pass is ready.",
-               "text": "<p>Congratulations, your NOW TV Sky SPORTS Day Pass is ready to use on Vodafone TV or other devices.</p>",
+               "title": "Your NOW TV Sky Sports Day Pass is ready.",
+               "text": "<p>Congratulations, your NOW TV Sky Sports Day Pass is ready to use on Vodafone TV or other devices.</p>",
                "getAppButton": {
                   "label": "Get NOW TV app",
                   "action": "#getApp"
@@ -55,8 +56,19 @@
 
 		"cancellation": {
 			"details": {
-               "text": "<p>NOW TV Sky SPORTS Day Pass cannot be cancelled.</p>"
+               "settop": true,
+               "text": "<p>NOW TV Sky Sports Day Pass cannot be cancelled.</p>",
+               "getAppButton": {
+                  "label": "Get NOW TV app",
+                  "action": "#getApp"
+               }
             }
 		}
+	},
+
+	"entitlement": {
+		"description": "Only pay for the days you want to watch with a Day or Week Pass, or get a whole month of live sport with the new Month Pass.",
+		"pricingDetails": "£6.99",
+		"banner": "/newui/assets/img/download-panels/nowtv.jpg"
 	}
 }

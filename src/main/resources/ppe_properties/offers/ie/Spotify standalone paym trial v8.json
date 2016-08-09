@@ -69,7 +69,7 @@
             }
          },
          "details2": {
-            "text": "<ul><li>Instant access to over 30 million songs, Ad free<br></li><li>Ability to save songs offline for data free listening<br></li><li>Millions of playlists for every moment<br></li><li>Listen on all your devices<br></li><li>Amazing sound quality<br></li></ul><p class=\"p1\">Please note, Spotify is not available on a Blackberry 10</p><p>To stop your subscription please click the button below.</p>",
+            "text": "<p class=\"p1\">With Spotify Premium, your music is everywhere</p><ul><li>Instant access to over 30 million songs, Ad free<br></li><li>Ability to save songs offline for data free listening<br></li><li>Millions of playlists for every moment<br></li><li>Listen on all your devices<br></li><li>Amazing sound quality<br></li></ul><p class=\"p1\">Please note, Spotify is not available on a Blackberry 10</p><p>To stop your subscription please click the button below.</p>",
             "okButton": {
                "label": "Cancel Spotify Premium(€5.99 per month with 150mb of additional data)",
                "action": "#next"

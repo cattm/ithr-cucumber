@@ -50,7 +50,8 @@
             "customButton": {
                "label": "Continuar",
                "action": "http://www.vodafone.com/content/apps/external-redirects/backupplus/open/PT"
-            }
+            },
+            "notificationMsg": "Ativação concluída com sucesso"
          }
       },
       "cancellation": {
@@ -74,7 +75,8 @@
             }
          },
          "success": {
-            "text": "<p>A sua subscrição foi cancelada com sucesso.</p>"
+            "text": "<p>Pode continuar a usar o Vodafone Backup+ até à respetiva data de renovação da subscrição.</p>",
+            "notificationMsg": "Cancelou com sucesso a renovação da sua subscrição"
          }
       }
    },
