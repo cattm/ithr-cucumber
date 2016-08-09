@@ -119,10 +119,12 @@ public class PurchaseSkyOffersSteps extends StepBase {
 		
 		} catch(Exception e) {
 			log.info("caught Exception: " + e);
+			e.printStackTrace();
 			StackTraceElement[] stackTrace = e.getStackTrace(); 	
-			StackTraceElement mystackline = stackTrace[stackTrace.length - 1];			
-			ReportStack(mystackline);
-			Assert.fail("Package In Group - Abort Test on Exception : MSISDN" + shortMsisdn); //To fail test in case of any element identification failure		
+			StackTraceElement mystackline = stackTrace[stackTrace.length - 1];
+			String name = this.getClass().getName();
+			ReportStack(name);
+			Assert.fail("PackageInGroup - Abort Test on Exception : MSISDN " + shortMsisdn); //To fail test in case of any element identification failure		
 		}
 	}
 
@@ -190,10 +192,12 @@ public class PurchaseSkyOffersSteps extends StepBase {
 		}
 		catch (Exception e){
 			log.info("caught Exception: " + e);
+			e.printStackTrace();
 			StackTraceElement[] stackTrace = e.getStackTrace(); 	
-			StackTraceElement mystackline = stackTrace[stackTrace.length - 1];			
-			ReportStack(mystackline);
-			Assert.fail("Offer Contains String From - Abort Test on Exception : MSISDN" + shortMsisdn); //To fail test in case of any element identification failure	
+			StackTraceElement mystackline = stackTrace[stackTrace.length - 1];
+			String name = this.getClass().getName();
+			ReportStack(name);
+			Assert.fail("OfferContainsStringFrom - Abort Test on Exception : MSISDN " + shortMsisdn); //To fail test in case of any element identification failure	
 		}
 	}
 	
@@ -212,10 +216,12 @@ public class PurchaseSkyOffersSteps extends StepBase {
 				  
 			} catch(Exception e){
 				log.info("caught Exception: " + e);
+				e.printStackTrace();
 				StackTraceElement[] stackTrace = e.getStackTrace(); 	
-				StackTraceElement mystackline = stackTrace[stackTrace.length - 1];			
-				ReportStack(mystackline);
-				Assert.fail("Accept Sky Offer - Abort Test on Exception : MSISDN" + shortMsisdn); //To fail test in case of any element identification failure	
+				StackTraceElement mystackline = stackTrace[stackTrace.length - 1];
+				String name = this.getClass().getName();
+				ReportStack(name);
+				Assert.fail("AcceptTheSkyOffer - Abort Test on Exception : MSISDN " + shortMsisdn); //To fail test in case of any element identification failure	
 			}
 		}
 	}

@@ -33,6 +33,7 @@ public class StepBase {
 	public static String propertyFile = "test.properties";
 	protected WebDriver driver;
 	protected Scenario scenario;
+	protected String browser;
 	// from properties
 	protected String 	baseAdminUrl;
 	protected String 	baseUserUrl;
@@ -66,8 +67,8 @@ public class StepBase {
 		  baseAdminUrl = TestProperties.ADMIN_BASEURL;
 		  baseUserUrl = TestProperties.USER_BASEURL;
 		  baseSpotifyHelper = TestProperties.SPOTIFYBASE;
-		  testReferenceDir = TestProperties.TEST_REFDIR;
-		  refDir = TestProperties.TEST_REFDIR + "offers/";
+		  //testReferenceDir = TestProperties.TEST_REFDIR;
+		  //refDir = TestProperties.TEST_REFDIR + "offers/";
 		  checkAsserts = TestProperties.DO_ASSERTCHECKS;
 		  pinCode = TestProperties.PINCODE;
 		  //browserModel = TestProperties.DRIVER;
@@ -91,16 +92,31 @@ public class StepBase {
 	}
 	
 	protected void ReportStack(StackTraceElement element)  {
+		// I want to report the most useful information 
+		// based on the stacktrace element provided
 		Integer linenumber = element.getLineNumber();
 		String line = linenumber.toString(); 
 		String methodn = element.getMethodName();
 		String classn = element.getClassName();
+		
+		// make sure we capture the screen in an image and dump in a directory or the test report
 		if (!checkAsserts) {
 			GetDebugScreenShot(classn + "_"+ methodn + "_" + line);
 		} else {
 			ScenarioScreenshot ();
 		}
 		
+		
+		
+	}
+	
+	protected void ReportStack(String idstring)  {		
+		// make sure we capture the screen in an image and dump in a directory or the test report
+		if (!checkAsserts) {
+			GetDebugScreenShot(idstring);
+		} else {
+			ScenarioScreenshot ();
+		}
 	}
 	protected void loadMCPJSDriver () {
 		log.info("loadMCJSDriver");
@@ -124,12 +140,7 @@ public class StepBase {
 	    driver.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
 	}
 	
-	protected void setUp(Scenario scenario) throws Exception {	
-		this.scenario = scenario;
-    	loadProperties();
-    	
-    	log.info("Setting up Driver");
-    	String browser = System.getProperty("test.driver", "firefox");
+	protected void selectDriver () {
     	switch (browser) {
     	case "firefox"   : 	loadFFDriver();
     						break;
@@ -141,7 +152,25 @@ public class StepBase {
     			  break;
   
     	}
-    
+	}
+	protected void getNewDriver () {
+		if (driver != null) {
+			driver.quit();
+		}
+		selectDriver();
+	}
+	
+	protected void setUp(Scenario scenario) throws Exception {	
+		this.scenario = scenario;
+    	loadProperties();
+    	
+    	log.info("Setting up Driver");
+    	browser = System.getProperty("test.driver", "firefox");
+    	selectDriver(); 
+    	
+    	log.info("set up location of JSON files");
+    	testReferenceDir = System.getProperty("test.testrefdir", TestProperties.TEST_REFDIR);
+    	refDir = testReferenceDir + "offers/";		
     	
     	// TODO: move this line of code it should not be here!
 	    driver.get(baseAdminUrl);

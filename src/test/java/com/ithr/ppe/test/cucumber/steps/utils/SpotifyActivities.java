@@ -5,6 +5,7 @@ import org.openqa.selenium.WebDriver;
 
 import com.ithr.ppe.test.commons.DateStamp;
 import com.ithr.ppe.test.cucumber.pages.SpotifyHelper;
+import com.ithr.ppe.test.cucumber.pages.partners.SpotifyLogin;
 import com.ithr.ppe.test.cucumber.pages.partners.SpotifyLoginOrRegister;
 import com.ithr.ppe.test.cucumber.pages.partners.SpotifyRegistration;
 import com.ithr.ppe.test.cucumber.pages.partners.SpotifySuccess;
@@ -53,11 +54,51 @@ public class SpotifyActivities {
 		}
 	}
 	
-	public static boolean LoginToSpotify () {
-		// TODO: fill in code for this activity
-		return false;
+	public static boolean LoginToSpotify (WebDriver driver, String opco, String usernametouse) throws InterruptedException {
+		
+		// Spotify choose to Login
+		SpotifyLoginOrRegister logorreg = new SpotifyLoginOrRegister(driver);
+		logorreg.clickLogin();
+		
+		
+		SpotifyLogin login = new SpotifyLogin(driver);
+		login.setUser(usernametouse);
+		login.setPassword("password");
+		login.clickSubmit();
+		
+		// TODO: move this test - its common
+		// get success page and check (for piece of mind that we are on the correct page)
+		SpotifySuccess spotsuccess = new SpotifySuccess(driver);
+		spotsuccess.bodyLoaded(); // give the page a chance to load
+				
+		if (spotsuccess.getHello().contentEquals("hello world")) {
+			spotsuccess.hitOk();
+			return true;
+		} else {
+			// Well it all went wrong 
+			log.error("could not see required success text - returning false");
+			return false;
+		}
+	
+		
 	}
 	
+	public static String terminateSpotifyUser(WebDriver driver, String baseurl, String opco, String username) {
+		String urlString = baseurl + "?username=" + username + "&opco=" + opco + "&action=terminate";
+		log.info(urlString);
+		driver.get(urlString);
+		SpotifyHelper spotpage = new SpotifyHelper(driver);
+		
+		return spotpage.getPage();
+	}
+	
+	public static String getSpotifyUserStatus(WebDriver driver, String baseurl, String opco, String username) {
+		String urlString = baseurl + "?username=" + username + "&opco=" + opco;
+		log.info(urlString);
+		driver.get(urlString);
+		SpotifyHelper spotpage = new SpotifyHelper(driver);
+		return spotpage.getPage();
+	}
 	public static String getSpotifyUser (WebDriver driver, String baseurl, String opco) throws Exception {
 		DateStamp myds = new DateStamp();
 		String rn = myds.getRanDateFormat();

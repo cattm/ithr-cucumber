@@ -1,4 +1,5 @@
 package com.ithr.ppe.test.cucumber.steps;
+// TODO - Add all the checks on correct offer etc
 
 import java.util.Map;
 
@@ -47,13 +48,15 @@ public class PurchaseSpotifyTrial extends StepBase{
 	private boolean PerformBasicSpotifyPurchase ( ) throws Exception {
 		// Very little checking here - assume it works otherwise its not worth it
 		// this is a Background step activity
+		
 		shortMsisdn = AdminActivities.msisdnFromAdmin(driver, opco, subscription, userGroup);		
 		userNameToUse = SpotifyActivities.getSpotifyUser(driver, baseSpotifyHelper, opco);
 		String url = baseUserUrl + opco;
 		log.info ("msisdn is: " + shortMsisdn + " username is: " + userNameToUse);
 		IdentityActivities.loginToPPE (driver, shortMsisdn , pinCode, url);
 			
-		driver.manage().window().setSize(new Dimension(600, 600));		
+		driver.manage().window().setSize(new Dimension(600, 600));	
+		// TODO: these MUST BE REMOVED
 		Thread.sleep(10000); 
 		
 		// Entertainment page - offer page directly or click on image icon to get text
@@ -130,28 +133,85 @@ public class PurchaseSpotifyTrial extends StepBase{
 	@Given("^I can delete my user in spotify$")
 	public void CanDeleteSpotifyUser() throws Throwable {
 		log.info("have deleted Spotify User");
-		// we can do this with curl or within a browser
-		
+		// we could do this with curl or within a browser
+		// lets check status and then delete 
+		String response = SpotifyActivities.getSpotifyUserStatus(driver, baseSpotifyHelper, opco, userNameToUse);
+		log.info(response);
+		response = SpotifyActivities.terminateSpotifyUser(driver, baseSpotifyHelper, opco, userNameToUse);
+		log.info(response);
+		//  TODO: check order is something like -- acquiredOrderIds" : [ "Vodafone_67327944-ee97-4ff9-a297-3706981565a2" ]
 	}
 
 	@When("^I subscribe to spotify with a new msisdn$")
-	public void UseNewMsisdnToPurchaseSpotify() throws Throwable {
+	public boolean UseNewMsisdnToPurchaseSpotify() throws Throwable {
 		log.info("New Subscription Old Spotify User");
-		// get a new MSISDN
-		// use old spotify username
-		// it should be trial
+		// get a new MSISDN from a NEW BROWSER
+		// kill the old one and start a new one
+		getNewDriver();
+		
+		driver.get(baseAdminUrl);;
+		shortMsisdn = AdminActivities.msisdnFromAdmin(driver, opco, subscription, userGroup);	
+		String url = baseUserUrl + opco;
+		IdentityActivities.loginToPPE (driver, shortMsisdn , pinCode, url);
+		
+		driver.manage().window().setSize(new Dimension(600, 600));	
+		// TODO: these MUST BE REMOVED
+		Thread.sleep(10000); 
+		
+		// Entertainment page - offer page directly or click on image icon to get text
+		UserEntertainment entpage = new UserEntertainment(driver);	
+		entpage.bodyLoaded();
+		Thread.sleep(10000);
+		
+		
+		// TODO: need to look very carefully at the offer
+		log.info("going to check for spotify button");	 		  
+		if (entpage.checkOfferImagePresent("spotify")) {
+			entpage.clickOfferImage("spotify");
+		  
+			UserSpotifyOffer spotifyoffer = new UserSpotifyOffer(driver);
+			spotifyoffer.bodyLoaded();
+			spotifyoffer.setTnC();
+			spotifyoffer.clickAcceptOffer();		
+			
+			// use old spotify username to login
+			if (SpotifyActivities.LoginToSpotify(driver, opco, userNameToUse)) {
+				boolean done = false;
+				// TODO: test code to tidy up and add a check  
+				for (int i = 0; i < 6 && !done; i++) {
+					String notice = spotifyoffer.getSuccessText();		
+					log.info(notice);
+					if (!notice.contains("Completing purchase"))  {
+						log.info("purchase complete");
+						done = true;
+					} else {
+						log.info("Waiting.......");
+						Thread.sleep(PageBase.SLOW);
+					}
+				}
+	    		return true; 
+	    	}
+		}
+		log.info("return false");
+		return false;
+				
+		
+		
+		// offer should be ... trial
 	}
 
+	@When("^I subscribe to spotify with same msisdn$")
+	public void UseOldMsisdnTpPurchaseSpotify() {
+		log.info("Old MSISDN Old Spotify User");
+		// offer (when expired will be paid!!!
+	}
+	
 	@Then("^I will purchase spotify trial$")
 	public void TrialPurchase() throws Throwable {
 		log.info("purchase trial");
 	}
 	
-	@When("^I subscribe to spotify with same msisdn$")
-	public void UseOldMsisdnTpPurchaseSpotify() {
-		log.info("Old MSISDN Old Spotify User");
-	}
-	
+
 	@Then("^I will purchase spotify paid$")
 	public void PaidPurchase() throws Throwable {
 		log.info("purchase paid");

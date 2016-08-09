@@ -7,8 +7,6 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.Select;
 
-import com.ithr.ppe.test.cucumber.steps.GbSkyOfferSteps;
-
 public class AdminHome extends PageBase{
 	  
 	  public static Logger log = Logger.getLogger(AdminHome.class);

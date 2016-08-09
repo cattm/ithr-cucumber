@@ -12,13 +12,18 @@ public class SpotifyHelper extends PageBase {
 	public static Logger log = Logger.getLogger(SpotifyHelper.class);
 
 	 @FindBy(tagName="pre")
-	  private WebElement jsonToParse;
+	 private WebElement jsonToParse;
 	
 
 	 public SpotifyHelper(WebDriver driver) {
 			super(driver);
 			PageFactory.initElements(driver, this);
 		}
+	 
+	 public String getPage() {
+		 String tmp = jsonToParse.getText();
+		 return tmp;
+	 }
 	 
 	 public String getUserName() {
 		 String outcome = "";

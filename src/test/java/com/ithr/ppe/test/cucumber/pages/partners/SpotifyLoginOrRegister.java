@@ -11,6 +11,9 @@ public class SpotifyLoginOrRegister extends PageBase{
 
 	  @FindBy(xpath="/html/body/div/div[2]/div/div[3]/div[2]/div/a")
 	  WebElement registerButton;
+	  
+	  @FindBy(xpath="/html/body/div/div[2]/div/div[2]/div")
+	  WebElement loginButton;
 	
 	  public  SpotifyLoginOrRegister (WebDriver driver) {
 		  super(driver);
@@ -22,4 +25,8 @@ public class SpotifyLoginOrRegister extends PageBase{
 		  registerButton.click();
 	  }
 
+	  public void clickLogin() {
+		  loginButton.click();
+		  
+	  }
 }
