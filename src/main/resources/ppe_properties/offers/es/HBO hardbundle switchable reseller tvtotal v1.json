@@ -1,0 +1,128 @@
+{
+	"comment": "Initial import by DEV",
+
+	"opco": "es",
+	"name": "HBO hardbundle switchable reseller tvtotal",
+	"version": 1,
+	"partner": "hbo",
+	"type": "hardbundle",
+	"switchable": true,
+	"trial": false,
+
+	"enabled": {
+		"purchase": true,
+		"cancellation": true
+	},
+
+	"usergroups": [
+		"tvtotal"
+	],
+
+	"packageId" : "PK_HBOTV",
+
+	"heading": "HBO España",
+
+	"pages": {
+		"purchase": {
+			"details": {
+				"title": "Ahora con Vodafone TV Total, incluido sin coste adicional",
+				"text": "<ul><li>HBO España, The Home of Series, con más de 4.000 episodios de las mejores series y cientos de peliculas seleccionadas cuidadosamente.</li><li>Todas las temporadas de tus series favoritas como Juego de Tronos, True Detective o Girls. Novedades en exclusiva como West World, Divorce o The Night Of y sin olvidarnos de los clásicos que tanto te gustan como Sexo en Nueva York o Los Sopranos.</li><li>Y además para los más pequeños Patrulla Canina, Pepa Pig, Bob Esponja, The Thundermans y mucho más.</li><li>Disfrútalo en Vodafone TV y en tus dispositivos conectados a Internet (smartphones, tablets, PC...).</li><li>Sin compromiso de permanencia.</li></ul>",
+				"checkbox": {
+					"label": "Soy mayor de edad y acepto <a href=\"#\" class=\"terms_link\">los Términos y Condiciones generales Vodafone del servicio HBO</a>",
+					"confirmationMessage": "Pulsando en \"Activar HBO España\" estás solicitando la activación del servicio HBO España sin coste adicional  solo con tu paquete de Vodafone TV Total. El precio del servicio fuera de tu paquete Vodafone TV Total es de 7,99€/mes (impuestos incluidos).",
+					"errorMessage": "Por favor, debes aceptar y marcar la casilla para continuar con el proceso de alta.",
+					"order": 1,
+					"mandatory": true
+				},
+				"accordion": {
+					"label": "Más info",
+
+					"text": "<p>Y además:</p><p>Para cualquier duda sobre el funcionamiento del servicio, accede a http://xxxxxxxxxxx. Podrás consultar preguntas frecuentes, acceder a un foro que es una comunidad de ayuda…</p><p>HBO España está incluido sin coste adicional dentro del paquete Vodafone TV Total.  El precio del servicio de es 7,99€/mes con de Vodafone TV Esencial y Extra.</p><p>En caso de un cambio a un paquete TV inferior, procederá al pago del servicio.</p><p>Para dar la baja de HBO España accede a http://offers.vodafone.com/es</p>"
+				},
+				"okButton": {
+					"label": "Activar HBO España",
+					"action": "#next"
+				}
+			},
+
+			"registration": {
+				"text": "Introduce tus datos para  completar el registro y poder disfrutar de tu servicio HBO España inmediatamente",
+				"fields": [
+					{
+						"label": "Nombre",
+						"type": "name",
+						"name": "firstName"
+					},
+					{
+						"label": "Apellidos",
+						"type": "name",
+						"name": "lastName"
+					},
+					{
+						"label": "Correo electrónico",
+						"type": "email",
+						"name": "email",
+						"availabilityEndpoint": "/api/v1/validation/hbo"
+					},
+					{
+						"label": "Elige tu contraseña",
+						"type": "password",
+						"name": "password"
+					},
+					{
+						"label": "Confirma tu contraseña",
+						"type": "password",
+						"name": "passwordConfirmation"
+					}
+				],
+				"cancelButton": {
+					"label": "Cancelar"
+				},
+				"registerButton": {
+					"label": "Confirmar",
+					"action": "#register"
+				}
+			},
+
+			"success": {
+				"title": "¡Proceso completado!",
+				"text": "<p>El alta en el servicio de HBO España se ha completado correctamente.</p>",
+				"getAppButton": {
+					"label": "Descargar app",
+					"action": "#getApp"
+				}
+			}
+		},
+
+		"cancellation": {
+			"details": {
+				"text": "<p>Con HBO España, el Hogar de las Series, ya tienes acceso a más de 4.000 episodios de las mejores series, cientos de películas seleccionadas cuidadosamente y contenido para los más pequeños de la casa. Ponte cómodo y empieza a disfrutar del mejor entretenimiento del mundo.</p>",
+				"getAppButton": {
+					"label": "Descargar app",
+					"action": "#getApp"
+				},
+				"okButton": {
+					"label": "Darse de baja",
+					"action": "#next"
+				}
+			},
+
+			"details2": {
+				"title" : "<p>¿Estas seguro que quieres darte de baja?</p>",
+				"text": "<p>Recuerda, la baja en el servicio será efectiva al final de tu mes de suscripción.</p>",
+				"okButton": {
+					"label": "Darse de baja",
+					"action": "#next"
+				}
+			},
+
+			"success": {
+				"text": "<p>Te confirmamos que la baja de tu suscripción al servicio de HBO España se ha realizado correctamente.</p>",
+				"getAppButton": {
+					"label": "Descargar app",
+					"action": "#getApp"
+				}
+			}
+		}
+	}
+}

@@ -1,0 +1,85 @@
+{
+	"comment": "Initial import by DEV",
+
+	"opco": "ro",
+	"name": "Netflix hardbundle 3m",
+	"version": 1,
+	"partner": "netflix",
+	"type": "hardbundle",
+	"switchable": false,
+	"trial": false,
+
+	"enabled": {
+		"purchase": true,
+		"cancellation": true
+	},
+
+	"usergroups": [
+                "netflix3"
+	],
+
+	"heading": "Netflix",
+
+	"pages": {
+		"purchase": {
+			"details": {
+				"title": "Cele mai populare emisiuni TV și filme, seriale originale Netflix premiate și o secțiune dedicată exclusiv copiilor. Sigur toată lumea are ceva de văzut!",
+				"text": "<ul class=\"offers_list\"><li>Oferta promotionala Netflix pentru 3 luni</li><li>Începi să vizionezi un serial TV sau un film pe un dispozitiv și termini pe un altul.</li><li>Fără descărcare.</li><li>Fără publicitate.</li></ul>",
+				"checkbox": {
+					"label": "Accept termenii și condițiile",
+					"errorMessage": "Pentru a activa oferta te rugăm să accepți termenii și condițiile.",
+					"order": 1,
+					"mandatory": true
+				},
+				"accordion": {
+					"label": "Mai multe informaţii",
+					"text": "<p class=\"content_heading\">Informaţii despre oferta promoţională</p><p>Cu emisiuni TV şi filme, seriale originale Netflix premiate şi o secţiune dedicată exclusiv copiilor, există ceva de văzut pentru toată lumea. Poţi utiliza acest serviciu pe 2 dispozitive în acelaşi timp, la calitate HD.</p><p>La abonamentele RED sau Smart Net selectate, beneficiezi de oferta promoţională Netflix de 3 luni de acces Nelimitat la pachetul  în valoare de  9.99 € pe lună.</p><p>Dacă ai deja cont Netflix, plata va fi suspendată pe durata perioadei promoţionale şi va fi reluată după expirarea perioadei promoţionale. Valoarea promoţiei (30€) va fi adăugată în contul  tău existent.</p><p class=\"content_heading\">Tarife trafic de date</p>Pachetul de date va fi folosit pentru vizualizarea conţinutului, exceptând în cazul unei conexiuni la WiFi. Traficul efectuat în aplicaţia Netflix se consumă din traficul inclus în abonament. Dacă depăşeşti traficul lunar inclus în abonament, utilizarea pachetului de date va fi taxată la tarifele noastre standard.<p><p class=\"content_heading\">Anularea ofertei</p><p>Durata ofertei este de 3 luni pentru pachetul Standard (9.99€).</p><p>Costul corespunzător pachetului Netflix ales va fi adăugat pe factură ta Vodafone. Îţi vom trimite un mesaj cu 10 zile înainte pentru a-ţi reaminti acest lucru. Dacă nu mai doreşti Netflix, te rugăm să vizitezi: http://offers.vodafone.com/ro/cancel, pentru a anula serviciul. Dacă eşti deja abonat Netflix, procesul normal de facturare Netflix va fi reluat la expirarea perioadei promoţionale.</p><p>Te rugăm să contactezi Netflix, dacă ai întrebări despre Netflix.com</p><p class=\"content_heading\">Telefoane compatibile</p><p>Neflix este compatibil cu o gamă vastă de telefoane mobile și tablete, inclusiv telefoane Android, iOS și Windows. Vă amintim că acesta nu este disponibil pe Blackberry.</p>"
+				},
+				"okButton": {
+					"label": "ACTIVEAZĂ OFERTA",
+					"action": "#next"
+				}
+			},
+
+			"success": {
+				"title": "Oferta ta promoţională a fost activată.",
+				"text": "<p>Felicitări, abonamentul tău NETFLIX poate fi utilizat.</p><p>Dacă nu ai deja aplicaţia pe smartphone sau tabletă, o poţi descărca prin apăsarea butonului de mai jos.</p>",
+				"getAppButton": {
+					"label": "DESCARCĂ NETFLIX",
+					"action": "#getApp"
+				}
+			}
+		},
+
+		"cancellation": {
+			"details": {
+				"text": "<p>Vei anula oferta ta NETFLIX</p><p>Pentru a anula oferta, apasă butonul de mai jos.</p>",
+				"getAppButton": {
+					"label": "DESCARCĂ NETFLIX",
+					"action": "#getApp"
+				},
+				"okButton": {
+					"label": "DEZACTIVEAZA OFERTA",
+					"action": "#next"
+				}
+			},
+
+			"details2": {
+				"text": "<p>Această ofertă a fost programată pentru anulare la sfârșitul lunii de abonament NETFLIX.</p>",
+				"okButton": {
+					"label": "ANULEAZĂ NETFLIX",
+					"action": "#next"
+				}
+			},
+
+			"success": {
+				"title": "Ai fost dezabonat de la NETFLIX.",
+				"text": "<p>Oferta va fi dezactivata la sfârșitul lunii de abonament NETFLIX. Verifica data in contul tau NETFLIX, sectiunea My Account / Plan details.</p>",
+				"getAppButton": {
+					"label": "DESCARCĂ NETFLIX",
+					"action": "#getApp"
+				}
+			}
+		}
+	}
+}

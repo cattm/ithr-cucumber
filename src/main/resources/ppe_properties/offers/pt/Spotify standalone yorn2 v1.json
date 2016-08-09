@@ -1,0 +1,88 @@
+{
+   "comment": "Initial import by DEV",
+   "opco": "pt",
+   "name": "Spotify standalone yorn2",
+   "version": 1,
+   "partner": "spotify",
+   "type": "standalone",
+   "switchable": false,
+   "trial": false,
+   "enabled": {
+      "purchase": true,
+      "cancellation": true
+   },
+   "usergroups": [
+      "yorn2"
+   ],
+   "heading": "Spotify Premium",
+   "pages": {
+      "purchase": {
+         "details": {
+            "title": "Ouve as tuas músicas favoritas onde quer que estejas com a Vodafone e o Spotify.",
+            "text": "<p>Para ti que és YORN X, o Spotify Premium é grátis durante 3 meses.</p>",
+            "checkbox": {
+               "label": "Aceito os <a href=\"#\" class=\"terms_link\">Termos e Condições</a>",
+               "errorMessage": "É necessário aceitares os Termos e Condições antes de adicionares este serviço à tua conta Vodafone.",
+               "order": 1,
+               "mandatory": true
+            },
+            "accordion": {
+               "label": "Spotify Premium",
+               "text": "<p>Ouve as tuas músicas favoritas onde quer que estejas com a Vodafone e o Spotify.</p>"
+            },
+            "okButton": {
+               "label": "Obter o Spotify Premium",
+               "action": "#next"
+            }
+         },
+         "success": {
+            "title": "Ativação concluída com sucesso",
+            "text": "<p>Conta Spotify Premium ativa. Está pronto para começar a utilizar o serviço.</p>",
+            "customButton": {
+               "label": "Adicionar mais ofertas",
+               "action": "#moreOffers",
+               "description": "Poderá estar interessado também nestas ofertas adicionais."
+            },
+            "getAppButton": {
+               "label": "Download da app Spotify",
+               "action": "#getApp"
+            }
+         }
+      },
+      "cancellation": {
+         "details": {
+            "text": "<p>Ouve as tuas músicas favoritas onde quer que estejas com a Vodafone e o Spotify.</p>",
+            "getAppButton": {
+               "label": "Download da app Spotify",
+               "action": "#getApp"
+            },
+            "okButton": {
+               "label": "Cancelar agora a subscrição Spotify",
+               "action": "#next"
+            }
+         },
+         
+         "details2": {
+				"text": "<p>A sua subscrição do serviço Spotify Premium vai ser cancelada.</p><p>Para concluir o pedido de cancelamento do Spotify Premium, clique no botão abaixo.</p>",
+				"okButton": {
+					"label": "Cancelar Spotify Premium",
+					"action": "#next"
+				}
+		},
+		
+         "success": {
+            "text": "<p>O cancelamento da sua subscrição ficará concluído no final do ciclo de renovação do serviço.</p>",
+            "getAppButton": {
+               "label": "Download da app Spotify",
+               "action": "#getApp"
+            },
+            "customButton": {
+               "label": "Adicionar mais ofertas",
+               "action": "#moreOffers",
+               "description": "Poderá estar interessado também nestas ofertas adicionais."
+            }
+         }
+      }
+   },
+   "uniqueName": "pt/Spotify%20standalone%20yorn2%20trial"
+}

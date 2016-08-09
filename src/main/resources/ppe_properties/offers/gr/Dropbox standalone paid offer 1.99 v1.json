@@ -1,0 +1,89 @@
+{
+	"comment": "Initial import by DEV",
+
+	"opco": "gr",
+	"name": "Dropbox standalone paid offer 1.99",
+	"version": 1,
+	"partner": "dropbox",
+	"type": "standalone",
+	"switchable": false,
+	"trial": false,
+
+	"enabled": {
+		"purchase": true,
+		"cancellation": true
+	},
+
+	"heading": "Dropbox",
+
+	"deviceAvailability": [
+		"android",
+		"iPhone"
+	],
+
+	"pages": {
+		"purchase": {
+			"details": {
+				"title": "Ειδική προσφορά μόνο για σένα!",
+				"text": "<p>Με το Vodafone Backup+ αποκτάς:</p><ul class=\"offers_list\"><li>25GB αποθηκευτικού χώρου στο Dropbox</li><li>με μόνο €2.01 το μήνα με ΦΠΑ</li><li>και με δυνατότητα διακοπής οποιαδήποτε στιγμή</li></ul>",
+				"checkbox": {
+					"label": "Αποδοχή <a href=\"http://www.vodafone.com/content/apps/external-redirects/backupplus/promo_general/GR\" target=\"_blank\">όρων και προϋποθέσεων</a>",
+					"errorMessage": "Παρακαλούμε αποδέξου τους όρους και προϋποθέσεις για να λάβεις την προσφορά.",
+					"confirmationMessage": "Επιβεβαίωση προσφοράς</br>Επιλέγοντας 'Απόκτηση τώρα' θα ενεργοποιήσεις την προσφορά που σου παρέχει 25GB αποθηκευτικού χώρου στο Dropbox με μόνο €2.01 το μήνα με ΦΠΑ. Η μηνιαία χρέωση θα εμφανίζεται στον Vodafone λογαριασμό σου. Mπορείς να διακόψεις την προσφορά οποιαδήποτε στιγμή.",
+					"order": 1,
+					"mandatory": true
+				},
+				"accordion": {
+					"label": "Πληροφορίες προσφοράς",
+					"text": "<p class=\"content_heading\">Επιπλέον χώρος</p><p>Ο χώρος που σου παρέχεται θα προστεθεί στο χώρο που διαθέτεις ήδη στο Dropbox.</p><p class=\"content_heading\">Χρεώσεις δεδομένων</p><p>Η χρέωση δεδομένων κατά την χρήση της υπηρεσίας όταν είσαι σε περιαγωγή ή όταν έχεις υπερβεί το όριο των δεδομένων σας γίνεται με βάση το πρόγραμμά σου.</p><p class=\"content_heading\">Διακοπή προσφοράς</p><p>Για να διακόψεις την προσφορά επισκέψου την ενότητα «Η προσφορά μου» στο μενού της εφαρμογής.</p>"
+				},
+				"okButton": {
+					"label": "Απόκτηση προσφοράς",
+					"action": "#next"
+				},
+				"customButton": {
+					"label": "Όχι τώρα",
+					"action": "http://www.vodafone.com/content/apps/external-redirects/backupplus/open/GR"
+				}
+			},
+
+			"success": {
+				"title": "Συγχαρητήρια!",
+				"text": "<p>Μόλις απόκτησες 25GB αποθηκευτικού χώρου στο Dropbox με μόνο €2.01 το μήνα με ΦΠΑ. Μπορείς να διακόψεις την προσφορά από την ενότητα «Η προσφορά μου»  στο μενού της εφαρμογής.</p>",
+				"customButton": {
+					"label": "Συνέχεια",
+					"action": "http://www.vodafone.com/content/apps/external-redirects/backupplus/open/GR"
+				}
+			}
+		},
+
+		"cancellation": {
+			"details": {
+				"title": "Η προσφορά σου",
+				"text": "<p>Το πρόγραμμα που διαθέτεις σου προσφέρει 25GB αποθηκευτικού χώρου στο Dropbox!</p><ul><li>με μόνο €2.01 το μήνα με ΦΠΑ</li><li>και με δυνατότητα διακοπής οποιαδήποτε στιγμή</li></ul><p><u><a href=\"http://www.vodafone.com/content/apps/external-redirects/backupplus/promo_general/GR\" target=\"_blank\">Όροι προσφοράς σε ισχύ</a></u></p>",
+				"accordion": {
+					"label": "Πληροφορίες προσφοράς",
+					"text": "<p class=\"content_heading\">Επιπλέον χώρος</p><p>Ο χώρος που σου παρέχεται θα προστεθεί στο χώρο που διαθέτεις ήδη στο Dropbox.</p><p class=\"content_heading\">Χρεώσεις δεδομένων</p><p>Η χρέωση δεδομένων κατά την χρήση της υπηρεσίας όταν είσαι σε περιαγωγή ή όταν έχεις υπερβεί το όριο των δεδομένων σας γίνεται με βάση το πρόγραμμά σου.</p><p class=\"content_heading\">Διακοπή προσφοράς</p><p>Για να διακόψεις την προσφορά επισκέψου την ενότητα «Η προσφορά μου» στο μενού της εφαρμογής.</p>"
+				},
+				"okButton": {
+					"label": "Διακοπή",
+					"action": "#next"
+				}
+			},
+
+			"details2": {
+				"title": "Διακοπή προσφοράς",
+				"text": "<p>Με την διακοπή της προσφοράς σου, θα χάσεις τα 25GB αποθηκευτικού χώρου στο Dropbox που σου παρέχει η Vodafone.</p><p>Ωστόσο, θα μπορείς να χρησιμοποιείς την εφαρμογή Backup+ για το συγχρονισμό των επαφών σου και τη δημιουργία αντιγράφων ασφαλείας αρχείων εφόσον διαθέτεις αρκετό χώρο στο Dropbox.</p><p>Είσαι σίγουρος πως θες να διακόψεις την προσφορά;</p>",
+				"okButton": {
+					"label": "Διακοπή",
+					"action": "#next"
+				}
+			},
+
+			"success": {
+				"text": "<p>Η διακοπή της προσφοράς ήταν επιτυχής</p>",
+                                "notificationMsg": "Η προσφορά θα διακοπεί στο τέλος του τρέχοντος κύκλου τιμολόγησης."
+			}
+		}
+	}
+}
