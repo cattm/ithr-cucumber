@@ -41,12 +41,15 @@ public class PurchaseSpotifyOffersSteps extends StepBase {
 	}
 
 	private boolean AcceptTheOffer() throws Exception {	
+		
 		String buttontext = jsonParse.getOffersOkButton();			
 	    String ucbuttontext = buttontext.toUpperCase();
 	    log.info("Button String should be : " +  ucbuttontext);
 	    
 	    UserSpotifyOffer spotifyoffer = new UserSpotifyOffer(driver);
-	    log.info("Button String is : " + spotifyoffer.getAcceptOfferText());
+	    String offerbuttontext = spotifyoffer.getAcceptOfferText();
+	    log.info("Button String is : " + offerbuttontext);
+	    if (checkAsserts) ErrorCollector.verifyTrue(ucbuttontext.equals(offerbuttontext));
 	    
 		spotifyoffer.clickAcceptOffer();		
 	
@@ -103,15 +106,13 @@ public class PurchaseSpotifyOffersSteps extends StepBase {
 		UserEntertainment entpage = new UserEntertainment(driver);
 		entpage.bodyLoaded();
 					
-		// TODO: this is not a brilliant loop round until its visible or throw an exception if it times out
-		// all a bit scruffy really!
+		// TODO: doesnt check position. Loops aroudn to wait for image - its a bit slow sometimes - BE calls?
 		String textfound = "";
 		if (entpage.isSpotifySubscriptionTextPresent()) {		
 			 textfound = entpage.getSpotifySubscriptionText();
 		}
 		
 		log.info("Text to Check is: " + textfound);
-		
 	    return textChecker.checkSpotifySubscibedText(textfound);	    
 	}
 	
@@ -144,7 +145,7 @@ public class PurchaseSpotifyOffersSteps extends StepBase {
 		
 		try {
 			// set up msisdn
-			///shortMsisdn = msisdnFromAdmin();
+			driver.get(baseAdminUrl);
 			shortMsisdn = AdminActivities.msisdnFromAdmin(driver, opco, subscription, userGroup);
 			// get Spotify user
 			userNameToUse = SpotifyActivities.getSpotifyUser (driver, baseSpotifyHelper, opco);
@@ -212,6 +213,20 @@ public class PurchaseSpotifyOffersSteps extends StepBase {
 					  String title = jsonParse.getOffersTitle();
 					  log.info("Reference Text is: " + title);
 					  if (checkAsserts) ErrorCollector.verifyTrue(displayoffer.equals(title));
+					  
+					  // check the text bullets from text
+					  String offertext = spotifyoffer.getOfferDetail();
+					  log.info("Text to Check is:  " + offertext);
+					  String text = jsonParse.getOffersText();
+					  log.info("Reference Text is: " + text);
+					  if (checkAsserts) ErrorCollector.verifyTrue(offertext.equals(text));
+					  
+					  // check T&C label from label
+					  String offertnc = spotifyoffer.getOfferTnC();
+					  log.info("Text to Check is:  " + offertnc);
+					  String tnc = jsonParse.getOffersTnCText();
+					  log.info("Reference T & C is: " + tnc);
+					  if (checkAsserts) ErrorCollector.verifyTrue(offertnc.equals(tnc));
 				  }
 		  			  
 			  }

@@ -48,7 +48,7 @@ public class PurchaseSpotifyTrial extends StepBase{
 	private boolean PerformBasicSpotifyPurchase ( ) throws Exception {
 		// Very little checking here - assume it works otherwise its not worth it
 		// this is a Background step activity
-		
+		driver.get(baseAdminUrl);
 		shortMsisdn = AdminActivities.msisdnFromAdmin(driver, opco, subscription, userGroup);		
 		userNameToUse = SpotifyActivities.getSpotifyUser(driver, baseSpotifyHelper, opco);
 		String url = baseUserUrl + opco;
@@ -123,6 +123,7 @@ public class PurchaseSpotifyTrial extends StepBase{
 		this.subscription = thepackage;
 		this.userGroup = usergroup;
 		this.fileToCheck = containedin;
+		
 		if (PerformBasicSpotifyPurchase()) {
 			// lets check the purcse moved from offersha
 			CheckSpotifyIsPurchased();

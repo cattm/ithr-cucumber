@@ -98,6 +98,16 @@ public class JsonParser {
       
 		return details;
 	}
+
+	public String getOffersTnCText() {
+		String details = "";			 
+		JSONObject detail = navigateToDetails(jsonObject);         
+		JSONObject checkbox = detail.getJSONObject("checkbox");
+		details = checkbox.getString("label").toString();
+		log.debug("Purchase:Details:checkbox:label: " +  details);           
+		
+		return details;
+	}
 	
 	public String getOffersOkButton () {
 

@@ -104,10 +104,7 @@ public class StepBase {
 			GetDebugScreenShot(classn + "_"+ methodn + "_" + line);
 		} else {
 			ScenarioScreenshot ();
-		}
-		
-		
-		
+		}		
 	}
 	
 	protected void ReportStack(String idstring)  {		
@@ -118,6 +115,7 @@ public class StepBase {
 			ScenarioScreenshot ();
 		}
 	}
+	
 	protected void loadMCPJSDriver () {
 		log.info("loadMCJSDriver");
 		String pathtophantom = System.getProperty("phantom.path","/Users/marcus/Downloads/phantomjs-2.1.1-macosx/bin/phantomjs");
@@ -126,6 +124,7 @@ public class StepBase {
         driver = new PhantomJSDriver();       
         driver.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
 	}
+	
 	protected void loadJenkinsPJSDriver () {
 		log.info("loadJenkinsPJSDriver");
 		driver = new PhantomJSDriver();       
@@ -162,18 +161,19 @@ public class StepBase {
 	
 	protected void setUp(Scenario scenario) throws Exception {	
 		this.scenario = scenario;
+		// load the required properties from file
     	loadProperties();
     	
+    	// we get some properties from the command line
+    	// driver
+    	// location of reference files for checking
     	log.info("Setting up Driver");
     	browser = System.getProperty("test.driver", "firefox");
     	selectDriver(); 
-    	
-    	
+    	  	
     	testReferenceDir = System.getProperty("test.testrefdir", TestProperties.TEST_REFDIR);
-    	refDir = testReferenceDir + "offers/";		
+    	refDir = testReferenceDir + "offers/";	
     	log.info("set up location of JSON files - " + testReferenceDir);
-    	// TODO: move this line of code it should not be here!
-	    driver.get(baseAdminUrl);
 	}
 	
 	protected void tearDown() {

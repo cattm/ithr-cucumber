@@ -47,6 +47,7 @@ public class GbSkyOfferSteps extends StepBase {
 	public void setUp(Scenario scenario) throws Exception {	
 		System.out.println("GbSkyOfferSteps SetUp");
 		super.setUp(scenario);
+		driver.get(baseAdminUrl);
 	}
 	
 	@After("@xdemo")

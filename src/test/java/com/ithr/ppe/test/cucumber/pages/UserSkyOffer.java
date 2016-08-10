@@ -31,12 +31,17 @@ public class UserSkyOffer extends PageBase{
 	private WebElement acceptOffer;
 	
 	@FindBy(css="h4.offer-subtitle.bold-font")
-	private WebElement theoffer;
+	private WebElement theOffer;
 	
-	@FindBy(css="div.table-panel-top.main-offer-content div.details-content")
-	private WebElement thedetail;
+	@FindBy(css=".main-offer-content div.details-content")
+	private WebElement theOfferDetail;
 	
-	@FindBy(css="div.table-panel-top.main-offer-content div.notification-jsx.pulse")
+	@FindBy(css=".label-with-link-jsx")
+	WebElement theOfferTnC;
+	
+	/////////////////////////////
+	
+	@FindBy(css=".notification-jsx.pulse>p")
 	private WebElement confirmationText;
 	
 	// TODO: When Matt has adjusted the page constructs sort the finders
@@ -48,6 +53,7 @@ public class UserSkyOffer extends PageBase{
 	@FindBy(css="div.btn-jsx.cf.large-screens.purple a.btn.event-btn.cf.btn-tertiary")
 	private WebElement additionalOffer;
 	
+	// TODO - Finder 
 	private List <WebElement> managedSubs;
 	
 	
@@ -58,13 +64,16 @@ public class UserSkyOffer extends PageBase{
 	
 // get the text
    public String getUserOffer() {
-	   return theoffer.getText();
+	   return theOffer.getText();
    }
    
    public String getOfferDetail() {
-	   return thedetail.getText();
+	   return theOfferDetail.getText();
    }
    
+   public String getOfferTnC() {
+	   return theOfferTnC.getText();
+   }
    public String getSuccessText() {
 	   return confirmationText.getText();
    }
@@ -94,23 +103,8 @@ public class UserSkyOffer extends PageBase{
    public String getAcceptOfferText () {
 	   return acceptOffer.getText();
    }
-   /* TODO: remove
-   public boolean clickAcceptOffer(String buttontext) {
-		Iterator <WebElement> iterator = acceptOffer.iterator();
-		while (iterator.hasNext()) {
-			WebElement element = iterator.next();
-			String thetext = element.getText();
-			log.info("checking element :" + thetext);
-			
-			if ( thetext.equalsIgnoreCase(buttontext)) {
-				  log.info("Clicking Accept");
-				  element.click();	  
-				  return true;
-			 }
-		}
-		return false;
-   }
-   */
+   
+   
    public String getSkyManagedSubscription(String check) {
 	   String foundtext = "";
 	   Iterator <WebElement> iterator = managedSubs.iterator();

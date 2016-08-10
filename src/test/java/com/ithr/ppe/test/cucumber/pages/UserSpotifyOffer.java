@@ -17,7 +17,6 @@ public class UserSpotifyOffer extends PageBase{
 	@FindBy(name="accept")
 	private WebElement tnc;
 	
-	//@FindBy(css="div.btn-jsx.cf.main-offer-btn")
 	@FindBy(css="div [class='table-panel-top main-offer-content'] a[class='btn event-btn cf btn--okButton']")
 	private WebElement acceptOffer;
 	
@@ -25,8 +24,11 @@ public class UserSpotifyOffer extends PageBase{
 	@FindBy(css="h4.offer-subtitle.bold-font")
 	private WebElement theoffer;
 	
-	@FindBy(css="div.table-panel-top.main-offer-content div.details-content")
+	@FindBy(css=".main-offer-content div.details-content")
 	private WebElement thedetail;
+	
+	@FindBy(css=".label-with-link-jsx")
+	WebElement theOfferTnC;
 	
 	@FindBy(css=".notification-jsx.pulse>p")
 	private WebElement confirmationText;
@@ -51,6 +53,10 @@ public class UserSpotifyOffer extends PageBase{
 	public String getOfferDetail() {
 		return thedetail.getText();
 	}
+	
+	public String getOfferTnC() {
+		   return theOfferTnC.getText();
+	   }
 
 	public void clickAcceptOffer () {
 		acceptOffer.click();

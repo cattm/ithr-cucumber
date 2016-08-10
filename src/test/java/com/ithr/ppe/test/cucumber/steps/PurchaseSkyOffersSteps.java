@@ -37,7 +37,9 @@ public class PurchaseSkyOffersSteps extends StepBase {
 	    String ucbuttontext = buttontext.toUpperCase();
 	    log.info("Button String should be : " +  ucbuttontext);
 	    UserSkyOffer skyoffer = new UserSkyOffer(driver);
-	    log.info("Button String is : " + skyoffer.getAcceptOfferText());
+	    String offerbuttontext = skyoffer.getAcceptOfferText();
+	    log.info("Button String is : " + offerbuttontext);
+	    if (checkAsserts) ErrorCollector.verifyTrue(ucbuttontext.equals(offerbuttontext));
 	    
 	    skyoffer.clickAcceptOffer();
 	 			  
@@ -67,28 +69,27 @@ public class PurchaseSkyOffersSteps extends StepBase {
 	
 	private boolean ReOpenPPE () throws Exception {		
 		log.info("TEST: Check reopen on home page displays correct offers");
-		//TODO need to fix needing this!
+		//TODO need to fix needing this - NO fixed sleeps
 		Thread.sleep(5000);
 		driver.get(baseUserUrl + opco);
 		
 		UserEntertainment entpage = new UserEntertainment(driver);
 		entpage.bodyLoaded();
 		
-		// TODO: this is not a brilliant test -- I dont think it checks the resultant image and offer are in the correct place
+		// TODO: check the resultant image and offer are in the correct place
+		// Also See Spotify Test and see if we can absorb
 		String textfound = entpage.getSkySubscriptionText();
 		log.info("Text to Check is: " + textfound);
-	    boolean ok = textChecker.checkSkySubscibedText(textfound);
-	    if (checkAsserts) ErrorCollector.verifyTrue(ok);	    
-	    return true;
+	    return textChecker.checkSkySubscibedText(textfound);	    
 	}
 
-	@Before("@skypurchase")
+	@Before("@skypurchase, @check")
 	public void setUp(Scenario scenario) throws Exception {
 		super.setUp(scenario);
 		log.info("SetUp");
 	}
 	
-	@After("@skypurchase")
+	@After("@skypurchase, @check")
 	public void tearDown() {
 		log.info("TearDown");
 		super.tearDown();
@@ -111,6 +112,7 @@ public class PurchaseSkyOffersSteps extends StepBase {
 		this.userGroup = usergroup;	
 		try {	
 			// set up msisdn	
+			driver.get(baseAdminUrl);
 			shortMsisdn = AdminActivities.msisdnFromAdmin(driver, opco, subscription, userGroup);
 			// handle the AA aspect
 	
@@ -149,13 +151,13 @@ public class PurchaseSkyOffersSteps extends StepBase {
 			  
 			  // There should be available offers for THIS MSISDN -
 			  // if there are no offers this is probably an error
-			  // the manage subscriptions section should be empty "you have no subscriptions...."
-			  log.info("TEST: Check Available Offers page");
+			  // the manage subscriptions section should be empty  - NO Subscriptions
+			  log.info("TEST: Check Available Offers page");		 
 			  String subtext = entpage.getSubscriptionText();
 			  log.info("Text to check is: " + subtext);			  			
 			  boolean ok = textChecker.checkSubscriptionText(subtext);
-		
 			  if (checkAsserts) ErrorCollector.verifyTrue(ok);
+			  
 			  log.info("Selecting sky Offer");
 			  
 			  // at this point if there is no reference file then we should not try to select offer
@@ -173,14 +175,31 @@ public class PurchaseSkyOffersSteps extends StepBase {
 			  				  
 				  if (refFileValid) {
 					  log.info("TEST: Check Sky Offer");
+					  
+					  // check description of offer as title
 					  String displayoffer = skyoffer.getUserOffer();
 					  log.info("Text to Check is:  " + displayoffer);
 					  
 					  // can now set up JSON parser reference file
 					  jsonParse = new JsonParser(refDir + opco + "/" + fileToCheck);
 					  String title = jsonParse.getOffersTitle();
-					  log.info("Reference Text is: " + title);
+					  log.info("Reference Title is: " + title);
 					  if (checkAsserts) ErrorCollector.verifyTrue(displayoffer.equals(title));
+					  
+					  // check the text bullets from text
+					  String offertext = skyoffer.getOfferDetail();
+					  log.info("Text to Check is:  " + offertext);
+					  String text = jsonParse.getOffersText();
+					  log.info("Reference Text is: " + text);
+					  if (checkAsserts) ErrorCollector.verifyTrue(offertext.equals(text));
+					  
+					  // check T&C label from label
+					  String offertnc = skyoffer.getOfferTnC();
+					  log.info("Text to Check is:  " + offertnc);
+					  String tnc = jsonParse.getOffersTnCText();
+					  log.info("Reference T & C is: " + tnc);
+					  if (checkAsserts) ErrorCollector.verifyTrue(offertnc.equals(tnc));
+				  
 				  }
 			  }
 			  else {
