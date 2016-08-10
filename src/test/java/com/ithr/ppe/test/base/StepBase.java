@@ -174,6 +174,16 @@ public class StepBase {
     	testReferenceDir = System.getProperty("test.testrefdir", TestProperties.TEST_REFDIR);
     	refDir = testReferenceDir + "offers/";	
     	log.info("set up location of JSON files - " + testReferenceDir);
+    	
+    	log.info("Checking usage of DIT or DIT2");
+    	String envdit = System.getProperty("test.environment", "DIT");
+    	if (envdit.equalsIgnoreCase("DIT2")){
+    		// replace dit with dit2 in env urls strings.
+    		baseAdminUrl = baseAdminUrl.replace("dit", "dit2");
+    		baseUserUrl = baseUserUrl.replace("dit", "dit2");;
+    		baseSpotifyHelper = baseSpotifyHelper.replace("dit", "dit2");	
+    	}
+    
 	}
 	
 	protected void tearDown() {
