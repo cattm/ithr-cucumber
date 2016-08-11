@@ -1,4 +1,4 @@
-@skypurchase
+@ignore
 Feature: Purchasing the offers for SKY
   This is a primitive purchasing scenario 
   Takes a basic package/usergroup combination and attempts to purchase Sky
