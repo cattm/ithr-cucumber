@@ -39,29 +39,12 @@ public class PurchaseSkyOffersSteps extends StepBase {
 	    UserSkyOffer skyoffer = new UserSkyOffer(driver);
 	    String offerbuttontext = skyoffer.getAcceptOfferText();
 	    log.info("Button String is : " + offerbuttontext);
-	    if (checkAsserts) ErrorCollector.verifyTrue(ucbuttontext.equals(offerbuttontext));
-	    
+	    if (checkAsserts) ErrorCollector.verifyTrue(ucbuttontext.equals(offerbuttontext), "Button text is incorrect");
+	   
 	    skyoffer.clickAcceptOffer();
 	 			  
 		// check the page displayed
-		log.info("TEST: Check on confirm page after accepting offer");
-		String confirmation = skyoffer.getSuccessText();
-		log.info("Text to Check is : " + confirmation);
-		
-		// get a reference to the property value text
-		boolean ok = textChecker.checkConfirmText(confirmation);
-		if (checkAsserts) ErrorCollector.verifyTrue(ok);
-	  
-		log.info("TEST: Check Success text");
-	 	String happens = skyoffer.getHappensNextText();
-		String myhappens = StringUtils.replace(happens, "\n", " ");
-		log.info("happens next to check is:  " + myhappens);
-	  
-		String checkhappens = jsonParse.getSubscribeSuccessText();
-		checkhappens = jsonParse.stripHTML(checkhappens);
-		log.info("happens next Reference is: " + checkhappens);
-		// Assert check the text and this will do for now
-		if (checkAsserts) ErrorCollector.verifyTrue(myhappens.equals(checkhappens));
+		VerifyHappensNext(skyoffer);
 	  	
 	    return true;
 	    
@@ -80,7 +63,80 @@ public class PurchaseSkyOffersSteps extends StepBase {
 		// Also See Spotify Test and see if we can absorb
 		String textfound = entpage.getSkySubscriptionText();
 		log.info("Text to Check is: " + textfound);
-	    return textChecker.checkSkySubscibedText(textfound);	    
+		ScenarioScreenshot();
+	    return textChecker.checkSkySubscibedText(textfound);
+	    
+	}
+	
+	
+	/* TODO: The verification logic here and elsewhere in this file is VERY similar to that in other Steps
+	*  We should be able to refactor this quite easily to pass a page object and a parser object and do the required checks
+	*/
+	private boolean VerifyAvailableOffers (UserEntertainment entpage) {
+		log.info("TEST: Check Available Offers page");		 
+		String subtext = entpage.getSubscriptionText();
+		log.info("Text to check is: " + subtext);			  			
+		boolean ok = textChecker.checkSubscriptionText(subtext);
+		if (checkAsserts) {
+			ErrorCollector.verifyTrue(ok, "subscription text is incorrect");
+		    ScenarioScreenshot();
+		}
+		return true;
+	}
+	private boolean VerifyOffer(UserSkyOffer offer) {
+		// look out for html in the json which we wont see in the page data an also the addition of Carriage Returns
+		// check description of offer as title
+		String displayoffer = offer.getUserOffer();
+	    log.info("Text to Check is:  " + displayoffer);
+		String title = jsonParse.getOffersTitle();
+		log.info("Reference Title is: " + title);
+		if (checkAsserts) ErrorCollector.verifyTrue(displayoffer.equals(title), "The offer title is incorrect");
+		  
+		// TODO: check the text bullets from text
+		// This test FAILS currently 
+		String offertext = offer.getOfferDetail();
+		String crstripped = StringUtils.replace(offertext, "\n", " ");
+		log.info("Text to Check is:  " + crstripped);
+		String text = jsonParse.getOffersText();
+		log.info("Reference Text is: " + text);
+		String textstripped = jsonParse.stripHTML(text);
+		log.info("Stripped is: " + textstripped);
+		//if (checkAsserts) ErrorCollector.verifyTrue(offertext.equals(textstripped),"The offer detail is incorrect");
+		  
+		// check T&C label from label
+		String offertnc = offer.getOfferTnC();
+		log.info("Text to Check is:  " + offertnc);
+		String tnc = jsonParse.getOffersTnCText();
+		log.info("Reference T & C is: " + tnc);
+		String tncstripped = jsonParse.stripHTML(tnc);
+		if (checkAsserts) ErrorCollector.verifyTrue(offertnc.equals(tncstripped), "The T & C text is incorrect");
+
+		ScenarioScreenshot();
+		return true;
+	}
+	
+	private boolean VerifyHappensNext (UserSkyOffer offer) {
+		log.info("TEST: Check on confirm page after accepting offer");
+		String confirmation = offer.getSuccessText();
+		log.info("Text to Check is : " + confirmation);
+		
+		// get a reference to the property value text
+		boolean ok = textChecker.checkConfirmText(confirmation);
+		if (checkAsserts) ErrorCollector.verifyTrue(ok, "Confirmation text is incorrect");
+	  
+		log.info("TEST: Check Success text");
+	 	String happens = offer.getHappensNextText();
+		String myhappens = StringUtils.replace(happens, "\n", " ");
+		log.info("happens next to check is:  " + myhappens);
+	  
+		String checkhappens = jsonParse.getSubscribeSuccessText();
+		checkhappens = jsonParse.stripHTML(checkhappens);
+		log.info("happens next Reference is: " + checkhappens);
+		// Assert check the text and this will do for now
+		if (checkAsserts) ErrorCollector.verifyTrue(myhappens.equals(checkhappens),"What happens next text is incorrect");
+		
+		ScenarioScreenshot();
+		return true;
 	}
 
 	@Before("@skypurchase, @check")
@@ -104,9 +160,9 @@ public class PurchaseSkyOffersSteps extends StepBase {
 	   textChecker = new opcoTextChecker(testReferenceDir, this.opco);
 	}
 	
-	@When("^my sky profile has a ([^\"]*) with a ([^\"]*)$")
+	@When("^my sky profile has a ([^\"]*) tariff with a ([^\"]*) usergroup$")
 	public void PackageInGroup(String mypackage, String usergroup) throws Exception {
-		log.info("When: I have a  " + mypackage + " with a " + usergroup);
+		log.info("When: my sky profile has a  " + mypackage + " tariff with a " + usergroup);
 
 		this.subscription = mypackage;
 		this.userGroup = usergroup;	
@@ -124,13 +180,13 @@ public class PurchaseSkyOffersSteps extends StepBase {
 			e.printStackTrace();
 			StackTraceElement[] stackTrace = e.getStackTrace(); 	
 			StackTraceElement mystackline = stackTrace[stackTrace.length - 1];
-			String name = this.getClass().getName();
-			ReportStack(name);
+			String name = this.getClass().getSimpleName();
+			ReportScreen(name);
 			Assert.fail("PackageInGroup - Abort Test on Exception : MSISDN " + shortMsisdn); //To fail test in case of any element identification failure		
 		}
 	}
 
-	@Then("^my sky offer will come from ([^\"]*)$")
+	@Then("^my sky offer details will come from ([^\"]*)$")
 	public void OfferContainsStringsFrom(String reffilename) throws Exception {
 		log.info("Then: my offer will come from " + reffilename + "file");
 		fileToCheck = reffilename;
@@ -152,13 +208,9 @@ public class PurchaseSkyOffersSteps extends StepBase {
 			  // There should be available offers for THIS MSISDN -
 			  // if there are no offers this is probably an error
 			  // the manage subscriptions section should be empty  - NO Subscriptions
-			  log.info("TEST: Check Available Offers page");		 
-			  String subtext = entpage.getSubscriptionText();
-			  log.info("Text to check is: " + subtext);			  			
-			  boolean ok = textChecker.checkSubscriptionText(subtext);
-			  if (checkAsserts) ErrorCollector.verifyTrue(ok);
-			  
+			  VerifyAvailableOffers(entpage);
 			  log.info("Selecting sky Offer");
+			  
 			  
 			  // at this point if there is no reference file then we should not try to select offer
 			  // because it probably isnt there and also probably should not be!
@@ -174,32 +226,11 @@ public class PurchaseSkyOffersSteps extends StepBase {
 				  skyoffer.setTnC();
 			  				  
 				  if (refFileValid) {
-					  log.info("TEST: Check Sky Offer");
-					  
-					  // check description of offer as title
-					  String displayoffer = skyoffer.getUserOffer();
-					  log.info("Text to Check is:  " + displayoffer);
+					  log.info("TEST: Check Sky Offer");	
 					  
 					  // can now set up JSON parser reference file
 					  jsonParse = new JsonParser(refDir + opco + "/" + fileToCheck);
-					  String title = jsonParse.getOffersTitle();
-					  log.info("Reference Title is: " + title);
-					  if (checkAsserts) ErrorCollector.verifyTrue(displayoffer.equals(title));
-					  
-					  // check the text bullets from text
-					  String offertext = skyoffer.getOfferDetail();
-					  log.info("Text to Check is:  " + offertext);
-					  String text = jsonParse.getOffersText();
-					  log.info("Reference Text is: " + text);
-					  if (checkAsserts) ErrorCollector.verifyTrue(offertext.equals(text));
-					  
-					  // check T&C label from label
-					  String offertnc = skyoffer.getOfferTnC();
-					  log.info("Text to Check is:  " + offertnc);
-					  String tnc = jsonParse.getOffersTnCText();
-					  log.info("Reference T & C is: " + tnc);
-					  if (checkAsserts) ErrorCollector.verifyTrue(offertnc.equals(tnc));
-				  
+					  VerifyOffer(skyoffer);
 				  }
 			  }
 			  else {
@@ -214,8 +245,8 @@ public class PurchaseSkyOffersSteps extends StepBase {
 			e.printStackTrace();
 			StackTraceElement[] stackTrace = e.getStackTrace(); 	
 			StackTraceElement mystackline = stackTrace[stackTrace.length - 1];
-			String name = this.getClass().getName();
-			ReportStack(name);
+			String name = this.getClass().getSimpleName();
+			ReportScreen(name);
 			Assert.fail("OfferContainsStringFrom - Abort Test on Exception : MSISDN " + shortMsisdn); //To fail test in case of any element identification failure	
 		}
 	}
@@ -229,17 +260,17 @@ public class PurchaseSkyOffersSteps extends StepBase {
 			log.info("And: I Will Accept the sky Offer ");
 			try {	 
 				boolean offeraccepted = AcceptTheOffer();		
-				if (checkAsserts) ErrorCollector.verifyTrue(offeraccepted);
+				if (checkAsserts) ErrorCollector.verifyTrue(offeraccepted,"offer not accepted");
 				boolean ppeopen = ReOpenPPE();
-				if (checkAsserts) ErrorCollector.verifyTrue(ppeopen);
+				if (checkAsserts) ErrorCollector.verifyTrue(ppeopen, "reopen failed");
 				  
 			} catch(Exception e){
 				log.info("caught Exception: " + e);
-				e.printStackTrace();
+				//e.printStackTrace();
 				StackTraceElement[] stackTrace = e.getStackTrace(); 	
 				StackTraceElement mystackline = stackTrace[stackTrace.length - 1];
-				String name = this.getClass().getName();
-				ReportStack(name);
+				String name = this.getClass().getSimpleName();
+				ReportScreen(name);
 				Assert.fail("AcceptTheSkyOffer - Abort Test on Exception : MSISDN " + shortMsisdn); //To fail test in case of any element identification failure	
 			}
 		}

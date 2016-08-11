@@ -15,13 +15,21 @@ public class JsonParser {
 	public static Logger log = Logger.getLogger(JsonParser.class);
 	
 	public JsonParser (String file) {
+		//TODO: need to find file and open exact version from a generic
 		fileToParse = file;
 		jsonObject = getStartPoint();
 		
 	}
+	
+	private void findActualFile (String file) {
+		// assumes full path to file and first part of filename
+		// assumes the file will be of the form "path/Blah blah v2.0.json" and we are given "path/Blah blah"
+		return;
+	}
 	public String stripHTML(String withhtml) {
 		return Jsoup.parse(withhtml).text();
 	}
+	
 	public static String readFile(String filename) {
 	    String result = "";
 	    try {

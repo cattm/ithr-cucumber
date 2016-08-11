@@ -49,7 +49,8 @@ public class PurchaseSpotifyOffersSteps extends StepBase {
 	    UserSpotifyOffer spotifyoffer = new UserSpotifyOffer(driver);
 	    String offerbuttontext = spotifyoffer.getAcceptOfferText();
 	    log.info("Button String is : " + offerbuttontext);
-	    if (checkAsserts) ErrorCollector.verifyTrue(ucbuttontext.equals(offerbuttontext));
+	    if (checkAsserts) ErrorCollector.verifyTrue(ucbuttontext.equals(offerbuttontext), "Button text is incorrect");
+
 	    
 		spotifyoffer.clickAcceptOffer();		
 	
@@ -70,25 +71,8 @@ public class PurchaseSpotifyOffersSteps extends StepBase {
 				}
 			}
 			
-			// check the page actually displayed
-			log.info("TEST: Check on confirm page after accepting offer");
-			String confirmation = spotifyoffer.getSuccessText();
-			log.info("Text to Check is : " + confirmation);
+			VerifyHappensNext(spotifyoffer);
 			
-			// get a reference to the property value text
-			boolean ok = textChecker.checkConfirmText(confirmation);
-			if (checkAsserts) ErrorCollector.verifyTrue(ok);
-		  
-			log.info("TEST: Check Success text");
-		 	String happens = spotifyoffer.getHappensNextText();
-			String myhappens = StringUtils.replace(happens, "\n", " ");
-			log.info("happens next to check is:  " + myhappens);
-		  
-			String checkhappens = jsonParse.getSubscribeSuccessText();
-			checkhappens = jsonParse.stripHTML(checkhappens);
-			log.info("happens next Reference is: " + checkhappens);
-			// Assert check the text and this will do for now
-			if (checkAsserts) ErrorCollector.verifyTrue(myhappens.equals(checkhappens));
 			return true;
 		}
 					    
@@ -116,6 +100,71 @@ public class PurchaseSpotifyOffersSteps extends StepBase {
 	    return textChecker.checkSpotifySubscibedText(textfound);	    
 	}
 	
+	private boolean verifyOffer (UserSpotifyOffer offer) {
+		String displayoffer = offer.getUserOffer();
+		log.info("Text to Check is:  " + displayoffer);
+		String title = jsonParse.getOffersTitle();
+		log.info("Reference Text is: " + title);
+		if (checkAsserts) ErrorCollector.verifyTrue(displayoffer.equals(title), "The offer title is incorrect");
+
+	
+		// check the text bullets from text
+		String offertext = offer.getOfferDetail();
+		log.info("Text to Check is:  " + offertext);
+		String text = jsonParse.getOffersText();
+		log.info("Reference Text is: " + text);
+		String textstripped = jsonParse.stripHTML(text);
+		if (checkAsserts) ErrorCollector.verifyTrue(offertext.equals(textstripped),"The offer detail is incorrect");
+
+	  
+		// check T&C label from label
+		String offertnc = offer.getOfferTnC();
+		log.info("Text to Check is:  " + offertnc);
+		String tnc = jsonParse.getOffersTnCText();
+		log.info("Reference T & C is: " + tnc);
+		String tncstripped = jsonParse.stripHTML(tnc);
+		if (checkAsserts) ErrorCollector.verifyTrue(offertnc.equals(tncstripped), "The T & C text is incorrect");
+		ScenarioScreenshot();
+		return true;
+	}
+	
+	private boolean VerifyAvailableOffers(UserEntertainment entpage) {
+		log.info("TEST: Check Available Offers page");
+		String subtext = entpage.getSubscriptionText();
+		log.info("Text to check is: " + subtext);			  			
+		boolean ok = textChecker.checkSubscriptionText(subtext);
+		if (checkAsserts) ErrorCollector.verifyTrue(ok);
+		ScenarioScreenshot();
+		
+		return true;
+	}
+	
+	
+	private boolean VerifyHappensNext(UserSpotifyOffer offer) {
+		// check the page actually displayed
+		log.info("TEST: Check on confirm page after accepting offer");
+		String confirmation = offer.getSuccessText();
+		log.info("Text to Check is : " + confirmation);
+					
+		// get a reference to the property value text
+		boolean ok = textChecker.checkConfirmText(confirmation);
+		if (checkAsserts) ErrorCollector.verifyTrue(ok, "Confirmation text is incorrect");
+				  
+		log.info("TEST: Check Success text");
+		String happens = offer.getHappensNextText();
+		String myhappens = StringUtils.replace(happens, "\n", " ");
+		log.info("happens next to check is:  " + myhappens);
+				  
+		String checkhappens = jsonParse.getSubscribeSuccessText();
+		checkhappens = jsonParse.stripHTML(checkhappens);
+		log.info("happens next Reference is: " + checkhappens);
+		// Assert check the text and this will do for now
+		if (checkAsserts) ErrorCollector.verifyTrue(myhappens.equals(checkhappens),"What happens next text is incorrect");
+
+		ScenarioScreenshot();
+		
+		return true;
+	}
 	@Before("@spotifypurchase")
 	public void setUp(Scenario scenario) throws Exception {
 		super.setUp(scenario);
@@ -137,7 +186,7 @@ public class PurchaseSpotifyOffersSteps extends StepBase {
 	   textChecker = new opcoTextChecker(testReferenceDir, this.opco);
 	}
 
-	@When("^my spotify profile has a ([^\"]*) with a ([^\"]*)$")
+	@When("^my spotify profile has a ([^\"]*) tariff with a ([^\"]*) usergroup$")
 	public void PackageInGroup(String mypackage, String usergroup) throws Exception {
 		log.info("When: I have a " + mypackage + " with a " + usergroup);
 		this.subscription = mypackage;
@@ -161,14 +210,13 @@ public class PurchaseSpotifyOffersSteps extends StepBase {
 			
 		} catch (Exception e){
 			log.info("caught Exception: " + e);
-			StackTraceElement[] stackTrace = e.getStackTrace(); 	
-			StackTraceElement mystackline = stackTrace[stackTrace.length - 1];			
-			ReportStack(mystackline);
+			String name = this.getClass().getSimpleName();
+			ReportScreen(name);
 			Assert.fail("Package In Group - Abort Test on Exception : MSISDN" + shortMsisdn); //To fail test in case of any element identification failure				
 		}
 		
 	}
-	@Then("^my spotify offer will come from ([^\"]*)$")
+	@Then("^my spotify offer details will come from ([^\"]*)$")
 	public void OfferContainsStringsFrom(String reffilename) throws Exception {
 		log.info("Then: my offer will come from " + reffilename + "file");
 		fileToCheck = reffilename;
@@ -186,12 +234,9 @@ public class PurchaseSpotifyOffersSteps extends StepBase {
 			 		  
 			  // There should be available offers for THIS MSISDN -
 			  // if there are no offers this is probably an error
-			  // the manage subscriptions section should be empty "you have no subscriptions...."
-			  log.info("TEST: Check Available Offers page");
-			  String subtext = entpage.getSubscriptionText();
-			  log.info("Text to check is: " + subtext);			  			
-			  boolean ok = textChecker.checkSubscriptionText(subtext);
-			  if (checkAsserts) ErrorCollector.verifyTrue(ok);
+			  // the manage subscriptions section should be empty "you have no subscriptions..."
+			  VerifyAvailableOffers(entpage);
+			  
 			  
 			  log.info("selecting offer");
 			  if (entpage.checkOfferImagePresent("spotify")) {
@@ -201,32 +246,14 @@ public class PurchaseSpotifyOffersSteps extends StepBase {
 				  UserSpotifyOffer spotifyoffer = new UserSpotifyOffer(driver);
 				  spotifyoffer.bodyLoaded();
 				  spotifyoffer.setTnC();
-				  // - click......
+				  
 				  
 				  if (refFileValid) {
 					  log.info("TEST: Check Spotify Offer");
-					  String displayoffer = spotifyoffer.getUserOffer();
-					  log.info("Text to Check is:  " + displayoffer);
 					  
 					  // can now set up JSON parser reference file
-					  jsonParse = new JsonParser(refDir + opco + "/" + fileToCheck);
-					  String title = jsonParse.getOffersTitle();
-					  log.info("Reference Text is: " + title);
-					  if (checkAsserts) ErrorCollector.verifyTrue(displayoffer.equals(title));
-					  
-					  // check the text bullets from text
-					  String offertext = spotifyoffer.getOfferDetail();
-					  log.info("Text to Check is:  " + offertext);
-					  String text = jsonParse.getOffersText();
-					  log.info("Reference Text is: " + text);
-					  if (checkAsserts) ErrorCollector.verifyTrue(offertext.equals(text));
-					  
-					  // check T&C label from label
-					  String offertnc = spotifyoffer.getOfferTnC();
-					  log.info("Text to Check is:  " + offertnc);
-					  String tnc = jsonParse.getOffersTnCText();
-					  log.info("Reference T & C is: " + tnc);
-					  if (checkAsserts) ErrorCollector.verifyTrue(offertnc.equals(tnc));
+					  jsonParse = new JsonParser(refDir + opco + "/" + fileToCheck);					  
+					  verifyOffer(spotifyoffer);				  
 				  }
 		  			  
 			  }
@@ -238,9 +265,8 @@ public class PurchaseSpotifyOffersSteps extends StepBase {
 			  }
 		} catch (Exception e){
 			log.info("caught Exception: " + e);
-			StackTraceElement[] stackTrace = e.getStackTrace(); 	
-			StackTraceElement mystackline = stackTrace[stackTrace.length - 1];			
-			ReportStack(mystackline);
+			String name = this.getClass().getSimpleName();
+			ReportScreen(name);
 			Assert.fail("Offer Contains Strings From - Abort Test on Exception : MSISDN" + shortMsisdn); //To fail test in case of any element identification failure				
 		}
 	}
@@ -262,10 +288,10 @@ public class PurchaseSpotifyOffersSteps extends StepBase {
 				
 			}catch(Exception e){
 				log.info("caught Exception: " + e);
-				StackTraceElement[] stackTrace = e.getStackTrace(); 	
-				StackTraceElement mystackline = stackTrace[stackTrace.length - 1];			
-				ReportStack(mystackline);
-				Assert.fail("Accept Spotify Offer - Abort Test on Exception : MSISDN" + shortMsisdn); //To fail test in case of any element identification failure			
+				//e.printStackTrace();
+				String name = this.getClass().getSimpleName();
+				ReportScreen(name);
+				Assert.fail("Accept Spotify Offer - Abort Test on Exception : MSISDN " + shortMsisdn); //To fail test in case of any element identification failure			
 			}
 		}		  					
 	}

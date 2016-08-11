@@ -10,10 +10,11 @@ public class CommandExecutor {
 	public static Logger log = Logger.getLogger(CommandExecutor.class);
     private static String sr = "";
     private static String se = "";
+    private static String result;
 	
 	private static int execCmd(String command, boolean anderror)
     {
-	   
+	     result = "";
          try {
                 Process p = Runtime.getRuntime().exec(command);
 
@@ -26,6 +27,7 @@ public class CommandExecutor {
                 log.info("Here is the standard output of the command:\n");
                 while ((sr = stdInput.readLine()) != null) {
                     log.info(sr);
+                    result += "\n" + sr;
                 }
 
                 // read any errors from the attempted command
@@ -58,12 +60,20 @@ public class CommandExecutor {
 		return status;
 	}
 	
+	public static int execCurlSoftwareVersion (String envurl) {
+		String mycommand = "curl " + envurl + "version";
+		int status = execCmd(mycommand, false);
+		log.info("command Status returned is : " + status);
+		return status;
+	}
 	public static String getResponseOutput () {
-		return se;
+		String x = result;
+		return x;
 	}
 	
-	public static String getErrorOutput () {
-		return sr;
+	public String getErrorOutput () {
+		String x = se;
+		return x;
 	}
 	
 	

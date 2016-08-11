@@ -42,6 +42,7 @@ public class ErrorCollector {
     	try {
     		assertTrue(condition);
     	} catch(Throwable e) {
+    		log.error("boolean check Failed");
     		addVerificationFailure(e);
     	}
     }
@@ -50,6 +51,7 @@ public class ErrorCollector {
     	try {
     		assertTrue(condition, message);
     	} catch(Throwable e) {
+    		log.error("check failed");
     		addVerificationFailure(e);
     	}
     }
@@ -58,6 +60,7 @@ public class ErrorCollector {
     	try {
     		assertFalse(condition);
 		} catch(Throwable e) {
+			log.error("boolean check Failed");
     		addVerificationFailure(e);
 		}
     }
@@ -66,6 +69,7 @@ public class ErrorCollector {
     	try {
     		assertFalse(condition, message);
     	} catch(Throwable e) {
+    		log.error("check failed");
     		addVerificationFailure(e);
     	}
     }
@@ -74,6 +78,7 @@ public class ErrorCollector {
     	try {
     		assertEquals(actual, expected);
 		} catch(Throwable e) {
+			log.error("boolean check failed");
     		addVerificationFailure(e);
 		}
     }
@@ -82,6 +87,7 @@ public class ErrorCollector {
     	try {
     		assertEquals(actual, expected);
 		} catch(Throwable e) {
+			log.error("String check failed");
     		addVerificationFailure(e);
 		}
     }
@@ -90,6 +96,7 @@ public class ErrorCollector {
     	try {
     		assertEquals(actual, expected);
 		} catch(Throwable e) {
+			log.error("object check failed");
     		addVerificationFailure(e);
 		}
     }
@@ -98,6 +105,7 @@ public class ErrorCollector {
     	try {
     		assertEquals(actual, expected);
 		} catch(Throwable e) {
+			log.error("check failed");
     		addVerificationFailure(e);
 		}
     }
@@ -115,6 +123,7 @@ public class ErrorCollector {
 	public static void addVerificationFailure(Throwable e) {
 
 		verificationErrors.append(e.toString());
+		verificationErrors.append("\n***************\n");
 	}
 	
 	public static boolean failedVerification() {

@@ -21,6 +21,8 @@ import org.openqa.selenium.phantomjs.PhantomJSDriver;
 
 
 
+
+import com.ithr.ppe.test.commons.CommandExecutor;
 import com.ithr.ppe.test.commons.DateStamp;
 import com.ithr.ppe.test.commons.TestProperties;
 import com.ithr.ppe.test.cucumber.steps.utils.ErrorCollector;
@@ -34,6 +36,9 @@ public class StepBase {
 	protected WebDriver driver;
 	protected Scenario scenario;
 	protected String browser;
+	protected String softwareVersion;
+	protected String ditEnv;
+	
 	// from properties
 	protected String 	baseAdminUrl;
 	protected String 	baseUserUrl;
@@ -67,11 +72,11 @@ public class StepBase {
 		  baseAdminUrl = TestProperties.ADMIN_BASEURL;
 		  baseUserUrl = TestProperties.USER_BASEURL;
 		  baseSpotifyHelper = TestProperties.SPOTIFYBASE;
-		  //testReferenceDir = TestProperties.TEST_REFDIR;
-		  //refDir = TestProperties.TEST_REFDIR + "offers/";
+		  
 		  checkAsserts = TestProperties.DO_ASSERTCHECKS;
+		  log.info("checking Asserts is : " + checkAsserts.toString());
 		  pinCode = TestProperties.PINCODE;
-		  //browserModel = TestProperties.DRIVER;
+		 
 	}
 
 	protected void GetDebugScreenShot(String reference)  {
@@ -107,7 +112,7 @@ public class StepBase {
 		}		
 	}
 	
-	protected void ReportStack(String idstring)  {		
+	protected void ReportScreen(String idstring)  {		
 		// make sure we capture the screen in an image and dump in a directory or the test report
 		if (!checkAsserts) {
 			GetDebugScreenShot(idstring);
@@ -176,14 +181,20 @@ public class StepBase {
     	log.info("set up location of JSON files - " + testReferenceDir);
     	
     	log.info("Checking usage of DIT or DIT2");
-    	String envdit = System.getProperty("test.environment", "DIT");
-    	if (envdit.equalsIgnoreCase("DIT2")){
+    	ditEnv = System.getProperty("test.environment", "DIT");
+    	if (ditEnv.equalsIgnoreCase("DIT2")){
     		// replace dit with dit2 in env urls strings.
     		baseAdminUrl = baseAdminUrl.replace("dit", "dit2");
     		baseUserUrl = baseUserUrl.replace("dit", "dit2");;
     		baseSpotifyHelper = baseSpotifyHelper.replace("dit", "dit2");	
     	}
-    
+   
+    	// get the SW version for reporting
+    	int status = CommandExecutor.execCurlSoftwareVersion(baseUserUrl);
+    	softwareVersion = CommandExecutor.getResponseOutput();
+    	log.info("Software under test is: " + softwareVersion);
+    	//scenario.write("something in the setup");
+    	
 	}
 	
 	protected void tearDown() {
@@ -193,9 +204,12 @@ public class StepBase {
 				ScenarioScreenshot();
 			}
 		} finally {
+			  
 			  driver.quit();			  
 			  if (ErrorCollector.failedVerification()) {
-				  log.error("There are verification Errors");
+				  log.error("There are verification Errors to review");
+				  //Fail the scenario as the individual text errors constitute a fail overall
+				  // even though the scenario probable completed ok
 				  fail(ErrorCollector.getVerificationFailures());
 			  }
 			 
