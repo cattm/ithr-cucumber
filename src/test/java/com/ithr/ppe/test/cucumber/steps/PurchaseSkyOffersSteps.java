@@ -93,15 +93,15 @@ public class PurchaseSkyOffersSteps extends StepBase {
 		if (checkAsserts) ErrorCollector.verifyTrue(displayoffer.equals(title), "The offer title is incorrect");
 		  
 		// TODO: check the text bullets from text
-		// This test FAILS currently 
+		// TODO: This test FAILS currently with text that looks identical 
 		String offertext = offer.getOfferDetail();
 		String crstripped = StringUtils.replace(offertext, "\n", " ");
-		log.info("Text to Check is:  " + crstripped);
+		log.info("Text to Check is:  " +  crstripped);
 		String text = jsonParse.getOffersText();
 		log.info("Reference Text is: " + text);
 		String textstripped = jsonParse.stripHTML(text);
 		log.info("Stripped is: " + textstripped);
-		//if (checkAsserts) ErrorCollector.verifyTrue(offertext.equals(textstripped),"The offer detail is incorrect");
+		if (checkAsserts) ErrorCollector.verifyTrue(crstripped.equals(textstripped),"The offer detail is incorrect");
 		  
 		// check T&C label from label
 		String offertnc = offer.getOfferTnC();
@@ -109,6 +109,7 @@ public class PurchaseSkyOffersSteps extends StepBase {
 		String tnc = jsonParse.getOffersTnCText();
 		log.info("Reference T & C is: " + tnc);
 		String tncstripped = jsonParse.stripHTML(tnc);
+		log.info("Stripped is: " + tncstripped);
 		if (checkAsserts) ErrorCollector.verifyTrue(offertnc.equals(tncstripped), "The T & C text is incorrect");
 
 		ScenarioScreenshot();
@@ -139,13 +140,13 @@ public class PurchaseSkyOffersSteps extends StepBase {
 		return true;
 	}
 
-	@Before("@skypurchase, @check")
+	@Before("@skypurchase")
 	public void setUp(Scenario scenario) throws Exception {
 		super.setUp(scenario);
 		log.info("SetUp");
 	}
 	
-	@After("@skypurchase, @check")
+	@After("@skypurchase")
 	public void tearDown() {
 		log.info("TearDown");
 		super.tearDown();

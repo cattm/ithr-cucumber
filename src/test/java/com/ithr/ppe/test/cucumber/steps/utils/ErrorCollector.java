@@ -5,6 +5,7 @@ import org.junit.Assert;
 
 import com.ithr.ppe.test.cucumber.steps.PurchaseSpotifyOffersSteps;
 
+// TODO: Check this class is SAFE under all permutations
 public class ErrorCollector {
 	public static Logger log = Logger.getLogger(ErrorCollector.class);
 	private static StringBuffer verificationErrors = new StringBuffer();

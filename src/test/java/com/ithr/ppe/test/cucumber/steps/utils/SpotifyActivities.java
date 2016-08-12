@@ -66,7 +66,7 @@ public class SpotifyActivities {
 		login.setPassword("password");
 		login.clickSubmit();
 		
-		// TODO: move this test - its common
+		// TODO: move this test - its a common pattern of behaviour
 		// get success page and check (for piece of mind that we are on the correct page)
 		SpotifySuccess spotsuccess = new SpotifySuccess(driver);
 		spotsuccess.bodyLoaded(); // give the page a chance to load

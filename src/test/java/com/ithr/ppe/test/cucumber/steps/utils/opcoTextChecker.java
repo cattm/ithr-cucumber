@@ -8,13 +8,12 @@ import org.apache.log4j.Logger;
 
 public class opcoTextChecker {
 	public static Logger log = Logger.getLogger(opcoTextChecker.class);
-	// TODO: couple of hard codes for now
-	String offset = "partneroffers.88c34b82.";
-	String file = "PPEWebapp-XX.properties";
-	String reference = "";
-	String opco = "";
-	String result = "";
-	FileInputStream inputStream;
+	// TODO: RESOLVE all Hard Codes in this solution
+	private final String offset = "partneroffers.88c34b82.";
+	private final String file = "PPEWebapp-XX.properties";
+	private String reference = "";
+	private String opco = "";
+	
 	private static Properties prop = new Properties();
 	
 	private String formFileRef() {

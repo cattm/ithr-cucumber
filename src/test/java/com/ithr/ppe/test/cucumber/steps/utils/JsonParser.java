@@ -8,6 +8,8 @@ import org.json.JSONObject;
 import org.jsoup.Jsoup;
 
 import com.ithr.ppe.test.base.StepBase;
+import com.ithr.ppe.test.commons.CommandExecutor;
+// TODO: Review try/catch blocks ensure we fit in with general strategy
 
 public class JsonParser {
 	private String fileToParse = "";
@@ -15,16 +17,21 @@ public class JsonParser {
 	public static Logger log = Logger.getLogger(JsonParser.class);
 	
 	public JsonParser (String file) {
-		//TODO: need to find file and open exact version from a generic
 		fileToParse = file;
-		jsonObject = getStartPoint();
-		
+		jsonObject = getStartPoint();	
 	}
 	
-	private void findActualFile (String file) {
+	public JsonParser (String path, String fileref) {
+		fileToParse = findActualFile(path, fileref);
+		jsonObject = getStartPoint();
+	}
+	
+	private String findActualFile (String path, String fileref) {
 		// assumes full path to file and first part of filename
 		// assumes the file will be of the form "path/Blah blah v2.0.json" and we are given "path/Blah blah"
-		return;
+		String compare = fileref + " v";
+		String check = CommandExecutor.execFindExactJsonFile(path, compare);
+		return check;
 	}
 	public String stripHTML(String withhtml) {
 		return Jsoup.parse(withhtml).text();

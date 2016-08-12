@@ -10,6 +10,7 @@ public class CommandExecutor {
 	public static Logger log = Logger.getLogger(CommandExecutor.class);
     private static String sr = "";
     private static String se = "";
+    // TODO: not sure this model is 100% SAFE - take a fresh look at Statics
     private static String result;
 	
 	private static int execCmd(String command, boolean anderror)
@@ -65,6 +66,23 @@ public class CommandExecutor {
 		int status = execCmd(mycommand, false);
 		log.info("command Status returned is : " + status);
 		return status;
+	}
+	
+	public static String execFindExactJsonFile(String path, String compare) {
+		String jsonfile = "";
+		String mycommand = "ls -rt " + path;
+		int status = execCmd(mycommand,false);
+        String[] arr = result.split("\n");
+        
+        // TODO: there might be more than one so we need to find the highest version
+        // TODO: to be safe we also need to check rather than assume its a json
+        for (String s : arr ) {
+        	if (s.contains(compare)) {
+        		log.info("Found a valid file : " + s);
+        	    jsonfile = s;
+        	}
+        }
+        return jsonfile; 
 	}
 	public static String getResponseOutput () {
 		String x = result;

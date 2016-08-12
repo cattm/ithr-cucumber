@@ -90,7 +90,7 @@ public class PurchaseSpotifyOffersSteps extends StepBase {
 		UserEntertainment entpage = new UserEntertainment(driver);
 		entpage.bodyLoaded();
 					
-		// TODO: doesnt check position. Loops aroudn to wait for image - its a bit slow sometimes - BE calls?
+		// TODO: doesnt check position. Loops around to wait for image - its a bit slow sometimes ?
 		String textfound = "";
 		if (entpage.isSpotifySubscriptionTextPresent()) {		
 			 textfound = entpage.getSpotifySubscriptionText();
@@ -100,21 +100,24 @@ public class PurchaseSpotifyOffersSteps extends StepBase {
 	    return textChecker.checkSpotifySubscibedText(textfound);	    
 	}
 	
+	// TODO: opportunities for abstraction
 	private boolean verifyOffer (UserSpotifyOffer offer) {
 		String displayoffer = offer.getUserOffer();
 		log.info("Text to Check is:  " + displayoffer);
 		String title = jsonParse.getOffersTitle();
 		log.info("Reference Text is: " + title);
-		if (checkAsserts) ErrorCollector.verifyTrue(displayoffer.equals(title), "The offer title is incorrect");
+		String textstripped = jsonParse.stripHTML(title);
+		if (checkAsserts) ErrorCollector.verifyTrue(displayoffer.equals(textstripped), "The offer title is incorrect");
 
 	
 		// check the text bullets from text
 		String offertext = offer.getOfferDetail();
-		log.info("Text to Check is:  " + offertext);
+		String crstripped = StringUtils.replace(offertext, "\n", " ");
+		log.info("Text to Check is:  " +  crstripped);
 		String text = jsonParse.getOffersText();
 		log.info("Reference Text is: " + text);
-		String textstripped = jsonParse.stripHTML(text);
-		if (checkAsserts) ErrorCollector.verifyTrue(offertext.equals(textstripped),"The offer detail is incorrect");
+		textstripped = jsonParse.stripHTML(text);
+		if (checkAsserts) ErrorCollector.verifyTrue(crstripped.equals(textstripped),"The offer detail is incorrect");
 
 	  
 		// check T&C label from label
@@ -165,6 +168,7 @@ public class PurchaseSpotifyOffersSteps extends StepBase {
 		
 		return true;
 	}
+	
 	@Before("@spotifypurchase")
 	public void setUp(Scenario scenario) throws Exception {
 		super.setUp(scenario);
@@ -212,7 +216,7 @@ public class PurchaseSpotifyOffersSteps extends StepBase {
 			log.info("caught Exception: " + e);
 			String name = this.getClass().getSimpleName();
 			ReportScreen(name);
-			Assert.fail("Package In Group - Abort Test on Exception : MSISDN" + shortMsisdn); //To fail test in case of any element identification failure				
+			Assert.fail("Package In Group - Abort Test on Exception : MSISDN " + shortMsisdn); //To fail test in case of any element identification failure				
 		}
 		
 	}
@@ -267,7 +271,7 @@ public class PurchaseSpotifyOffersSteps extends StepBase {
 			log.info("caught Exception: " + e);
 			String name = this.getClass().getSimpleName();
 			ReportScreen(name);
-			Assert.fail("Offer Contains Strings From - Abort Test on Exception : MSISDN" + shortMsisdn); //To fail test in case of any element identification failure				
+			Assert.fail("Offer Contains Strings From - Abort Test on Exception : MSISDN " + shortMsisdn); //To fail test in case of any element identification failure				
 		}
 	}
 
