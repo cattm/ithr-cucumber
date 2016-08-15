@@ -79,6 +79,24 @@ public class UserEntertainment extends PageBase{
 		  }
 		  return valid;
 	  }
+	  
+	  @SuppressWarnings("null")
+	public List <String> getOffersPresent() {
+		  Iterator <WebElement> iterator = offerIcons.iterator();
+		  List <String> result = null;
+		  
+		  while (iterator.hasNext()) {
+			  WebElement element = iterator.next();
+			  String thetext = element.getAttribute("src");
+			  log.debug("checking element :" + thetext);
+			  if (!(thetext == "" || thetext == null) ) {
+				  result.add(thetext);  
+			  }	 
+		  }
+		  return result;
+	  }
+	  
+	  
 	  public String getMSISDN () {
 		  return msisdn.getText();
 		  
