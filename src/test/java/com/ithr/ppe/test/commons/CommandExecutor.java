@@ -10,12 +10,13 @@ public class CommandExecutor {
 	public static Logger log = Logger.getLogger(CommandExecutor.class);
     private static String sr = "";
     private static String se = "";
+    private static boolean errored = false;
     // TODO: not sure this model is 100% SAFE - take a fresh look at Statics
-    private static String result;
+ 
 	
-	private static int execCmd(String command, boolean anderror)
+	private static String execCmd(String command, boolean anderror)
     {
-	     result = "";
+	     String cmdOutput = "";
          try {
                 Process p = Runtime.getRuntime().exec(command);
 
@@ -28,7 +29,7 @@ public class CommandExecutor {
                 log.info("Here is the standard output of the command:\n");
                 while ((sr = stdInput.readLine()) != null) {
                     log.info(sr);
-                    result += "\n" + sr;
+                    cmdOutput += "\n" + sr;
                 }
 
                 // read any errors from the attempted command
@@ -39,40 +40,41 @@ public class CommandExecutor {
                 	}
                 }
 
-                return(0);
+                return cmdOutput;
             }
             catch (IOException e) {
-                log.error("exception happened : ");
+                log.error("exception happened reading file: ");
                 e.printStackTrace();
-                return(-1);
+                errored = true;
+                return "";
             }
     }
 	
 	public static int testCmnd() {
 		String mycommand = "ls -l";
-		int status = execCmd(mycommand, false);
-		log.info("command Status returned is : " + status);
-		return status;
+		String outcome = execCmd(mycommand, false);
+		log.info("command returned : " + outcome);
+		return 0;
 	}
 	public static int execCurlSpotifyTerminate (String param) {
 		String mycommand = "curl -i -dusername=" + param + " https://vodafone-it:ee2Q1kqsdVXpfpH27q5@ws-sales-testing.spotify.com/3/product/terminate";
-		int status = execCmd(mycommand, true);
-		log.info("command Status returned is : " + status);
-		return status;
+		String outcome = execCmd(mycommand, true);
+		log.debug("command returned : " + outcome);
+		return 0;
 	}
 	
-	public static int execCurlSoftwareVersion (String envurl) {
+	public static String execCurlSoftwareVersion (String envurl) {
 		String mycommand = "curl " + envurl + "version";
-		int status = execCmd(mycommand, false);
-		log.info("command Status returned is : " + status);
-		return status;
+		String outcome = execCmd(mycommand, false);
+		log.debug("command returned : " + outcome);
+		return outcome;
 	}
 	
 	public static String execFindExactJsonFile(String path, String compare) {
 		String jsonfile = "";
 		String mycommand = "ls -rt " + path;
-		int status = execCmd(mycommand,false);
-        String[] arr = result.split("\n");
+		String outcome = execCmd(mycommand,false);
+        String[] arr = outcome.split("\n");
         
         // TODO: there might be more than one so we need to find the highest version
         // TODO: to be safe we also need to check rather than assume its a json
@@ -84,9 +86,9 @@ public class CommandExecutor {
         }
         return jsonfile; 
 	}
-	public static String getResponseOutput () {
-		String x = result;
-		return x;
+	
+	public boolean cmdErrored () {
+		return errored;
 	}
 	
 	public String getErrorOutput () {
