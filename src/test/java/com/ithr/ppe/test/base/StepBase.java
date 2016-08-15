@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
 import org.apache.commons.io.FileUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
@@ -16,6 +17,7 @@ import org.openqa.selenium.firefox.FirefoxProfile;
 import org.openqa.selenium.phantomjs.PhantomJSDriver;
 //import org.openqa.selenium.phantomjs.PhantomJSDriverService;
 //import org.openqa.selenium.remote.DesiredCapabilities;
+
 
 
 
@@ -47,6 +49,7 @@ public class StepBase {
 	protected String 	refDir;
 	protected Boolean 	checkAsserts;
 	protected String 	pinCode;
+	protected Boolean 	embedAllImages;
 	
 	//required
 	protected String opco = "gb"; //default
@@ -72,10 +75,11 @@ public class StepBase {
 		  baseAdminUrl = TestProperties.ADMIN_BASEURL;
 		  baseUserUrl = TestProperties.USER_BASEURL;
 		  baseSpotifyHelper = TestProperties.SPOTIFYBASE;
+		  pinCode = TestProperties.PINCODE;
 		  
 		  checkAsserts = TestProperties.DO_ASSERTCHECKS;
 		  log.info("checking Asserts is : " + checkAsserts.toString());
-		  pinCode = TestProperties.PINCODE;
+
 		 
 	}
 
@@ -91,11 +95,22 @@ public class StepBase {
 		}
 	}
 	
+	// embeds under all conditions
 	protected void ScenarioScreenshot () {
 		final byte[] screenshot = ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
-		  scenario.embed(screenshot, "image/png");
+		scenario.embed(screenshot, "image/png");
 	}
 	
+	//embeds only if we enable ALL images
+	protected void CheckedScenarioScreenshot () {
+		if (embedAllImages) {
+			final byte[] screenshot = ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
+			scenario.embed(screenshot, "image/png");
+		}
+	}
+	
+	// reports to scenario or an image file if we are checking Asserts and want to identify be stack
+	// best use is within a catch block
 	protected void ReportStack(StackTraceElement element)  {
 		// I want to report the most useful information 
 		// based on the stacktrace element provided
@@ -112,6 +127,7 @@ public class StepBase {
 		}		
 	}
 	
+	// reprot to scenario or file probable from exception catcher
 	protected void ReportScreen(String idstring)  {		
 		// make sure we capture the screen in an image and dump in a directory or the test report
 		if (!checkAsserts) {
@@ -173,7 +189,7 @@ public class StepBase {
     	// driver
     	// location of reference files for checking
     	log.info("Setting up Driver");
-    	browser = System.getProperty("test.driver", "firefox");
+    	browser = System.getProperty("test.driver", TestProperties.DRIVER);
     	selectDriver(); 
     	  	
     	testReferenceDir = System.getProperty("test.testrefdir", TestProperties.TEST_REFDIR);
@@ -188,12 +204,17 @@ public class StepBase {
     		baseUserUrl = baseUserUrl.replace("dit", "dit2");;
     		baseSpotifyHelper = baseSpotifyHelper.replace("dit", "dit2");	
     	}
+     
+    	String dopictures = System.getProperty("test.allimages", TestProperties.DO_SCREENSHOTS);
+    	embedAllImages = dopictures.matches("true");
    
     	// get the SW version for reporting
-    	int status = CommandExecutor.execCurlSoftwareVersion(baseUserUrl);
-    	softwareVersion = CommandExecutor.getResponseOutput();
+    	String sw = CommandExecutor.execCurlSoftwareVersion(baseUserUrl);
+    	sw = StringUtils.replace(sw, "\n", " ");
+    	sw = StringUtils.replace(sw, "\t", " ");
+    	sw = StringUtils.replace(sw, "Manifest", "");
+    	softwareVersion = StringUtils.replace(sw, "date/time", "");
     	log.info("Software under test is: " + softwareVersion);
-    	//scenario.write("something in the setup");
     	
 	}
 	
