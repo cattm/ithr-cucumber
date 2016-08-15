@@ -6,6 +6,7 @@ import org.junit.Assert;
 import org.openqa.selenium.Dimension;
 
 import com.ithr.ppe.test.base.StepBase;
+import com.ithr.ppe.test.commons.CommandExecutor;
 import com.ithr.ppe.test.cucumber.pages.PageBase;
 import com.ithr.ppe.test.cucumber.pages.UserEntertainment;
 import com.ithr.ppe.test.cucumber.pages.UserSpotifyOffer;
@@ -127,7 +128,7 @@ public class PurchaseSpotifyOffersSteps extends StepBase {
 		log.info("Reference T & C is: " + tnc);
 		String tncstripped = jsonParse.stripHTML(tnc);
 		if (checkAsserts) ErrorCollector.verifyTrue(offertnc.equals(tncstripped), "The T & C text is incorrect");
-		ScenarioScreenshot();
+		CheckedScenarioScreenshot();
 		return true;
 	}
 	
@@ -137,7 +138,7 @@ public class PurchaseSpotifyOffersSteps extends StepBase {
 		log.info("Text to check is: " + subtext);			  			
 		boolean ok = textChecker.checkSubscriptionText(subtext);
 		if (checkAsserts) ErrorCollector.verifyTrue(ok);
-		ScenarioScreenshot();
+		CheckedScenarioScreenshot();
 		
 		return true;
 	}
@@ -164,7 +165,7 @@ public class PurchaseSpotifyOffersSteps extends StepBase {
 		// Assert check the text and this will do for now
 		if (checkAsserts) ErrorCollector.verifyTrue(myhappens.equals(checkhappens),"What happens next text is incorrect");
 
-		ScenarioScreenshot();
+		CheckedScenarioScreenshot();
 		
 		return true;
 	}
@@ -223,8 +224,8 @@ public class PurchaseSpotifyOffersSteps extends StepBase {
 	@Then("^my spotify offer details will come from ([^\"]*)$")
 	public void OfferContainsStringsFrom(String reffilename) throws Exception {
 		log.info("Then: my offer will come from " + reffilename + "file");
-		fileToCheck = reffilename;
-		if (!fileToCheck.contains("Not Valid")) {
+		
+		if (!reffilename.contains("Not Valid")) {
 			refFileValid = true;
 			log.info("The reference file is Valid");
 		}		
@@ -256,6 +257,8 @@ public class PurchaseSpotifyOffersSteps extends StepBase {
 					  log.info("TEST: Check Spotify Offer");
 					  
 					  // can now set up JSON parser reference file
+					  String fileToCheck = CommandExecutor.execFindExactJsonFile(refDir + opco + "/", reffilename + " v");
+					  log.info("going to use json file: " + fileToCheck);
 					  jsonParse = new JsonParser(refDir + opco + "/" + fileToCheck);					  
 					  verifyOffer(spotifyoffer);				  
 				  }
@@ -291,8 +294,7 @@ public class PurchaseSpotifyOffersSteps extends StepBase {
 				if (checkAsserts) ErrorCollector.verifyTrue(ppeopen);
 				
 			}catch(Exception e){
-				log.info("caught Exception: " + e);
-				//e.printStackTrace();
+				log.info("caught Exception: " + e);			
 				String name = this.getClass().getSimpleName();
 				ReportScreen(name);
 				Assert.fail("Accept Spotify Offer - Abort Test on Exception : MSISDN " + shortMsisdn); //To fail test in case of any element identification failure			

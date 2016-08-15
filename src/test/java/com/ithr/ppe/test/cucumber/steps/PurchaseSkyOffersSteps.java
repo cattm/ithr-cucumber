@@ -6,6 +6,7 @@ import org.junit.Assert;
 import org.openqa.selenium.Dimension;
 
 import com.ithr.ppe.test.base.StepBase;
+import com.ithr.ppe.test.commons.CommandExecutor;
 import com.ithr.ppe.test.cucumber.pages.UserEntertainment;
 import com.ithr.ppe.test.cucumber.pages.UserSkyOffer;
 import com.ithr.ppe.test.cucumber.steps.utils.AdminActivities;
@@ -63,7 +64,7 @@ public class PurchaseSkyOffersSteps extends StepBase {
 		// Also See Spotify Test and see if we can absorb
 		String textfound = entpage.getSkySubscriptionText();
 		log.info("Text to Check is: " + textfound);
-		ScenarioScreenshot();
+		CheckedScenarioScreenshot();
 	    return textChecker.checkSkySubscibedText(textfound);
 	    
 	}
@@ -79,7 +80,7 @@ public class PurchaseSkyOffersSteps extends StepBase {
 		boolean ok = textChecker.checkSubscriptionText(subtext);
 		if (checkAsserts) {
 			ErrorCollector.verifyTrue(ok, "subscription text is incorrect");
-		    ScenarioScreenshot();
+		    CheckedScenarioScreenshot();
 		}
 		return true;
 	}
@@ -112,7 +113,7 @@ public class PurchaseSkyOffersSteps extends StepBase {
 		log.info("Stripped is: " + tncstripped);
 		if (checkAsserts) ErrorCollector.verifyTrue(offertnc.equals(tncstripped), "The T & C text is incorrect");
 
-		ScenarioScreenshot();
+		CheckedScenarioScreenshot();
 		return true;
 	}
 	
@@ -136,17 +137,17 @@ public class PurchaseSkyOffersSteps extends StepBase {
 		// Assert check the text and this will do for now
 		if (checkAsserts) ErrorCollector.verifyTrue(myhappens.equals(checkhappens),"What happens next text is incorrect");
 		
-		ScenarioScreenshot();
+		CheckedScenarioScreenshot();
 		return true;
 	}
 
-	@Before("@skypurchase")
+	@Before("@check")
 	public void setUp(Scenario scenario) throws Exception {
 		super.setUp(scenario);
 		log.info("SetUp");
 	}
 	
-	@After("@skypurchase")
+	@After("@check")
 	public void tearDown() {
 		log.info("TearDown");
 		super.tearDown();
@@ -178,7 +179,7 @@ public class PurchaseSkyOffersSteps extends StepBase {
 		
 		} catch(Exception e) {
 			log.info("caught Exception: " + e);
-			e.printStackTrace();
+			//e.printStackTrace();
 			StackTraceElement[] stackTrace = e.getStackTrace(); 	
 			StackTraceElement mystackline = stackTrace[stackTrace.length - 1];
 			String name = this.getClass().getSimpleName();
@@ -190,8 +191,8 @@ public class PurchaseSkyOffersSteps extends StepBase {
 	@Then("^my sky offer details will come from ([^\"]*)$")
 	public void OfferContainsStringsFrom(String reffilename) throws Exception {
 		log.info("Then: my offer will come from " + reffilename + "file");
-		fileToCheck = reffilename;
-		if (!fileToCheck.contains("Not Valid")) {
+		
+		if (!reffilename.contains("Not Valid")) {
 			refFileValid = true;
 			log.info("The reference file is Valid");
 		}
@@ -230,6 +231,8 @@ public class PurchaseSkyOffersSteps extends StepBase {
 					  log.info("TEST: Check Sky Offer");	
 					  
 					  // can now set up JSON parser reference file
+					  String fileToCheck = CommandExecutor.execFindExactJsonFile(refDir + opco + "/", reffilename + " v");
+					  log.info("going to use json file: " + fileToCheck);
 					  jsonParse = new JsonParser(refDir + opco + "/" + fileToCheck);
 					  VerifyOffer(skyoffer);
 				  }
@@ -243,7 +246,7 @@ public class PurchaseSkyOffersSteps extends StepBase {
 		}
 		catch (Exception e){
 			log.info("caught Exception: " + e);
-			e.printStackTrace();
+			//e.printStackTrace();
 			StackTraceElement[] stackTrace = e.getStackTrace(); 	
 			StackTraceElement mystackline = stackTrace[stackTrace.length - 1];
 			String name = this.getClass().getSimpleName();
