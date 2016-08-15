@@ -12,6 +12,9 @@
     And I will accept the sky offer
     Examples: 
       | package | usergroup | contained in |
-  #      | PK_RedTariff | ug_ppe_red   | SkyTV hardbundle 3 months trial v3.json |
-  #      | PK_RedTariff | ug_ppe_young | SkyTV hardbundle 3 months trial v3.json |
+  #      | PK_RedTariff | ug_ppe_red   | SkyTV hardbundle 3 months trial |
+  #      | PK_RedTariff | ug_ppe_young | SkyTV hardbundle 3 months trial |
+  #       | PK_RedTariff | ug_ppe_tier1 | Not Valid |
+  #       | No parent subscription | ug_storage_small | Not Valid |
+  #       | Not Valid | Not Valid | I dont know which one this should be |
  
