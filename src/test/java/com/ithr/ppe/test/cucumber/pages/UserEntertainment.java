@@ -112,14 +112,11 @@ public class UserEntertainment extends PageBase{
 	  
 	  
 	  // TODO: see if we can make these VERY specific methods generic and sort the finders
-	  public String getSkySubscriptionText() {
+	  public String getManageSubscriptionText() {
 		  return manageSubscription.getText();
 	  }
 	  
-	  public String getSpotifySubscriptionText() {
-		  return manageSubscription.getText();
-	  }
-	  public boolean isSpotifySubscriptionTextPresent() throws InterruptedException {
+	  public boolean isManageSubscriptionTextPresent() throws InterruptedException {
 		return elementLoaded(By.xpath("//article[@id='content__wrapper']/div[2]/div/div/div/div/div/div[2]/h3/span[2]"));		
 	  }
 	  

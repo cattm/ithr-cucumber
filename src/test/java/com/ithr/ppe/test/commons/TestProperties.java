@@ -16,6 +16,7 @@ public class TestProperties {
 	public static String PINCODE;
 	public static String DRIVER;
 	public static boolean DO_ASSERTCHECKS;
+	public static String DO_SCREENSHOTS;
 	private static boolean loaded = false;
 	
 	private static Properties prop = new Properties();
@@ -29,9 +30,7 @@ public class TestProperties {
         	 FileInputStream fis = new FileInputStream( "src/main/resources/" + filename);
              prop.load(fis);
         	 loadProperties();
-        	 // TODO: Moved config file location to classpath - so dont need this - remove
-        	 //System.out.println("Loading Log4j properties " + TestProperties.LOGGERFILE);
-   		     //PropertyConfigurator.configure(TestProperties.LOGGERFILE);
+ 
         	 loaded = true;
          }         
 	 }
@@ -45,6 +44,7 @@ public class TestProperties {
          LOGGERFILE = prop.getProperty("test.logger");
          DRIVER = prop.getProperty("test.driver");
          DO_ASSERTCHECKS = Boolean.parseBoolean(prop.getProperty("test.doasserts"));
+         DO_SCREENSHOTS = prop.getProperty("test.allimages");
 	 }
 
 	

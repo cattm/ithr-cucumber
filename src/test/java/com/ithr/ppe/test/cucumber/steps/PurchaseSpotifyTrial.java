@@ -1,4 +1,11 @@
 package com.ithr.ppe.test.cucumber.steps;
+
+/**
+ * Implements and example of terminating an offer and then attempting to use the same partner identifier to purchase again
+ * 
+ *
+ * @author Marcus Catt (marcus.catt@ithrconsulting.com
+ */
 // TODO - Add all the checks on correct offer etc
 
 import java.util.Map;
@@ -50,7 +57,7 @@ public class PurchaseSpotifyTrial extends StepBase{
 		// this is a Background step activity
 		driver.get(baseAdminUrl);
 		shortMsisdn = AdminActivities.msisdnFromAdmin(driver, opco, subscription, userGroup);		
-		userNameToUse = SpotifyActivities.getSpotifyUser(driver, baseSpotifyHelper, opco);
+		userNameToUse = SpotifyActivities.getSpotifyUser(driver, basePartnerHelper, opco);
 		String url = baseUserUrl + opco;
 		log.info ("msisdn is: " + shortMsisdn + " username is: " + userNameToUse);
 		IdentityActivities.loginToPPE (driver, shortMsisdn , pinCode, url);
@@ -99,8 +106,8 @@ public class PurchaseSpotifyTrial extends StepBase{
 		UserEntertainment newentpage = new UserEntertainment(driver);
 		newentpage.bodyLoaded();	
 		String textfound = "";
-		if (newentpage.isSpotifySubscriptionTextPresent()) {		
-	 		textfound = newentpage.getSpotifySubscriptionText();
+		if (newentpage.isManageSubscriptionTextPresent()) {		
+	 		textfound = newentpage.getManageSubscriptionText();
 	 		log.info(textfound);
 		}
 		return false;
@@ -136,9 +143,9 @@ public class PurchaseSpotifyTrial extends StepBase{
 		log.info("have deleted Spotify User");
 		// we could do this with curl or within a browser
 		// lets check status and then delete 
-		String response = SpotifyActivities.getSpotifyUserStatus(driver, baseSpotifyHelper, opco, userNameToUse);
+		String response = SpotifyActivities.getSpotifyUserStatus(driver, basePartnerHelper, opco, userNameToUse);
 		log.info(response);
-		response = SpotifyActivities.terminateSpotifyUser(driver, baseSpotifyHelper, opco, userNameToUse);
+		response = SpotifyActivities.terminateSpotifyUser(driver, basePartnerHelper, opco, userNameToUse);
 		log.info(response);
 		//  TODO: check order is something like -- acquiredOrderIds" : [ "Vodafone_67327944-ee97-4ff9-a297-3706981565a2" ]
 	}

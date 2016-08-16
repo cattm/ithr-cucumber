@@ -75,6 +75,7 @@ public class opcoTextChecker {
 		log.info("Reference Text is:        " + tocompare);
 		return onpage.equals(tocompare);
 	}
+	
 	public boolean checkSpotifySubscibedText(String onpage) {
 		// TODO: this is probably the wrong string to check - and it should not be hardcoded
 		String destr1 = "partneroffers.landing-hard.heading.spotify";

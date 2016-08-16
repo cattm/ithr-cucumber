@@ -28,7 +28,7 @@ public class CommandExecutor {
 
                 log.info("Here is the standard output of the command:\n");
                 while ((sr = stdInput.readLine()) != null) {
-                    log.info(sr);
+                    log.debug(sr);
                     cmdOutput += "\n" + sr;
                 }
 
@@ -59,14 +59,14 @@ public class CommandExecutor {
 	public static int execCurlSpotifyTerminate (String param) {
 		String mycommand = "curl -i -dusername=" + param + " https://vodafone-it:ee2Q1kqsdVXpfpH27q5@ws-sales-testing.spotify.com/3/product/terminate";
 		String outcome = execCmd(mycommand, true);
-		log.debug("command returned : " + outcome);
+		log.info("command returned : " + outcome);
 		return 0;
 	}
 	
 	public static String execCurlSoftwareVersion (String envurl) {
 		String mycommand = "curl " + envurl + "version";
 		String outcome = execCmd(mycommand, false);
-		log.debug("command returned : " + outcome);
+		log.info("command returned : " + outcome);
 		return outcome;
 	}
 	

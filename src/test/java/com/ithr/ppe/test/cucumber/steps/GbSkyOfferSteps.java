@@ -1,4 +1,10 @@
 package com.ithr.ppe.test.cucumber.steps;
+/**
+ * Original prototype model for the Step implementation 
+ * No longer really valid
+ * 
+ * @author Marcus Catt (marcus.catt@ithrconsulting.com
+ */
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;

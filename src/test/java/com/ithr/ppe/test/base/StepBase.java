@@ -1,5 +1,13 @@
 package com.ithr.ppe.test.base;
 
+/**
+ * Implements the base model for all Step implementations
+ * It will be common 
+ * It sets up the driver/screen/shots and commons variables and behaviors needed by all tests
+ *
+ * @author Marcus Catt (marcus.catt@ithrconsulting.com
+ */
+
 import static org.junit.Assert.fail;
 
 import java.io.File;
@@ -17,6 +25,7 @@ import org.openqa.selenium.firefox.FirefoxProfile;
 import org.openqa.selenium.phantomjs.PhantomJSDriver;
 //import org.openqa.selenium.phantomjs.PhantomJSDriverService;
 //import org.openqa.selenium.remote.DesiredCapabilities;
+
 
 
 
@@ -44,7 +53,7 @@ public class StepBase {
 	// from properties
 	protected String 	baseAdminUrl;
 	protected String 	baseUserUrl;
-	protected String 	baseSpotifyHelper;
+	protected String 	basePartnerHelper;
 	protected String 	testReferenceDir;
 	protected String 	refDir;
 	protected Boolean 	checkAsserts;
@@ -58,10 +67,8 @@ public class StepBase {
 	protected String shortMsisdn;
 	
 	//checks
-	protected opcoTextChecker 	textChecker = null;
 	protected String 			fileToCheck =  "";
 	protected Boolean 			refFileValid = false;
-	protected JsonParser 		jsonParse; 
 	
 	public static Logger log = Logger.getLogger(StepBase.class);
 		  
@@ -74,7 +81,7 @@ public class StepBase {
       	
 		  baseAdminUrl = TestProperties.ADMIN_BASEURL;
 		  baseUserUrl = TestProperties.USER_BASEURL;
-		  baseSpotifyHelper = TestProperties.SPOTIFYBASE;
+		  basePartnerHelper = TestProperties.SPOTIFYBASE;
 		  pinCode = TestProperties.PINCODE;
 		  
 		  checkAsserts = TestProperties.DO_ASSERTCHECKS;
@@ -136,6 +143,7 @@ public class StepBase {
 			ScenarioScreenshot ();
 		}
 	}
+	
 	
 	protected void loadMCPJSDriver () {
 		log.info("loadMCJSDriver");
@@ -202,7 +210,7 @@ public class StepBase {
     		// replace dit with dit2 in env urls strings.
     		baseAdminUrl = baseAdminUrl.replace("dit", "dit2");
     		baseUserUrl = baseUserUrl.replace("dit", "dit2");;
-    		baseSpotifyHelper = baseSpotifyHelper.replace("dit", "dit2");	
+    		basePartnerHelper = basePartnerHelper.replace("dit", "dit2");	
     	}
      
     	String dopictures = System.getProperty("test.allimages", TestProperties.DO_SCREENSHOTS);
