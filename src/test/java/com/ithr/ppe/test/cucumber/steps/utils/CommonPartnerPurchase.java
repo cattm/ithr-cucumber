@@ -25,6 +25,7 @@ public class CommonPartnerPurchase implements PartnerPurchaseInterface {
 	private static JsonParser parser = null;
 	private static opcoTextChecker checker = null;
 	private static String partnerUserName = null;
+	private static Partners myPartner = Partners.SKY;
 	
 	
 	public void SetAssertCheck() {
@@ -58,6 +59,7 @@ public class CommonPartnerPurchase implements PartnerPurchaseInterface {
 	}
 	
 	public boolean AcceptTheOffer(WebDriver driver, String opco, Partners partner)  {
+		myPartner = partner;
 		String buttontext = parser.getOffersOkButton();			
 	    String ucbuttontext = buttontext.toUpperCase();
 	    log.info("Button String should be : " +  ucbuttontext);
@@ -71,7 +73,7 @@ public class CommonPartnerPurchase implements PartnerPurchaseInterface {
 		
 		// At this point we need to know if the action involves a partner interaction or not
 		boolean registered = true;
-		switch (partner) {
+		switch (myPartner) {
 		case SPOTIFY :	try {
 				registered = SpotifyActivities.RegisterForSpotify(driver, opco, partnerUserName);
 			} catch (Exception e) {
@@ -84,26 +86,34 @@ public class CommonPartnerPurchase implements PartnerPurchaseInterface {
 			
 			//TODO: need to add a NICE confirmation text check that the purchase has completed and then it is safe to check all the text and reopen ppe
 			boolean done = false;
-			for (int i = 0; i < 10 && !done; i++) {
+			// max wait here is 20 * SLOW - which is a long time on a slow environment
+			for (int i = 0; i < 20 && !done; i++) {
+				// do the sleep first - to give it a chance
+				try {
+					Thread.sleep(PageBase.SLOW);
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					log.error("sleep interrupted");
+					e.printStackTrace();
+				}
+				
 				String notice = offer.getSuccessText();		
 				log.info(notice);
-				if (!notice.contains("Completing purchase"))  {
+				
+				// TODO: Not at all sure this check is SAFE
+				// if no longer completing the purchase it is ok to move on
+				// ES use a different key - offerDetails.activeLabel.offer
+				// works for GB, IE, IT, PT
+				if (!checker.checkProcessMsg(notice)) {
 						log.info("purchase process complete");
 						done = true;
 				} else {
 					log.info("Waiting for purchase notification.....");
-					try {
-						Thread.sleep(PageBase.SLOW);
-					} catch (InterruptedException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
 				}
-			}
-			
-			return VerifyNextStepsText(offer);
-		}					    
-	    return true;  
+			}		
+		}		
+		return VerifyNextStepsText(offer);
+	  
 	
 	}
 	
@@ -141,9 +151,15 @@ public class CommonPartnerPurchase implements PartnerPurchaseInterface {
 			e.printStackTrace();
 		}
 		
-		// TODO - this is a specific test - needs to be generic based on partner
 		log.info("Text to Check is: " + textfound);
-	    return checker.checkSkySubscibedText(textfound);	   
+		
+		switch (myPartner) {
+		case SPOTIFY :	return checker.checkSpotifySubscibedText(textfound);
+		case SKY : return checker.checkSkySubscibedText(textfound);
+		default : return checker.checkSkySubscibedText(textfound);
+	
+		}
+	    	   
 	}
 	
 	public boolean VerifyOfferText(BasicPartnerOffer offer){

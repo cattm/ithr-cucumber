@@ -36,14 +36,14 @@ public class PurchaseSkyOffersSteps extends StepBase {
 	}
 	
 	
-	@Before("@ignore")
+	@Before("@skypurchase")
 	public void setUp(Scenario scenario) throws Exception {
 		super.setUp(scenario);
 		if (checkAsserts) cpp.SetAssertCheck();
 		log.info("SetUp");
 	}
 	
-	@After("@ignore")
+	@After("@skypurchase")
 	public void tearDown() {
 		log.info("TearDown");
 		super.tearDown();

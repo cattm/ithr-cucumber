@@ -56,6 +56,12 @@ public class opcoTextChecker {
 		log.info("Reference Text is:        " + tocompare);
 		return onpage.equals(tocompare);
 	}
+	
+	public boolean checkProcessMsg(String onpage) {
+		String tocompare = GetProperty(offset + "completing.processMsg");
+		log.info("Reference Text is:        " + tocompare);
+		return onpage.equals(tocompare);
+	}
 
 	public boolean checkSkySubscibedText(String onpage) {
 		// TODO: this is probably the wrong string to check - and it should not be hardcoded

@@ -26,7 +26,7 @@ public class CommandExecutor {
                 BufferedReader stdError = new BufferedReader(new
                      InputStreamReader(p.getErrorStream()));
 
-                log.info("Here is the standard output of the command:\n");
+                log.debug("Here is the standard output of the command:\n");
                 while ((sr = stdInput.readLine()) != null) {
                     log.debug(sr);
                     cmdOutput += "\n" + sr;
@@ -34,9 +34,9 @@ public class CommandExecutor {
 
                 // read any errors from the attempted command
                 if (anderror) {
-                	log.info("Here is the standard error of the command (if any):\n");
+                	log.error("Here is the standard error of the command (if any):\n");
                 	while ((se = stdError.readLine()) != null) {
-                		log.info(se);
+                		log.error(se);
                 	}
                 }
 

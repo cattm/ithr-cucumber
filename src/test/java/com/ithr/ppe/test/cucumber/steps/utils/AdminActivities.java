@@ -53,4 +53,60 @@ public class AdminActivities {
 		}
 		return msisdn;
 	}
+	
+	public static String msisdnFromAdminNoCreate(WebDriver driver, String opco, String subscription, String usergroup) {
+		AdminHome adminhome = new AdminHome(driver);
+		adminhome.setOpco(opco);
+		
+		if (!subscription.contains("Not Valid")) {
+			log.info("subscription is Valid");
+			adminhome.setSubscription(subscription);
+		}
+				
+		if (!usergroup.contains("Not Valid")) {			
+			log.info("User Group is Valid");
+			adminhome.setUserGroup(usergroup);
+		} else {
+			adminhome.setNoUserGroup();
+		}
+			
+		String msisdn = adminhome.getShortMSISDN();
+		log.info("MSISDN is : " + msisdn);
+		
+		return msisdn;
+	}
+	
+	public static String msisdnFromAdminWithPost(WebDriver driver, String opco, String subscription, String usergroup) {
+		AdminHome adminhome = new AdminHome(driver);
+		adminhome.setOpco(opco);
+		
+		if (!subscription.contains("Not Valid")) {
+			log.info("subscription is Valid");
+			adminhome.setSubscription(subscription);
+		}
+				
+		if (!usergroup.contains("Not Valid")) {			
+			log.info("User Group is Valid");
+			adminhome.setUserGroup(usergroup);
+		} else {
+			adminhome.setNoUserGroup();
+		}
+			
+		String msisdn = adminhome.getShortMSISDN();
+		log.info("MSISDN is : " + msisdn);
+		
+		 
+				// TODO: Put a Proper test here and if there is a proble then we need to advise - so test can exit or otherwise
+		String checkurl = adminhome.getSubscriptionCheckUrl();	
+		
+		//TODO - need to post this url not GET
+		//driver.get(checkurl);
+		
+		AdminVerify verify = new AdminVerify(driver);
+		if (verify.isIndividualCreated()) {
+			log.info(" Admin Created This: " + msisdn);
+		}
+		return msisdn;
+	}
+	
 }
