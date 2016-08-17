@@ -18,5 +18,5 @@ Feature: PT Purchase Spotify for all Tariffs
       #    | Not Valid | mp3nonyorn | This is special case I think - 3 different offers |
       #    | Not valid | Not Valid | This is special case I think - 3 different offers |
       | Not Valid | 5gbdata     | Spotify standalone 5gbdata           |
-      | Not Valid | yorn        | potify standalone yorn trial         |
-      | Not Valid | youstandard | potify standalone yornstandard trial |
+      | Not Valid | yorn        | Spotify standalone yorn trial         |
+      | Not Valid | yornstandard | Spotify standalone yornstandard trial |

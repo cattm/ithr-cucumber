@@ -14,9 +14,9 @@ Feature: IE Purchase Spotify for all Tariffs
     # TODO: there are several definition files not used in the scenario
     # Check out exact circumstances and add/append them
     Examples: 
-      | package        | usergroup | contained in |
+      | package        | usergroup | contained in       |
       #    | No parent subscription | roverprempayg | Not Valid              |
       #    | No parent subscription | roverpayg     | Not Valid              |
       #    | No parent subscription | roverpaym     | Not Valid              |
       #    | Not Valid              | Not Valid     | Not Valid              |
-      | PK_ROVERTariff | rover     | I dont know  |
+      | PK_ROVERTariff | rover     | Spotify hardbundle |

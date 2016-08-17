@@ -12,11 +12,12 @@ Feature: IE Purchasing SKY for all Tariffs
     And I will accept the sky offer
 
     # TODO: there are several definition files not used in the scenario
-    # Check out exact circumstances and add/append them
+    # They generate a multiple offer scenario - we are limited here currently!
+    # No User Group scenario has no offer? Check this
     Examples: 
       | package        | usergroup | contained in   |
       #    | No parent subscription | roverprempayg | Not Valid              |
       #    | No parent subscription | roverpayg     | Not Valid              |
       #    | No parent subscription | roverpaym     | Not Valid              |
-      #    | Not Valid              | Not Valid     | Not Valid              |
+      #    | Not Valid              | Not Valid     | Sky standalone trial             |
       | PK_ROVERTariff | rover     | Sky hardbundle |

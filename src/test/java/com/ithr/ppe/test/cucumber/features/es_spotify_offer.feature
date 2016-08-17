@@ -12,17 +12,20 @@ Feature: ES Purchase Spotify for all Tariffs
     And I will accept the spotify offer
 
 # TODO: there are several definition files not used in the scenario 
-# Check out exact circumstances and add/append them
+# Check out exact circumstances and correct
 
     Examples: 
       | package             | usergroup     | contained in                                         |
 #      | No parent subscription | options -  I dont know if valid | Not Valid |
-      | PK_RedTariff        | bundling_low  | Spotify hardbundle switchable trial 3 months  |
-      | PK_RedTariff        | bundling_high | Spotify hardbundle 3 months trial             |
-      | PK_ConvergentTariff | onetivo_low   | Spotify hardbundle 3 months trial             |
-      | PK_ConvergentTariff | onetivo_high  | Spotify hardbundle switchable trial 3 months  |
-      | PK_PrepaidTariff    | yu_high       | Spotify hardbundle 3 months trial             |
-      | PK_TVTariff         | tvtotal       | Spotify hardbundle 3 months trial             |
-      | PK_TVTarrif         | hboreseller   | Spotify hardbundle 3 months trial             |
-      | Not Valid           | Not Valid     | Spotify hardbundle 3 months trial             |
+# Not sure this one is correct - think it should be switchable
+      | PK_RedTariff        | bundling_low  | Spotify hardbundle 3 months trial |
+      | PK_RedTariff        | bundling_high | Spotify hardbundle 6 months trial             |
+      | PK_ConvergentTariff | onetivo_low   | Spotify standalone trial             |
+# Not sure this one is correct - think it should be switchable
+      | PK_ConvergentTariff | onetivo_high  | Spotify hardbundle 3 months trial   |
+      | PK_PrepaidTariff    | yu_high       | Spotify hardbundle 6 months trial             |
+# check in price plan      
+#      | PK_TVTariff         | tvtotal       | Spotify hardbundle 3 months trial             |
+#      | PK_TVTarriff         | hboreseller   | Spotify hardbundle 3 months trial             |
+      | Not Valid           | Not Valid     | Spotify standalone trial             |
 
