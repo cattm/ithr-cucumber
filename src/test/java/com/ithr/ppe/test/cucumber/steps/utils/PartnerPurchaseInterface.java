@@ -7,21 +7,25 @@ import com.ithr.ppe.test.cucumber.pages.BasicPartnerOffer;
 import com.ithr.ppe.test.cucumber.pages.UserEntertainment;
 
 public interface PartnerPurchaseInterface {
-	public void SetAssertCheck();
+	public void setAssertCheck();
 	
-	public void LocateJsonParseFile(String path, String filename);
+	public void locateJsonParseFile(String path, String filename);
 	
-	public void DefineCheckerToUse(String file, String opco);
+	public void defineCheckerToUse(String file, String opco);
 	
-	public String GetPartnerUserName(WebDriver driver, String adminurl, String opco);
+	public String getPartnerUserName(WebDriver driver, String adminurl, String opco, Partners partner);
+	
+	public boolean validatePrePurchaseOffers(UserEntertainment entpage);
+	
+	public boolean selectPartnerOffer(Partners partner, UserEntertainment entpage);
 
-	public boolean AcceptTheOffer(WebDriver driver, String opco, Partners partner);
+	public boolean acceptTheOffer(WebDriver driver, String opco, Partners partner);
 
-	public boolean RefreshPPE(WebDriver driver, String baseopcourl);
+	public boolean refreshPPE(WebDriver driver, String baseopcourl);
 
-	public boolean VerifyOfferText(BasicPartnerOffer offer );
+	public boolean verifyOfferText(BasicPartnerOffer offer );
 
-	public boolean VerifyAvailableOffersText(UserEntertainment entpage);
+	public boolean verifyAvailableOffersText(UserEntertainment entpage);
 
-	public boolean VerifyNextStepsText(BasicPartnerOffer offer);
+	public boolean verifyNextStepsText(BasicPartnerOffer offer);
 }

@@ -14,6 +14,7 @@ import org.apache.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 
 import com.ithr.ppe.test.commons.CommandExecutor;
+import com.ithr.ppe.test.commons.DateStamp;
 import com.ithr.ppe.test.commons.Partners;
 import com.ithr.ppe.test.cucumber.pages.BasicPartnerOffer;
 import com.ithr.ppe.test.cucumber.pages.PageBase;
@@ -25,20 +26,20 @@ public class CommonPartnerPurchase implements PartnerPurchaseInterface {
 	private static JsonParser parser = null;
 	private static opcoTextChecker checker = null;
 	private static String partnerUserName = null;
-	private static Partners myPartner = Partners.SKY;
+	private static Partners myPartner = null;
 	
 	
-	public void SetAssertCheck() {
+	public void setAssertCheck() {
 		checkAsserts = true;
 	}
 	
-	public void LocateJsonParseFile (String path, String filename) {
+	public void locateJsonParseFile (String path, String filename) {
 		String fileToCheck = CommandExecutor.execFindExactJsonFile(path, filename + " v");
 		log.info("going to use json file: " + fileToCheck);
 		parser = new JsonParser(path + fileToCheck);
 	}
 	
-	public void DefineCheckerToUse(String file, String opco) {
+	public void defineCheckerToUse(String file, String opco) {
 		try {
 			checker = new opcoTextChecker(file, opco);
 		} catch (IOException e) {
@@ -47,19 +48,99 @@ public class CommonPartnerPurchase implements PartnerPurchaseInterface {
 		}
 	}
 	
-	public String GetPartnerUserName(WebDriver driver, String adminurl, String opco) {
-		try {
-			partnerUserName = SpotifyActivities.getSpotifyUser (driver, adminurl, opco);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			log.error("cannot get partner user name");
-			e.printStackTrace();
+	public String getPartnerUserName(WebDriver driver, String adminurl, String opco, Partners partner) {
+		
+		switch (partner) {
+		case SPOTIFY :
+			try {
+				partnerUserName = SpotifyActivities.getSpotifyUser (driver, adminurl, opco);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				log.error("Cannot get Spotify user name");
+				e.printStackTrace();
+				partnerUserName = "ERROR";
+			}
+			break;
+			
+		case NETFLIX :
+			DateStamp myds = new DateStamp();
+			String rn = myds.getRanDateFormat();
+			partnerUserName = "ithrtest" + rn + "@ithr.com";
+			break;
+		case SKY : 
+		default : 
+			break;
 		}
+		
 		return partnerUserName;
 	}
 	
-	public boolean AcceptTheOffer(WebDriver driver, String opco, Partners partner)  {
+	
+	public boolean validatePrePurchaseOffers(UserEntertainment entpage) {
+		// this method will get all the available offers and check they are as expected 
+		// I am not sure how I will implement this yet.
+		// depends on the country, price plan; the tariff; the data pack; and what has already been purchased
+		// TODO: Implement this - for the moment pass it
+		return true;
+	}
+	
+	public boolean selectPartnerOffer(Partners partner, UserEntertainment entpage)  {
+		// this is a very primative implementation
+		// we may have to cope with a situation where there are a number of offers from same partner
+		// we will need to select the correct one
+		// TODO: build a more comprehensive selection solution
+		
 		myPartner = partner;
+		boolean found = false;
+		switch (myPartner) {
+		case SPOTIFY 	: 
+			found = entpage.checkOfferImagePresent("spotify");
+			if (found)
+				try {
+					entpage.clickOfferImage("spotify");
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					log.error("got interrupted while clicking on spotify");
+					e.printStackTrace();
+				}
+			break;
+		case SKY 		: 
+			found = entpage.checkOfferImagePresent("sky");
+			if (found)
+				try {
+					entpage.clickOfferImage("sky");
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					log.error("got interrupted while clicking on sky");
+					e.printStackTrace();
+				}
+			break;
+		case NETFLIX    : 
+			found = entpage.checkOfferImagePresent("netflix");
+			if (found)
+				try {
+					entpage.clickOfferImage("netflix");
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					log.error("got interrupted while clicking on netflix");
+					e.printStackTrace();
+				}
+			break;
+		default : 
+			break;
+		}
+				
+		return found;
+	}
+	
+	
+	public boolean acceptTheOffer(WebDriver driver, String opco, Partners partner)  {
+		if (myPartner == null) {
+			myPartner = partner;
+		} else {
+			if (myPartner != partner) log.error("attempting to overwrite partner with new value");
+		}
+		
 		String buttontext = parser.getOffersOkButton();			
 	    String ucbuttontext = buttontext.toUpperCase();
 	    log.info("Button String should be : " +  ucbuttontext);
@@ -112,12 +193,12 @@ public class CommonPartnerPurchase implements PartnerPurchaseInterface {
 				}
 			}		
 		}		
-		return VerifyNextStepsText(offer);
+		return verifyNextStepsText(offer);
 	  
 	
 	}
 	
-	public boolean RefreshPPE(WebDriver driver, String baseopcourl) {
+	public boolean refreshPPE(WebDriver driver, String baseopcourl) {
 		log.info("TEST: Reopen on home page displays correct offers");
 		
 		//TODO need to fix needing this - VERY FLAKY
@@ -162,7 +243,7 @@ public class CommonPartnerPurchase implements PartnerPurchaseInterface {
 	    	   
 	}
 	
-	public boolean VerifyOfferText(BasicPartnerOffer offer){
+	public boolean verifyOfferText(BasicPartnerOffer offer){
 		String displayoffer = offer.getUserOffer();
 		log.info("Text to Check is:  " + displayoffer);
 		String title = parser.getOffersTitle();
@@ -194,7 +275,7 @@ public class CommonPartnerPurchase implements PartnerPurchaseInterface {
 		return true;
 	}
 	
-	public boolean VerifyAvailableOffersText(UserEntertainment entpage)  {
+	public boolean verifyAvailableOffersText(UserEntertainment entpage)  {
 		log.info("TEST: Check Available Offers page");
 		String subtext = entpage.getSubscriptionText();
 		log.info("Text to check is: " + subtext);			  			
@@ -203,7 +284,7 @@ public class CommonPartnerPurchase implements PartnerPurchaseInterface {
 		return true;
 	}
 	
-	public boolean VerifyNextStepsText(BasicPartnerOffer offer) {
+	public boolean verifyNextStepsText(BasicPartnerOffer offer) {
 		// check the page actually displayed
 		log.info("TEST: Check on confirm page after accepting offer");
 		String confirmation = offer.getSuccessText();

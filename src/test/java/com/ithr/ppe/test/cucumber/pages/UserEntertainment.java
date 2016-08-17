@@ -1,6 +1,13 @@
 package com.ithr.ppe.test.cucumber.pages;
 
-
+/**
+ * Implements the Page Object Model of the Entertainment page
+ * This page will only provide methods to interact with the page
+ * It will not perform any tests 
+ * It expects exceptions to be handled by the calling method
+ *
+ * @author Marcus Catt (marcus.catt@ithrconsulting.com
+ */
 
 import java.util.Iterator;
 import java.util.List;

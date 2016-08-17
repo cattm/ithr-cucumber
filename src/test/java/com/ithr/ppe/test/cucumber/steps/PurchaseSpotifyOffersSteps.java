@@ -1,5 +1,14 @@
 package com.ithr.ppe.test.cucumber.steps;
 
+/**
+ * Implements the cucumber steps required to Purchase a spotify offer
+ * Expectation is that we may be able to template this in a common model and just extend that model 
+ * This class with catch exceptions and report 
+ * This class will control the execution of the test
+ * This class will capture screens as required
+ * 
+ * @author Marcus Catt (marcus.catt@ithrconsulting.com
+ */
 import org.apache.log4j.Logger;
 import org.junit.Assert;
 import org.openqa.selenium.Dimension;
@@ -44,7 +53,7 @@ public class PurchaseSpotifyOffersSteps extends StepBase {
 	@Before("@spotifypurchase")
 	public void setUp(Scenario scenario) throws Exception {
 		super.setUp(scenario);
-		if (checkAsserts) cpp.SetAssertCheck();
+		if (checkAsserts) cpp.setAssertCheck();
 		log.info("SetUp");
 	}
 	
@@ -59,7 +68,7 @@ public class PurchaseSpotifyOffersSteps extends StepBase {
 	   log.info("Given: I am a " + opco + " customer purchasing spotify");
 	   this.opco = opco.toLowerCase();	   
 	   // set up first check file for standard text
-	   cpp.DefineCheckerToUse(testReferenceDir, this.opco);
+	   cpp.defineCheckerToUse(testReferenceDir, this.opco);
 	}
 
 	@When("^my spotify profile has a ([^\"]*) tariff with a ([^\"]*) usergroup$")
@@ -68,11 +77,9 @@ public class PurchaseSpotifyOffersSteps extends StepBase {
 		this.subscription = mypackage;
 		this.userGroup = usergroup;	
 		
-		try {
-			
-			
-			// get Spotify user - TODO: check if we need to do this here
-			userNameToUse = cpp.GetPartnerUserName(driver, basePartnerHelper, opco);			
+		try {		
+			// get Spotify user - TODO: check if we need to do this here or can do it later 
+			userNameToUse = cpp.getPartnerUserName(driver, basePartnerHelper, opco, Partners.SPOTIFY);			
 			log.info("username is " + userNameToUse);
 			if (userNameToUse.contains("ERROR")) {
 				log.error("spotify helper did not return a valid username");
@@ -115,12 +122,14 @@ public class PurchaseSpotifyOffersSteps extends StepBase {
 			  // There should be available offers for THIS MSISDN -
 			  // if there are no offers this is probably an error
 			  // the manage subscriptions section should be empty "you have no subscriptions..."
-			  cpp.VerifyAvailableOffersText(entpage);
+			  cpp.verifyAvailableOffersText(entpage);
 			  CheckedScenarioScreenshot();		  
 			  log.info("selecting offer");
 			  
-			  if (entpage.checkOfferImagePresent("spotify")) {
-				  entpage.clickOfferImage("spotify");
+			  // TODO: put in check ok
+			  // cpp.validatePrePurchaseOffers(entpage);
+			  
+			  if (cpp.selectPartnerOffer(Partners.SPOTIFY, entpage)) {
 				  
 				  //  on journey to accept offer
 				  BasicPartnerOffer offer = new BasicPartnerOffer(driver);
@@ -133,8 +142,8 @@ public class PurchaseSpotifyOffersSteps extends StepBase {
 					 	 
 					  // can now locate JSON parser reference file
 					  String roughpath = refDir + opco + "/";
-					  cpp.LocateJsonParseFile(roughpath, reffilename);	
-					  cpp.VerifyOfferText(offer);
+					  cpp.locateJsonParseFile(roughpath, reffilename);	
+					  cpp.verifyOfferText(offer);
 					  CheckedScenarioScreenshot();
 				  }
 		  			  
@@ -163,11 +172,11 @@ public class PurchaseSpotifyOffersSteps extends StepBase {
 		else {
 			log.info("And: I Will Accept the Spotify Offer ");
 			try {					
-				boolean offeraccepted = cpp.AcceptTheOffer(driver, opco, Partners.SPOTIFY);		
+				boolean offeraccepted = cpp.acceptTheOffer(driver, opco, Partners.SPOTIFY);		
 				CheckedScenarioScreenshot();
 				if (checkAsserts) ErrorCollector.verifyTrue(offeraccepted,"offer not accepted");
 				String urltouse = baseUserUrl + opco;
-				boolean ppeopen = cpp.RefreshPPE(driver, urltouse);
+				boolean ppeopen = cpp.refreshPPE(driver, urltouse);
 				CheckedScenarioScreenshot();
 				if (checkAsserts) ErrorCollector.verifyTrue(ppeopen, "reopen failed");
 				

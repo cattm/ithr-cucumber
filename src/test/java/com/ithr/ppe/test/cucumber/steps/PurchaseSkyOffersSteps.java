@@ -1,5 +1,15 @@
 package com.ithr.ppe.test.cucumber.steps;
 
+/**
+ * Implements the cucumber steps required to Purchase a sky offer
+ * Expectation is that we may be able to template this in a common model and just extend that model 
+ * This class with catch exceptions and report 
+ * This class will control the execution of the test
+ * This class will capture screens as required
+ * 
+ * @author Marcus Catt (marcus.catt@ithrconsulting.com
+ */
+
 import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
 import org.junit.Assert;
@@ -39,7 +49,7 @@ public class PurchaseSkyOffersSteps extends StepBase {
 	@Before("@skypurchase")
 	public void setUp(Scenario scenario) throws Exception {
 		super.setUp(scenario);
-		if (checkAsserts) cpp.SetAssertCheck();
+		if (checkAsserts) cpp.setAssertCheck();
 		log.info("SetUp");
 	}
 	
@@ -55,7 +65,7 @@ public class PurchaseSkyOffersSteps extends StepBase {
 	   this.opco = opco.toLowerCase();	   
 	   
 	   // set up first check file for standard text   
-	   cpp.DefineCheckerToUse(testReferenceDir, this.opco);
+	   cpp.defineCheckerToUse(testReferenceDir, this.opco);
 	}
 	
 	@When("^my sky profile has a ([^\"]*) tariff with a ([^\"]*) usergroup$")
@@ -104,32 +114,31 @@ public class PurchaseSkyOffersSteps extends StepBase {
 			  // There should be available offers for THIS MSISDN -
 			  // if there are no offers this is probably an error
 			  // the manage subscriptions section should be empty  - NO Subscriptions
-			  cpp.VerifyAvailableOffersText(entpage);
+			  cpp.verifyAvailableOffersText(entpage);
 			  CheckedScenarioScreenshot();
 			  log.info("Selecting sky Offer");
 			  
 			  
 			  // at this point if there is no reference file then we should not try to select offer
 			  // because it probably isnt there and also probably should not be!
-			  // TODO: need a better Click than this - then we can make it a general model
-			  // e.g its its sky.png in uk and skytv.png in de!
-			  // Alos need to consider there just might be multiple offers
-			  if (entpage.checkOfferImagePresent("sky")) {
-				  entpage.clickOfferImage("sky");
-				  
+			  // TODO: Need to consider there just might be multiple offers
+			  // cpp.validatePrePurchaseOffers(entpage);
+			  
+			  if (cpp.selectPartnerOffer(Partners.SKY, entpage)) {
+				    
 				  // same page for all opcos/partners?
 				  BasicPartnerOffer offer = new BasicPartnerOffer(driver);
-				  // TODO A check here?
+				 
 				  offer.bodyLoaded();
 				  offer.setTnC();
-			  				  
+				  
 				  if (refFileValid) {
 					  log.info("TEST: Check Sky Offer");	
 					  
 					  // can now locate JSON parser reference file
 					  String roughpath = refDir + opco + "/";
-					  cpp.LocateJsonParseFile(roughpath, reffilename);					  
-					  cpp.VerifyOfferText(offer);
+					  cpp.locateJsonParseFile(roughpath, reffilename);					  
+					  cpp.verifyOfferText(offer);
 					  CheckedScenarioScreenshot();
 				  }
 			  }
@@ -159,11 +168,11 @@ public class PurchaseSkyOffersSteps extends StepBase {
 		else {
 			log.info("And: I Will Accept the Offer ");
 			try {	
-				boolean offeraccepted = cpp.AcceptTheOffer(driver, opco, Partners.SKY);		
+				boolean offeraccepted = cpp.acceptTheOffer(driver, opco, Partners.SKY);		
 				CheckedScenarioScreenshot();
 				if (checkAsserts) ErrorCollector.verifyTrue(offeraccepted,"offer not accepted");
 				String urltouse = baseUserUrl + opco;
-				boolean ppeopen = cpp.RefreshPPE(driver, urltouse);
+				boolean ppeopen = cpp.refreshPPE(driver, urltouse);
 				CheckedScenarioScreenshot();
 				if (checkAsserts) ErrorCollector.verifyTrue(ppeopen, "reopen failed");
 				  
