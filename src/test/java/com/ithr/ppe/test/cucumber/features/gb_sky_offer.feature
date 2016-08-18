@@ -5,11 +5,11 @@ Feature: GB Purchasing SKY for all Tariffs
   No previous alternate offers are assumed
   Variant behaviour will be verified elsewhere
 
-  Scenario Outline: Purchase GB Offers from sky
-    Given I am a "GB" customer purchasing sky package
-    When my sky profile has a <package> tariff with a <usergroup> usergroup
-    Then my sky offer details will come from <contained in>
-    And I will accept the sky offer
+  Scenario Outline: Purchase GB Offers from SKY
+	Given I am a "GB" customer purchasing the "SKY" offer
+    When my profile has a <package> tariff with a <usergroup> usergroup
+    Then my offer details will come from <contained in>
+    And I will accept and confirm the offer
 
     # TODO: there are several definition files not used in the scenario
     # Check out exact circumstances and add/append them

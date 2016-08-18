@@ -1,19 +1,39 @@
 Feature: GB Test Feature
 
-  @checkspotify
-  Scenario Outline: Purchase GB Offers from spotify
-    Given I am a "GB" customer purchasing spotify
-    When my spotify profile has a <package> tariff with a <usergroup> usergroup
-    Then my spotify offer details will come from <contained in>
-    And I will accept the spotify offer
+@ignore
+Scenario Outline: Purchase GB Offers from NETFLIX
+    Given I am a "GB" customer purchasing the "NETFLIX" offer
+    When my profile has a <package> tariff with a <usergroup> usergroup
+    Then my offer details will come from <contained in>
+    And I will accept and confirm the offer
+  
+    Examples: 
+      | package         | usergroup        | contained in     |      
+      
+         | Not Valid        | No usergroup     | Netflix hardbundle 12 months |
+
+  @checksky
+  Scenario Outline: Purchase GB Offers from sky
+    Given I am a "GB" customer purchasing the "SKY" offer
+    When my profile has a <package> tariff with a <usergroup> usergroup
+    Then my offer details will come from <contained in>
+    And I will accept and confirm the offer
 
     # TODO: there are several definition files not used in the scenario
     # Check out exact circumstances and add/append them
     Examples: 
-       | package          | usergroup        | contained in             |
- #     | PK_4GTariff      | 4gmbbmedium  | Spotify standalone trial |
- #     | PK_4GTariffPromo | 4glarge      | Spotify standalone trial |
- #     | PK_4GTariffPromo | 4gextralarge | Spotify standalone trial |
-      # this is no valid tariff - offer does not appear?
-      | PK_TVTariff      | ugstb        | Spotify standalone trial |
-  #    | Not Valid        | Not Valid    | Spotify standalone trial |
+      | package     | usergroup | contained in   |
+      | PK_4GTariff | 4gsmall   | Sky hardbundle |
+
+  @checknow
+  Scenario Outline: Purchase GB Offers from NOWTV
+    Given I am a "GB" customer purchasing the "NOWTV" offer
+    When my profile has a <package> tariff with a <usergroup> usergroup
+    Then my offer details will come from <contained in>
+    And I will accept and confirm the offer
+  
+    Examples: 
+      | package         | usergroup        | contained in     |
+      | PK_4GTariff     | 4gsmall          | NowTV hardbundle |
+      
+ 

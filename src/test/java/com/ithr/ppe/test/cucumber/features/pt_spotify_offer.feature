@@ -5,11 +5,11 @@ Feature: PT Purchase Spotify for all Tariffs
   No previous alternate offers are assumed
   Variant behaviour will be verified elsewhere
 
-  Scenario Outline: Purchase PT Offers from spotify
-    Given I am a "PT" customer purchasing spotify
-    When my spotify profile has a <package> tariff with a <usergroup> usergroup
-    Then my spotify offer details will come from <contained in>
-    And I will accept the spotify offer
+  Scenario Outline: Purchase PT Offers from SPOTIFY
+	Given I am a "PT" customer purchasing the "SPOTIFY" offer
+    When my profile has a <package> tariff with a <usergroup> usergroup
+    Then my offer details will come from <contained in>
+    And I will accept and confirm the offer
 
     # TODO: there are several definition files not used in the scenario
     # Check out exact circumstances and add/append them
