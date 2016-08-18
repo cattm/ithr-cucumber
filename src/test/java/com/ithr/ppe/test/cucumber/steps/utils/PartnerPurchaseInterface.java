@@ -17,6 +17,8 @@ public interface PartnerPurchaseInterface {
 	
 	public boolean validatePrePurchaseOffers(UserEntertainment entpage);
 	
+	public boolean validatePostPurchaseOffers(UserEntertainment entpage);
+	
 	public boolean selectPartnerOffer(Partners partner, UserEntertainment entpage);
 
 	public boolean acceptTheOffer(WebDriver driver, String opco, Partners partner);

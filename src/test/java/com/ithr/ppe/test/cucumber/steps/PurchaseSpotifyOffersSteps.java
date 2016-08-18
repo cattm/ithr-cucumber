@@ -50,14 +50,14 @@ public class PurchaseSpotifyOffersSteps extends StepBase {
 
 
 	
-	@Before("@checkspotify")
+	@Before("@ignore")
 	public void setUp(Scenario scenario) throws Exception {
 		super.setUp(scenario);
 		if (checkAsserts) cpp.setAssertCheck();
 		log.info("SetUp");
 	}
 	
-	@After("@checkspotify")
+	@After("@ignore")
 	public void tearDown() {
 		log.info("TearDown");
 		super.tearDown();

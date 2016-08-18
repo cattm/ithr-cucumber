@@ -33,7 +33,7 @@ public class SpotifyActivities {
 		
 		switch (opco) {
 		case "de" :
-			// need to click more buttons on registration page
+			// TODO: need to click more buttons on registration page
 			break;
 		default : break;
 		}

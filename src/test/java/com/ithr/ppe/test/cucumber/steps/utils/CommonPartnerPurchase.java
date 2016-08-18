@@ -70,6 +70,7 @@ public class CommonPartnerPurchase implements PartnerPurchaseInterface {
 			partnerUserName = "ithrtest" + rn + "@ithr.com";
 			break;
 		case SKY : // none required
+		case NOWTV :
 		default : 
 			break;
 		}
@@ -77,11 +78,15 @@ public class CommonPartnerPurchase implements PartnerPurchaseInterface {
 		return partnerUserName;
 	}
 	
-	
 	public boolean validatePrePurchaseOffers(UserEntertainment entpage) {
 		// this method will get all the available offers and check they are as expected 
 		// I am not sure how I will implement this yet.
 		// depends on the country, price plan; the tariff; the data pack; and what has already been purchased
+		// TODO: Implement this - for the moment pass it
+		return true;
+	}
+	
+	public boolean validatePostPurchaseOffers(UserEntertainment entpage) {
 		// TODO: Implement this - for the moment pass it
 		return true;
 	}
@@ -94,41 +99,34 @@ public class CommonPartnerPurchase implements PartnerPurchaseInterface {
 		
 		myPartner = partner;
 		boolean found = false;
+		String imagestring = "";
 		switch (myPartner) {
-		case SPOTIFY 	: 
-			found = entpage.checkOfferImagePresent("spotify");
-			if (found)
-				try {
-					entpage.clickOfferImage("spotify");
-				} catch (InterruptedException e) {
-					log.error("got interrupted while clicking on spotify " + e);			
-				}
-			break;
-		case SKY 		: 
-			found = entpage.checkOfferImagePresent("sky");
-			if (found)
-				try {
-					entpage.clickOfferImage("sky");
-				} catch (InterruptedException e) {
-					log.error("got interrupted while clicking on sky " + e);			
-				}
-			break;
 		case NETFLIX    : 
-			found = entpage.checkOfferImagePresent("netflix");
-			if (found)
-				try {
-					entpage.clickOfferImage("netflix");
-				} catch (InterruptedException e) {
-					log.error("got interrupted while clicking on netflix " + e);				
-				}
+			imagestring = "netflix";
 			break;
+		case NOWTV		:
+			imagestring = "nowtv";
+			break;
+		case SPOTIFY 	: 
+			imagestring = "spotify";
+			break;		
+		case SKY 		: 
+			imagestring = "sky";
+			break;		
+		
 		default : 
 			break;
-		}				
+		}	
+		found = entpage.checkOfferImagePresent(imagestring);
+		if (found)
+		try {
+				entpage.clickOfferImage(imagestring);
+		} catch (InterruptedException e) {
+				log.error("got interrupted while clicking on " + imagestring + " " + e);
+		}
 		return found;
 	}
-	
-	
+		
 	public boolean acceptTheOffer(WebDriver driver, String opco, Partners partner)  {
 		if (myPartner == null) {
 			myPartner = partner;
@@ -150,12 +148,24 @@ public class CommonPartnerPurchase implements PartnerPurchaseInterface {
 		// At this point we need to know if the action involves a partner interaction or not
 		boolean registered = true;
 		switch (myPartner) {
-		case SPOTIFY :	try {
+		case SPOTIFY :	
+			try {
 				registered = SpotifyActivities.RegisterForSpotify(driver, opco, partnerUserName);
 			} catch (Exception e) {
 				log.error("Register for Spotify failed " + e);
 			}
-						break;
+			break;
+			
+		case NETFLIX :
+			NetflixActivities pa = new NetflixActivities();
+			registered = pa.register(driver, opco, partnerUserName);
+			// at this point we need to return because there is nothing else to check for netflix
+			// there is no synch return
+			// TODO: tidy this properly - this is not acceptable except to prove the logic
+			// return registered;
+			break;
+			
+			
 		default : break;
 		}
 		if (registered) {
@@ -187,9 +197,8 @@ public class CommonPartnerPurchase implements PartnerPurchaseInterface {
 				}
 			}		
 		}		
-		return verifyNextStepsText(offer);
-	  
-	
+		
+		return verifyNextStepsText(offer);	
 	}
 	
 	public boolean refreshPPE(WebDriver driver, String baseopcourl) {
@@ -224,13 +233,11 @@ public class CommonPartnerPurchase implements PartnerPurchaseInterface {
 			log.error("Interrupted while getting the subscriptiontext " + e);
 		}
 		
-		log.info("Text to Check is: " + textfound);
-		
+		log.info("Text to Check is: " + textfound);		
 		switch (myPartner) {
 		case SPOTIFY :	return checker.checkSpotifySubscibedText(textfound);
 		case SKY : return checker.checkSkySubscibedText(textfound);
-		default : return checker.checkSkySubscibedText(textfound);
-	
+		default : return checker.checkSkySubscibedText(textfound);	
 		}
 	    	   
 	}

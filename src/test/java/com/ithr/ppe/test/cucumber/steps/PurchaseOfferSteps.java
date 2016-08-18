@@ -1,4 +1,12 @@
 package com.ithr.ppe.test.cucumber.steps;
+/**
+ * Implements the cucumber steps required to Purchase a Partner Offer
+ * This class with catch exceptions and report 
+ * This class will control the execution of the test
+ * This class will capture screens as required
+ * 
+ * @author Marcus Catt (marcus.catt@ithrconsulting.com
+ */
 
 import org.apache.log4j.Logger;
 import org.junit.Assert;
@@ -21,14 +29,7 @@ import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 
-/**
- * Implements the cucumber steps required to Purchase a Partner Offer
- * This class with catch exceptions and report 
- * This class will control the execution of the test
- * This class will capture screens as required
- * 
- * @author Marcus Catt (marcus.catt@ithrconsulting.com
- */
+
 public class PurchaseOfferSteps extends StepBase {
 	public static Logger log = Logger.getLogger(PurchaseOfferSteps.class);
 	
@@ -43,14 +44,14 @@ public class PurchaseOfferSteps extends StepBase {
 
 	
 	
-	@Before("@ignore")
+	@Before("@nowtvpurchase, @skypurchase, @spotifypurchase")
 	public void setUp(Scenario scenario) throws Exception {
 		super.setUp(scenario);
 		if (checkAsserts) cpp.setAssertCheck();
 		log.info("SetUp");
 	}
 	
-	@After("@ignore")
+	@After("@nowtvpurchase, @skypurchase, @spotifypurchase")
 	public void tearDown() {
 		log.info("TearDown");
 		super.tearDown();
@@ -61,7 +62,7 @@ public class PurchaseOfferSteps extends StepBase {
 	   log.info("Given: I am a " + opco + " customer purchasing " + partner + " offer");
 	   
 	   // convert string to enum;
-	   this.myPartner = Partners.valueOf(partner);
+	   this.myPartner = Partners.valueOf(partner.toUpperCase());
 	   
 	   this.opco = opco.toLowerCase();	   
 	   // set up first check file for standard text
@@ -138,7 +139,7 @@ public class PurchaseOfferSteps extends StepBase {
 				  offer.setTnC();			  
 				  
 				  if (refFileValid) {
-					  log.info("TEST: Check BLAHBLAH Offer");
+					  log.info("TEST: Check Partner Offer");
 					 	 
 					  // can now locate JSON parser reference file
 					  String roughpath = refDir + opco + "/";
@@ -163,7 +164,7 @@ public class PurchaseOfferSteps extends StepBase {
 	}
 
 
-	@And("^I will purchase and confirm offer$")
+	@And("^I will accept and confirm the offer$")
 	public void AcceptPartnerOffer() throws Exception {		
 		if (!refFileValid) {
 			log.info("And: I Will NOT Accept the Offer ");
