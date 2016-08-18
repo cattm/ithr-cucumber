@@ -11,7 +11,7 @@ import cucumber.api.junit.Cucumber;
 				  "pretty"},
 		features = {"src/test/java/com/ithr/ppe/test/cucumber/features"},
 		tags = {"@skypurchase, @spotifypurchase", "~@ignore"},
-//				tags = {"@checksky, @checkspotify"},
+//				tags = {"@checkspotify"},
 		glue = {"com.ithr.ppe.test.cucumber.steps"}
 		)
 public class CucumberRunner {

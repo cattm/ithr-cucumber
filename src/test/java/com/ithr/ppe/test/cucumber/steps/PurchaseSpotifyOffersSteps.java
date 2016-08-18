@@ -50,14 +50,14 @@ public class PurchaseSpotifyOffersSteps extends StepBase {
 
 
 	
-	@Before("@spotifypurchase")
+	@Before("@checkspotify")
 	public void setUp(Scenario scenario) throws Exception {
 		super.setUp(scenario);
 		if (checkAsserts) cpp.setAssertCheck();
 		log.info("SetUp");
 	}
 	
-	@After("@spotifypurchase")
+	@After("@checkspotify")
 	public void tearDown() {
 		log.info("TearDown");
 		super.tearDown();
@@ -104,7 +104,7 @@ public class PurchaseSpotifyOffersSteps extends StepBase {
 	}
 	@Then("^my spotify offer details will come from ([^\"]*)$")
 	public void OfferContainsStringsFrom(String reffilename) throws Exception {
-		log.info("Then: my offer will come from " + reffilename + "file");
+		log.info("Then: my offer will come from " + reffilename + " file");
 		
 		if (!reffilename.contains("Not Valid")) {
 			refFileValid = true;
@@ -152,7 +152,7 @@ public class PurchaseSpotifyOffersSteps extends StepBase {
 				  log.error("NO VALID OFFER  Visible");
 				  // TODO: check this out what is the correct behavior
 				  // this may be correct behavior for some combinations
-				  Assert.fail("No Valid Offer - Aborting Test");
+				  Assert.fail("No Valid Offer Visible - Aborting Test");
 			  }
 		} catch (Exception e){
 			log.info("caught Exception: " + e);

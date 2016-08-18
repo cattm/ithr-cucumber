@@ -53,31 +53,32 @@ public class CommandExecutor {
 	public static int testCmnd() {
 		String mycommand = "ls -l";
 		String outcome = execCmd(mycommand, false);
-		log.info("command returned : " + outcome);
+		log.debug("command returned : " + outcome);
 		return 0;
 	}
 	public static int execCurlSpotifyTerminate (String param) {
 		String mycommand = "curl -i -dusername=" + param + " https://vodafone-it:ee2Q1kqsdVXpfpH27q5@ws-sales-testing.spotify.com/3/product/terminate";
 		String outcome = execCmd(mycommand, true);
-		log.info("command returned : " + outcome);
+		log.debug("command returned : " + outcome);
 		return 0;
 	}
 	
 	public static String execCurlSoftwareVersion (String envurl) {
 		String mycommand = "curl " + envurl + "version";
 		String outcome = execCmd(mycommand, false);
-		log.info("command returned : " + outcome);
+		log.debug("command returned : " + outcome);
 		return outcome;
 	}
 	
 	public static String execFindExactJsonFile(String path, String compare) {
-		String jsonfile = "";
+		String jsonfile = "NOT FOUND";
 		String mycommand = "ls -rt " + path;
 		String outcome = execCmd(mycommand,false);
         String[] arr = outcome.split("\n");
         
         // TODO: there might be more than one so we need to find the highest version
         // TODO: to be safe we also need to check rather than assume its a json
+        // also we might not find it
         for (String s : arr ) {
         	if (s.contains(compare)) {
         		log.info("Found a valid file : " + s);

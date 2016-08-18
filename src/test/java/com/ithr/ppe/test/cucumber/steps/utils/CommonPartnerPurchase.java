@@ -25,7 +25,7 @@ public class CommonPartnerPurchase implements PartnerPurchaseInterface {
 	private static boolean checkAsserts = false;
 	private static JsonParser parser = null;
 	private static opcoTextChecker checker = null;
-	private static String partnerUserName = null;
+	private static String partnerUserName = "none valid";
 	private static Partners myPartner = null;
 	
 	
@@ -34,6 +34,7 @@ public class CommonPartnerPurchase implements PartnerPurchaseInterface {
 	}
 	
 	public void locateJsonParseFile (String path, String filename) {
+		log.info("going to search for :" + path + " and file " + filename);
 		String fileToCheck = CommandExecutor.execFindExactJsonFile(path, filename + " v");
 		log.info("going to use json file: " + fileToCheck);
 		parser = new JsonParser(path + fileToCheck);
@@ -43,11 +44,13 @@ public class CommonPartnerPurchase implements PartnerPurchaseInterface {
 		try {
 			checker = new opcoTextChecker(file, opco);
 		} catch (IOException e) {
-			log.error("Issue creating opcoTextchecker");
-			e.printStackTrace();
+			log.error("Issue creating opcoTextchecker " + e);
 		}
 	}
 	
+	/* This method will attempt get a partner username if required
+	 * 
+	 */
 	public String getPartnerUserName(WebDriver driver, String adminurl, String opco, Partners partner) {
 		
 		switch (partner) {
@@ -57,7 +60,6 @@ public class CommonPartnerPurchase implements PartnerPurchaseInterface {
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				log.error("Cannot get Spotify user name");
-				e.printStackTrace();
 				partnerUserName = "ERROR";
 			}
 			break;
@@ -67,7 +69,7 @@ public class CommonPartnerPurchase implements PartnerPurchaseInterface {
 			String rn = myds.getRanDateFormat();
 			partnerUserName = "ithrtest" + rn + "@ithr.com";
 			break;
-		case SKY : 
+		case SKY : // none required
 		default : 
 			break;
 		}
@@ -99,9 +101,7 @@ public class CommonPartnerPurchase implements PartnerPurchaseInterface {
 				try {
 					entpage.clickOfferImage("spotify");
 				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
-					log.error("got interrupted while clicking on spotify");
-					e.printStackTrace();
+					log.error("got interrupted while clicking on spotify " + e);			
 				}
 			break;
 		case SKY 		: 
@@ -110,9 +110,7 @@ public class CommonPartnerPurchase implements PartnerPurchaseInterface {
 				try {
 					entpage.clickOfferImage("sky");
 				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
-					log.error("got interrupted while clicking on sky");
-					e.printStackTrace();
+					log.error("got interrupted while clicking on sky " + e);			
 				}
 			break;
 		case NETFLIX    : 
@@ -121,15 +119,12 @@ public class CommonPartnerPurchase implements PartnerPurchaseInterface {
 				try {
 					entpage.clickOfferImage("netflix");
 				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
-					log.error("got interrupted while clicking on netflix");
-					e.printStackTrace();
+					log.error("got interrupted while clicking on netflix " + e);				
 				}
 			break;
 		default : 
 			break;
-		}
-				
+		}				
 		return found;
 	}
 	
@@ -158,7 +153,7 @@ public class CommonPartnerPurchase implements PartnerPurchaseInterface {
 		case SPOTIFY :	try {
 				registered = SpotifyActivities.RegisterForSpotify(driver, opco, partnerUserName);
 			} catch (Exception e) {
-				e.printStackTrace();
+				log.error("Register for Spotify failed " + e);
 			}
 						break;
 		default : break;
@@ -175,7 +170,6 @@ public class CommonPartnerPurchase implements PartnerPurchaseInterface {
 				} catch (InterruptedException e) {
 					// TODO Auto-generated catch block
 					log.error("sleep interrupted");
-					e.printStackTrace();
 				}
 				
 				String notice = offer.getSuccessText();		
@@ -206,8 +200,8 @@ public class CommonPartnerPurchase implements PartnerPurchaseInterface {
 			Thread.sleep(5000);
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
-			log.error("This Code needs removing Anyway");
-			e.printStackTrace();
+			log.error("This Code needs removing Anyway " + e);
+			
 		}
 		driver.get(baseopcourl);
 		
@@ -216,8 +210,7 @@ public class CommonPartnerPurchase implements PartnerPurchaseInterface {
 			entpage.bodyLoaded();
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
-			log.error("Timed out on loading the UserEntertainment page");
-			e.printStackTrace();
+			log.error("Timed out on loading the UserEntertainment page " + e);
 		}
 					
 		// TODO: doesnt check position. Loops around to wait for image - its a bit slow sometimes ?
@@ -228,8 +221,7 @@ public class CommonPartnerPurchase implements PartnerPurchaseInterface {
 			}
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
-			log.error("Interrupted while getting the subscriptiontext");
-			e.printStackTrace();
+			log.error("Interrupted while getting the subscriptiontext " + e);
 		}
 		
 		log.info("Text to Check is: " + textfound);
