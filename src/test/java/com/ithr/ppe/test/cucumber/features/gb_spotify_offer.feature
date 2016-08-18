@@ -24,9 +24,11 @@ Feature: GB Purchase Spotify for all Tariffs
       | PK_4GTariff      | 4gextralarge     | Spotify hardbundle       |
       | PK_4GTariffSIMO  | 4gsimoextralarge | Spotify hardbundle       |
       | PK_4GTariff      | 4gmbbsmall       | Spotify standalone trial |
-      | PK_4GTariff      | 4gmbbmedium      | Spotify standalone trail |
+      | PK_4GTariff      | 4gmbbmedium      | Spotify standalone trial |
       | PK_4GTariff      | 4gmbblarge       | Spotify standalone trial |
-      | PK_4gTariffPromo | 4glarge          | Spotify standalone trial |
-      | PK_4gTariffPromo | 4gextralarge     | Spotify standalone trial |
-      | PK_TVTariff      | ugstb            | Spotify standalone trial |
-      | Not valid        | Not Valid        | Spotify standalone trial |
+      | PK_4GTariffPromo | 4glarge          | Spotify standalone trial |
+      | PK_4GTariffPromo | 4gextralarge     | Spotify standalone trial |
+      # This one may be invalid need to verify
+      #    | PK_TVTariff      | ugstb            | Spotify standalone trial |
+      | Not Valid        | No usergroup     | Spotify standalone trial |
+      | Not Valid        | Not Valid        | Spotify standalone trial |

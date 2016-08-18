@@ -27,5 +27,5 @@ Feature: ES Purchase Spotify for all Tariffs
 # check in price plan      
 #      | PK_TVTariff         | tvtotal       | Spotify hardbundle 3 months trial             |
 #      | PK_TVTarriff         | hboreseller   | Spotify hardbundle 3 months trial             |
-      | Not Valid           | Not Valid     | Spotify standalone trial             |
+      | Not Valid           | No usergroup     | Spotify standalone trial             |
 

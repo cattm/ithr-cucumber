@@ -24,7 +24,7 @@ Feature: GB Purchasing SKY for all Tariffs
       | PK_4GTariff      | 4gmbbsmall       | Sky standalone |
       | PK_4GTariffPromo | 4glarge          | Sky hardbundle |
       | PK_4GTariffPromo | 4gextralarge     | Sky hardbundle |
-      | Not Valid        | Not Valid        | Sky standalone |
+      | Not Valid        | No usergroup     | Sky standalone |
       | PK_4GTariffSIMO  | 4gsimosmall      | Sky hardbundle |
       | PK_4GTariffSIMO  | 4gsimolarge      | Sky hardbundle |
       | PK_4GTariffSIMO  | 4gsimomedium     | Sky hardbundle |
