@@ -1,6 +1,6 @@
 Feature: GB Test Feature
 
-@ignore
+@checknet
 Scenario Outline: Purchase GB Offers from NETFLIX
     Given I am a "GB" customer purchasing the "NETFLIX" offer
     When my profile has a <package> tariff with a <usergroup> usergroup
@@ -12,7 +12,7 @@ Scenario Outline: Purchase GB Offers from NETFLIX
       
          | Not Valid        | No usergroup     | Netflix hardbundle 12 months |
 
-  @checksky
+  @checknow
   Scenario Outline: Purchase GB Offers from sky
     Given I am a "GB" customer purchasing the "SKY" offer
     When my profile has a <package> tariff with a <usergroup> usergroup
