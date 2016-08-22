@@ -57,7 +57,7 @@ public class PurchaseSpotifyTrial extends StepBase{
 		// this is a Background step activity
 		driver.get(baseAdminUrl);
 		shortMsisdn = AdminActivities.msisdnFromAdmin(driver, opco, subscription, userGroup);		
-		userNameToUse = SpotifyActivities.getSpotifyUser(driver, basePartnerHelper, opco);
+		userNameToUse = SpotifyActivities.getUser(driver, basePartnerHelper, opco);
 		String url = baseUserUrl + opco;
 		log.info ("msisdn is: " + shortMsisdn + " username is: " + userNameToUse);
 		IdentityActivities.loginToPPE (driver, shortMsisdn , pinCode, url);
@@ -80,7 +80,7 @@ public class PurchaseSpotifyTrial extends StepBase{
 			spotifyoffer.setTnC();
 			spotifyoffer.clickAcceptOffer();				
 			// if this is true we are ok we have registered on spotify
-			if (SpotifyActivities.RegisterForSpotify(driver, opco, userNameToUse)) {
+			if (SpotifyActivities.register(driver, opco, userNameToUse)) {
 				boolean done = false;
 				// TODO: test code to tidy up and add a check  
 				for (int i = 0; i < 6 && !done; i++) {
@@ -143,9 +143,9 @@ public class PurchaseSpotifyTrial extends StepBase{
 		log.info("have deleted Spotify User");
 		// we could do this with curl or within a browser
 		// lets check status and then delete 
-		String response = SpotifyActivities.getSpotifyUserStatus(driver, basePartnerHelper, opco, userNameToUse);
+		String response = SpotifyActivities.getUserStatus(driver, basePartnerHelper, opco, userNameToUse);
 		log.info(response);
-		response = SpotifyActivities.terminateSpotifyUser(driver, basePartnerHelper, opco, userNameToUse);
+		response = SpotifyActivities.terminateUser(driver, basePartnerHelper, opco, userNameToUse);
 		log.info(response);
 		//  TODO: check order is something like -- acquiredOrderIds" : [ "Vodafone_67327944-ee97-4ff9-a297-3706981565a2" ]
 	}
@@ -183,7 +183,7 @@ public class PurchaseSpotifyTrial extends StepBase{
 			spotifyoffer.clickAcceptOffer();		
 			
 			// use old spotify username to login
-			if (SpotifyActivities.LoginToSpotify(driver, opco, userNameToUse)) {
+			if (SpotifyActivities.login(driver, opco, userNameToUse)) {
 				boolean done = false;
 				// TODO: test code to tidy up and add a check  
 				for (int i = 0; i < 6 && !done; i++) {

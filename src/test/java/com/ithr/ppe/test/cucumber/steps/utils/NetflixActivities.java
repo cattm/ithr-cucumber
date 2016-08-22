@@ -14,17 +14,35 @@ public class NetflixActivities implements PartnerInterface{
 
 	public boolean register(WebDriver driver, String opco, String usernametouse) {
 		
+		log.info("Going to hit continue");
 		NetflixOffer offer = new NetflixOffer(driver);
+		try {
+			offer.bodyLoaded();
+		} catch (InterruptedException e) {
+			log.error("Interrupted exception while loading offer page" + e);
+		}
 		offer.clickSubmit();
 		
-		
+		// TODO we have a timing issue here it works some times......
+		// checkthe page loaded before we hit stuff
+		log.info("Going to do username/password");
 		NetflixLoginOrRegister logorreg = new NetflixLoginOrRegister(driver);
+		try {
+			logorreg.bodyLoaded();
+		} catch (InterruptedException e) {
+			log.error("Interrupted exception while loading login or register page" + e);
+		}
 		logorreg.setEmail(usernametouse);
 		logorreg.setPassword("password");
 		logorreg.clickContinue();
 		
-		
+		log.info("Going to check success page for netflix");
 		NetflixSuccess netsuccess = new NetflixSuccess(driver);
+		try {
+			netsuccess.bodyLoaded();
+		} catch (InterruptedException e) {
+			log.error("Interrupted exception while loading success page" + e);
+		}
 		
 		// TODO: this will be opco dependant
 		if (netsuccess.getNetflixSuccess().contentEquals("Your Netflix membership, which begins with a free trial, has begun.")) {

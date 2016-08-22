@@ -44,14 +44,14 @@ public class PurchaseOfferSteps extends StepBase {
 
 	
 	
-	@Before("@nowtvpurchase, @skypurchase, @spotifypurchase")
+	@Before("@checknet")
 	public void setUp(Scenario scenario) throws Exception {
 		super.setUp(scenario);
 		if (checkAsserts) cpp.setAssertCheck();
 		log.info("SetUp");
 	}
 	
-	@After("@nowtvpurchase, @skypurchase, @spotifypurchase")
+	@After("@checknet")
 	public void tearDown() {
 		log.info("TearDown");
 		super.tearDown();

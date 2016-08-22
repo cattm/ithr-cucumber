@@ -56,7 +56,7 @@ public class CommonPartnerPurchase implements PartnerPurchaseInterface {
 		switch (partner) {
 		case SPOTIFY :
 			try {
-				partnerUserName = SpotifyActivities.getSpotifyUser (driver, adminurl, opco);
+				partnerUserName = SpotifyActivities.getUser (driver, adminurl, opco);
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				log.error("Cannot get Spotify user name");
@@ -150,7 +150,7 @@ public class CommonPartnerPurchase implements PartnerPurchaseInterface {
 		switch (myPartner) {
 		case SPOTIFY :	
 			try {
-				registered = SpotifyActivities.RegisterForSpotify(driver, opco, partnerUserName);
+				registered = SpotifyActivities.register(driver, opco, partnerUserName);
 			} catch (Exception e) {
 				log.error("Register for Spotify failed " + e);
 			}
@@ -162,8 +162,9 @@ public class CommonPartnerPurchase implements PartnerPurchaseInterface {
 			// at this point we need to return because there is nothing else to check for netflix
 			// there is no synch return
 			// TODO: tidy this properly - this is not acceptable except to prove the logic
-			// return registered;
-			break;
+			log.info("TEMP HACK code to exit netflix register facility");
+			return registered;
+			//break;
 			
 			
 		default : break;
