@@ -56,8 +56,9 @@ public class PurchaseSpotifyTrial extends StepBase{
 		// Very little checking here - assume it works otherwise its not worth it
 		// this is a Background step activity
 		driver.get(baseAdminUrl);
-		shortMsisdn = AdminActivities.msisdnFromAdmin(driver, opco, subscription, userGroup);		
-		userNameToUse = SpotifyActivities.getUser(driver, basePartnerHelper, opco);
+		shortMsisdn = AdminActivities.msisdnFromAdmin(driver, opco, subscription, userGroup);	
+		SpotifyActivities spot = new SpotifyActivities();
+		userNameToUse = spot.getUser(driver, basePartnerHelper, opco);
 		String url = baseUserUrl + opco;
 		log.info ("msisdn is: " + shortMsisdn + " username is: " + userNameToUse);
 		IdentityActivities.loginToPPE (driver, shortMsisdn , pinCode, url);
@@ -80,7 +81,7 @@ public class PurchaseSpotifyTrial extends StepBase{
 			spotifyoffer.setTnC();
 			spotifyoffer.clickAcceptOffer();				
 			// if this is true we are ok we have registered on spotify
-			if (SpotifyActivities.register(driver, opco, userNameToUse)) {
+			if (spot.register(driver, opco, userNameToUse)) {
 				boolean done = false;
 				// TODO: test code to tidy up and add a check  
 				for (int i = 0; i < 6 && !done; i++) {
@@ -143,9 +144,10 @@ public class PurchaseSpotifyTrial extends StepBase{
 		log.info("have deleted Spotify User");
 		// we could do this with curl or within a browser
 		// lets check status and then delete 
-		String response = SpotifyActivities.getUserStatus(driver, basePartnerHelper, opco, userNameToUse);
+		SpotifyActivities spot = new SpotifyActivities();
+		String response = spot.getUserStatus(driver, basePartnerHelper, opco, userNameToUse);
 		log.info(response);
-		response = SpotifyActivities.terminateUser(driver, basePartnerHelper, opco, userNameToUse);
+		response = spot.terminateUser(driver, basePartnerHelper, opco, userNameToUse);
 		log.info(response);
 		//  TODO: check order is something like -- acquiredOrderIds" : [ "Vodafone_67327944-ee97-4ff9-a297-3706981565a2" ]
 	}
@@ -183,7 +185,8 @@ public class PurchaseSpotifyTrial extends StepBase{
 			spotifyoffer.clickAcceptOffer();		
 			
 			// use old spotify username to login
-			if (SpotifyActivities.login(driver, opco, userNameToUse)) {
+			SpotifyActivities spot = new SpotifyActivities();
+			if (spot.login(driver, opco, userNameToUse)) {
 				boolean done = false;
 				// TODO: test code to tidy up and add a check  
 				for (int i = 0; i < 6 && !done; i++) {
