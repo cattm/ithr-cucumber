@@ -202,7 +202,7 @@ public class StepBase {
     	  	
     	testReferenceDir = System.getProperty("test.testrefdir", TestProperties.TEST_REFDIR);
     	refDir = testReferenceDir + "offers/";	
-    	log.info("set up location of JSON files - " + testReferenceDir);
+    	log.info("set up location of property files - " + testReferenceDir);
     	
     	log.info("Checking usage of DIT or DIT2");
     	ditEnv = System.getProperty("test.environment", "DIT");
