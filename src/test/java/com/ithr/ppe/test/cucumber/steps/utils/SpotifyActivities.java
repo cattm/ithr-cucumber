@@ -11,13 +11,13 @@ import com.ithr.ppe.test.cucumber.pages.partners.SpotifyRegistration;
 import com.ithr.ppe.test.cucumber.pages.partners.SpotifySuccess;
 import com.ithr.ppe.test.cucumber.steps.PurchaseSpotifyOffersSteps;
 
-public class SpotifyActivities {
+public class SpotifyActivities implements PartnerInterface {
 	public static Logger log = Logger.getLogger(SpotifyActivities.class);
 	
 	
 		
 	
-	public static boolean register(WebDriver driver, String opco, String usernametouse)   {
+	public boolean register(WebDriver driver, String opco, String usernametouse)   {
 
 		// Spotify choose to register
 		SpotifyLoginOrRegister logorreg = new SpotifyLoginOrRegister(driver);
@@ -67,7 +67,7 @@ public class SpotifyActivities {
 	}
 	
 
-	public static boolean login (WebDriver driver, String opco, String usernametouse) {
+	public boolean login (WebDriver driver, String opco, String usernametouse) {
 		
 		// Spotify choose to Login
 		SpotifyLoginOrRegister logorreg = new SpotifyLoginOrRegister(driver);
@@ -101,7 +101,7 @@ public class SpotifyActivities {
 	}
 	
 	
-	public static String terminateUser(WebDriver driver, String baseurl, String opco, String username) {
+	public String terminateUser(WebDriver driver, String baseurl, String opco, String username) {
 		String urlString = baseurl + "?username=" + username + "&opco=" + opco + "&action=terminate";
 		log.info(urlString);
 		driver.get(urlString);
@@ -110,7 +110,7 @@ public class SpotifyActivities {
 		return spotpage.getPage();
 	}
 	
-	public static String getUserStatus(WebDriver driver, String baseurl, String opco, String username) {
+	public String getUserStatus(WebDriver driver, String baseurl, String opco, String username) {
 		String urlString = baseurl + "?username=" + username + "&opco=" + opco;
 		log.info(urlString);
 		driver.get(urlString);
@@ -119,7 +119,7 @@ public class SpotifyActivities {
 	}
 	
 	
-	public static String getUser (WebDriver driver, String baseurl, String opco)  {
+	public String getUser (WebDriver driver, String baseurl, String opco)  {
 		DateStamp myds = new DateStamp();
 		String rn = myds.getRanDateFormat();
 		String urlString = baseurl + "?username=ithrtest" +  rn + "&opco=" + opco;
