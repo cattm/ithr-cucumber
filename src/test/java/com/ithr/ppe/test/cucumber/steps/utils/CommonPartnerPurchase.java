@@ -83,11 +83,13 @@ public class CommonPartnerPurchase implements PartnerPurchaseInterface {
 		// I am not sure how I will implement this yet.
 		// depends on the country, price plan; the tariff; the data pack; and what has already been purchased
 		// TODO: Implement this - for the moment pass it
+		log.info("NOT IMPLMENTED");
 		return true;
 	}
 	
 	public boolean validatePostPurchaseOffers(UserEntertainment entpage) {
 		// TODO: Implement this - for the moment pass it
+		log.info("NOT IMPLMENTED");
 		return true;
 	}
 	
@@ -235,6 +237,9 @@ public class CommonPartnerPurchase implements PartnerPurchaseInterface {
 			// TODO Auto-generated catch block
 			log.error("Interrupted while getting the subscriptiontext " + e);
 		}
+		
+		// TODO: implement a better check
+		validatePostPurchaseOffers(entpage);
 		
 		log.info("Text to Check is: " + textfound);		
 		switch (myPartner) {
