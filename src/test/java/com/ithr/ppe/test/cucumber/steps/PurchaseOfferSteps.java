@@ -129,7 +129,7 @@ public class PurchaseOfferSteps extends StepBase {
 			  log.info("selecting offer");
 			  
 			  // TODO: put in check ok
-			  // cpp.validatePrePurchaseOffers(entpage);
+			  cpp.validatePrePurchaseOffers(entpage);
 			  
 			  if (cpp.selectPartnerOffer(myPartner, entpage)) {
 				  
@@ -179,6 +179,7 @@ public class PurchaseOfferSteps extends StepBase {
 				// now go back to PPE and refresh and check
 				String urltouse = baseUserUrl + opco;			
 				boolean ppeopen = cpp.refreshPPE(driver, urltouse);
+				
 				CheckedScenarioScreenshot();
 				if (checkAsserts) ErrorCollector.verifyTrue(ppeopen, "reopen failed");
 				
