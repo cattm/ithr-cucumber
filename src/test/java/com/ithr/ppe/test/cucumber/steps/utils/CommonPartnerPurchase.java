@@ -56,9 +56,9 @@ public class CommonPartnerPurchase implements PartnerPurchaseInterface {
 		switch (partner) {
 		case SPOTIFY :
 			try {
-				partnerUserName = SpotifyActivities.getUser (driver, adminurl, opco);
+				SpotifyActivities spot = new SpotifyActivities();
+				partnerUserName = spot.getUser (driver, adminurl, opco);
 			} catch (Exception e) {
-				// TODO Auto-generated catch block
 				log.error("Cannot get Spotify user name");
 				partnerUserName = "ERROR";
 			}
@@ -147,10 +147,12 @@ public class CommonPartnerPurchase implements PartnerPurchaseInterface {
 		
 		// At this point we need to know if the action involves a partner interaction or not
 		boolean registered = true;
+		boolean checkreturnpage = true;
 		switch (myPartner) {
 		case SPOTIFY :	
 			try {
-				registered = SpotifyActivities.register(driver, opco, partnerUserName);
+				SpotifyActivities spot = new SpotifyActivities();
+				registered = spot.register(driver, opco, partnerUserName);
 			} catch (Exception e) {
 				log.error("Register for Spotify failed " + e);
 			}
@@ -160,16 +162,14 @@ public class CommonPartnerPurchase implements PartnerPurchaseInterface {
 			NetflixActivities pa = new NetflixActivities();
 			registered = pa.register(driver, opco, partnerUserName);
 			// at this point we need to return because there is nothing else to check for netflix
-			// there is no synch return
-			// TODO: tidy this properly - this is not acceptable except to prove the logic
-			log.info("TEMP HACK code to exit netflix register facility");
-			return registered;
-			//break;
+			checkreturnpage = false;
+			break;
 			
 			
 		default : break;
 		}
-		if (registered) {
+		
+		if (checkreturnpage && registered) {
 			
 			//TODO: need to add a NICE confirmation text check that the purchase has completed and then it is safe to check all the text and reopen ppe
 			boolean done = false;
@@ -197,9 +197,11 @@ public class CommonPartnerPurchase implements PartnerPurchaseInterface {
 					log.info("Waiting for purchase notification.....");
 				}
 			}		
-		}		
+			// check the page
+			return verifyNextStepsText(offer);
+		}	else return registered;
 		
-		return verifyNextStepsText(offer);	
+			
 	}
 	
 	public boolean refreshPPE(WebDriver driver, String baseopcourl) {

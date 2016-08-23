@@ -15,16 +15,27 @@ public class NetflixActivities implements PartnerInterface{
 	public boolean register(WebDriver driver, String opco, String usernametouse) {
 		
 		log.info("Going to hit continue");
+		try {
+			Thread.sleep(5000);
+		} catch (InterruptedException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 		NetflixOffer offer = new NetflixOffer(driver);
 		try {
 			offer.bodyLoaded();
 		} catch (InterruptedException e) {
 			log.error("Interrupted exception while loading offer page" + e);
 		}
+		try {
+			offer.bodyLoaded();
+		} catch (InterruptedException e) {
+			log.error("Interrupted exception while loading netflix offers page" + e);
+		}
 		offer.clickSubmit();
 		
 		// TODO we have a timing issue here it works some times......
-		// checkthe page loaded before we hit stuff
+		// check the page loaded before we hit stuff
 		log.info("Going to do username/password");
 		NetflixLoginOrRegister logorreg = new NetflixLoginOrRegister(driver);
 		try {
