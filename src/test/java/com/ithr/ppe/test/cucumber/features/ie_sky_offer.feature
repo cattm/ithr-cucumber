@@ -6,7 +6,7 @@ Feature: IE Purchasing SKY for all Tariffs
   Variant behaviour will be verified elsewhere
 
   Scenario Outline: Purchase IE Offers from SKY
-	Given I am a "IE" customer purchasing the "SKY" offer
+    Given I am a "IE" customer purchasing the "SKY" offer
     When my profile has a <package> tariff with a <usergroup> usergroup
     Then my offer details will come from <contained in>
     And I will accept and confirm the offer
@@ -18,6 +18,7 @@ Feature: IE Purchasing SKY for all Tariffs
       | package        | usergroup | contained in   |
       #    | No parent subscription | roverprempayg | Not Valid              |
       #    | No parent subscription | roverpayg     | Not Valid              |
+      # Might get 2 offers TV PK 1 and TV PK 2 - not sure which if either is valid
       #    | No parent subscription | roverpaym     | Not Valid              |
       #    | Not Valid              | Not Valid     | Sky standalone trial             |
       | PK_ROVERTariff | rover     | Sky hardbundle |
