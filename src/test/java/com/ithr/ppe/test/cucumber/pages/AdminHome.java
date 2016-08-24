@@ -66,7 +66,11 @@ public class AdminHome extends PageBase{
 		  }
 		  
 		  Select dropdown = new Select(parentSubscriptionSelect);
-		  dropdown.selectByValue(subscription);
+		  if (subscription.equals("No parent subscription")) {
+			  dropdown.selectByValue("-1");
+		  } else {
+			  dropdown.selectByValue(subscription);
+		  }
 	  }
 	  
 	  public void setUserGroup (String usergroup) {

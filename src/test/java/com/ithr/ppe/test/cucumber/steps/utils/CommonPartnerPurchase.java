@@ -172,7 +172,7 @@ public class CommonPartnerPurchase implements PartnerPurchaseInterface {
 		}
 		
 		if (checkreturnpage && registered) {
-			
+			log.info("going into delay loop: registered and checking return page ");
 			//TODO: need to add a NICE confirmation text check that the purchase has completed and then it is safe to check all the text and reopen ppe
 			boolean done = false;
 			// max wait here is 20 * SLOW - which is a long time on a slow environment
@@ -186,13 +186,12 @@ public class CommonPartnerPurchase implements PartnerPurchaseInterface {
 				}
 				
 				String notice = offer.getSuccessText();		
-				log.info(notice);
+				log.info("current success text is : " + notice);
 				
 				// TODO: Not at all sure this check is SAFE
-				// if no longer completing the purchase it is ok to move on
-				// ES use a different key - offerDetails.activeLabel.offer
-				// works for GB, IE, IT, PT
-				if (!checker.checkProcessMsg(notice)) {
+				// tested with getProcessMsg for GB, IE, IT, PT
+				// tested with checkCompleteMsg for GB and ES - works
+				if (checker.checkCompleteMsg(notice)) {
 						log.info("purchase process complete");
 						done = true;
 				} else {
@@ -242,12 +241,19 @@ public class CommonPartnerPurchase implements PartnerPurchaseInterface {
 		validatePostPurchaseOffers(entpage);
 		
 		log.info("Text to Check is: " + textfound);		
+		boolean ok = false;
 		switch (myPartner) {
-		case SPOTIFY :	return checker.checkSpotifySubscibedText(textfound);
-		case SKY : return checker.checkSkySubscibedText(textfound);
-		default : return checker.checkSkySubscibedText(textfound);	
+		case SPOTIFY :	ok =  checker.checkSpotifySubscibedText(textfound);
+					break;
+		case SKY : ok = checker.checkSkySubscibedText(textfound);
+					break;
+		case NOWTV : ok = checker.checkNowTVSubscribedText(textfound);
+					break;
+		case NETFLIX : ok = checker.checkNetflixSubscribedText(textfound);
+					break;
+		default : break;	
 		}
-	    	   
+	    return ok;	   
 	}
 	
 	public boolean verifyOfferText(BasicPartnerOffer offer){
@@ -257,7 +263,9 @@ public class CommonPartnerPurchase implements PartnerPurchaseInterface {
 		log.info("Reference Text is: " + title);
 		String textstripped = parser.stripHTML(title);
 		log.info("Reference Text Stripped is: " + textstripped);
-		if (checkAsserts) ErrorCollector.verifyTrue(displayoffer.equals(textstripped), "The offer title is incorrect");
+		boolean ok = displayoffer.equals(textstripped);
+		if (!ok) log.error("Verify Will Fail");
+		if (checkAsserts) ErrorCollector.verifyTrue(ok, "The offer title is incorrect");
 
 	
 		// check the text bullets from text
@@ -268,17 +276,22 @@ public class CommonPartnerPurchase implements PartnerPurchaseInterface {
 		log.info("Reference Text is: " + text);
 		textstripped = parser.stripHTML(text);
 		log.info("Reference Text Stripped is: " + textstripped);
-		if (checkAsserts) ErrorCollector.verifyTrue(crstripped.equals(textstripped),"The offer detail is incorrect");
+		ok = crstripped.equals(textstripped);
+		if (!ok) log.error("Verify Will Fail");
+		if (checkAsserts) ErrorCollector.verifyTrue(ok,"The offer detail is incorrect");
 
 	  
 		// check T&C label from label
 		String offertnc = offer.getOfferTnC();
-		log.info("Text to Check is:  " + offertnc);
+		String offertncstripped = StringUtils.replace(offertnc, "\n", " ");
+		log.info("Text to Check is:  " + offertncstripped);
 		String tnc = parser.getOffersTnCText();
 		log.info("Reference T & C is: " + tnc);
 		String tncstripped = parser.stripHTML(tnc);
 		log.info("Reference T & C Stripped is: " + tncstripped);
-		if (checkAsserts) ErrorCollector.verifyTrue(offertnc.equals(tncstripped), "The T & C text is incorrect");
+		ok = offertncstripped.equals(tncstripped);
+		if (!ok) log.error("Verify Will Fail");
+		if (checkAsserts) ErrorCollector.verifyTrue(ok, "The T & C text is incorrect");
 		return true;
 	}
 	
@@ -287,7 +300,8 @@ public class CommonPartnerPurchase implements PartnerPurchaseInterface {
 		String subtext = entpage.getSubscriptionText();
 		log.info("Text to check is: " + subtext);			  			
 		boolean ok = checker.checkSubscriptionText(subtext);
-		if (checkAsserts) ErrorCollector.verifyTrue(ok);
+		if (!ok) log.error("Verify Will Fail");
+		if (checkAsserts) ErrorCollector.verifyTrue(ok, "Subscription text is not correct");
 		return true;
 	}
 	
@@ -299,6 +313,7 @@ public class CommonPartnerPurchase implements PartnerPurchaseInterface {
 					
 		// get a reference to the property value text
 		boolean ok = checker.checkConfirmText(confirmation);
+		if (!ok) log.error("Verify Will Fail");
 		if (checkAsserts) ErrorCollector.verifyTrue(ok, "Confirmation text is incorrect");
 				  
 		log.info("TEST: Check Success text");
@@ -310,7 +325,9 @@ public class CommonPartnerPurchase implements PartnerPurchaseInterface {
 		checkhappens = parser.stripHTML(checkhappens);
 		log.info("happens next Reference is: " + checkhappens);
 		// Assert check the text and this will do for now
-		if (checkAsserts) ErrorCollector.verifyTrue(myhappens.equals(checkhappens),"What happens next text is incorrect");
+		ok = myhappens.equals(checkhappens);
+		if (!ok) log.error("Verify Will Fail");
+		if (checkAsserts) ErrorCollector.verifyTrue(ok,"What happens next text is incorrect");
 
 		return true;
 	}

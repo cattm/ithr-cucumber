@@ -54,7 +54,7 @@ public class SpotifyActivities implements PartnerInterface {
 		
 		// TODO: this text may change dependent upon country - so its not a good check
 		// This needs correction
-		// example ES - 
+		// example ES - Something do Spotify
 		if (true) {
 		//if (spotsuccess.getHello().contentEquals("hello world")) {
 			spotsuccess.hitOk();

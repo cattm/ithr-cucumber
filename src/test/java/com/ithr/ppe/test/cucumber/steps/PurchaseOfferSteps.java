@@ -174,6 +174,7 @@ public class PurchaseOfferSteps extends StepBase {
 			try {					
 				boolean offeraccepted = cpp.acceptTheOffer(driver, opco, myPartner);		
 				CheckedScenarioScreenshot();
+				if (!offeraccepted) log.error("Verify Will Fail");
 				if (checkAsserts) ErrorCollector.verifyTrue(offeraccepted,"offer not accepted");
 				
 				// now go back to PPE and refresh and check
@@ -181,6 +182,7 @@ public class PurchaseOfferSteps extends StepBase {
 				boolean ppeopen = cpp.refreshPPE(driver, urltouse);
 				
 				CheckedScenarioScreenshot();
+				if (!ppeopen) log.error("Verify Will Fail");
 				if (checkAsserts) ErrorCollector.verifyTrue(ppeopen, "reopen failed");
 				
 			}catch(Exception e){

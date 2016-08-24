@@ -63,8 +63,14 @@ public class opcoTextChecker {
 		return onpage.equals(tocompare);
 	}
 
+	public boolean checkCompleteMsg(String onpage) {
+		String tocompare = GetProperty(offset + "success.notificationMsg.offer");
+		log.info("Reference Text is:        " + tocompare);
+		return onpage.equals(tocompare);
+	}
+	
 	public boolean checkSkySubscibedText(String onpage) {
-		// TODO: this is probably the wrong string to check - and it should not be hardcoded
+		// TODO: this is Almost the wrong string to check - and it should not be hardcoded
 		String destr1 = "partneroffers.landing-hard.heading.skytv";
 		String gbstr1 = "partneroffers.landing-hard.confirmation.heading.sky";
 		String tocompare = "";
@@ -83,13 +89,16 @@ public class opcoTextChecker {
 	}
 	
 	public boolean checkSpotifySubscibedText(String onpage) {
-		// TODO: this is probably the wrong string to check - and it should not be hardcoded
+		// TODO: this is Almost certainly the wrong string to check - and it should not be hardcoded
+		String esstr1 = "TODO: ";
 		String destr1 = "partneroffers.landing-hard.heading.spotify";
-		String gbstr1 = "partneroffers.landing-hard.confirmation.heading.spotify";
+		String gbstr1 = "partneroffers.29f6b87a-e124-4026-a4e9-ae7b5bd1e223.home.heading";
 		String itstr1 = "partneroffers.landing-hard.heading.spotify";
 		String tocompare = "";
 		
 		switch (opco) {
+				case "es" : tocompare=GetProperty(esstr1);
+							break;
 				case "gb" :	tocompare=GetProperty(gbstr1);
 							break;
 				case "de" : tocompare=GetProperty(destr1);
@@ -104,4 +113,47 @@ public class opcoTextChecker {
 		return onpage.equals(tocompare);
 	}
 
+	public boolean checkNowTVSubscribedText(String onpage) {
+		//TODO: find another way
+		String gbstr1 = "partneroffers.landing-hard.confirmation.heading.nowtv ";
+		String tocompare = "";
+		switch (opco) {
+
+		case "gb" :	tocompare=GetProperty(gbstr1);
+					break;
+	
+		default: break;
+		}
+		log.info("Reference Text is:        " + tocompare);
+		return onpage.equals(tocompare);
+	}
+	
+	public boolean checkNetflixSubscribedText(String onpage) {
+		//TODO: find another way
+		String gbstr1 = "partneroffers.bdbb8003-24be-474a-b440-06c176f1764f.home.heading";
+		
+		String tocompare = "";
+		switch (opco) {
+
+		case "gb" :	tocompare=GetProperty(gbstr1);
+					break;
+	
+		default: break;
+		}
+		log.info("Reference Text is:        " + tocompare);
+		return onpage.equals(tocompare);
+	}
+	
+	/*
+	 * Examples :
+	 * 
+partneroffers.13106694-63f9-4b5d-8b70-1ba879ebadab.home.heading=Sky Sports Mobile TV
+partneroffers.29f6b87a-e124-4026-a4e9-ae7b5bd1e223.home.heading=Spotify Premium
+partneroffers.2dc23b84-9179-4f56-8b00-9f0ba58fc7b1.home.heading=Sky Sports Mobile TV
+partneroffers.930139c0-0011-41ad-8c93-d1031f3a0078.home.heading=NOW TV Entertainment
+partneroffers.bdbb8003-24be-474a-b440-06c176f1764f.home.heading=Netflix
+partneroffers.d7f251ca-da2e-45a8-9088-1b7fa9e547eb.home.heading=Sky Sports Mobile TV
+partneroffers.e3471bbb-7a7b-4b03-a1ea-16b0fb394255.home.heading=Spotify Premium
+	 *
+	 */
 }
