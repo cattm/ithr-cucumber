@@ -1,5 +1,5 @@
 @nowtvpurchase
-Feature: GB Purchasing NOW for all Tariffs
+Feature: GB Purchasing NOWTV for all Tariffs
   This feature will take each package/usergroup combination and attempt to obtain the correct NowTV package.
   It will check all displayed text conforms to the expected json definition
   No previous alternate offers are assumed
