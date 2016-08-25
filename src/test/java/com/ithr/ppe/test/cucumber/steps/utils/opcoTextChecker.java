@@ -90,7 +90,7 @@ public class opcoTextChecker {
 	
 	public boolean checkSpotifySubscibedText(String onpage) {
 		// TODO: this is Almost certainly the wrong string to check - and it should not be hardcoded
-		String esstr1 = "TODO: ";
+		String esstr1 = "partneroffers.landing-hard.heading.spotify";
 		String destr1 = "partneroffers.landing-hard.heading.spotify";
 		String gbstr1 = "partneroffers.29f6b87a-e124-4026-a4e9-ae7b5bd1e223.home.heading";
 		String itstr1 = "partneroffers.landing-hard.heading.spotify";
