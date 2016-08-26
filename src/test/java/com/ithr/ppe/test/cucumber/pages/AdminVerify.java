@@ -15,8 +15,18 @@ public class AdminVerify extends PageBase {
   "opco" : "it",
   "usergroup" : "4guser",
   "individualCreated" : true
+} *
+or 
+  "msisdn" : "399715018441",
+  "opco" : "it",
+  "usergroup" : "4guser",
+  "individualCreated" : false,
+  "partner" : "dropbox",
+  "dropboxUid" : "597844980"
 }
  */
+	
+
 	
 	public static Logger log = Logger.getLogger(AdminVerify.class);
 
@@ -42,5 +52,33 @@ public class AdminVerify extends PageBase {
 			 outcome = myobject.getBoolean("individualCreated");		 			 
 		 }
 		 return outcome.booleanValue();
+	 }
+	 
+	 // Added for dropbox
+	 public boolean isDropBoxIndividualCreated(String uid) {
+		 
+		 Boolean created = false;
+		 String partner = "dropbox";
+		 
+		 String tmp = jsonToParse.getText();
+		 JSONObject myobject = new JSONObject(tmp);
+		
+		 if (tmp.contains("error")) {
+			 // it did not work - TODO: put in a more appropriate solution
+			 log.error(tmp);
+			 created = false;
+		 } else {
+			 created = myobject.getBoolean("individualCreated");		 			 
+		 }
+		 
+	     if (created) {
+	    	 if (partner.equals(myobject.getString("partner"))) {
+	    		 if (uid.equals(myobject.getString("dropboxUid"))) {
+	    			 log.info("dropbox UID user created ");
+	    			 return true;
+	    		 }
+	    	 }
+	     }		 
+		 return false;
 	 }
 }

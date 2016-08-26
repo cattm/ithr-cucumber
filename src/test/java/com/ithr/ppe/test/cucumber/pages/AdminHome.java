@@ -33,6 +33,15 @@ public class AdminHome extends PageBase{
 	  @FindBy(css="input[ng-model='noUsergroup']")
 	  private WebElement noUserGroup;
 	  
+	  @FindBy(css=".checkbox>label input[ng-model='dropbox']")
+	  private WebElement withDropbox;
+	  
+	  @FindBy(css=".checkbox>label input[ng-model='randomDropboxUid']")
+	  private WebElement randomUID;
+	  
+	  @FindBy(css="input[ng-model='dropboxUid']")
+	  private WebElement UIDText;
+	  
 	  private String opco;
 	  
 	  public AdminHome (WebDriver driver) {
@@ -85,6 +94,19 @@ public class AdminHome extends PageBase{
 	  
 	  public void setNoUserGroup() {
 		  noUserGroup.click();
+	  }
+	  
+	  public void setWithDropbox() {
+		  withDropbox.click();
+	  }
+	  
+	  public void clearWithRandonID() {
+		  randomUID.click();
+	  }
+	  
+	  public void setDropboxUID(String uid) {
+		  UIDText.clear();
+		  UIDText.sendKeys(uid);
 	  }
 	  
 	  public String getSubscriptionCheckUrl() {
