@@ -8,15 +8,22 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
 import com.ithr.ppe.test.base.StepBase;
+import com.ithr.ppe.test.commons.Partners;
 import com.ithr.ppe.test.cucumber.pages.UserMSISDNEntry;
 import com.ithr.ppe.test.cucumber.pages.UserSMSChallenge;
 
 public class IdentityActivities {
 	public static Logger log = Logger.getLogger(IdentityActivities.class);
 	
-	public static void loginToPPE (WebDriver driver, String msisdn , String pin, String url) throws InterruptedException  {
+	public static void loginToPPE (WebDriver driver, String opco, Partners partner, String msisdn , String pin, String url) throws InterruptedException  {
 		
-		driver.get(url);
+		String myurl = url + opco;		
+		//append if dropbox
+		if (partner == Partners.DROPBOX) {
+			myurl = myurl + "?partner=dropbox";
+		}
+		
+		driver.get(myurl);
 		log.info("LoginToPPE -");
 		
 		// Entry page - AAA MSISDN and PIN challenge

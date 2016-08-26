@@ -8,7 +8,7 @@ import com.ithr.ppe.test.cucumber.pages.partners.NetflixOffer;
 import com.ithr.ppe.test.cucumber.pages.partners.NetflixSuccess;
 
 
-public class NetflixActivities implements PartnerInterface{
+public class NetflixActivities implements ExternalPartnerInterface{
 	
 	public static Logger log = Logger.getLogger(NetflixActivities.class);
 

@@ -11,7 +11,7 @@ import com.ithr.ppe.test.cucumber.pages.partners.SpotifyRegistration;
 import com.ithr.ppe.test.cucumber.pages.partners.SpotifySuccess;
 import com.ithr.ppe.test.cucumber.steps.PurchaseSpotifyOffersSteps;
 
-public class SpotifyActivities implements PartnerInterface {
+public class SpotifyActivities implements ExternalPartnerInterface {
 	public static Logger log = Logger.getLogger(SpotifyActivities.class);
 	
 	

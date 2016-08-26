@@ -14,13 +14,15 @@ import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 
+import com.ithr.ppe.test.commons.Partners;
 import com.ithr.ppe.test.cucumber.pages.AdminHome;
 import com.ithr.ppe.test.cucumber.pages.AdminVerify;
 
 public class AdminActivities {
 	public static Logger log = Logger.getLogger(AdminActivities.class);
+	private final static String DBUID = "597844980";
 	
-	private static String msisdnFromAdminWithCreate(WebDriver driver, String opco, String subscription, String usergroup) {
+	private static String msisdnFromAdminWithCreate(WebDriver driver, String opco, String subscription, String usergroup, Partners partner) {
 		// open admin page and setup subscription in ER
 		AdminHome adminhome = new AdminHome(driver);
 		adminhome.setOpco(opco);
@@ -37,31 +39,26 @@ public class AdminActivities {
 			log.info("Setting No User Group flag");
 			adminhome.setNoUserGroup();
 		}
-			
+		
+		// perform any additional setup based on partner
+		switch (partner) {
+			case DROPBOX : adminSetupDropbox(adminhome);
+					 break;
+			default: break;
+		}
+		
 		String msisdn = adminhome.getShortMSISDN();
 		log.info("MSISDN is : " + msisdn);
-		
-		 
-		
-		// TODO: Put a Proper test here and if there is a proble then we need to advise - so test can exit or otherwise
+			
+		// TODO: Put a Proper test here and if there is a problem then we need to advise - so test can exit or otherwise
 		String checkurl = adminhome.getSubscriptionCheckUrl();	
-		
-		// TODO: 16/08/2016 - Remove this temporary fix when the "0" has been removed 
-		// this makes it work with UK - since Ion has foobarred the admin tool for the moment
-		// msisdn=xx0yyyy etc
-		// need to substitute - just do for uk for now
-		// also need to fix msisdn returned
-		//String tmp = StringUtils.replace(checkurl, "msisdn=440", "msisdn=449");
+	
+		// call the url to create user
 		driver.get(checkurl);
-		//msisdn = msisdn.replaceFirst("^0*", "9");
-		// End of temporary fix
-		
+			
 		// check/test goes here
+		userCreatedOk(driver, partner);
 		
-		AdminVerify verify = new AdminVerify(driver);
-		if (verify.isIndividualCreated()) {
-			log.info(" Admin Created This: " + msisdn);
-		}
 		return msisdn;
 	}
 	
@@ -73,6 +70,27 @@ public class AdminActivities {
 		String msisdn = adminhome.getShortMSISDN();
 		log.info(" No Create MSISDN is : " + msisdn);		
 		return msisdn;
+	}
+	
+	private static void adminSetupDropbox(AdminHome adminhome)  {
+		adminhome.setWithDropbox();
+		adminhome.clearWithRandonID();
+		adminhome.setDropboxUID(DBUID);	
+	}
+	
+	private static boolean userCreatedOk(WebDriver driver, Partners partner) {
+		AdminVerify verify = new AdminVerify(driver);
+		
+		if (partner == Partners.DROPBOX) {
+			if (verify.isDropBoxIndividualCreated(DBUID)) {
+				return true;
+			}
+		} else  {
+			if (verify.isIndividualCreated()) {
+				return true;
+			}
+		}
+		return false;
 	}
 	
 	private static String msisdnFromAdminWithPost(WebDriver driver, String opco, String subscription, String usergroup) {
@@ -100,7 +118,7 @@ public class AdminActivities {
 		
 		//TODO - need to post this url not GET
 		//driver.get(checkurl);
-		log.error("METHOD NOT PROPERLY implemented yet");
+		log.error("METHOD NOT PROPERLY IMPLEMENTED YET");
 		
 		AdminVerify verify = new AdminVerify(driver);
 		if (verify.isIndividualCreated()) {
@@ -109,14 +127,14 @@ public class AdminActivities {
 		return msisdn;
 	}
 	
-	public static String msisdnFromAdmin(WebDriver driver, String opco, String subscription, String usergroup) {
+	public static String msisdnFromAdmin(WebDriver driver, String opco, String subscription, String usergroup, Partners partner) {
 		// check for special not valid
 		// TODO: take out the case of the string
 		log.info("sub is " + subscription + " user is " + usergroup);
 		if  (subscription.contains("Not Valid") && usergroup.contains("Not Valid")) {
 			return msisdnFromAdminNoCreate(driver, opco);
 		} else {
-			return msisdnFromAdminWithCreate(driver, opco, subscription, usergroup);
+			return msisdnFromAdminWithCreate(driver, opco, subscription, usergroup, partner);
 		}
 	}
 }

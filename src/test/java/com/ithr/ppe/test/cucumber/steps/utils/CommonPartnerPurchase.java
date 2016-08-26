@@ -70,6 +70,7 @@ public class CommonPartnerPurchase implements PartnerPurchaseInterface {
 			partnerUserName = "ithrtest" + rn + "@ithr.com";
 			break;
 		case SKY : // none required
+		case DROPBOX :
 		case NOWTV :
 		default : 
 			break;
@@ -103,6 +104,9 @@ public class CommonPartnerPurchase implements PartnerPurchaseInterface {
 		boolean found = false;
 		String imagestring = "";
 		switch (myPartner) {
+		case DROPBOX    :
+			//dropbox is a special case we dont have to do anything - its naughty but just return as a test of the logic
+			return true;
 		case NETFLIX    : 
 			imagestring = "netflix";
 			break;
@@ -129,6 +133,35 @@ public class CommonPartnerPurchase implements PartnerPurchaseInterface {
 		return found;
 	}
 		
+	
+	private boolean WaitforPurchaseToComplete (BasicPartnerOffer offer) {
+		boolean done = false;
+		// max wait here is 20 * SLOW - which is a long time on a slow environment
+		for (int i = 0; i < 20 && !done; i++) {
+			// do the sleep first - to give it a chance
+			try {
+				Thread.sleep(PageBase.SLOW);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				log.error("sleep interrupted");
+			}
+			
+			String notice = offer.getSuccessText();		
+			log.info("current success text is : " + notice);
+			
+			// TODO: Not at all sure this check is SAFE
+			// tested with getProcessMsg for GB, IE, IT, PT
+			// tested with checkCompleteMsg for GB and ES - works
+			if (checker.checkCompleteMsg(notice)) {
+					log.info("purchase process complete");
+					done = true;
+			} else {
+				log.info("Waiting for purchase notification.....");
+			}
+		}
+		return done;	
+	}	
+	
 	public boolean acceptTheOffer(WebDriver driver, String opco, Partners partner)  {
 		if (myPartner == null) {
 			myPartner = partner;
@@ -151,6 +184,12 @@ public class CommonPartnerPurchase implements PartnerPurchaseInterface {
 		boolean registered = true;
 		boolean checkreturnpage = true;
 		switch (myPartner) {
+		case DROPBOX :
+			// we finish at a download page I think
+			VFDropboxActivities dropbox = new VFDropboxActivities();
+			registered = dropbox.PurchaseOffer(driver, opco);
+			checkreturnpage = false;
+			break;
 		case SPOTIFY :	
 			try {
 				SpotifyActivities spot = new SpotifyActivities();
@@ -166,38 +205,15 @@ public class CommonPartnerPurchase implements PartnerPurchaseInterface {
 			// at this point we need to return because there is nothing else to check for netflix
 			checkreturnpage = false;
 			break;
-			
-			
+						
 		default : break;
 		}
 		
 		if (checkreturnpage && registered) {
 			log.info("going into delay loop: registered and checking return page ");
 			//TODO: need to add a NICE confirmation text check that the purchase has completed and then it is safe to check all the text and reopen ppe
-			boolean done = false;
-			// max wait here is 20 * SLOW - which is a long time on a slow environment
-			for (int i = 0; i < 20 && !done; i++) {
-				// do the sleep first - to give it a chance
-				try {
-					Thread.sleep(PageBase.SLOW);
-				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
-					log.error("sleep interrupted");
-				}
+			WaitforPurchaseToComplete ( offer);
 				
-				String notice = offer.getSuccessText();		
-				log.info("current success text is : " + notice);
-				
-				// TODO: Not at all sure this check is SAFE
-				// tested with getProcessMsg for GB, IE, IT, PT
-				// tested with checkCompleteMsg for GB and ES - works
-				if (checker.checkCompleteMsg(notice)) {
-						log.info("purchase process complete");
-						done = true;
-				} else {
-					log.info("Waiting for purchase notification.....");
-				}
-			}		
 			// check the page
 			return verifyNextStepsText(offer);
 		}	else return registered;
@@ -205,19 +221,15 @@ public class CommonPartnerPurchase implements PartnerPurchaseInterface {
 			
 	}
 	
-	public boolean refreshPPE(WebDriver driver, String baseopcourl) {
-		log.info("TEST: Reopen on home page displays correct offers");
-		
-		//TODO need to fix needing this - VERY FLAKY
-		try {
-			Thread.sleep(5000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			log.error("This Code needs removing Anyway " + e);
-			
-		}
-		driver.get(baseopcourl);
-		
+	
+	private boolean refreshPPEDropBox(WebDriver driver, String url) {
+		driver.get(url + "?partner=dropbox");
+		log.info("TODO: DOING PPE REFRESH -- no check yet");
+		return true;
+	}
+	
+	private boolean refreshPPEPartner(WebDriver driver, String url) {
+		driver.get(url);
 		UserEntertainment entpage = new UserEntertainment(driver);
 		try {
 			entpage.bodyLoaded();
@@ -243,7 +255,7 @@ public class CommonPartnerPurchase implements PartnerPurchaseInterface {
 		log.info("Text to Check is: " + textfound);		
 		boolean ok = false;
 		switch (myPartner) {
-		case SPOTIFY :	ok =  checker.checkSpotifySubscibedText(textfound);
+		case SPOTIFY :	ok = checker.checkSpotifySubscibedText(textfound);
 					break;
 		case SKY : ok = checker.checkSkySubscibedText(textfound);
 					break;
@@ -254,6 +266,24 @@ public class CommonPartnerPurchase implements PartnerPurchaseInterface {
 		default : break;	
 		}
 	    return ok;	   
+		
+	}
+	
+	public boolean refreshPPE(WebDriver driver, String baseopcourl) {
+		log.info("TEST: Reopen on home page displays correct offers");
+		
+		//TODO need to fix needing this - VERY FLAKY
+		try {
+			Thread.sleep(PageBase.SLOW * 2);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			log.error("This Code needs removing Anyway " + e);
+			
+		}		
+		switch (myPartner) {
+			case DROPBOX :	return refreshPPEDropBox(driver, baseopcourl);
+			default : return refreshPPEPartner(driver, baseopcourl);
+		}				
 	}
 	
 	public boolean verifyOfferText(BasicPartnerOffer offer){
