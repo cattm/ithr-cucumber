@@ -77,9 +77,8 @@ public class PurchaseSkyOffersSteps extends StepBase {
 		try {	
 			// set up msisdn	
 			driver.get(baseAdminUrl);
-			shortMsisdn = AdminActivities.msisdnFromAdmin(driver, opco, subscription, userGroup);	
-			String url = baseUserUrl + opco;
-			IdentityActivities.loginToPPE (driver, shortMsisdn , pinCode, url);
+			shortMsisdn = AdminActivities.msisdnFromAdmin(driver, opco, subscription, userGroup, Partners.SKY);	
+			IdentityActivities.loginToPPE (driver, opco, Partners.SKY, shortMsisdn , pinCode, baseUserUrl);
 		
 		} catch(Exception e) {
 			log.info("caught Exception: " + e);

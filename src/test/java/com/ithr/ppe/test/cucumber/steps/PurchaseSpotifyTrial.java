@@ -14,6 +14,7 @@ import org.apache.log4j.Logger;
 import org.openqa.selenium.Dimension;
 
 import com.ithr.ppe.test.base.StepBase;
+import com.ithr.ppe.test.commons.Partners;
 import com.ithr.ppe.test.cucumber.pages.PageBase;
 import com.ithr.ppe.test.cucumber.pages.UserEntertainment;
 import com.ithr.ppe.test.cucumber.pages.UserSpotifyOffer;
@@ -56,12 +57,12 @@ public class PurchaseSpotifyTrial extends StepBase{
 		// Very little checking here - assume it works otherwise its not worth it
 		// this is a Background step activity
 		driver.get(baseAdminUrl);
-		shortMsisdn = AdminActivities.msisdnFromAdmin(driver, opco, subscription, userGroup);	
+		shortMsisdn = AdminActivities.msisdnFromAdmin(driver, opco, subscription, userGroup, Partners.SPOTIFY);	
 		SpotifyActivities spot = new SpotifyActivities();
 		userNameToUse = spot.getUser(driver, basePartnerHelper, opco);
 		String url = baseUserUrl + opco;
 		log.info ("msisdn is: " + shortMsisdn + " username is: " + userNameToUse);
-		IdentityActivities.loginToPPE (driver, shortMsisdn , pinCode, url);
+		IdentityActivities.loginToPPE (driver, opco, Partners.SPOTIFY, shortMsisdn , pinCode, baseUserUrl);
 			
 		driver.manage().window().setSize(new Dimension(600, 600));	
 		// TODO: these MUST BE REMOVED
@@ -160,9 +161,9 @@ public class PurchaseSpotifyTrial extends StepBase{
 		getNewDriver();
 		
 		driver.get(baseAdminUrl);;
-		shortMsisdn = AdminActivities.msisdnFromAdmin(driver, opco, subscription, userGroup);	
-		String url = baseUserUrl + opco;
-		IdentityActivities.loginToPPE (driver, shortMsisdn , pinCode, url);
+		shortMsisdn = AdminActivities.msisdnFromAdmin(driver, opco, subscription, userGroup, Partners.SPOTIFY);	
+	
+		IdentityActivities.loginToPPE (driver, opco, Partners.SPOTIFY, shortMsisdn , pinCode, baseUserUrl);
 		
 		driver.manage().window().setSize(new Dimension(600, 600));	
 		// TODO: these MUST BE REMOVED

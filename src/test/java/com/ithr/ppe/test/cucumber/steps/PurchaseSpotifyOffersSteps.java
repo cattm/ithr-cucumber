@@ -88,11 +88,10 @@ public class PurchaseSpotifyOffersSteps extends StepBase {
 			
 			// set up msisdn
 			driver.get(baseAdminUrl);
-			shortMsisdn = AdminActivities.msisdnFromAdmin(driver, opco, subscription, userGroup);
+			shortMsisdn = AdminActivities.msisdnFromAdmin(driver, opco, subscription, userGroup, Partners.SPOTIFY);
 			
 			// handle the AA aspect
-			String url = baseUserUrl + opco;
-			IdentityActivities.loginToPPE (driver, shortMsisdn , pinCode, url);
+			IdentityActivities.loginToPPE (driver, opco, Partners.SPOTIFY, shortMsisdn , pinCode, baseUserUrl);
 			
 		} catch (Exception e){
 			log.info("caught Exception: " + e);

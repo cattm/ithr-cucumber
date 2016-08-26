@@ -64,7 +64,8 @@ public class PurchaseOfferSteps extends StepBase {
 	   // convert string to enum;
 	   this.myPartner = Partners.valueOf(partner.toUpperCase());
 	   
-	   this.opco = opco.toLowerCase();	   
+	   this.opco = opco.toLowerCase();	
+	   log.info("opco set to " + this.opco);
 	   // set up first check file for standard text
 	   cpp.defineCheckerToUse(testReferenceDir, this.opco);
 	}
@@ -87,11 +88,10 @@ public class PurchaseOfferSteps extends StepBase {
 			// Need an MSISDN to log in
 			// we may have set this up in ER or not - handled in AdminActivities based on params
 			driver.get(baseAdminUrl);
-			shortMsisdn = AdminActivities.msisdnFromAdmin(driver, opco, subscription, userGroup);
+			shortMsisdn = AdminActivities.msisdnFromAdmin(driver, opco, subscription, userGroup, myPartner);
 			
 			// handle the AA aspect
-			String url = baseUserUrl + opco;
-			IdentityActivities.loginToPPE (driver, shortMsisdn , pinCode, url);
+			IdentityActivities.loginToPPE (driver, opco, myPartner, shortMsisdn , pinCode, baseUserUrl);
 			
 		} catch (Exception e){
 			log.error("caught Exception: " + e);
@@ -102,10 +102,71 @@ public class PurchaseOfferSteps extends StepBase {
 		
 	}
 	
+	private boolean checkAndSelectExternal(String reffilename) throws InterruptedException {
+		// Entertainment page - offer page directly or click on image icon to get text
+		UserEntertainment entpage = new UserEntertainment(driver);
+		entpage.bodyLoaded();
+		 		  
+		// There should be available offers for THIS MSISDN -
+		// if there are no offers this is probably an error
+		// the manage subscriptions section should be empty "you have no subscriptions..."
+		cpp.verifyAvailableOffersText(entpage);
+		CheckedScenarioScreenshot();	
+		  
+		log.info("selecting offer");
+		  
+		// TODO: put in check ok
+		cpp.validatePrePurchaseOffers(entpage);
+		  
+		if (cpp.selectPartnerOffer(myPartner, entpage)) {
+			  
+			//  on journey to accept offer
+			BasicPartnerOffer offer = new BasicPartnerOffer(driver);
+			offer.bodyLoaded();
+			offer.setTnC();			  
+			  
+			if (refFileValid) {
+				log.info("TEST: Check Partner Offer");
+				 	 
+				// can now locate JSON parser reference file
+				String roughpath = refDir + opco + "/";
+				cpp.locateJsonParseFile(roughpath, reffilename);	
+				cpp.verifyOfferText(offer);
+			}
+			CheckedScenarioScreenshot();
+		}
+		else {
+			  log.error("NO VALID OFFER  Visible");
+			  // TODO: check this out what is the correct behavior
+			  // this may be correct behavior for some combinations
+			  Assert.fail("No Valid Offer - Aborting Test");
+		}
+		
+		return true;
+	}
+	
+	private boolean checkAndSelectInternal(String reffilename) throws InterruptedException {
+	//  page looks different to standard model - no mini icons to select....
+		BasicPartnerOffer offer = new BasicPartnerOffer(driver);
+		offer.bodyLoaded();
+		offer.setTnC();			  
+				  
+		if (refFileValid) {
+			log.info("TEST: Check Partner Offer");
+					 	 
+			// can now locate JSON parser reference file
+			String roughpath = refDir + opco + "/";
+			cpp.locateJsonParseFile(roughpath, reffilename);	
+			cpp.verifyOfferText(offer);
+		}
+		CheckedScenarioScreenshot();
+		return true;
+	}
+	
 	
 	@Then("^my offer details will come from ([^\"]*)$")
-	public void OfferContainsStringsFrom(String reffilename) throws Exception {
-		log.info("Then: my offer will come from " + reffilename + "file");
+	public void OfferContainsStringsFrom(String reffilename)  {
+		log.info("Then: my offer will come from " + reffilename + " file");
 		
 		if (!reffilename.contains("Not Valid")) {
 			refFileValid = true;
@@ -114,47 +175,15 @@ public class PurchaseOfferSteps extends StepBase {
 		
 		try {
 			// might be a short wait here....while new page loads...
-			  driver.manage().window().setSize(new Dimension(600, 600));		
-			  
-			  // Entertainment page - offer page directly or click on image icon to get text
-			  UserEntertainment entpage = new UserEntertainment(driver);
-			  entpage.bodyLoaded();
-			 		  
-			  // There should be available offers for THIS MSISDN -
-			  // if there are no offers this is probably an error
-			  // the manage subscriptions section should be empty "you have no subscriptions..."
-			  cpp.verifyAvailableOffersText(entpage);
-			  CheckedScenarioScreenshot();	
-			  
-			  log.info("selecting offer");
-			  
-			  // TODO: put in check ok
-			  cpp.validatePrePurchaseOffers(entpage);
-			  
-			  if (cpp.selectPartnerOffer(myPartner, entpage)) {
-				  
-				  //  on journey to accept offer
-				  BasicPartnerOffer offer = new BasicPartnerOffer(driver);
-				  offer.bodyLoaded();
-				  offer.setTnC();			  
-				  
-				  if (refFileValid) {
-					  log.info("TEST: Check Partner Offer");
-					 	 
-					  // can now locate JSON parser reference file
-					  String roughpath = refDir + opco + "/";
-					  cpp.locateJsonParseFile(roughpath, reffilename);	
-					  cpp.verifyOfferText(offer);
-				  }
-				  CheckedScenarioScreenshot();
-		  			  
+			  driver.manage().window().setSize(new Dimension(600, 600));
+			  switch (myPartner) {
+			  	case DROPBOX : checkAndSelectInternal(reffilename);
+			  	break;
+			    default : checkAndSelectExternal(reffilename);
+			    break;
 			  }
-			  else {
-				  log.error("NO VALID OFFER  Visible");
-				  // TODO: check this out what is the correct behavior
-				  // this may be correct behavior for some combinations
-				  Assert.fail("No Valid Offer - Aborting Test");
-			  }
+			  
+		  			  		 
 		} catch (Exception e){
 			log.error("caught Exception: " + e);
 			String name = this.getClass().getSimpleName();
@@ -178,6 +207,7 @@ public class PurchaseOfferSteps extends StepBase {
 				if (checkAsserts) ErrorCollector.verifyTrue(offeraccepted,"offer not accepted");
 				
 				// now go back to PPE and refresh and check
+				// TODO: This might need to change with DROPBOX
 				String urltouse = baseUserUrl + opco;			
 				boolean ppeopen = cpp.refreshPPE(driver, urltouse);
 				
