@@ -49,7 +49,6 @@ public class PurchaseSkyOffersSteps extends StepBase {
 	@Before("@ignore")
 	public void setUp(Scenario scenario) throws Exception {
 		super.setUp(scenario);
-		if (checkAsserts) cpp.setAssertCheck();
 		log.info("SetUp");
 	}
 	
@@ -169,11 +168,11 @@ public class PurchaseSkyOffersSteps extends StepBase {
 			try {	
 				boolean offeraccepted = cpp.acceptTheOffer(driver, opco, Partners.SKY);		
 				CheckedScenarioScreenshot();
-				if (checkAsserts) ErrorCollector.verifyTrue(offeraccepted,"offer not accepted");
+				ErrorCollector.verifyTrue(offeraccepted,"offer not accepted");
 				String urltouse = baseUserUrl + opco;
 				boolean ppeopen = cpp.refreshPPE(driver, urltouse);
 				CheckedScenarioScreenshot();
-				if (checkAsserts) ErrorCollector.verifyTrue(ppeopen, "reopen failed");
+				ErrorCollector.verifyTrue(ppeopen, "reopen failed");
 				  
 			} catch(Exception e){
 				log.info("caught Exception: " + e);

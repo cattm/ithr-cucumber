@@ -3,6 +3,7 @@ package com.ithr.ppe.test.cucumber.steps.utils;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 
+import com.ithr.ppe.test.commons.CommonConstants;
 import com.ithr.ppe.test.cucumber.pages.partners.DropBoxDownload;
 import com.ithr.ppe.test.cucumber.pages.partners.DropBoxSuccess;
 
@@ -31,20 +32,20 @@ public class VFDropboxActivities implements VFPartnerInterface {
 		
 		DropBoxSuccess dbs = new DropBoxSuccess(driver);
 		
-		// TODO: just click first time through then add checks
+		// TODO: just click first time through  - add checks later on
 		try {
 			dbs.bodyLoaded();
 		} catch (InterruptedException e) {
 			log.error("Interrupted exception while loading success page" + e);
 		}
-		String xx = dbs.getNotificicationText();
-		log.info("Notification test: " + xx);
-		String yy = dbs.getDetailsText();
-		log.info("Details text : " + yy);
+		String nt = dbs.getNotificicationText();
+		log.info("Notification test: " + nt);
+		String dt = dbs.getDetailsText();
+		log.info("Details text : " + dt);
 		dbs.clickContinue();
 	
 		try {
-			Thread.sleep(5000);
+			Thread.sleep(CommonConstants.SLOW);
 		} catch (InterruptedException e1) {
 			log.info("TODO: Remove this test delay code ");
 		}

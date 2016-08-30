@@ -14,24 +14,25 @@ import org.apache.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 
 import com.ithr.ppe.test.commons.CommandExecutor;
+import com.ithr.ppe.test.commons.CommonConstants;
 import com.ithr.ppe.test.commons.DateStamp;
 import com.ithr.ppe.test.commons.Partners;
 import com.ithr.ppe.test.cucumber.pages.BasicPartnerOffer;
 import com.ithr.ppe.test.cucumber.pages.PageBase;
 import com.ithr.ppe.test.cucumber.pages.UserEntertainment;
+import com.ithr.ppe.test.cucumber.pages.partners.DropBoxRefresh;
 
 public class CommonPartnerPurchase implements PartnerPurchaseInterface {
 	public static Logger log = Logger.getLogger(CommonPartnerPurchase.class);
-	private static boolean checkAsserts = false;
+
 	private static JsonParser parser = null;
 	private static opcoTextChecker checker = null;
 	private static String partnerUserName = "none valid";
 	private static Partners myPartner = null;
 	
+// Maybe a case for using a Builder pattern here?	
 	
-	public void setAssertCheck() {
-		checkAsserts = true;
-	}
+
 	
 	public void locateJsonParseFile (String path, String filename) {
 		log.info("going to search for :" + path + " and file " + filename);
@@ -105,8 +106,8 @@ public class CommonPartnerPurchase implements PartnerPurchaseInterface {
 		String imagestring = "";
 		switch (myPartner) {
 		case DROPBOX    :
-			//dropbox is a special case we dont have to do anything - its naughty but just return as a test of the logic
-			return true;
+			//dropbox is a special case we dont have to do anything
+			found = true;
 		case NETFLIX    : 
 			imagestring = "netflix";
 			break;
@@ -123,12 +124,14 @@ public class CommonPartnerPurchase implements PartnerPurchaseInterface {
 		default : 
 			break;
 		}	
-		found = entpage.checkOfferImagePresent(imagestring);
-		if (found)
-		try {
+		if (!found) { 
+			found = entpage.checkOfferImagePresent(imagestring);
+			if (found)
+				try {
 				entpage.clickOfferImage(imagestring);
-		} catch (InterruptedException e) {
+				} catch (InterruptedException e) {
 				log.error("got interrupted while clicking on " + imagestring + " " + e);
+			}
 		}
 		return found;
 	}
@@ -140,7 +143,7 @@ public class CommonPartnerPurchase implements PartnerPurchaseInterface {
 		for (int i = 0; i < 20 && !done; i++) {
 			// do the sleep first - to give it a chance
 			try {
-				Thread.sleep(PageBase.SLOW);
+				Thread.sleep(CommonConstants.SLOW);
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
 				log.error("sleep interrupted");
@@ -149,9 +152,6 @@ public class CommonPartnerPurchase implements PartnerPurchaseInterface {
 			String notice = offer.getSuccessText();		
 			log.info("current success text is : " + notice);
 			
-			// TODO: Not at all sure this check is SAFE
-			// tested with getProcessMsg for GB, IE, IT, PT
-			// tested with checkCompleteMsg for GB and ES - works
 			if (checker.checkCompleteMsg(notice)) {
 					log.info("purchase process complete");
 					done = true;
@@ -171,12 +171,9 @@ public class CommonPartnerPurchase implements PartnerPurchaseInterface {
 		
 		String buttontext = parser.getOffersOkButton();			
 	    String ucbuttontext = buttontext.toUpperCase();
-	    log.info("Button String should be : " +  ucbuttontext);
-	    
 	    BasicPartnerOffer offer = new BasicPartnerOffer(driver);
 	    String offerbuttontext = offer.getAcceptOfferText();
-	    log.info("Button String is : " + offerbuttontext);
-	    if (checkAsserts) ErrorCollector.verifyTrue(ucbuttontext.equals(offerbuttontext), "Button text is incorrect");
+	    ErrorCollector.verifyEquals(offerbuttontext, ucbuttontext, "Button text is incorrect");
   
 		offer.clickAcceptOffer();
 		
@@ -217,15 +214,26 @@ public class CommonPartnerPurchase implements PartnerPurchaseInterface {
 			// check the page
 			return verifyNextStepsText(offer);
 		}	else return registered;
-		
-			
+				
 	}
 	
 	
 	private boolean refreshPPEDropBox(WebDriver driver, String url) {
+		
 		driver.get(url + "?partner=dropbox");
-		log.info("TODO: DOING PPE REFRESH -- no check yet");
-		return true;
+		
+		DropBoxRefresh refreshpage = new DropBoxRefresh(driver);
+
+		try {
+			refreshpage.bodyLoaded();
+		} catch (InterruptedException e) {
+			log.error("Timed out on loading the DropBoxRefresh page " + e);
+		}		
+			
+		//TODO: there is more to check on this page!
+		String onpage = refreshpage.getHeading();
+		return checker.checkDropBoxSubscribedText(onpage);
+		
 	}
 	
 	private boolean refreshPPEPartner(WebDriver driver, String url) {
@@ -234,7 +242,6 @@ public class CommonPartnerPurchase implements PartnerPurchaseInterface {
 		try {
 			entpage.bodyLoaded();
 		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
 			log.error("Timed out on loading the UserEntertainment page " + e);
 		}
 					
@@ -245,11 +252,10 @@ public class CommonPartnerPurchase implements PartnerPurchaseInterface {
 				 textfound = entpage.getManageSubscriptionText();
 			}
 		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
 			log.error("Interrupted while getting the subscriptiontext " + e);
 		}
 		
-		// TODO: implement a better check
+		// TODO: implement a check on the offers now available
 		validatePostPurchaseOffers(entpage);
 		
 		log.info("Text to Check is: " + textfound);		
@@ -269,12 +275,17 @@ public class CommonPartnerPurchase implements PartnerPurchaseInterface {
 		
 	}
 	
+	// refresh PPE should:
+	// refresh the browser to display the offers and subscribed offers (to cancel)
+	// it should verify the subscribed offer is in the correct location 
+	// it should select the subscribed offer and verify the text on the page
+	
 	public boolean refreshPPE(WebDriver driver, String baseopcourl) {
 		log.info("TEST: Reopen on home page displays correct offers");
 		
 		//TODO need to fix needing this - VERY FLAKY
 		try {
-			Thread.sleep(PageBase.SLOW * 2);
+			Thread.sleep(CommonConstants.SLOW);
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			log.error("This Code needs removing Anyway " + e);
@@ -287,78 +298,52 @@ public class CommonPartnerPurchase implements PartnerPurchaseInterface {
 	}
 	
 	public boolean verifyOfferText(BasicPartnerOffer offer){
+		log.info("TEST: Verify the Offer");
 		String displayoffer = offer.getUserOffer();
-		log.info("Text to Check is:  " + displayoffer);
 		String title = parser.getOffersTitle();
-		log.info("Reference Text is: " + title);
-		String textstripped = parser.stripHTML(title);
-		log.info("Reference Text Stripped is: " + textstripped);
-		boolean ok = displayoffer.equals(textstripped);
-		if (!ok) log.error("Verify Will Fail");
-		if (checkAsserts) ErrorCollector.verifyTrue(ok, "The offer title is incorrect");
+		String textstripped = parser.stripHTML(title);	
+		ErrorCollector.verifyEquals(displayoffer,textstripped, "The offer title is incorrect");
 
 	
 		// check the text bullets from text
 		String offertext = offer.getOfferDetail();
 		String crstripped = StringUtils.replace(offertext, "\n", " ");
-		log.info("Text to Check is:  " +  crstripped);
 		String text = parser.getOffersText();
-		log.info("Reference Text is: " + text);
-		textstripped = parser.stripHTML(text);
-		log.info("Reference Text Stripped is: " + textstripped);
-		ok = crstripped.equals(textstripped);
-		if (!ok) log.error("Verify Will Fail");
-		if (checkAsserts) ErrorCollector.verifyTrue(ok,"The offer detail is incorrect");
+		String ntextstripped = parser.stripHTML(text);
+		ErrorCollector.verifyEquals(crstripped, ntextstripped,"The offer detail is incorrect");
 
 	  
 		// check T&C label from label
 		String offertnc = offer.getOfferTnC();
 		String offertncstripped = StringUtils.replace(offertnc, "\n", " ");
-		log.info("Text to Check is:  " + offertncstripped);
-		String tnc = parser.getOffersTnCText();
-		log.info("Reference T & C is: " + tnc);
+		String tnc = parser.getOffersTnCText();	
 		String tncstripped = parser.stripHTML(tnc);
-		log.info("Reference T & C Stripped is: " + tncstripped);
-		ok = offertncstripped.equals(tncstripped);
-		if (!ok) log.error("Verify Will Fail");
-		if (checkAsserts) ErrorCollector.verifyTrue(ok, "The T & C text is incorrect");
+		ErrorCollector.verifyEquals(offertncstripped,tncstripped, "The T & C text is incorrect");
 		return true;
 	}
 	
 	public boolean verifyAvailableOffersText(UserEntertainment entpage)  {
-		log.info("TEST: Check Available Offers page");
+		log.info("TEST: Verify Available Offers page");
 		String subtext = entpage.getSubscriptionText();
 		log.info("Text to check is: " + subtext);			  			
-		boolean ok = checker.checkSubscriptionText(subtext);
-		if (!ok) log.error("Verify Will Fail");
-		if (checkAsserts) ErrorCollector.verifyTrue(ok, "Subscription text is not correct");
+		ErrorCollector.verifyTrue(checker.checkSubscriptionText(subtext), "Subscription text is not correct");
 		return true;
 	}
 	
 	public boolean verifyNextStepsText(BasicPartnerOffer offer) {
 		// check the page actually displayed
-		log.info("TEST: Check on confirm page after accepting offer");
+		log.info("TEST: Verify confirm page after accepting offer");
 		String confirmation = offer.getSuccessText();
 		log.info("Text to Check is : " + confirmation);
-					
-		// get a reference to the property value text
-		boolean ok = checker.checkConfirmText(confirmation);
-		if (!ok) log.error("Verify Will Fail");
-		if (checkAsserts) ErrorCollector.verifyTrue(ok, "Confirmation text is incorrect");
+		ErrorCollector.verifyTrue(checker.checkConfirmText(confirmation), "Confirmation text is incorrect");
 				  
-		log.info("TEST: Check Success text");
+		log.info("TEST: Verify whats going to happen next");
 		String happens = offer.getHappensNextText();
-		String myhappens = StringUtils.replace(happens, "\n", " ");
-		log.info("happens next to check is:  " + myhappens);
-				  
+		String mypagehappens = StringUtils.replace(happens, "\n", " ");			  
 		String checkhappens = parser.getSubscribeSuccessText();
-		checkhappens = parser.stripHTML(checkhappens);
-		log.info("happens next Reference is: " + checkhappens);
-		// Assert check the text and this will do for now
-		ok = myhappens.equals(checkhappens);
-		if (!ok) log.error("Verify Will Fail");
-		if (checkAsserts) ErrorCollector.verifyTrue(ok,"What happens next text is incorrect");
-
+		String mycheckhappens = parser.stripHTML(checkhappens);	
+		ErrorCollector.verifyEquals(mypagehappens, mycheckhappens,"What happens next text is incorrect");
+		
 		return true;
 	}
 

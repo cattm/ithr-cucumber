@@ -20,6 +20,8 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.FindBys;
 import org.openqa.selenium.support.PageFactory;
 
+import com.ithr.ppe.test.commons.CommonConstants;
+
 // There will be offers and subscriptions
 // initially there will be no subscriptions - we hope! And this we should check
 public class UserEntertainment extends PageBase{
@@ -61,7 +63,7 @@ public class UserEntertainment extends PageBase{
 			  // TODO: write a safer model than this - it needs a serious refactor and should not be checking the image anyway
 			  if ( thetext.contains(offer)) {
 				  while (!element.isDisplayed()) {
-					  Thread.sleep(SLOW);
+					  Thread.sleep(CommonConstants.SLOW);
 					  log.info("Not displayed yet");
 				  }
 				  log.info("Click Element");

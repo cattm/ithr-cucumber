@@ -7,7 +7,7 @@ import com.ithr.ppe.test.cucumber.pages.BasicPartnerOffer;
 import com.ithr.ppe.test.cucumber.pages.UserEntertainment;
 
 public interface PartnerPurchaseInterface {
-	public void setAssertCheck();
+
 	
 	public void locateJsonParseFile(String path, String filename);
 	

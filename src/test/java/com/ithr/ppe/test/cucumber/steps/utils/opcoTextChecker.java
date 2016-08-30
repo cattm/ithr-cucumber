@@ -69,6 +69,21 @@ public class opcoTextChecker {
 		return onpage.equals(tocompare);
 	}
 	
+	public boolean checkDropBoxSubscribedText(String onpage) {
+		String itstr1 = "subscription.mainHeading";
+		String tocompare = "";
+		
+		switch (opco) {
+		case "it" :	tocompare=GetProperty(offset + itstr1);
+					break;
+		default: break;
+		}
+		
+		log.info("Reference Text is:        " + tocompare);
+		return onpage.equals(tocompare);
+	}
+	
+	
 	public boolean checkSkySubscibedText(String onpage) {
 		// TODO: this is Almost the wrong string to check - and it should not be hardcoded
 		String destr1 = "partneroffers.landing-hard.heading.skytv";
@@ -92,6 +107,7 @@ public class opcoTextChecker {
 		// TODO: this is Almost certainly the wrong string to check - and it should not be hardcoded
 		String esstr1 = "partneroffers.landing-hard.heading.spotify";
 		String destr1 = "partneroffers.landing-hard.heading.spotify";
+		String iestr1 = "partneroffers.offer.heading.rover.spotify";
 		String gbstr1 = "partneroffers.29f6b87a-e124-4026-a4e9-ae7b5bd1e223.home.heading";
 		String itstr1 = "partneroffers.landing-hard.heading.spotify";
 		String tocompare = "";
@@ -103,7 +119,7 @@ public class opcoTextChecker {
 							break;
 				case "de" : tocompare=GetProperty(destr1);
 							break;
-				case "ie" :	tocompare=GetProperty(gbstr1);
+				case "ie" :	tocompare=GetProperty(iestr1);
 							break;
 				case "it" :	tocompare=GetProperty(itstr1);
 							break;

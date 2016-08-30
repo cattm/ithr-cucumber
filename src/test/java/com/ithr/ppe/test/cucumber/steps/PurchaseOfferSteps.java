@@ -44,14 +44,13 @@ public class PurchaseOfferSteps extends StepBase {
 
 	
 	
-	@Before("@netflixpurchase, @nowtvpurchase, @skypurchase, @spotifypurchase")
+	@Before("@dropboxpurchase, @netflixpurchase, @nowtvpurchase, @skypurchase, @spotifypurchase")
 	public void setUp(Scenario scenario) throws Exception {
 		super.setUp(scenario);
-		if (checkAsserts) cpp.setAssertCheck();
 		log.info("SetUp");
 	}
 	
-	@After("@netflixpurchase, @nowtvpurchase, @skypurchase, @spotifypurchase")
+	@After("@dropboxpurchase, @netflixpurchase, @nowtvpurchase, @skypurchase, @spotifypurchase")
 	public void tearDown() {
 		log.info("TearDown");
 		super.tearDown();
@@ -81,7 +80,7 @@ public class PurchaseOfferSteps extends StepBase {
 			userNameToUse = cpp.getPartnerUserName(driver, basePartnerHelper, opco, myPartner);			
 			log.info("username is " + userNameToUse);
 			if (userNameToUse.contains("ERROR")) {
-				log.error(" helper did not return a valid username");
+				log.error(" Helper did not return a valid username");
 				Assert.fail("username is invalid - Aborting Test");
 			}
 			
@@ -94,7 +93,7 @@ public class PurchaseOfferSteps extends StepBase {
 			IdentityActivities.loginToPPE (driver, opco, myPartner, shortMsisdn , pinCode, baseUserUrl);
 			
 		} catch (Exception e){
-			log.error("caught Exception: " + e);
+			log.error("Caught Exception: " + e);
 			String name = this.getClass().getSimpleName();
 			ReportScreen(name);
 			Assert.fail("Package In Group - Abort Test on Exception : MSISDN " + shortMsisdn); //To fail test in case of any element identification failure				
@@ -194,26 +193,22 @@ public class PurchaseOfferSteps extends StepBase {
 
 
 	@And("^I will accept and confirm the offer$")
-	public void AcceptPartnerOffer() throws Exception {		
+	public void AcceptPartnerOffer() {		
 		if (!refFileValid) {
 			log.info("And: I Will NOT Accept the Offer ");
 		}
 		else {
 			log.info("And: I Will Accept the Offer ");
 			try {					
-				boolean offeraccepted = cpp.acceptTheOffer(driver, opco, myPartner);		
+				boolean offeraccepted = cpp.acceptTheOffer(driver, opco, myPartner);			
 				CheckedScenarioScreenshot();
-				if (!offeraccepted) log.error("Verify Will Fail");
-				if (checkAsserts) ErrorCollector.verifyTrue(offeraccepted,"offer not accepted");
+				ErrorCollector.verifyTrue(offeraccepted,"offer not accepted");
 				
-				// now go back to PPE and refresh and check
-				// TODO: This might need to change with DROPBOX
+				// now go back to PPE and refresh and checkpwd
 				String urltouse = baseUserUrl + opco;			
-				boolean ppeopen = cpp.refreshPPE(driver, urltouse);
-				
+				boolean ppeopen = cpp.refreshPPE(driver, urltouse);				
 				CheckedScenarioScreenshot();
-				if (!ppeopen) log.error("Verify Will Fail");
-				if (checkAsserts) ErrorCollector.verifyTrue(ppeopen, "reopen failed");
+				ErrorCollector.verifyTrue(ppeopen, "reopen failed");
 				
 			}catch(Exception e){
 				log.error("caught Exception: " + e);			

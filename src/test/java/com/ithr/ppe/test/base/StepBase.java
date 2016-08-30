@@ -56,7 +56,6 @@ public class StepBase {
 	protected String 	basePartnerHelper;
 	protected String 	testReferenceDir;
 	protected String 	refDir;
-	protected Boolean 	checkAsserts;
 	protected String 	pinCode;
 	protected Boolean 	embedAllImages;
 	
@@ -84,10 +83,8 @@ public class StepBase {
 		  basePartnerHelper = TestProperties.SPOTIFYBASE;
 		  pinCode = TestProperties.PINCODE;
 		  
-		  checkAsserts = TestProperties.DO_ASSERTCHECKS;
-		  log.info("checking Asserts is : " + checkAsserts.toString());
-
-		 
+		  log.info("checking Asserts is : " + TestProperties.DO_ASSERTCHECKS);
+		  ErrorCollector.setVerify(TestProperties.DO_ASSERTCHECKS);		 
 	}
 
 	protected void GetDebugScreenShot(String reference)  {
@@ -126,22 +123,16 @@ public class StepBase {
 		String methodn = element.getMethodName();
 		String classn = element.getClassName();
 		
-		// make sure we capture the screen in an image and dump in a directory or the test report
-		if (!checkAsserts) {
-			GetDebugScreenShot(classn + "_"+ methodn + "_" + line);
-		} else {
-			ScenarioScreenshot ();
-		}		
+		GetDebugScreenShot(classn + "_"+ methodn + "_" + line);
+		ScenarioScreenshot ();
+			
 	}
 	
 	// reprot to scenario or file probable from exception catcher
 	protected void ReportScreen(String idstring)  {		
-		// make sure we capture the screen in an image and dump in a directory or the test report
-		if (!checkAsserts) {
-			GetDebugScreenShot(idstring);
-		} else {
-			ScenarioScreenshot ();
-		}
+
+		GetDebugScreenShot(idstring);
+		ScenarioScreenshot ();
 	}
 	
 	

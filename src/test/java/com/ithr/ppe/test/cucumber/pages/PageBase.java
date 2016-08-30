@@ -10,8 +10,10 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import com.ithr.ppe.test.commons.CommonConstants;
+
 public class PageBase {
-	public static final long SLOW = 3000;
+
 	protected WebDriver driver;
 	
 	public PageBase(WebDriver driver) {
@@ -37,7 +39,7 @@ public class PageBase {
 	       
 	        // this works as long as the popup is created - if it doesnt get created it will burn forever or until test times out
 	        while (driver.getWindowHandles().size() < 2) {
-	            Thread.sleep(SLOW);
+	            Thread.sleep(CommonConstants.SLOW);
 	        }
 
 			Set<String> handles = driver.getWindowHandles(); // get all window handles
@@ -86,7 +88,7 @@ public class PageBase {
 			 	// this will loop until the driver timeout is triggered or it becomes true
 			 	while (!present) {
 			 		present = isElementPresent (By.tagName("body"));
-			 		Thread.sleep(SLOW);
+			 		Thread.sleep(CommonConstants.SLOW);
 			 	}
 			 	
 			 	return present;
@@ -98,7 +100,7 @@ public class PageBase {
 	 	// loop for max of 5 times SLOW to check if its there
 	 	for (int i = 0; (i < 5 && !present); i++) {
 	 		present = isElementPresent (by);
-	 		Thread.sleep(SLOW);
+	 		Thread.sleep(CommonConstants.SLOW);
 	 	}
 	 	
 	 	return present;

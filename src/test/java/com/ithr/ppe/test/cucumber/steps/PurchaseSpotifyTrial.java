@@ -14,6 +14,7 @@ import org.apache.log4j.Logger;
 import org.openqa.selenium.Dimension;
 
 import com.ithr.ppe.test.base.StepBase;
+import com.ithr.ppe.test.commons.CommonConstants;
 import com.ithr.ppe.test.commons.Partners;
 import com.ithr.ppe.test.cucumber.pages.PageBase;
 import com.ithr.ppe.test.cucumber.pages.UserEntertainment;
@@ -93,7 +94,7 @@ public class PurchaseSpotifyTrial extends StepBase{
 						done = true;
 					} else {
 						log.info("Waiting.......");
-						Thread.sleep(PageBase.SLOW);
+						Thread.sleep(CommonConstants.SLOW);
 					}
 				}
 	    		return true; 
@@ -198,7 +199,7 @@ public class PurchaseSpotifyTrial extends StepBase{
 						done = true;
 					} else {
 						log.info("Waiting.......");
-						Thread.sleep(PageBase.SLOW);
+						Thread.sleep(CommonConstants.SLOW);
 					}
 				}
 	    		return true; 
