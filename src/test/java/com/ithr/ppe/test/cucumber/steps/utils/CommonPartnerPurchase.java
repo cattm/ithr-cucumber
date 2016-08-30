@@ -262,10 +262,11 @@ public class CommonPartnerPurchase implements PartnerPurchaseInterface {
 		log.info("Text to Check is: " + textfound);	
 			
 		boolean ok = false;
-		/*
+	
 		String reftext = parser.getHeading();
-		ok = textfound.equals(reftext);
-		*/
+		log.info("The Parser would have returned: " + reftext);
+		//ok = textfound.equals(reftext);
+	
 		
 		switch (myPartner) {
 		case SPOTIFY :	ok = checker.checkSpotifySubscibedText(textfound);
