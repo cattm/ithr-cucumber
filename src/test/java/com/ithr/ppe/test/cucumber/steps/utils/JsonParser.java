@@ -61,6 +61,12 @@ public class JsonParser {
 		 return new JSONObject(jsonData);
 	}
 	
+	
+	public String getHeading() {
+		String heading = (String) jsonObject.get("heading").toString();
+		return heading;
+		
+	}
 	private JSONObject navigateToPurchase(JSONObject object) {
 		JSONObject outcome = null;
 		try {                 

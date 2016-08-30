@@ -231,6 +231,7 @@ public class CommonPartnerPurchase implements PartnerPurchaseInterface {
 		}		
 			
 		//TODO: there is more to check on this page!
+		//
 		String onpage = refreshpage.getHeading();
 		return checker.checkDropBoxSubscribedText(onpage);
 		
@@ -258,8 +259,14 @@ public class CommonPartnerPurchase implements PartnerPurchaseInterface {
 		// TODO: implement a check on the offers now available
 		validatePostPurchaseOffers(entpage);
 		
-		log.info("Text to Check is: " + textfound);		
+		log.info("Text to Check is: " + textfound);	
+			
 		boolean ok = false;
+		/*
+		String reftext = parser.getHeading();
+		ok = textfound.equals(reftext);
+		*/
+		
 		switch (myPartner) {
 		case SPOTIFY :	ok = checker.checkSpotifySubscibedText(textfound);
 					break;
@@ -271,6 +278,7 @@ public class CommonPartnerPurchase implements PartnerPurchaseInterface {
 					break;
 		default : break;	
 		}
+		
 	    return ok;	   
 		
 	}

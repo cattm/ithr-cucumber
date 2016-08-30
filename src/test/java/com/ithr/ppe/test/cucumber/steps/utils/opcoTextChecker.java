@@ -131,7 +131,7 @@ public class opcoTextChecker {
 
 	public boolean checkNowTVSubscribedText(String onpage) {
 		//TODO: find another way
-		String gbstr1 = "partneroffers.landing-hard.confirmation.heading.nowtv ";
+		String gbstr1 = "partneroffers.landing-hard.confirmation.heading.nowtv";
 		String tocompare = "";
 		switch (opco) {
 
