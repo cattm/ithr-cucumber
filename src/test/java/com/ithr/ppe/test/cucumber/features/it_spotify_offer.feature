@@ -12,7 +12,9 @@ Feature: IT Purchase Spotify for all Tariffs
     And I will accept and confirm the offer
 
     # TODO: there are several definition files not used in the scenario
-    # Check out exact circumstances and add/append them
+    # Check out exact circumstances and add/append them 
+    # Also to note - these are dependant upon priceplan being correct - if its wrong text may be wrong!
+    # And currently on DIT it is wrong
     Examples: 
       | package   | usergroup    | contained in                               |
       | Not Valid | 4guser       | Spotify standalone all trial               |
