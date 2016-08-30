@@ -38,6 +38,7 @@ public class VFDropboxActivities implements VFPartnerInterface {
 		} catch (InterruptedException e) {
 			log.error("Interrupted exception while loading success page" + e);
 		}
+		
 		String nt = dbs.getNotificicationText();
 		log.info("Notification test: " + nt);
 		String dt = dbs.getDetailsText();
