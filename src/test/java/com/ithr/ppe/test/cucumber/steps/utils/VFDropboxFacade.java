@@ -7,7 +7,7 @@ import com.ithr.ppe.test.commons.CommonConstants;
 import com.ithr.ppe.test.cucumber.pages.partners.DropBoxDownload;
 import com.ithr.ppe.test.cucumber.pages.partners.DropBoxSuccess;
 
-public class VFDropboxActivities implements VFPartnerInterface {
+public class VFDropboxFacade implements IVFPartner {
 
 	/*
 	page has:
@@ -26,7 +26,7 @@ public class VFDropboxActivities implements VFPartnerInterface {
 		<p>Scarica gratuitamente Vodafone Backup+ per tenere i contenuti del tuo smartphone sempre al sicuro</p>
     */
 	
-	public static Logger log = Logger.getLogger(VFDropboxActivities.class);
+	public static Logger log = Logger.getLogger(VFDropboxFacade.class);
 
 	public boolean PurchaseOffer(WebDriver driver, String opco) {
 		

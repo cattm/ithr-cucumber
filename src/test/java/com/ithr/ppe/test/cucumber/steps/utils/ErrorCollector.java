@@ -45,6 +45,11 @@ public class ErrorCollector {
     	Assert.assertEquals(actual, expected);
     }
      
+    
+    public static <T> void assertThat(String reason, T actual, org.hamcrest.Matcher<T> matcher) {
+    	Assert.assertThat(reason, actual, matcher);
+    }
+    
     // have made this logic more complex than ideal
     // in order to allow test to run to completion without failures while 
     // we are not sure of environment and text changes etc
@@ -152,6 +157,16 @@ public class ErrorCollector {
     	}
     }
 
+    public static <T> void verifyThat(String reason, T actual, org.hamcrest.Matcher<T> matcher) {
+    	try {
+    		assertThat(reason, actual, matcher);
+    	} catch (Throwable e) {
+			log.error("Verify failed " + reason);
+			addVerificationFailure(e);
+    	}
+    }
+    
+    
     // leave these two methods out for now
     public static void verifyEquals(Object actual, Object expected) {
     	try {

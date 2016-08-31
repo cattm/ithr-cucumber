@@ -6,7 +6,7 @@ import com.ithr.ppe.test.commons.Partners;
 import com.ithr.ppe.test.cucumber.pages.BasicPartnerOffer;
 import com.ithr.ppe.test.cucumber.pages.UserEntertainment;
 
-public interface PartnerPurchaseInterface {
+public interface IPartnerPurchase {
 
 	
 	public void locateJsonParseFile(String path, String filename);

@@ -8,9 +8,9 @@ import com.ithr.ppe.test.cucumber.pages.partners.NetflixOffer;
 import com.ithr.ppe.test.cucumber.pages.partners.NetflixSuccess;
 
 
-public class NetflixActivities implements ExternalPartnerInterface{
+public class NetflixFacade implements IExternalPartner{
 	
-	public static Logger log = Logger.getLogger(NetflixActivities.class);
+	public static Logger log = Logger.getLogger(NetflixFacade.class);
 
 	public boolean register(WebDriver driver, String opco, String usernametouse) {
 		

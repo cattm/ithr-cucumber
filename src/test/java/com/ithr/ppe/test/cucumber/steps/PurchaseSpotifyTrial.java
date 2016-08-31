@@ -19,9 +19,9 @@ import com.ithr.ppe.test.commons.Partners;
 import com.ithr.ppe.test.cucumber.pages.PageBase;
 import com.ithr.ppe.test.cucumber.pages.UserEntertainment;
 import com.ithr.ppe.test.cucumber.pages.UserSpotifyOffer;
-import com.ithr.ppe.test.cucumber.steps.utils.AdminActivities;
-import com.ithr.ppe.test.cucumber.steps.utils.IdentityActivities;
-import com.ithr.ppe.test.cucumber.steps.utils.SpotifyActivities;
+import com.ithr.ppe.test.cucumber.steps.utils.AdminFacade;
+import com.ithr.ppe.test.cucumber.steps.utils.IdentityFacade;
+import com.ithr.ppe.test.cucumber.steps.utils.SpotifyFacade;
 
 import cucumber.api.DataTable;
 import cucumber.api.Scenario;
@@ -58,12 +58,12 @@ public class PurchaseSpotifyTrial extends StepBase{
 		// Very little checking here - assume it works otherwise its not worth it
 		// this is a Background step activity
 		driver.get(baseAdminUrl);
-		shortMsisdn = AdminActivities.msisdnFromAdmin(driver, opco, subscription, userGroup, Partners.SPOTIFY);	
-		SpotifyActivities spot = new SpotifyActivities();
+		shortMsisdn = AdminFacade.msisdnFromAdmin(driver, opco, subscription, userGroup, Partners.SPOTIFY);	
+		SpotifyFacade spot = new SpotifyFacade();
 		userNameToUse = spot.getUser(driver, basePartnerHelper, opco);
 		String url = baseUserUrl + opco;
 		log.info ("msisdn is: " + shortMsisdn + " username is: " + userNameToUse);
-		IdentityActivities.loginToPPE (driver, opco, Partners.SPOTIFY, shortMsisdn , pinCode, baseUserUrl);
+		IdentityFacade.loginToPPE (driver, opco, Partners.SPOTIFY, shortMsisdn , pinCode, baseUserUrl);
 			
 		driver.manage().window().setSize(new Dimension(600, 600));	
 		// TODO: these MUST BE REMOVED
@@ -146,7 +146,7 @@ public class PurchaseSpotifyTrial extends StepBase{
 		log.info("have deleted Spotify User");
 		// we could do this with curl or within a browser
 		// lets check status and then delete 
-		SpotifyActivities spot = new SpotifyActivities();
+		SpotifyFacade spot = new SpotifyFacade();
 		String response = spot.getUserStatus(driver, basePartnerHelper, opco, userNameToUse);
 		log.info(response);
 		response = spot.terminateUser(driver, basePartnerHelper, opco, userNameToUse);
@@ -162,9 +162,9 @@ public class PurchaseSpotifyTrial extends StepBase{
 		getNewDriver();
 		
 		driver.get(baseAdminUrl);;
-		shortMsisdn = AdminActivities.msisdnFromAdmin(driver, opco, subscription, userGroup, Partners.SPOTIFY);	
+		shortMsisdn = AdminFacade.msisdnFromAdmin(driver, opco, subscription, userGroup, Partners.SPOTIFY);	
 	
-		IdentityActivities.loginToPPE (driver, opco, Partners.SPOTIFY, shortMsisdn , pinCode, baseUserUrl);
+		IdentityFacade.loginToPPE (driver, opco, Partners.SPOTIFY, shortMsisdn , pinCode, baseUserUrl);
 		
 		driver.manage().window().setSize(new Dimension(600, 600));	
 		// TODO: these MUST BE REMOVED
@@ -187,7 +187,7 @@ public class PurchaseSpotifyTrial extends StepBase{
 			spotifyoffer.clickAcceptOffer();		
 			
 			// use old spotify username to login
-			SpotifyActivities spot = new SpotifyActivities();
+			SpotifyFacade spot = new SpotifyFacade();
 			if (spot.login(driver, opco, userNameToUse)) {
 				boolean done = false;
 				// TODO: test code to tidy up and add a check  

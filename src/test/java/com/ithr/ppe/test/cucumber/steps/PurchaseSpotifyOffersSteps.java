@@ -17,10 +17,10 @@ import com.ithr.ppe.test.base.StepBase;
 import com.ithr.ppe.test.commons.Partners;
 import com.ithr.ppe.test.cucumber.pages.BasicPartnerOffer;
 import com.ithr.ppe.test.cucumber.pages.UserEntertainment;
-import com.ithr.ppe.test.cucumber.steps.utils.AdminActivities;
+import com.ithr.ppe.test.cucumber.steps.utils.AdminFacade;
 import com.ithr.ppe.test.cucumber.steps.utils.CommonPartnerPurchase;
 import com.ithr.ppe.test.cucumber.steps.utils.ErrorCollector;
-import com.ithr.ppe.test.cucumber.steps.utils.IdentityActivities;
+import com.ithr.ppe.test.cucumber.steps.utils.IdentityFacade;
 
 import cucumber.api.Scenario;
 import cucumber.api.java.After;
@@ -87,10 +87,10 @@ public class PurchaseSpotifyOffersSteps extends StepBase {
 			
 			// set up msisdn
 			driver.get(baseAdminUrl);
-			shortMsisdn = AdminActivities.msisdnFromAdmin(driver, opco, subscription, userGroup, Partners.SPOTIFY);
+			shortMsisdn = AdminFacade.msisdnFromAdmin(driver, opco, subscription, userGroup, Partners.SPOTIFY);
 			
 			// handle the AA aspect
-			IdentityActivities.loginToPPE (driver, opco, Partners.SPOTIFY, shortMsisdn , pinCode, baseUserUrl);
+			IdentityFacade.loginToPPE (driver, opco, Partners.SPOTIFY, shortMsisdn , pinCode, baseUserUrl);
 			
 		} catch (Exception e){
 			log.info("caught Exception: " + e);

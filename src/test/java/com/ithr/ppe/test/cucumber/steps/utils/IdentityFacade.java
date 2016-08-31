@@ -12,8 +12,8 @@ import com.ithr.ppe.test.commons.Partners;
 import com.ithr.ppe.test.cucumber.pages.UserMSISDNEntry;
 import com.ithr.ppe.test.cucumber.pages.UserSMSChallenge;
 
-public class IdentityActivities {
-	public static Logger log = Logger.getLogger(IdentityActivities.class);
+public class IdentityFacade {
+	public static Logger log = Logger.getLogger(IdentityFacade.class);
 	
 	public static void loginToPPE (WebDriver driver, String opco, Partners partner, String msisdn , String pin, String url) throws InterruptedException  {
 		

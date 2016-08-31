@@ -179,14 +179,20 @@ public class StepBase {
 		selectDriver();
 	}
 	
+	private void findSWVersion () {
+		// get the SW version for reporting
+    	String sw = CommandExecutor.execCurlSoftwareVersion(baseUserUrl);
+    	sw = StringUtils.replace(sw, "\n", " ");
+    	sw = StringUtils.replace(sw, "\t", " ");
+    	sw = StringUtils.replace(sw, "Manifest", "");
+    	softwareVersion = StringUtils.replace(sw, "date/time", "");
+    	log.info("Software under test is: " + softwareVersion);
+	}
+	
 	protected void setUp(Scenario scenario) throws Exception {	
 		this.scenario = scenario;
-		// load the required properties from file
     	loadProperties();
     	
-    	// we get some properties from the command line
-    	// driver
-    	// location of reference files for checking
     	log.info("Setting up Driver");
     	browser = System.getProperty("test.driver", TestProperties.DRIVER);
     	selectDriver(); 
@@ -207,13 +213,7 @@ public class StepBase {
     	String dopictures = System.getProperty("test.allimages", TestProperties.DO_SCREENSHOTS);
     	embedAllImages = dopictures.matches("true");
    
-    	// get the SW version for reporting
-    	String sw = CommandExecutor.execCurlSoftwareVersion(baseUserUrl);
-    	sw = StringUtils.replace(sw, "\n", " ");
-    	sw = StringUtils.replace(sw, "\t", " ");
-    	sw = StringUtils.replace(sw, "Manifest", "");
-    	softwareVersion = StringUtils.replace(sw, "date/time", "");
-    	log.info("Software under test is: " + softwareVersion);
+    	findSWVersion();
     	
 	}
 	

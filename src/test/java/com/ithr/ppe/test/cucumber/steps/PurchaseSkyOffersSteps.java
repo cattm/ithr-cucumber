@@ -21,10 +21,10 @@ import com.ithr.ppe.test.commons.Partners;
 import com.ithr.ppe.test.cucumber.pages.BasicPartnerOffer;
 import com.ithr.ppe.test.cucumber.pages.UserEntertainment;
 import com.ithr.ppe.test.cucumber.pages.UserSkyOffer;
-import com.ithr.ppe.test.cucumber.steps.utils.AdminActivities;
+import com.ithr.ppe.test.cucumber.steps.utils.AdminFacade;
 import com.ithr.ppe.test.cucumber.steps.utils.CommonPartnerPurchase;
 import com.ithr.ppe.test.cucumber.steps.utils.ErrorCollector;
-import com.ithr.ppe.test.cucumber.steps.utils.IdentityActivities;
+import com.ithr.ppe.test.cucumber.steps.utils.IdentityFacade;
 import com.ithr.ppe.test.cucumber.steps.utils.JsonParser;
 import com.ithr.ppe.test.cucumber.steps.utils.opcoTextChecker;
 
@@ -76,8 +76,8 @@ public class PurchaseSkyOffersSteps extends StepBase {
 		try {	
 			// set up msisdn	
 			driver.get(baseAdminUrl);
-			shortMsisdn = AdminActivities.msisdnFromAdmin(driver, opco, subscription, userGroup, Partners.SKY);	
-			IdentityActivities.loginToPPE (driver, opco, Partners.SKY, shortMsisdn , pinCode, baseUserUrl);
+			shortMsisdn = AdminFacade.msisdnFromAdmin(driver, opco, subscription, userGroup, Partners.SKY);	
+			IdentityFacade.loginToPPE (driver, opco, Partners.SKY, shortMsisdn , pinCode, baseUserUrl);
 		
 		} catch(Exception e) {
 			log.info("caught Exception: " + e);

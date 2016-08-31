@@ -18,8 +18,8 @@ import com.ithr.ppe.test.commons.Partners;
 import com.ithr.ppe.test.cucumber.pages.AdminHome;
 import com.ithr.ppe.test.cucumber.pages.AdminVerify;
 
-public class AdminActivities {
-	public static Logger log = Logger.getLogger(AdminActivities.class);
+public class AdminFacade {
+	public static Logger log = Logger.getLogger(AdminFacade.class);
 	private final static String DBUID = "597844980";
 	
 	private static String msisdnFromAdminWithCreate(WebDriver driver, String opco, String subscription, String usergroup, Partners partner) {

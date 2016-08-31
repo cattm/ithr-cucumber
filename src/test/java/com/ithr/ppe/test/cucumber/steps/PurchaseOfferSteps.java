@@ -16,10 +16,11 @@ import com.ithr.ppe.test.base.StepBase;
 import com.ithr.ppe.test.commons.Partners;
 import com.ithr.ppe.test.cucumber.pages.BasicPartnerOffer;
 import com.ithr.ppe.test.cucumber.pages.UserEntertainment;
-import com.ithr.ppe.test.cucumber.steps.utils.AdminActivities;
+import com.ithr.ppe.test.cucumber.steps.utils.AdminFacade;
 import com.ithr.ppe.test.cucumber.steps.utils.CommonPartnerPurchase;
 import com.ithr.ppe.test.cucumber.steps.utils.ErrorCollector;
-import com.ithr.ppe.test.cucumber.steps.utils.IdentityActivities;
+import com.ithr.ppe.test.cucumber.steps.utils.IdentityFacade;
+import com.ithr.ppe.test.cucumber.steps.utils.IPartnerPurchase;
 
 import cucumber.api.Scenario;
 import cucumber.api.java.After;
@@ -33,7 +34,7 @@ import cucumber.api.java.en.When;
 public class PurchaseOfferSteps extends StepBase {
 	public static Logger log = Logger.getLogger(PurchaseOfferSteps.class);
 	
-	private CommonPartnerPurchase cpp = new CommonPartnerPurchase();
+	private IPartnerPurchase cpp = new CommonPartnerPurchase();
 	
 	private Partners myPartner = null;
 	private String userNameToUse = "";
@@ -57,7 +58,7 @@ public class PurchaseOfferSteps extends StepBase {
 	}
 	
 	@Given("^I am a \"([^\"]*)\" customer purchasing the \"([^\"]*)\" offer$")
-	public void PartnerCustomer(String opco, String partner) throws Exception {
+	public void PartnerCustomer(String opco, String partner) {
 	   log.info("Given: I am a " + opco + " customer purchasing " + partner + " offer");
 	   
 	   // convert string to enum;
@@ -70,7 +71,7 @@ public class PurchaseOfferSteps extends StepBase {
 	}
 	
 	@When("^my profile has a ([^\"]*) tariff with a ([^\"]*) usergroup$")
-	public void PackageInGroup(String mypackage, String usergroup) throws Exception {
+	public void PackageInGroup(String mypackage, String usergroup) {
 		log.info("When: I have a " + mypackage + " with a " + usergroup + " usergroup");
 		this.subscription = mypackage;
 		this.userGroup = usergroup;	
@@ -87,10 +88,10 @@ public class PurchaseOfferSteps extends StepBase {
 			// Need an MSISDN to log in
 			// we may have set this up in ER or not - handled in AdminActivities based on params
 			driver.get(baseAdminUrl);
-			shortMsisdn = AdminActivities.msisdnFromAdmin(driver, opco, subscription, userGroup, myPartner);
+			shortMsisdn = AdminFacade.msisdnFromAdmin(driver, opco, subscription, userGroup, myPartner);
 			
 			// handle the AA aspect
-			IdentityActivities.loginToPPE (driver, opco, myPartner, shortMsisdn , pinCode, baseUserUrl);
+			IdentityFacade.loginToPPE (driver, opco, myPartner, shortMsisdn , pinCode, baseUserUrl);
 			
 		} catch (Exception e){
 			log.error("Caught Exception: " + e);
@@ -101,10 +102,14 @@ public class PurchaseOfferSteps extends StepBase {
 		
 	}
 	
-	private boolean checkAndSelectExternal(String reffilename) throws InterruptedException {
+	private boolean checkAndSelectExternal(String reffilename)  {
 		// Entertainment page - offer page directly or click on image icon to get text
 		UserEntertainment entpage = new UserEntertainment(driver);
-		entpage.bodyLoaded();
+		try {
+			entpage.bodyLoaded();
+		} catch (InterruptedException e) {
+			log.error("interrupted page loaded check " + e);
+		}
 		 		  
 		// There should be available offers for THIS MSISDN -
 		// if there are no offers this is probably an error
@@ -117,11 +122,14 @@ public class PurchaseOfferSteps extends StepBase {
 		// TODO: put in check ok
 		cpp.validatePrePurchaseOffers(entpage);
 		  
-		if (cpp.selectPartnerOffer(myPartner, entpage)) {
-			  
+		if (cpp.selectPartnerOffer(myPartner, entpage)) {		  
 			//  on journey to accept offer
 			BasicPartnerOffer offer = new BasicPartnerOffer(driver);
-			offer.bodyLoaded();
+			try {
+				offer.bodyLoaded();
+			} catch (InterruptedException e) {
+				log.error("interrupted page loaded check " + e);
+			}
 			offer.setTnC();			  
 			  
 			if (refFileValid) {
@@ -144,10 +152,14 @@ public class PurchaseOfferSteps extends StepBase {
 		return true;
 	}
 	
-	private boolean checkAndSelectInternal(String reffilename) throws InterruptedException {
+	private boolean checkAndSelectInternal(String reffilename) {
 	//  page looks different to standard model - no mini icons to select....
 		BasicPartnerOffer offer = new BasicPartnerOffer(driver);
-		offer.bodyLoaded();
+		try {
+			offer.bodyLoaded();
+		} catch (InterruptedException e) {
+			log.error("interrupted page loaded check " + e);
+		}
 		offer.setTnC();			  
 				  
 		if (refFileValid) {
@@ -204,7 +216,7 @@ public class PurchaseOfferSteps extends StepBase {
 				CheckedScenarioScreenshot();
 				ErrorCollector.verifyTrue(offeraccepted,"offer not accepted");
 				
-				// now go back to PPE and refresh and checkpwd
+				// now go back to PPE and refresh and chec pwd
 				String urltouse = baseUserUrl + opco;			
 				boolean ppeopen = cpp.refreshPPE(driver, urltouse);				
 				CheckedScenarioScreenshot();

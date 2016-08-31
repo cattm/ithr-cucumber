@@ -22,7 +22,7 @@ import com.ithr.ppe.test.cucumber.pages.PageBase;
 import com.ithr.ppe.test.cucumber.pages.UserEntertainment;
 import com.ithr.ppe.test.cucumber.pages.partners.DropBoxRefresh;
 
-public class CommonPartnerPurchase implements PartnerPurchaseInterface {
+public class CommonPartnerPurchase implements IPartnerPurchase {
 	public static Logger log = Logger.getLogger(CommonPartnerPurchase.class);
 
 	private static JsonParser parser = null;
@@ -57,7 +57,7 @@ public class CommonPartnerPurchase implements PartnerPurchaseInterface {
 		switch (partner) {
 		case SPOTIFY :
 			try {
-				SpotifyActivities spot = new SpotifyActivities();
+				SpotifyFacade spot = new SpotifyFacade();
 				partnerUserName = spot.getUser (driver, adminurl, opco);
 			} catch (Exception e) {
 				log.error("Cannot get Spotify user name");
@@ -183,13 +183,13 @@ public class CommonPartnerPurchase implements PartnerPurchaseInterface {
 		switch (myPartner) {
 		case DROPBOX :
 			// we finish at a download page I think
-			VFDropboxActivities dropbox = new VFDropboxActivities();
+			IVFPartner dropbox = new VFDropboxFacade();
 			registered = dropbox.PurchaseOffer(driver, opco);
 			checkreturnpage = false;
 			break;
 		case SPOTIFY :	
 			try {
-				SpotifyActivities spot = new SpotifyActivities();
+				IExternalPartner spot = new SpotifyFacade();
 				registered = spot.register(driver, opco, partnerUserName);
 			} catch (Exception e) {
 				log.error("Register for Spotify failed " + e);
@@ -197,7 +197,7 @@ public class CommonPartnerPurchase implements PartnerPurchaseInterface {
 			break;
 			
 		case NETFLIX :
-			NetflixActivities pa = new NetflixActivities();
+			IExternalPartner pa = new NetflixFacade();
 			registered = pa.register(driver, opco, partnerUserName);
 			// at this point we need to return because there is nothing else to check for netflix
 			checkreturnpage = false;
