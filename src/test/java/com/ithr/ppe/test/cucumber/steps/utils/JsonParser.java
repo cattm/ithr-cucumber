@@ -12,20 +12,34 @@ import com.ithr.ppe.test.commons.CommandExecutor;
 // TODO: Review try/catch blocks ensure we fit in with general strategy
 
 public class JsonParser {
+	private static JsonParser instance = null;
+	
 	private String fileToParse = "";
 	private JSONObject jsonObject;
 	public static Logger log = Logger.getLogger(JsonParser.class);
 	
-	public JsonParser (String file) {
+	protected JsonParser () {
+		
+	}
+	
+	public static JsonParser getInstance() {
+		if (instance == null) {
+	         instance = new JsonParser();
+	      }
+	      return instance;
+	}
+	
+	public void initialise(String path, String partialref) {
+		fileToParse = findActualFile(path, partialref);
+		jsonObject = getStartPoint();
+	}
+	
+	public void initialise (String file) {
 		fileToParse = file;
 		jsonObject = getStartPoint();	
 	}
 	
-	public JsonParser (String path, String fileref) {
-		fileToParse = findActualFile(path, fileref);
-		jsonObject = getStartPoint();
-	}
-	
+	// this method is implemented in 2 places - sort it out
 	private String findActualFile (String path, String fileref) {
 		// assumes full path to file and first part of filename
 		// assumes the file will be of the form "path/Blah blah v2.0.json" and we are given "path/Blah blah"
@@ -33,6 +47,7 @@ public class JsonParser {
 		String check = CommandExecutor.execFindExactJsonFile(path, compare);
 		return check;
 	}
+	
 	public String stripHTML(String withhtml) {
 		return Jsoup.parse(withhtml).text();
 	}

@@ -143,7 +143,8 @@ public class GbSkyOfferSteps extends StepBase {
 		  // check ALL the offer text is correct
 		  
 		  String displayoffer = skyoffer.getUserOffer();
-		  jsonParse = new JsonParser(refDir + opco + "/" + fileToCheck);
+		  JsonParser jsonParser = JsonParser.getInstance();
+		  jsonParser.initialise(refDir + opco + "/" + fileToCheck);
 		  String title = jsonParse.getOffersTitle();		  
 		  Assert.assertTrue(displayoffer.equals(title));
 		  

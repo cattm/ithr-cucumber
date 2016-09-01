@@ -37,18 +37,18 @@ public class CommonPartnerPurchase implements IPartnerPurchase {
  * 
  */
 	
-
-	
 	public void locateJsonParseFile (String path, String filename) {
 		log.info("going to search for :" + path + " and file " + filename);
 		String fileToCheck = CommandExecutor.execFindExactJsonFile(path, filename + " v");
 		log.info("going to use json file: " + fileToCheck);
-		parser = new JsonParser(path + fileToCheck);
+		parser = JsonParser.getInstance();
+		parser.initialise(path + fileToCheck);
 	}
 	
 	public void defineCheckerToUse(String file, String opco) {
 		try {
-			checker = new opcoTextChecker(file, opco);
+			checker = opcoTextChecker.getInstance();
+			checker.initialise(file, opco);
 		} catch (IOException e) {
 			log.error("Issue creating opcoTextchecker " + e);
 		}
@@ -176,7 +176,7 @@ public class CommonPartnerPurchase implements IPartnerPurchase {
 		return done;	
 	}	
 	
-	public boolean acceptVFPOfer(IVFPartner vfpartner, WebDriver driver) {
+	public boolean acceptVFPOffer(IVFPartner vfpartner, WebDriver driver) {
 		boolean done = false;
 		if (vfpartner.PurchaseOffer(driver)) {
 			try {
@@ -188,6 +188,7 @@ public class CommonPartnerPurchase implements IPartnerPurchase {
 		} else done = false;
 		return done;		
 	}
+	
 	public boolean acceptTheOffer(WebDriver driver, String opco, Partners partner)  {
 		if (myPartner == null) {
 			myPartner = partner;
@@ -208,7 +209,7 @@ public class CommonPartnerPurchase implements IPartnerPurchase {
 		case DROPBOX :
 			// we finish at a download page
 			IVFPartner dropbox = new VFDropboxFacade();
-			registered = acceptVFPOfer(dropbox, driver);
+			registered = acceptVFPOffer(dropbox, driver);
 			checkreturnpage = false;
 			break;
 		case SPOTIFY :	

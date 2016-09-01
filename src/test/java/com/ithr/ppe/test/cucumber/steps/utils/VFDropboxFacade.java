@@ -30,9 +30,10 @@ public class VFDropboxFacade implements IVFPartner {
 		//log.info("Notification test: " + nt);
 		// because this is a VF page - include a check of content
 		//replace "\n" and strip html	
-		log.info("details: " + StringUtils.replace(dbs.getDetailsText(), "\n", "") );
+		log.info("Details: " + StringUtils.replace(dbs.getDetailsText(), "\n", "") );
 		//TODO: cant do checking yet
-		//ErrorCollector.verifyEquals(StringUtils.replace(dbs.getDetailsText(), "\n", ""), parser.stripHTML(parser.getSubscribeSuccessText()),"Dropbox success page Text is not correct");
+		JsonParser parser = JsonParser.getInstance();
+		ErrorCollector.verifyEquals(StringUtils.replace(dbs.getDetailsText(), "\n", ""), parser.stripHTML(parser.getSubscribeSuccessText()),"Dropbox success page Text is not correct");
 				
 		dbs.clickContinue();		
 		return true;

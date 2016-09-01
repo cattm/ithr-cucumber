@@ -8,6 +8,8 @@ import org.apache.log4j.Logger;
 
 public class opcoTextChecker {
 	public static Logger log = Logger.getLogger(opcoTextChecker.class);
+	private static opcoTextChecker instance = null;
+	
 	// TODO: RESOLVE all Hard Codes in this solution
 	private final String offset = "partneroffers.88c34b82.";
 	private final String file = "PPEWebapp-XX.properties";
@@ -23,13 +25,26 @@ public class opcoTextChecker {
 		log.info(reference + actFile);
 		return  reference + actFile; 
 	}
-	public opcoTextChecker(String path, String opco) throws IOException {
-		reference = path;
-		this.opco = opco;
-		LoadPropertyFile();
+	
+	protected opcoTextChecker () {
+	
 	}
 	
-	public void LoadPropertyFile () throws IOException {
+	public static opcoTextChecker getInstance() {
+		if(instance == null) {
+	         instance = new opcoTextChecker();
+	      }
+	      return instance;
+	}
+	
+	public void initialise (String path, String opco) throws IOException {
+		instance.reference = path;
+		instance.opco = opco;
+		instance.LoadPropertyFile();
+	}
+	
+	
+	private void LoadPropertyFile () throws IOException {
 	
 			
 		FileInputStream fis = new FileInputStream(formFileRef());
