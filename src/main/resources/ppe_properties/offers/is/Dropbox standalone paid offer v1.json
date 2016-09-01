@@ -1,0 +1,79 @@
+{
+   "comment": "Initial import by DEV",
+   "opco": "is",
+   "name": "Dropbox standalone paid offer",
+   "version": 1,
+   "partner": "dropbox",
+   "type": "standalone",
+   "switchable": false,
+   "trial": false,
+   "enabled": {
+      "purchase": true,
+      "cancellation": true
+   },
+   "heading": "Dropbox",
+   "deviceAvailability": [
+      "android",
+      "iPhone"
+   ],
+   "pages": {
+      "purchase": {
+         "details": {
+            "title": "Sérstakt tilboð fyrir þig!",
+            "text": "<p>Með Vodafone Backup+ getur þú keypt 25 GB af geymsluplássi hjá Dropbox fyrir aðeins 490 kr. á mánuði.</p><ul><li>25GB geymslupláss</li><li>490 kr. á mánuði</li><li>Getur hætt þegar þú vilt!</li></ul>",
+            "checkbox": {
+               "label": "Ég samþykki <a href=\"http://www.vodafone.com/content/apps/external-redirects/backupplus/promo_general/IS\"  target=\"_blank\">skilmála</a>",
+               "errorMessage": "Vinsamlegast samþykkið skilmála",
+               "confirmationMessage": "Með því að staðfesta áskriftina þína virkjast 25 GB geymsluplássið þitt hjá Dropbox fyrir aðeins 490 kr. á mánuði. Þú munt sjá þessa upphæð birtast á reikningi frá Vodafone. Þú getur sagt upp áskriftinni hvenær sem þú vilt.",
+               "order": 1,
+               "mandatory": true
+            },
+            "accordion": {
+               "label": "Upplýsingar um tilboð",
+               "text": "<p class=\"content_heading\">Auka geymslupláss</p><p>Geymsluplássið sem þú færð með áskriftinni þinni bætist ofan á núverandi geymslupláss þitt hjá Dropbox.</p><p class=\"content_heading\">Gjaldskrá gagnamagns</p><p>Þú borgar hefðbundinn gagnamagnskostnað þegar þú ert á reiki eða þegar þú hefur klárað innifalið gagnamagn með áskriftinni þinni.</p><p class=\"content_heading\">Segja upp áskriftinni</p><p>Þú getur afskráð þig fyrir þjónustunni þegar þú vilt í gegnum 'Tilboðið þitt' í Backup+ appinu.</p>"
+            },
+            "okButton": {
+               "label": "Fá tilboðið mitt",
+               "action": "#next"
+            },
+            "customButton": {
+               "label": "Ekki núna",
+               "action": "http://www.vodafone.com/content/apps/ext/backupplus/is/open.html"
+            }
+         },
+         "success": {
+            "title": "Til hamingju!",
+            "text": "<p>Þú ert nú með 25GB í geymslupláss hjá Dropbox fyrir aðeins 490 kr. á mánuði. Þú getur sagt upp áskriftinni þinni þegar þú vilt í gegnum 'Tilboðið þitt' í Backup+ appinu.</p>",
+            "customButton": {
+               "label": "Halda áfram",
+               "action": "http://www.vodafone.com/content/apps/ext/backupplus/is/open.html"
+            }
+         }
+      },
+      "cancellation": {
+         "details": {
+            "title": "Tilboðið þitt",
+            "text": "<p>Þú ert nú með 25 GB af geymsluplássi hjá Dropbox innifalið í farsímaleið þinni hjá Vodafone.</p><ul><li>Borgar aðeins 490 kr. á mánuði.</li><li>Getur sagt upp þegar þér hentar</li></ul>",
+            "accordion": {
+              "label": "Upplýsingar um áskriftina þína",
+               "text": "<p class=\"content_heading\">Auka geymslupláss</p><p>Geymsluplássið sem þú færð með áskriftinni þinni bætist ofan á núverandi geymslupláss þitt hjá Dropbox.</p><p class=\"content_heading\">Gjaldskrá gagnamagns</p><p>Þú borgar hefðbundinn gagnamagnskostnað þegar þú ert á reiki eða þegar þú hefur klárað innifalið gagnamagn með áskriftinni þinni.</p><p class=\"content_heading\">Segja upp áskriftinni</p><p>Þú getur afskráð þig fyrir þjónustunni þegar þú vilt í gegnum 'Tilboðið þitt' í Backup+ appinu.</p>"
+            },
+            "okButton": {
+               "label": "Afskrá",
+               "action": "#next"
+            }
+         },
+         "details2": {
+            "title": "Afskrá úr áskrift",
+            "text": "<p>Með því að skrá þig úr áskriftinni missir þú  25 GB af geymsluplássi þínu hjá Dropbox.</p><p>Þú getur enn notað Backup+ fyrir tengiliði þína ásamt því að geta hlaðið inn á Dropbox svo lengi sem geymslupláss þitt hjá Dropbox leyfir.</p><p>Ertu viss um að þú viljir afskrá þig?</p>",
+            "okButton": {
+               "label": "Afskrá",
+               "action": "#next"
+            }
+         },
+         "success": {
+            "text": "<p>Afskráning tókst</p>"
+         }
+      }
+   }
+}

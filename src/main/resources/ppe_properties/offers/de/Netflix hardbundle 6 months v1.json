@@ -1,0 +1,63 @@
+{
+	"comment": "Initial import by DEV",
+
+	"opco": "de",
+	"name": "Netflix hardbundle 6 months",
+	"version": 1,
+	"partner": "netflix",
+	"type": "hardbundle",
+	"switchable": false,
+	"trial": false,
+
+	"enabled": {
+		"purchase": true,
+		"cancellation": true
+	},
+
+	"usergroups": [
+		"ug_ppe_red", "ug_ppe_young"
+	],
+
+	"heading": "Netflix",
+
+	"pages": {
+		"purchase": {
+			"details": {
+				"title": "Genieß Filme und Serien immer und überall",
+				"text": "<p class=\"content_heading\">W\u00E4hl Dein Entertainment-Paket\u000B Netflix</p><ul class=\"offers_list\"><li>Aktuelle Serien-Hits und Film-Highlights wie Narcos, House of Cards, Marvel's Daredevil oder Man of Steel</li><li>In HD-Qualit\u00E4t und auf bis zu 2 Ger\u00E4ten gleichzeitig: Smartphone, Tablet, Smart TV und PC</li><li>6 Monate im Wert von 59,94 Euro geschenkt</li><li>Danach nur 9,99 Euro pro Monat</li><li>Du kannst monatlich k\u00FCndigen</li></ul>",
+				"accordion": {
+					"label": "Mehr infos",
+					"text": "<p class=\"content_heading\">Buchungsdetails:</p><ul class=\"offers_list\"><li>Du bekommst vor Ablauf der 6 Monate eine Erinnerung per SMS, \u00FCber die Du direkt k\u00FCndigen kannst</li><li>K\u00FCndigst Du nicht, zahlst Du ab dem 7. Monat nur 9,99 Euro pro Monat</li><li>Du bleibst flexibel und kannst monatlich k\u00FCndigen</li><li>Bei Nutzung \u00FCber das Mobilfunknetz werden Deine Frei-MB angerechnet</li><li>Durch Klicken auf \u201EJetzt aktivieren\u201C beginnt die Inklusiv-Phase. K\u00FCndigst Du innerhalb der Inklusiv-Phase, fallen keine Kosten an</li><li>Hast Du bereits ein Netflix-Konto, werden Deine Zahlungen f\u00FCr 6 Monate ausgesetzt</li></ul><b>Produktdetails:</b><ul class=\"offers_list\"><li>Starte eine Serie oder einen Film auf einem Ger\u00E4t und schau auf einem anderen zu Ende</li><li>Mit dem Netflix 2 Ger\u00E4te + HD-Paket, kannst Du Netflix in HD-Qualit\u00E4t auf zwei Ger\u00E4ten gleichzeitig schauen</li><li>Keine Werbung</li></ul>"
+				},
+				"okButton": {
+					"label": "Jetzt aktivieren",
+					"action": "#next"
+				}
+			},
+
+            "success":{
+               "title": "Netflix erfolgreich gebucht",
+               "text": "<p>Gratuliere, Dein Netflix-Konto kannst Du jetzt nutzen.</p><p>Falls Du noch nicht die App von Netflix hast, lade diese bitte runter.</p>",
+               "getAppButton": {
+                  "label": "Zur Netflix-App",
+                  "action": "#getApp"
+               }
+            }
+		},
+
+		"cancellation": {
+			"details": {
+				"text": "<p>Wenn Du Netflix jetzt kündigst, kannst Du es nach Laufzeitende nicht mehr nutzen.</p><p>Innerhalb der Testphase wirst Du per SMS informiert, kurz bevor Deine Testphase ausläuft. Bis dahin kannst Du es wie gewohnt weiter nutzen.</p>",
+				"okButton": {
+					"label": "Netflix kündigen",
+					"action": "#next"
+				}
+			},
+
+			"success": {
+				"title": "Kündigung erfolgreich",
+				"text": "<p>Du hast Dein Netflix-Paket erfolgreich gekündigt.</p><p>Dein Paket bleibt bis zum Ende der Laufzeit weiterhin nutzbar.</p>"
+			}
+		}
+	}
+}
