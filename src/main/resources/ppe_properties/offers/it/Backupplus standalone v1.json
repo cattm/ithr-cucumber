@@ -24,10 +24,10 @@
 	"pages": {
 		"purchase": {
 			"details": {
-				"title": "Non perdere i ricordi che hai!",
-				"text": "<p>Con Vodafone Backup+  foto, video, contatti e musica sono sempre al sicuro su Dropbox e recuperabili da qualsiasi dispositivo.</p><p>Il backup è immediato, automatico e non consuma i tuoi Giga.</p>",
+				"title": "Perché i tuoi ricordi sono importanti.",
+				"text": "<p>Vodafone insieme a Dropbox e RealTimes ti offre la soluzione ideale per per mettere al sicuro contatti, foto e video e trasformarli in bellissimi video da condividere.</p>",
 				"okButton": {
-					"label": "Scopri Backup+",
+					"label": "Scarica gratis",
 					"action": "#next"
 				}
 			}

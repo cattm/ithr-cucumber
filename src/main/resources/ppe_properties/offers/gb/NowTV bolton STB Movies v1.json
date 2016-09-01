@@ -15,62 +15,64 @@
 		"cancellation": false
 	},
 
-	"usergroups": ["ugstb"],
+	"usergroups": [
+		"ugstb"
+	],
 
 	"heading": "NOW TV Sky Cinema Month Pass",
 
 	"deviceAvailability": [
 		"android",
 		"iPhone",
-      "setTopBox",
+		"setTopBox",
 		"desktop"
 	],
 
 	"pages": {
 		"purchase": {
 			"details": {
-               "settop": true,
-               "title": "<p>The Sky Movies Month Pass. More of the year's biggest blockbusters. No contract.</p>",
-               "text": "<p>Enjoy over 1,000 movies and up to 16 premieres a month with a 14 day free trial. Then the movies keep rolling at just &pound;9.99 a month. Or simply cancel at any time by visiting offers.vodafone.com/gb</p>",
-               "checkbox": {
-                  "label": "I accept <a href=\"#\" class=\"terms_link\">terms and conditions</a>",
-                  "errorMessage": "To continue, you must agree to the terms & conditions",
-                  "order": 1,
-                  "mandatory": true
-               },
-               "okButton": {
-                  "label": "ADD NOW TV MOVIES PASS £9.99",
-                  "action": "#next"
-               }
-            },
+				"settop": true,
+				"title": "<p>The Sky Movies Month Pass. More of the year's biggest blockbusters. No contract.</p>",
+				"text": "<p>Enjoy over 1,000 movies and up to 16 premieres a month with a 14 day free trial. Then the movies keep rolling at just &pound;9.99 a month. Or simply cancel at any time by visiting offers.vodafone.com/gb</p><p>Don’t have an existing NOW TV account? Click on the SIGN UP button to create a new NOW TV account and activate your inclusive NOW TV Entertainment Pass</p>",
+				"checkbox": {
+					"label": "I accept <a href=\"#\" class=\"terms_link\">terms and conditions</a>",
+					"errorMessage": "To continue, you must agree to the terms & conditions",
+					"order": 1,
+					"mandatory": true
+				},
+				"okButton": {
+					"label": "ADD NOW TV MOVIES PASS £9.99",
+					"action": "#next"
+				}
+			},
 
-            "success": {
-               "title": "Your NOW TV Sky Cinema Month Pass is ready.",
-               "text": "<p>Congratulations, your NOW TV Sky Cinema Month Pass is ready to use on Vodafone TV or other devices.</p>",
-               "getAppButton": {
-                  "label": "Get NOW TV app",
-                  "action": "#getApp"
-               }
-            }
+			"success": {
+				"title": "Your NOW TV Sky Cinema Month Pass is ready.",
+				"text": "<p>Congratulations, your NOW TV Sky Cinema Month Pass is ready to use on Vodafone TV or other devices.</p>",
+				"getAppButton": {
+					"label": "Get NOW TV app",
+					"action": "#getApp"
+				}
+			}
 		},
 
 		"cancellation": {
 			"details": {
-               "settop": true,
-               "text": "<p>You'll be stopping your NOW TV Sky Cinema Month Pass. Remember you can always come back to start again when you want.</p>",
-               "okButton": {
-                  "label": "Cancel NOW TV Sky Cinema Month Pass",
-                  "action": "#next"
-               },
-               "getAppButton": {
-                  "label": "Get NOW TV app",
-                  "action": "#getApp"
-               }
-            },
-            "success": {
-               "title": "You've been unsubscribed successfully from NOW TV Sky Cinema Month Pass.",
-               "text": "<p>Remember you can come back at any time to sign up again.</p>"
-            }
+				"settop": true,
+				"text": "<p>You have an active NOW TV Sky Cinema Month Pass.  To cancel this from next month click on the red button to the right.  You can use the Pass in the meantime and will be able to sign up again if you wish once the pass has been cancelled.</p>",
+				"okButton": {
+					"label": "CANCEL NOW TV SKY CINEMA MONTH PASS",
+					"action": "#next"
+				},
+				"getAppButton": {
+					"label": "Get NOW TV app",
+					"action": "#getApp"
+				}
+			},
+			"success": {
+				"title": "You've been unsubscribed successfully from NOW TV Sky Cinema Month Pass.",
+				"text": "<p>Your NOW TV Sky Cinema Month Pass has been cancelled from next month. You can use the Pass in the meantime and will be able to sign up again if you wish once the pass has been cancelled.</p>"
+			}
 		}
 	},
 

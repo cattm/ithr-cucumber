@@ -25,20 +25,20 @@
 		"purchase": {
 			"details": {
 				"title": "Le tue foto, i tuoi video e la tua rubrica… Facili da archiviare e ripristinare",
-				"text": "<p class=\"content_heading\">Ottime notizie!</p><p>Con Vodafone Backup+ hai 25GB di spazio extra al costo di 2.49€ al mese<ul><li>25GB di spazio extra</li><li>€2,49 al mese</li><li>Disattiva quando vuoi!</li></ul>",
+				"text": "<p class=\"content_heading\">Ottime notizie!</p><p>Con Vodafone Backup+ hai 25GB di spazio extra e RealTimes illimitato al costo di 2.49€ al mese<ul><li>25GB di spazio extra e RealTimes illimitato</li><li>€2,49 al mese</li><li>Disattiva quando vuoi!</li><li>Attiva RealTimes e crea bellissimi video</li></ul>",
 				"checkbox": {
 					"label": "Accetti i <a href=\"http://www.vodafone.com/content/apps/external-redirects/backupplus/promo_general/IT\"  target=\"_blank\">termini e le condizioni del servizio</a>",
 					"errorMessage": "Accetta i Termini e le Condizioni di Servizio per attivare l'offerta.",
-					"confirmationMessage": "Seleziona Ricevi per ottenere l'offerta con 25GB a €2,49 al mese",
+					"confirmationMessage": "Seleziona Attiva per ottenere l'offerta con 25GB e RealTimes illimitato a €2,49 al mese",
 					"order": 1,
 					"mandatory": true
 				},
 				"accordion": {
 					"label": "Dettagli",
-					"text": "<p class=\"content_heading\">Spazio aggiuntivo</p><p>Lo spazio in più che hai richiesto, viene aggiunto a quello giá presente sul tuo account Dropbox.</p><p class=\"content_heading\">Costi di connessione Internet</p><p>L'upload dei contenuti non consuma i Giga inclusi nella tua offerta. In caso di roaming il costo della connessione a Internet verrà addebitato secondo l'offerta sottoscritta.</p><p class=\"content_heading\">Disattivare l'offerta</p><p>Puoi disattivare l'offerta in qualsiasi momento nella sezione \"Promo Dropbox\" dell'app di Backup+.</p>"
+					"text": "<p class=\"content_heading\">Spazio aggiuntivo</p><p>Lo spazio in più che hai richiesto, viene aggiunto a quello giá presente sul tuo account Dropbox.</p><p class=\"content_heading\">Costi di connessione Internet</p><p>Il caricamento dei contenuti non consuma i dati inclusi nella tua offerta Vodafone. In caso di roaming il costo della connessione a Internet verrà addebitato secondo il tuo piano tariffario.</p><p class=\"content_heading\">Disattivare l'offerta</p><p>Puoi disattivare l'offerta in qualsiasi momento nella sezione \"Promo Dropbox\" dell'app di Backup+.</p>"
 				},
 				"okButton": {
-					"label": "Ricevi il tuo spazio extra!",
+					"label": "Attiva l'offerta!",
 					"action": "#next"
 				},
 				"customButton": {
@@ -49,7 +49,7 @@
 
 			"success": {
 				"title": "Hai attivato la tua offerta Backup+",
-				"text": "<p class=\"content_heading\">Congratulazioni!</p><p>Ora hai 25GB di spazio su Dropbox inclusi nel tuo piano Vodafone a 2,49€ al mese.</p><p>Puoi cancellare la tua sottoscrizione in qualsiasi momento dall'app di Backup+.</p>",
+				"text": "<p class=\"content_heading\">Congratulazioni!</p><p>Ora hai 25GB di spazio su Dropbox e RealTimes illimitato inclusi nel tuo piano Vodafone a 2,49€ al mese.</p><p>Puoi cancellare la tua sottoscrizione in qualsiasi momento dall'app Backup+.</p>",
 				"customButton": {
 					"label": "Continua",
 					"action": "http://www.vodafone.com/content/apps/external-redirects/backupplus/open/IT"
@@ -63,7 +63,7 @@
 				"text": "<p>Hai ora 25GB di spazio su Dropbox</p><ul><li>2,49€ al mese</li><li>Cancella l'iscrizione in qualsiasi momento!</li></ul><p><a href=\"http://www.vodafone.com/content/apps/external-redirects/backupplus/promo_general/IT\" target=\"_blank\">Termini & Condizioni</a></p>",
 				"accordion": {
 					"label": "Dettagli",
-					"text": "<p class=\"content_heading\">Spazio aggiuntivo</p><p>Lo spazio in più che hai richiesto, viene aggiunto a quello giá presente sul tuo account Dropbox.</p><p class=\"content_heading\">Costi di connessione Internet</p><p>L'upload dei contenuti non consuma i Giga inclusi nella tua offerta. In caso di roaming il costo della connessione a Internet verrà addebitato secondo l'offerta sottoscritta.</p><p class=\"content_heading\">Disattivare l'offerta</p><p>Puoi disattivare l'offerta in qualsiasi momento nella sezione \"Promo Dropbox\" dell'app di Backup+.</p>"
+					"text": "<p class=\"content_heading\">Spazio aggiuntivo</p><p>Lo spazio in più che hai richiesto, viene aggiunto a quello giá presente sul tuo account Dropbox.</p><p class=\"content_heading\">Costi di connessione Internet</p><p>Il caricamento dei contenuti non consuma i dati inclusi nella tua offerta Vodafone. In caso di roaming il costo della connessione a Internet verrà addebitato secondo il tuo piano tariffario.</p><p class=\"content_heading\">Disattivare l'offerta</p><p>Puoi disattivare l'offerta in qualsiasi momento nella sezione \"Promo Dropbox\" dell'app di Backup+.</p>"
 				},
 				"okButton": {
 					"label": "Disattiva",

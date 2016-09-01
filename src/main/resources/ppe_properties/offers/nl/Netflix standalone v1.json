@@ -19,10 +19,10 @@
 	"pages": {
 		"purchase": {
 			"details": {
-				"text": "<p>Voor iedereen iets leuks!</p><p>Overal genieten van de beste series en films van Netflix, waar en wanneer je maar wilt, op jouw manier.</p><ul><li>Naast je favoriete series en films die je op Netflix kunt streamen, zijn er ook altijd nieuwe bekroonde Netflix-originals te zien. En het aanbod series en films blijft groeien.</li><li>Je hoeft de series of film niet te downloaden.</li><li>Hoe relaxed? Er is geen reclame break.</li><li>Je ontvangt de eerst maand Netflix cadeau. Hierna betaal je makkelijk via je Vodafone rekening! Je kunt maandelijks opzeggen.</li></ul>",
+				"text": "<p>Voor iedereen iets leuks!</p><p>Overal genieten van de beste series en films van Netflix, waar en wanneer je maar wilt, op jouw manier.</p><ul><li>Naast je favoriete series en films die je op Netflix kunt streamen, zijn er ook altijd nieuwe bekroonde Netflix-originals te zien. Het aanbod series en films blijft groeien.</li><li>Je hoeft de series of film niet te downloaden.</li><li>Hoe relaxed? Er is geen reclame onderbreking.</li><li>Je ontvangt de eerst maand Netflix cadeau. Hierna betaal je makkelijk via je Vodafone rekening! Je kunt maandelijks opzeggen.</li></ul>",
 				"checkbox": {
 					"label": "Ik accepteer de <a href=\"#\" class=\"terms_link\">Dienstvoorwaarden</a> en dat er automatisch kosten in rekening worden gebracht voor mijn Netflix abonnement, tenzij ik me op tijd afmeld.",
-					"errorMessage": "Je moet de Dienstvoorwaarden van Vodafone accepteren voordat je Netflix kunt activeren.",
+					"errorMessage": "Je moet de <a href=\"#\" class=\"terms_link\">Dienstvoorwaarden</a> van Vodafone accepteren voordat je Netflix kunt activeren.",
 					"order": 1,
 					"mandatory": true
 				},
@@ -57,6 +57,10 @@
 				"okButton": {
 					"label": "Netflix opzeggen",
 					"action": "#next"
+				},
+				"getAppButton": {
+					"label": "Netflix app downloaden",
+					"action": "#getApp"
 				}
 			},
 

@@ -51,7 +51,7 @@
 
 			"success": {
 				"title": "Glückwunsch!",
-				"text": "<p class=\"content_heading\">Das hat geklappt. Du hast jetzt 3 GB zusätzlichen Speicherplatz für Dein Dropbox-Konto!</p><p>Denk daran: Löse mindestens 5 von 7 der Ersten Schritte Deiner Dropbox. So schaltest Du Deine vollen 25 GB frei.</p><p>Hast du schon die \"Ersten Schritte\" gemeistert?</p><p>Du erhälst 25 GB zusätzlichen Dropbox-Speicherplatz.</p>",
+				"text": "<p class=\"content_heading\">Das hat geklappt. Du hast jetzt 3 GB zusätzlichen Speicherplatz für Dein Dropbox-Konto!</p><p>Denk daran: Löse mindestens 5 von 7 der Ersten Schritte Deiner Dropbox. So schaltest Du Deine vollen 25 GB frei.</p>",
 				"customButton": {
 					"label": "Weiter",
 					"action": "http://www.vodafone.com/content/apps/external-redirects/backupplus/open/DE"

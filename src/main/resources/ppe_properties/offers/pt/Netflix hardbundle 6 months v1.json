@@ -64,7 +64,7 @@
 					"action": "#getApp"
 				},
 				"okButton": {
-					"label": "Cancelar agora a subscrição Netflix",
+					"label": "Cancelar o serviço Netflix",
 					"action": "#next"
 				}
 			},
@@ -79,6 +79,7 @@
 
 			"success": {
 				"text": "<p>O cancelamento da sua subscrição ficará concluído no final do ciclo de renovação do serviço.</p>",
+                                "notificationMsg": "A sua subscrição Netflix foi cancelada com sucesso",
 				"getAppButton": {
 					"label": "Download da app Netflix",
 					"action": "#getApp"

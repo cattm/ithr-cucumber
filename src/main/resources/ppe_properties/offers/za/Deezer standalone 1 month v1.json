@@ -47,6 +47,10 @@
                 "okButton": {
                     "label": "Unsubscribe from Deezer",
                     "action": "#next"
+                },
+                "getAppButton": {
+                    "label": "Get Deezer app",
+                    "action": "#getApp"
                 }
             },
             "success": {

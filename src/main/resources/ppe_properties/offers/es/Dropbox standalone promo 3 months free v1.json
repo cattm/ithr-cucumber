@@ -29,17 +29,17 @@
 		"purchase": {
 			"details": {
 				"title": "¡Enhorabuena!",
-				"text": "<p>Tu tarifa incluye 25GB de espacio en Dropbox y RealTimes ilimitado gratis durante 3 meses. Después tan solo te costará 3€/mes. </p><p>RealTimes crea automáticamente montajes personalizados, seleccionando las mejores fotos y vídeos de tu móvil y Dropbox para compartir con quien quieras.</p>",
+				"text": "<p>Tu tarifa incluye Backup+ Premium con 25 GB de espacio adicional en Dropbox y RealTimes gratis durante 3 meses. Después el precio del servicio es de 3€/mes. RealTimes crea automáticamente montajes personalizados seleccionando las mejores fotos y vídeos de tu móvil y Dropbox para compartir con quien quieras.</p>",
 				"checkbox": {
-					"label": "Acepto los <a href=\"http://www.vodafone.com/content/apps/external-redirects/backupplus/promo_general/ES\" target=\"_blank\">términos y condiciones</a>",
-					"errorMessage": "Por favor, debes aceptar los términos y condiciones",
-					"confirmationMessage": "Seleccionando \"Suscribirse ahora\" activarás la oferta. Después del periodo de promoción empezarás a pagar 3 € al mes. Si no te suscribes ahora, continuarás disfrutando de 2GB de espacio gratuito en Dropbox y Real Times ilimitado 1 mes. Recuerda que podrás cancelarla cuando quieras sin ningún cargo adicional.",
+					"label": "Acepto los <a href=\"http://www.vodafone.com/content/apps/external-redirects/backupplus/promo_general/ES\" target=\"_blank\">Términos y Condiciones</a>",
+					"errorMessage": "Por favor, debes aceptar los Términos y Condiciones",
+					"confirmationMessage": "Seleccionando “Suscribirse ahora” activarás la oferta. Después del periodo de promoción empezarás a pagar 3 € al mes. Si no te suscribes ahora, continuarás disfrutando de 2 GB de espacio gratuito en Dropbox y Real Times durante 1 mes. Recuerda que podrás cancelarla cuando quieras sin ningún cargo adicional.",
 					"order": 1,
 					"mandatory": true
 				},
 				"accordion": {
 					"label": "Detalles de la oferta",
-					"text": "<p class=\"content_heading\">Para acceder a tus 25GB adicionales</p><p> Al aceptar esta oferta recibirás automáticamente 3GB de espacio adicional en Dropbox. Para acceder a los 25GB extra debes completar al menos 5 de los 7 “Primeros pasos” de Dropbox. Más información: <a href=\"https://www.dropbox.com/gs\" target=\"_blank\">https://www.dropbox.com/gs</a></p><p class=\"content_heading\">Cargos de navegación por Internet</p><p>Subir contenido desde Backup+ a Dropbox no consume datos de tu tarifa, excepto si estás en roaming.</p><p class=\"content_heading\">Cancelación de la oferta</p><p>Tu oferta incluye 3 meses gratis, después el precio del servicio es de 3€ al mes, pero no te preocupes, te informaremos 1 mes antes de la finalización de la misma. Podrás cancelarla en cualquier momento desde Mi Oferta, en la app de Backup+</p>"
+					"text": "<p class=\"content_heading\">Para acceder a tus 25GB adicionales</p><p> Al aceptar esta oferta recibirás automáticamente 3GB de espacio adicional en Dropbox. Para acceder a los 25GB extra debes completar al menos 5 de los 7 “Primeros pasos” de Dropbox. Más información: <a href=\"https://www.dropbox.com/gs\" target=\"_blank\">https://www.dropbox.com/gs</a></p><p class=\"content_heading\">Cargos de navegación por Internet</p><p>Subir contenido desde Backup+ a Dropbox no consume datos de tu tarifa, excepto si estás en roaming.</p><p class=\"content_heading\">Cancelación de la oferta</p><p>Tu oferta incluye 3 meses gratis, después el precio del servicio es de 3€ al mes, pero no te preocupes, te informaremos 1 mes antes de la finalización del periodo promocional. Podrás cancelarla en cualquier momento desde Mi Oferta dentro de Mi Cuenta en la app de Backup+</p>"
 				},
 				"okButton": {
 					"label": "Suscribirse ahora",
@@ -53,7 +53,7 @@
 
 			"success": {
 				"title": "¡Enhorabuena!",
-				"text": "<p>Has activado correctamente <b>Backup+ Premium</b> con 25GB en Dropbox y Realtimes ilimitado gratis durante 3 meses. Después, el precio del servicio será de 3€ al mes. </p><p>Recuerda que para para acceder a tus 25GB adicionales solo tienes que completar los Primeros Pasos de Dropbox. Hasta que los completes, dispondrás de 3GB para hacer la copia de seguridad de tu móvil.</p><p>Para disfrutar de RealTimes descarga la app desde Backup+ pinchando en el banner correspondiente o directamente desde Google Play. Crea montajes de tus mejores fotos y videos con RealTimes ilimitado. </p>",
+				"text": "<p>Has activado correctamente <b>Backup+ Premium</b> con 25GB de espacio adicional en Dropbox y Realtimes gratis durante 3 meses. Después, el precio del servicio será de 3€ al mes.</p><p>Recuerda que para disponer de tus 25GB adicionales solo tienes que completar los Primeros Pasos de Dropbox. Hasta que los completes, dispondrás de 3GB para hacer la copia de seguridad de tu móvil.</p><p>Para disfrutar de RealTimes descarga la aplicación desde Backup+ pinchando en el banner correspondiente o directamente desde Google Play o AppleStore. Crea montajes con tus mejores fotos y videos con RealTimes.</p>",
 				"customButton": {
 					"label": "Continuar",
 					"action": "http://www.vodafone.com/content/apps/external-redirects/backupplus/open/ES"
@@ -85,7 +85,7 @@
 			},
 
 			"success": {
-				"text": "<p class=\"intro-text\">Tu cancelación de la oferta de Backup+ premium se ha realizado correctamente. Se procederá a dar la baja de esta suscripción al final de tu ciclo de facturación en el servicio.</p>"
+				"text": "<p class=\"content_heading\">La cancelación de Backup+ Premium se ha realizado correctamente. Se procederá a dar la baja de esta suscripción al final de tu ciclo de facturación en el servicio.</p>"
 			}
 		}
 	}

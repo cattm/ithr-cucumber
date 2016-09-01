@@ -27,6 +27,18 @@
 				"getAppButton": {
 					"label": "Get Netflix app",
 					"action": "#getApp"
+				},
+				"okButton": {
+					"label": "STOP AT THE END OF INCLUSIVE PERIOD",
+					"action": "#next"
+				}
+			},
+
+			"success": {
+				"text": "<p>You have been successfully unsubscribed from Netflix from the end of your inclusive subscription</p>",
+				"getAppButton": {
+					"label": "Get Netflix app",
+					"action": "#getApp"
 				}
 			}
 		}

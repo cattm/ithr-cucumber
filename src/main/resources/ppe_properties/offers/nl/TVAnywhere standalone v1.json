@@ -22,7 +22,7 @@
 				"text": "<p>Overal TV kijken met TV Anywhere</p><p>Bekijk je favoriete TV-programma's op je smartphone of tablet, waar en wanneer je maar wilt.</p><ul><li>Live TV-zenders bekijken waar en wanneer je maar wilt.</li><li>TV-momenten delen via Facebook & Twitter</li><li>Altijd een TV-gids bij de hand</li><li>Je ontvangt de eerst maand TV Anywhere cadeau. Hierna betaal je makkelijk via je Vodafone rekening! Je kunt maandelijks opzeggen.</li></ul>",
 				"checkbox": {
 					"label": "Ik accepteer de <a href=\"#\" class=\"terms_link\">Dienstvoorwaarden</a> en dat er automatisch kosten in rekening worden gebracht voor mijn TV Anywhere abonnement, tenzij ik me op tijd afmeld.",
-					"errorMessage": "Je moet de Dienstvoorwaarden van Vodafone accepteren voordat je TV Anywhere kunt activeren.",
+					"errorMessage": "Je moet de <a href=\"#\" class=\"terms_link\">Dienstvoorwaarden</a> van Vodafone accepteren voordat je TV Anywhere kunt activeren.",
 					"order": 1,
 					"mandatory": true
 				},

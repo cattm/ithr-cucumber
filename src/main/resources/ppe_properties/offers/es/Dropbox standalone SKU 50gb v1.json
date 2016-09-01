@@ -31,8 +31,8 @@
 				"title": "¡Enhorabuena!",
 				"text": "<p>Dispones de  50GB de espacio gratuito en Dropbox</p><p>Completa los primeros pasos de Dropbox para activarlos si no lo has hecho ya.</p>",
 				"checkbox": {
-					"label": "Acepto los <a href=\"http://www.vodafone.com/content/apps/external-redirects/backupplus/promo_general/ES\" target=\"_blank\">términos y condiciones</a>",
-					"errorMessage": "Por favor, debes aceptar los términos y condiciones",
+					"label": "Acepto los <a href=\"http://www.vodafone.com/content/apps/external-redirects/backupplus/promo_general/ES\" target=\"_blank\">Términos y Condiciones</a>",
+					"errorMessage": "Por favor, debes aceptar los Términos y Condiciones",
 					"confirmationMessage": "Seleccionando \"Suscribirse ahora\", activarás la promoción de 50GB en Dropbox.",
 					"order": 1,
 					"mandatory": true

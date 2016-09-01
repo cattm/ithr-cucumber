@@ -10,15 +10,9 @@
 	"trial": false,
 
 	"enabled": {
-		"purchase": true
+		"purchase": true,
+		"cancellation": false
 	},
-
-	"usergroups": [
-		"4gsmall",
-		"4gmedium",
-		"4glarge",
-		"4gxlarge"
-	],
 
 	"heading": "Spotify Premium",
 

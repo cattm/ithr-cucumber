@@ -54,19 +54,27 @@
 
 		"cancellation": {
 			"details": {
-				"text": "<p>You currently have Spotify on top of your plan.</p><p>To stop this subscription please click the button below.</p>",
+				"title": "You currently subscribe to Spotify Premium at £9.99 per month",
+				"text": "<p>You can cancel on the button below to stop any further charges</p>",
 				"getAppButton": {
 					"label": "Get Spotify app",
 					"action": "#getApp"
 				},
 				"okButton": {
-					"label": "Cancel",
+					"label": "CANCEL SPOTIFY PREMIUM",
+					"action": "#next"
+				}
+			},
+			"details2": {
+				"text": "<p>Please confirm your cancellation of Spotify Premium</p>",
+				"okButton": {
+					"label": "CONFIRM CANCELLATION",
 					"action": "#next"
 				}
 			},
 
 			"success": {
-				"text": "<p>You've been unsubscribed successfully from Spotify Premium. Your account will now revert to Spotify free.</p>",
+				"text": "<p>You have been successfully unsubscribed from Spotify Premium. Your account will now revert to Spotify free</p>",
 				"getAppButton": {
 					"label": "Get Spotify app",
 					"action": "#getApp"
