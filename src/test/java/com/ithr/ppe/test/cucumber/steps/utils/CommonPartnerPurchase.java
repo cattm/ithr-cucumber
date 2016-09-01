@@ -30,7 +30,12 @@ public class CommonPartnerPurchase implements IPartnerPurchase {
 	private static String partnerUserName = "none valid";
 	private static Partners myPartner = null;
 	
-// Maybe a case for using a Builder pattern here?	
+/*
+ * We analyse the offers
+ * Accept the offers
+ * check the result page
+ * 
+ */
 	
 
 	
@@ -80,24 +85,33 @@ public class CommonPartnerPurchase implements IPartnerPurchase {
 		return partnerUserName;
 	}
 	
-	public boolean validatePrePurchaseOffers(UserEntertainment entpage) {
-		// this method will get all the available offers and check they are as expected 
-		// I am not sure how I will implement this yet.
-		// depends on the country, price plan; the tariff; the data pack; and what has already been purchased
-		// TODO: Implement this - for the moment pass it
-		log.info("NOT IMPLMENTED");
+	
+	/*
+	 * TODO: the two methods are intended to verify the correct offers exist both pre and post the purchase activity
+	 * I an not sure if this is an intelligent thing to attempt - we may be going a step too far
+	 * I either have to model in a text file and read it in OR
+	 * Use Backgroud BDD label to set up maps/table for tariff something like
+	 *   Background: Previously Going to purchase Spotify
+	 *   Given I am a "GB" customer purchasing spotify with:
+	 * | package     | usergroup | shouldsee    |
+	 * | PK_4GTariff | 4glarge   |  netflix, nowtv, sky |
+	 *   AND when I have finished:
+	 * | nowsee |
+	 * | netflix,sky |	 
+	 */
+	public boolean validatePrePurchaseOffers(UserEntertainment entpage) {	
+		log.info("validatePrePurchaseOffers NOT IMPLMENTED");
 		return true;
 	}
 	
 	public boolean validatePostPurchaseOffers(UserEntertainment entpage) {
-		// TODO: Implement this - for the moment pass it
-		log.info("NOT IMPLMENTED");
+		log.info("validatePostPurchaseOffers NOT IMPLMENTED");
 		return true;
 	}
 	
 	public boolean selectPartnerOffer(Partners partner, UserEntertainment entpage)  {
 		// this is a very primative implementation
-		// we may have to cope with a situation where there are a number of offers from same partner
+		// we may have to cope with a situation where there are a number of offers from same partners
 		// we will need to select the correct one
 		// TODO: build a more comprehensive selection solution
 		
@@ -106,7 +120,7 @@ public class CommonPartnerPurchase implements IPartnerPurchase {
 		String imagestring = "";
 		switch (myPartner) {
 		case DROPBOX    :
-			//dropbox is a special case we dont have to do anything
+			//dropbox is an example of where we do not need to find the correct offer to select
 			found = true;
 		case NETFLIX    : 
 			imagestring = "netflix";
@@ -139,41 +153,51 @@ public class CommonPartnerPurchase implements IPartnerPurchase {
 	
 	private boolean WaitforPurchaseToComplete (BasicPartnerOffer offer) {
 		boolean done = false;
-		// max wait here is 20 * SLOW - which is a long time on a slow environment
+		// max wait here is 20 * SLOW - which is a very long time on a slow environment
 		for (int i = 0; i < 20 && !done; i++) {
 			// do the sleep first - to give it a chance
 			try {
 				Thread.sleep(CommonConstants.SLOW);
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
-				log.error("sleep interrupted");
+				log.error("sleep interrupted" + e);
 			}
 			
 			String notice = offer.getSuccessText();		
-			log.info("current success text is : " + notice);
+			log.debug("current success text is : " + notice);
 			
 			if (checker.checkCompleteMsg(notice)) {
 					log.info("purchase process complete");
 					done = true;
 			} else {
-				log.info("Waiting for purchase notification.....");
+				log.info("Waiting.....");
 			}
 		}
 		return done;	
 	}	
 	
+	public boolean acceptVFPOfer(IVFPartner vfpartner, WebDriver driver) {
+		boolean done = false;
+		if (vfpartner.PurchaseOffer(driver)) {
+			try {
+				Thread.sleep(CommonConstants.SLOW);
+			} catch (InterruptedException e) {
+				log.error("Remove this timer if you can");
+			}
+			done = vfpartner.MoveToDownload(driver);
+		} else done = false;
+		return done;		
+	}
 	public boolean acceptTheOffer(WebDriver driver, String opco, Partners partner)  {
 		if (myPartner == null) {
 			myPartner = partner;
 		} else {
 			if (myPartner != partner) log.error("attempting to overwrite partner with new value");
 		}
-		
-		String buttontext = parser.getOffersOkButton();			
-	    String ucbuttontext = buttontext.toUpperCase();
-	    BasicPartnerOffer offer = new BasicPartnerOffer(driver);
-	    String offerbuttontext = offer.getAcceptOfferText();
-	    ErrorCollector.verifyEquals(offerbuttontext, ucbuttontext, "Button text is incorrect");
+					
+
+	    BasicPartnerOffer offer = new BasicPartnerOffer(driver);	   
+	    ErrorCollector.verifyEquals(offer.getAcceptOfferText(), parser.getOffersOkButton().toUpperCase(), "Button text is incorrect");
   
 		offer.clickAcceptOffer();
 		
@@ -182,9 +206,9 @@ public class CommonPartnerPurchase implements IPartnerPurchase {
 		boolean checkreturnpage = true;
 		switch (myPartner) {
 		case DROPBOX :
-			// we finish at a download page I think
+			// we finish at a download page
 			IVFPartner dropbox = new VFDropboxFacade();
-			registered = dropbox.PurchaseOffer(driver, opco);
+			registered = acceptVFPOfer(dropbox, driver);
 			checkreturnpage = false;
 			break;
 		case SPOTIFY :	
@@ -209,21 +233,16 @@ public class CommonPartnerPurchase implements IPartnerPurchase {
 		if (checkreturnpage && registered) {
 			log.info("going into delay loop: registered and checking return page ");
 			//TODO: need to add a NICE confirmation text check that the purchase has completed and then it is safe to check all the text and reopen ppe
-			WaitforPurchaseToComplete ( offer);
-				
-			// check the page
+			WaitforPurchaseToComplete (offer);
 			return verifyNextStepsText(offer);
 		}	else return registered;
 				
 	}
 	
 	
-	private boolean refreshPPEDropBox(WebDriver driver, String url) {
-		
-		driver.get(url + "?partner=dropbox");
-		
+	private boolean refreshPPEDropBox(WebDriver driver, String url) {		
+		driver.get(url + "?partner=dropbox");		
 		DropBoxRefresh refreshpage = new DropBoxRefresh(driver);
-
 		try {
 			refreshpage.bodyLoaded();
 		} catch (InterruptedException e) {
@@ -231,9 +250,11 @@ public class CommonPartnerPurchase implements IPartnerPurchase {
 		}		
 			
 		//TODO: there is more to check on this page!
-		//
-		String onpage = refreshpage.getHeading();
-		return checker.checkDropBoxSubscribedText(onpage);
+		// heading; title; text; button;
+		ErrorCollector.verifyEquals(refreshpage.getOkText(), parser.stripHTML(parser.getCancelOkButton()).toUpperCase(),"Cancel button text is incorrect");		  
+	    boolean checked = checker.checkDropBoxSubscribedText(refreshpage.getHeading());
+		ErrorCollector.verifyTrue(checked,"Not on the correct page");
+		return checked;
 		
 	}
 	
@@ -308,25 +329,19 @@ public class CommonPartnerPurchase implements IPartnerPurchase {
 	
 	public boolean verifyOfferText(BasicPartnerOffer offer){
 		log.info("TEST: Verify the Offer");
-		String displayoffer = offer.getUserOffer();
-		String title = parser.getOffersTitle();
-		String textstripped = parser.stripHTML(title);	
-		ErrorCollector.verifyEquals(displayoffer,textstripped, "The offer title is incorrect");
+		String textstripped = parser.stripHTML(parser.getOffersTitle());	
+		ErrorCollector.verifyEquals(offer.getUserOffer(),textstripped, "The offer title is incorrect");
 
 	
 		// check the text bullets from text
-		String offertext = offer.getOfferDetail();
-		String crstripped = StringUtils.replace(offertext, "\n", " ");
-		String text = parser.getOffersText();
-		String ntextstripped = parser.stripHTML(text);
+		String crstripped = StringUtils.replace(offer.getOfferDetail(), "\n", " ");
+		String ntextstripped = parser.stripHTML(parser.getOffersText());
 		ErrorCollector.verifyEquals(crstripped, ntextstripped,"The offer detail is incorrect");
 
 	  
 		// check T&C label from label
-		String offertnc = offer.getOfferTnC();
-		String offertncstripped = StringUtils.replace(offertnc, "\n", " ");
-		String tnc = parser.getOffersTnCText();	
-		String tncstripped = parser.stripHTML(tnc);
+		String offertncstripped = StringUtils.replace(offer.getOfferTnC(), "\n", " ");	
+		String tncstripped = parser.stripHTML(parser.getOffersTnCText());
 		ErrorCollector.verifyEquals(offertncstripped,tncstripped, "The T & C text is incorrect");
 		return true;
 	}
@@ -347,10 +362,8 @@ public class CommonPartnerPurchase implements IPartnerPurchase {
 		ErrorCollector.verifyTrue(checker.checkConfirmText(confirmation), "Confirmation text is incorrect");
 				  
 		log.info("TEST: Verify whats going to happen next");
-		String happens = offer.getHappensNextText();
-		String mypagehappens = StringUtils.replace(happens, "\n", " ");			  
-		String checkhappens = parser.getSubscribeSuccessText();
-		String mycheckhappens = parser.stripHTML(checkhappens);	
+		String mypagehappens = StringUtils.replace(offer.getHappensNextText(), "\n", " ");			  
+		String mycheckhappens = parser.stripHTML(parser.getSubscribeSuccessText());	
 		ErrorCollector.verifyEquals(mypagehappens, mycheckhappens,"What happens next text is incorrect");
 		
 		return true;

@@ -103,6 +103,18 @@ public class JsonParser {
 		return outcome;
 	}
 	
+	private JSONObject navigateToCancelDetails(JSONObject object) {
+		JSONObject outcome = null;
+		try {                 
+            JSONObject pages = object.getJSONObject("pages");        
+            JSONObject purchase =  pages.getJSONObject("cancellation");
+            outcome = purchase.getJSONObject("details");         
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+		return outcome;
+	}
+	
 	public String getOffersTitle () {
 		String title = "";	
         JSONObject details = navigateToDetails(jsonObject);
@@ -158,4 +170,31 @@ public class JsonParser {
 	  
 	}
 
+	public String getCancelOkButton() {
+		String label = "";			 
+		JSONObject detail = navigateToCancelDetails(jsonObject);         
+		JSONObject okbutton = detail.getJSONObject("okButton");
+		label = okbutton.getString("label").toString();
+		log.debug("OK Button String is : " +  label);               
+		return label;
+	}
+	
+	public String getCancelTitle () {
+		String title = "";	
+        JSONObject details = navigateToCancelDetails(jsonObject);
+        title = details.getString("title").toString();
+        log.debug("Cancel:Details:Title: " +  title);       
+        return title;
+	}
+	
+	public String getCancelText () {
+
+		String details = "";			 
+		JSONObject detail = navigateToCancelDetails(jsonObject);         
+		details = detail.getString("text").toString();
+		log.debug("Cancel:Details:Text: " +  details);           
+      
+		return details;
+	}
+	
 }

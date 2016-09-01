@@ -3,6 +3,7 @@ package com.ithr.ppe.test.cucumber.steps.utils;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 
+import com.ithr.ppe.test.commons.CommonConstants;
 import com.ithr.ppe.test.cucumber.pages.partners.NetflixLoginOrRegister;
 import com.ithr.ppe.test.cucumber.pages.partners.NetflixOffer;
 import com.ithr.ppe.test.cucumber.pages.partners.NetflixSuccess;
@@ -16,21 +17,21 @@ public class NetflixFacade implements IExternalPartner{
 		
 		log.info("Going to hit continue");
 		try {
-			Thread.sleep(5000);
-		} catch (InterruptedException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
+			Thread.sleep(CommonConstants.SLOW);
+		} catch (InterruptedException e) {
+			log.error("sleep got interrupted " + e);
 		}
+		
 		NetflixOffer offer = new NetflixOffer(driver);
 		try {
 			offer.bodyLoaded();
 		} catch (InterruptedException e) {
-			log.error("Interrupted exception while loading offer page" + e);
+			log.error("Interrupted exception while loading offer page " + e);
 		}
 		try {
 			offer.bodyLoaded();
 		} catch (InterruptedException e) {
-			log.error("Interrupted exception while loading netflix offers page" + e);
+			log.error("Interrupted exception while loading netflix offers page " + e);
 		}
 		offer.clickSubmit();
 		
@@ -41,7 +42,7 @@ public class NetflixFacade implements IExternalPartner{
 		try {
 			logorreg.bodyLoaded();
 		} catch (InterruptedException e) {
-			log.error("Interrupted exception while loading login or register page" + e);
+			log.error("Interrupted exception while loading login or register page " + e);
 		}
 		logorreg.setEmail(usernametouse);
 		logorreg.setPassword("password");
@@ -52,7 +53,7 @@ public class NetflixFacade implements IExternalPartner{
 		try {
 			netsuccess.bodyLoaded();
 		} catch (InterruptedException e) {
-			log.error("Interrupted exception while loading success page" + e);
+			log.error("Interrupted exception while loading success page " + e);
 		}
 		
 		// TODO: this will be opco dependant

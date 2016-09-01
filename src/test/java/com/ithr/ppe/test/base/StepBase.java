@@ -83,7 +83,7 @@ public class StepBase {
 		  basePartnerHelper = TestProperties.SPOTIFYBASE;
 		  pinCode = TestProperties.PINCODE;
 		  
-		  log.info("checking Asserts is : " + TestProperties.DO_ASSERTCHECKS);
+		  log.info("checking Asserts is : " + TestProperties.DO_ASSERTCHECKS);	 
 		  ErrorCollector.setVerify(TestProperties.DO_ASSERTCHECKS);		 
 	}
 
