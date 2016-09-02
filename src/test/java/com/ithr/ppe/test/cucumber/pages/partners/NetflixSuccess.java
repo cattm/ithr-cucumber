@@ -9,11 +9,8 @@ import com.ithr.ppe.test.cucumber.pages.PageBase;
 
 public class NetflixSuccess extends PageBase {
 
-	// probably a success page
-	// Your Netflix membership, which begins with a free trial, has begun.
-	// h2[data-reactid="12"]
 	
-	@FindBy(css="h2[data-reactid='12']")
+	@FindBy(css="h2[data-reactid='11']")
 	WebElement checkText;
 	
 	

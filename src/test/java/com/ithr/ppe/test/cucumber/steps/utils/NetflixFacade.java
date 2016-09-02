@@ -14,10 +14,11 @@ public class NetflixFacade implements IExternalPartner{
 	public static Logger log = Logger.getLogger(NetflixFacade.class);
 
 	public boolean register(WebDriver driver, String opco, String usernametouse) {
+		// have had to slow this baby down - site is very flaky
 		
 		log.info("Going to hit continue");
 		try {
-			Thread.sleep(CommonConstants.SLOW);
+			Thread.sleep(CommonConstants.FAST);
 		} catch (InterruptedException e) {
 			log.error("sleep got interrupted " + e);
 		}
@@ -28,13 +29,14 @@ public class NetflixFacade implements IExternalPartner{
 		} catch (InterruptedException e) {
 			log.error("Interrupted exception while loading offer page " + e);
 		}
-		try {
-			offer.bodyLoaded();
-		} catch (InterruptedException e) {
-			log.error("Interrupted exception while loading netflix offers page " + e);
-		}
-		offer.clickSubmit();
 		
+		
+		offer.clickSubmit();
+		try {
+			Thread.sleep(CommonConstants.MEDIUM);
+		} catch (InterruptedException e) {
+			log.error("Interrupted sleep - remove this delay please " + e);
+		}
 		// TODO we have a timing issue here it works some times......
 		// check the page loaded before we hit stuff
 		log.info("Going to do username/password");
@@ -45,18 +47,34 @@ public class NetflixFacade implements IExternalPartner{
 			log.error("Interrupted exception while loading login or register page " + e);
 		}
 		logorreg.setEmail(usernametouse);
-		logorreg.setPassword("password");
+		try {
+			Thread.sleep(CommonConstants.FAST);
+		} catch (InterruptedException e) {
+			log.error("sleep got interrupted " + e);
+		}
+		logorreg.setPassword("passwordnf");
+		try {
+			Thread.sleep(CommonConstants.FAST);
+		} catch (InterruptedException e) {
+			log.error("sleep got interrupted " + e);
+		}
 		logorreg.clickContinue();
 		
 		log.info("Going to check success page for netflix");
+		try {
+			Thread.sleep(CommonConstants.FAST);
+		} catch (InterruptedException e) {
+			log.error("Interrupted sleep - remove this delay please " + e);
+		}
+		
 		NetflixSuccess netsuccess = new NetflixSuccess(driver);
 		try {
 			netsuccess.bodyLoaded();
 		} catch (InterruptedException e) {
 			log.error("Interrupted exception while loading success page " + e);
 		}
-		
-		// TODO: this will be opco dependant
+;
+		// TODO: this will be opco dependant - uk solution in place
 		if (netsuccess.getNetflixSuccess().contentEquals("Your Netflix membership, which begins with a free trial, has begun.")) {
 			return true;
 		}

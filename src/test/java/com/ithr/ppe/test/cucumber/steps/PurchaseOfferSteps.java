@@ -131,15 +131,12 @@ public class PurchaseOfferSteps extends StepBase {
 				log.error("interrupted page loaded check " + e);
 			}
 			offer.setTnC();			  
-			  
-			if (refFileValid) {
-				log.info("TEST: Check Partner Offer");
-				 	 
-				// can now locate JSON parser reference file
-				String roughpath = refDir + opco + "/";
-				cpp.locateJsonParseFile(roughpath, reffilename);	
-				cpp.verifyOfferText(offer);
-			}
+
+			log.info("TEST: Check Partner Offer");				 	 
+			// can now locate JSON parser reference file
+			String roughpath = refDir + opco + "/";
+			cpp.locateJsonParseFile(roughpath, reffilename);	
+			cpp.verifyOfferText(offer);
 			CheckedScenarioScreenshot();
 		}
 		else {
@@ -162,14 +159,11 @@ public class PurchaseOfferSteps extends StepBase {
 		}
 		offer.setTnC();			  
 				  
-		if (refFileValid) {
-			log.info("TEST: Check Partner Offer");
-					 	 
-			// can now locate JSON parser reference file
-			String roughpath = refDir + opco + "/";
-			cpp.locateJsonParseFile(roughpath, reffilename);	
-			cpp.verifyOfferText(offer);
-		}
+		log.info("TEST: Check Internal Partner Offer");				 	 
+		// can now locate JSON parser reference file
+		String roughpath = refDir + opco + "/";
+		cpp.locateJsonParseFile(roughpath, reffilename);	
+		cpp.verifyOfferText(offer);
 		CheckedScenarioScreenshot();
 		return true;
 	}
@@ -178,11 +172,7 @@ public class PurchaseOfferSteps extends StepBase {
 	@Then("^my offer details will come from ([^\"]*)$")
 	public void OfferContainsStringsFrom(String reffilename)  {
 		log.info("Then: my offer will come from " + reffilename + " file");
-		
-		if (!reffilename.contains("Not Valid")) {
-			refFileValid = true;
-			log.info("The reference file is Valid");
-		}	
+		ErrorCollector.verifyFalse(!reffilename.contains("Not Valid"), "The Reference File is set to not valid");	
 		
 		try {
 			// might be a short wait here....while new page loads...
@@ -206,28 +196,24 @@ public class PurchaseOfferSteps extends StepBase {
 
 	@And("^I will accept and confirm the offer$")
 	public void AcceptPartnerOffer() {		
-		if (!refFileValid) {
-			log.info("And: I Will NOT Accept the Offer ");
+		log.info("And: I Will Accept the Offer ");
+		try {					
+			boolean offeraccepted = cpp.acceptTheOffer(driver, opco, myPartner);			
+			CheckedScenarioScreenshot();
+			ErrorCollector.verifyTrue(offeraccepted,"offer not accepted");
+				
+			// now go back to PPE and refresh and chec pwd
+			String urltouse = baseUserUrl + opco;			
+			boolean ppeopen = cpp.refreshPPE(driver, urltouse);				
+			CheckedScenarioScreenshot();
+			ErrorCollector.verifyTrue(ppeopen, "reopen failed");
+				
+		}catch(Exception e){
+			log.error("caught Exception: " + e);			
+			String name = this.getClass().getSimpleName();
+			ReportScreen(name);
+			Assert.fail("Accept Partner Offer - Abort Test on Exception : MSISDN " + shortMsisdn); //To fail test in case of any element identification failure			
 		}
-		else {
-			log.info("And: I Will Accept the Offer ");
-			try {					
-				boolean offeraccepted = cpp.acceptTheOffer(driver, opco, myPartner);			
-				CheckedScenarioScreenshot();
-				ErrorCollector.verifyTrue(offeraccepted,"offer not accepted");
-				
-				// now go back to PPE and refresh and chec pwd
-				String urltouse = baseUserUrl + opco;			
-				boolean ppeopen = cpp.refreshPPE(driver, urltouse);				
-				CheckedScenarioScreenshot();
-				ErrorCollector.verifyTrue(ppeopen, "reopen failed");
-				
-			}catch(Exception e){
-				log.error("caught Exception: " + e);			
-				String name = this.getClass().getSimpleName();
-				ReportScreen(name);
-				Assert.fail("Accept Partner Offer - Abort Test on Exception : MSISDN " + shortMsisdn); //To fail test in case of any element identification failure			
-			}
-		}		  					
-	}	
+	}		  					
+		
 }

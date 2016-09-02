@@ -71,7 +71,7 @@ public class JsonParser {
 	
 	private JSONObject getStartPoint () {
 		 String jsontextfile = fileToParse;
-		 log.debug("checking file : " + jsontextfile);
+		 log.info("checking file : " + jsontextfile);
 		 String jsonData = readFile(jsontextfile);
 		 return new JSONObject(jsonData);
 	}
@@ -89,6 +89,7 @@ public class JsonParser {
             outcome =  pages.getJSONObject("purchase");
                  
         } catch (Exception e) {
+        	log.error("Navigate to Purchase has failed for this file" + e);
             e.printStackTrace();
         }
 		return outcome;
@@ -101,6 +102,7 @@ public class JsonParser {
             JSONObject purchase =  pages.getJSONObject("purchase");
             outcome = purchase.getJSONObject("details");         
         } catch (Exception e) {
+        	log.error("Navigate to Details has failed for this file" + e);
             e.printStackTrace();
         }
 		return outcome;
@@ -113,6 +115,7 @@ public class JsonParser {
             outcome =  pages.getJSONObject("cancellation");
                  
         } catch (Exception e) {
+        	log.error("Navigate to Cancel has failed for this file" + e);
             e.printStackTrace();
         }
 		return outcome;
@@ -125,6 +128,7 @@ public class JsonParser {
             JSONObject purchase =  pages.getJSONObject("cancellation");
             outcome = purchase.getJSONObject("details");         
         } catch (Exception e) {
+        	log.error("Navigate to Cancel Details has failed for this file" + e);
             e.printStackTrace();
         }
 		return outcome;
@@ -134,7 +138,7 @@ public class JsonParser {
 		String title = "";	
         JSONObject details = navigateToDetails(jsonObject);
         title = details.getString("title").toString();
-        log.debug("Purchase:Details:Title: " +  title);       
+        log.info("Purchase:Details:Title: " +  title);       
         return title;
 	}
 	public String getOffersText () {
