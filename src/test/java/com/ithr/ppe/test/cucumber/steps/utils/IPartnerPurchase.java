@@ -7,9 +7,8 @@ import com.ithr.ppe.test.cucumber.pages.BasicPartnerOffer;
 import com.ithr.ppe.test.cucumber.pages.UserEntertainment;
 
 public interface IPartnerPurchase {
-
 	
-	public void locateJsonParseFile(String path, String filename);
+	public void locateJsonParseFile (String path, String filename);
 	
 	public void defineCheckerToUse(String file, String opco);
 	

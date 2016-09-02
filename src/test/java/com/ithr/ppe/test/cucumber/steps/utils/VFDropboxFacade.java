@@ -26,14 +26,10 @@ public class VFDropboxFacade implements IVFPartner {
 			log.error("Interrupted exception while loading success page" + e);
 		}
 		
-		String nt = dbs.getNotificicationText();
-		//log.info("Notification test: " + nt);
-		// because this is a VF page - include a check of content
-		//replace "\n" and strip html	
-		log.info("Details: " + StringUtils.replace(dbs.getDetailsText(), "\n", "") );
-		//TODO: cant do checking yet
+		String nt = dbs.getNotificicationText();	
+		log.info("Details: " + StringUtils.replace(dbs.getDetailsText(), "\n", " ") );
 		JsonParser parser = JsonParser.getInstance();
-		ErrorCollector.verifyEquals(StringUtils.replace(dbs.getDetailsText(), "\n", ""), parser.stripHTML(parser.getSubscribeSuccessText()),"Dropbox success page Text is not correct");
+		ErrorCollector.verifyEquals(StringUtils.replace(dbs.getDetailsText(), "\n", " "), parser.stripHTML(parser.getSubscribeSuccessText()),"Dropbox success page Text is not correct");
 				
 		dbs.clickContinue();		
 		return true;

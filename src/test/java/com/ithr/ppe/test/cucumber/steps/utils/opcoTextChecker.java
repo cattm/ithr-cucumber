@@ -85,12 +85,18 @@ public class opcoTextChecker {
 	}
 	
 	public boolean checkDropBoxSubscribedText(String onpage) {
-		String itstr1 = "subscription.mainHeading";
+		String str1 = "subscription.mainHeading";
 		String tocompare = "";
 		
 		switch (opco) {
-		case "it" :	tocompare=GetProperty(offset + itstr1);
-					break;
+		case "it" :	tocompare=GetProperty(offset + str1);
+				break;
+		case "es" : tocompare=GetProperty(offset + str1);
+		break;
+		case "ie" : tocompare=GetProperty(offset + str1);
+		break;
+		case "nl" : tocompare=GetProperty(offset + str1);
+		break;
 		default: break;
 		}
 		
