@@ -12,5 +12,5 @@ Feature: GB Purchasing Netflix for all Tariffs
     And I will accept and confirm the offer
 
     Examples: 
-      | package   | usergroup    | contained in                 |
-      | Not Valid | No usergroup | Netflix hardbundle 12 months |
+      | package   | usergroup    | contained in             |
+      | Not Valid | No usergroup | Netflix standalone trial |
