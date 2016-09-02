@@ -21,6 +21,9 @@ import com.ithr.ppe.test.cucumber.pages.BasicPartnerOffer;
 import com.ithr.ppe.test.cucumber.pages.PageBase;
 import com.ithr.ppe.test.cucumber.pages.UserEntertainment;
 import com.ithr.ppe.test.cucumber.pages.partners.DropBoxRefresh;
+import com.ithr.ppe.test.cucumber.steps.interfaces.IExternalPartner;
+import com.ithr.ppe.test.cucumber.steps.interfaces.IPartnerPurchase;
+import com.ithr.ppe.test.cucumber.steps.interfaces.IVFPartner;
 
 public class CommonPartnerPurchase implements IPartnerPurchase {
 	public static Logger log = Logger.getLogger(CommonPartnerPurchase.class);
@@ -36,81 +39,6 @@ public class CommonPartnerPurchase implements IPartnerPurchase {
  * check the result page
  * 
  */
-	
-	public void locateJsonParseFile (String path, String filename) {
-		log.info("going to search for :" + path + " and file " + filename);
-		String fileToCheck = CommandExecutor.execFindExactJsonFile(path, filename + " v");
-		log.info("going to use json file: " + fileToCheck);
-		parser = JsonParser.getInstance();
-		parser.initialise(path + fileToCheck);
-
-	}
-
-
-	public void defineCheckerToUse(String file, String opco) {
-		try {
-			checker = opcoTextChecker.getInstance();
-			checker.initialise(file, opco);
-		} catch (IOException e) {
-			log.error("Issue creating opcoTextchecker " + e);
-		}
-	}
-	
-	/* This method will attempt get a partner username if required
-	 * 
-	 */
-	public String getPartnerUserName(WebDriver driver, String adminurl, String opco, Partners partner) {
-		
-		switch (partner) {
-		case SPOTIFY :
-			try {
-				SpotifyFacade spot = new SpotifyFacade();
-				partnerUserName = spot.getUser (driver, adminurl, opco);
-			} catch (Exception e) {
-				log.error("Cannot get Spotify user name");
-				partnerUserName = "ERROR";
-			}
-			break;
-			
-		case NETFLIX :
-			DateStamp myds = new DateStamp();
-			String rn = myds.getRanDateFormat();
-			partnerUserName = "ithrtest" + rn + "@ithr.com";
-			break;
-		case SKY : // none required
-		case DROPBOX :
-		case NOWTV :
-		default : 
-			break;
-		}
-		
-		return partnerUserName;
-	}
-	
-	
-	/*
-	 * TODO: the two methods are intended to verify the correct offers exist both pre and post the purchase activity
-	 * I an not sure if this is an intelligent thing to attempt - we may be going a step too far
-	 * I either have to model in a text file and read it in OR
-	 * Use Backgroud BDD label to set up maps/table for tariff something like
-	 *   Background: Previously Going to purchase Spotify
-	 *   Given I am a "GB" customer purchasing spotify with:
-	 * | package     | usergroup | shouldsee    |
-	 * | PK_4GTariff | 4glarge   |  netflix, nowtv, sky |
-	 *   AND when I have finished:
-	 * | nowsee |
-	 * | netflix,sky |	 
-	 */
-	public boolean validatePrePurchaseOffers(UserEntertainment entpage) {	
-		log.info("validatePrePurchaseOffers NOT IMPLMENTED");
-		return true;
-	}
-	
-	public boolean validatePostPurchaseOffers(UserEntertainment entpage) {
-		log.info("validatePostPurchaseOffers NOT IMPLMENTED");
-		return true;
-	}
-	
 	public boolean selectPartnerOffer(Partners partner, UserEntertainment entpage)  {
 		// this is a very primative implementation
 		// we may have to cope with a situation where there are a number of offers from same partners
@@ -152,7 +80,6 @@ public class CommonPartnerPurchase implements IPartnerPurchase {
 		return found;
 	}
 		
-	
 	private boolean WaitforPurchaseToComplete (BasicPartnerOffer offer) {
 		boolean done = false;
 		// max wait here is 20 * SLOW - which is a very long time on a slow environment
@@ -195,12 +122,10 @@ public class CommonPartnerPurchase implements IPartnerPurchase {
 			myPartner = partner;
 		} else {
 			if (myPartner != partner) log.error("attempting to overwrite partner with new value");
-		}
-					
+		}					
 
 	    BasicPartnerOffer offer = new BasicPartnerOffer(driver);	   
-	    ErrorCollector.verifyEquals(offer.getAcceptOfferText(), parser.getOffersOkButton().toUpperCase(), "Button text is incorrect");
-  
+	    ErrorCollector.verifyEquals(offer.getAcceptOfferText(), parser.getOffersOkButton().toUpperCase(), "Button text is incorrect"); 
 		offer.clickAcceptOffer();
 		
 		// At this point we need to know if the action involves a partner interaction or not
@@ -240,95 +165,7 @@ public class CommonPartnerPurchase implements IPartnerPurchase {
 		}	else return registered;
 				
 	}
-	
-	
-	private boolean refreshPPEDropBox(WebDriver driver, String url) {		
-		driver.get(url + "?partner=dropbox");		
-		DropBoxRefresh refreshpage = new DropBoxRefresh(driver);
-		try {
-			refreshpage.bodyLoaded();
-		} catch (InterruptedException e) {
-			log.error("Timed out on loading the DropBoxRefresh page " + e);
-		}		
-			
-		//TODO: there is more to check on this page!
-		// heading; title; text; button;
-		ErrorCollector.verifyEquals(refreshpage.getOkText(), parser.stripHTML(parser.getCancelOkButton()).toUpperCase(),"Cancel button text is incorrect");		  
-	    boolean checked = checker.checkDropBoxSubscribedText(refreshpage.getHeading());
-		ErrorCollector.verifyTrue(checked,"Not on the correct page");
-		return checked;
 		
-	}
-	
-	private boolean refreshPPEPartner(WebDriver driver, String url) {
-		driver.get(url);
-		UserEntertainment entpage = new UserEntertainment(driver);
-		try {
-			entpage.bodyLoaded();
-		} catch (InterruptedException e) {
-			log.error("Timed out on loading the UserEntertainment page " + e);
-		}
-					
-		// TODO: doesnt check position. Loops around to wait for image - its a bit slow sometimes ?
-		String textfound = "";
-		try {
-			if (entpage.isManageSubscriptionTextPresent()) {		
-				 textfound = entpage.getManageSubscriptionText();
-			}
-		} catch (InterruptedException e) {
-			log.error("Interrupted while getting the subscriptiontext " + e);
-		}
-		
-		// TODO: implement a check on the offers now available
-		validatePostPurchaseOffers(entpage);
-		
-		log.info("Text to Check is: " + textfound);	
-			
-		boolean ok = false;
-	
-		String reftext = parser.getHeading();
-		log.info("The Parser would have returned: " + reftext);
-		//ok = textfound.equals(reftext);
-	
-		
-		switch (myPartner) {
-		case SPOTIFY :	ok = checker.checkSpotifySubscibedText(textfound);
-					break;
-		case SKY : ok = checker.checkSkySubscibedText(textfound);
-					break;
-		case NOWTV : ok = checker.checkNowTVSubscribedText(textfound);
-					break;
-		case NETFLIX : ok = checker.checkNetflixSubscribedText(textfound);
-					break;
-		default : break;	
-		}
-		
-	    return ok;	   
-		
-	}
-	
-	// refresh PPE should:
-	// refresh the browser to display the offers and subscribed offers (to cancel)
-	// it should verify the subscribed offer is in the correct location 
-	// it should select the subscribed offer and verify the text on the page
-	
-	public boolean refreshPPE(WebDriver driver, String baseopcourl) {
-		log.info("TEST: Reopen on home page displays correct offers");
-		
-		//TODO need to fix needing this - VERY FLAKY
-		try {
-			Thread.sleep(CommonConstants.SLOW);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			log.error("This Code needs removing Anyway " + e);
-			
-		}		
-		switch (myPartner) {
-			case DROPBOX :	return refreshPPEDropBox(driver, baseopcourl);
-			default : return refreshPPEPartner(driver, baseopcourl);
-		}				
-	}
-	
 	public boolean verifyOfferText(BasicPartnerOffer offer){
 		/*
 		For some offers for some countries this field is not set
@@ -351,14 +188,6 @@ public class CommonPartnerPurchase implements IPartnerPurchase {
 		String offertncstripped = StringUtils.replace(offer.getOfferTnC(), "\n", " ");	
 		String tncstripped = parser.stripHTML(parser.getOffersTnCText());
 		ErrorCollector.verifyEquals(offertncstripped,tncstripped, "The T & C text is incorrect");
-		return true;
-	}
-	
-	public boolean verifyAvailableOffersText(UserEntertainment entpage)  {
-		log.info("TEST: Verify Available Offers page");
-		String subtext = entpage.getSubscriptionText();
-		log.info("Text to check is: " + subtext);			  			
-		ErrorCollector.verifyTrue(checker.checkSubscriptionText(subtext), "Subscription text is not correct");
 		return true;
 	}
 	

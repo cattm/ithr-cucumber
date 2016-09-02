@@ -1,4 +1,4 @@
-package com.ithr.ppe.test.cucumber.steps.utils;
+package com.ithr.ppe.test.cucumber.steps.interfaces;
 
 import org.openqa.selenium.WebDriver;
 

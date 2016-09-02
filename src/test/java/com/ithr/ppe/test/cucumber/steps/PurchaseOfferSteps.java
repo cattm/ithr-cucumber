@@ -16,11 +16,15 @@ import com.ithr.ppe.test.base.StepBase;
 import com.ithr.ppe.test.commons.Partners;
 import com.ithr.ppe.test.cucumber.pages.BasicPartnerOffer;
 import com.ithr.ppe.test.cucumber.pages.UserEntertainment;
+import com.ithr.ppe.test.cucumber.steps.interfaces.IEpilog;
+import com.ithr.ppe.test.cucumber.steps.interfaces.IPartnerPurchase;
+import com.ithr.ppe.test.cucumber.steps.interfaces.IProlog;
 import com.ithr.ppe.test.cucumber.steps.utils.AdminFacade;
+import com.ithr.ppe.test.cucumber.steps.utils.CommonEpilog;
 import com.ithr.ppe.test.cucumber.steps.utils.CommonPartnerPurchase;
+import com.ithr.ppe.test.cucumber.steps.utils.CommonProlog;
 import com.ithr.ppe.test.cucumber.steps.utils.ErrorCollector;
 import com.ithr.ppe.test.cucumber.steps.utils.IdentityFacade;
-import com.ithr.ppe.test.cucumber.steps.utils.IPartnerPurchase;
 
 import cucumber.api.Scenario;
 import cucumber.api.java.After;
@@ -34,7 +38,9 @@ import cucumber.api.java.en.When;
 public class PurchaseOfferSteps extends StepBase {
 	public static Logger log = Logger.getLogger(PurchaseOfferSteps.class);
 	
+	private IProlog pl = new CommonProlog();
 	private IPartnerPurchase cpp = new CommonPartnerPurchase();
+	private IEpilog ep = new CommonEpilog();
 	
 	private Partners myPartner = null;
 	private String userNameToUse = "";
@@ -42,8 +48,6 @@ public class PurchaseOfferSteps extends StepBase {
 	public PurchaseOfferSteps() {
 		super();
 	}
-
-	
 	
 	@Before("@dropboxpurchase, @netflixpurchase, @nowtvpurchase, @skypurchase, @spotifypurchase")
 	public void setUp(Scenario scenario) throws Exception {
@@ -67,7 +71,7 @@ public class PurchaseOfferSteps extends StepBase {
 	   this.opco = opco.toLowerCase();	
 	   log.info("opco set to " + this.opco);
 	   // set up first check file for standard text
-	   cpp.defineCheckerToUse(testReferenceDir, this.opco);
+	   pl.createCheckerToUse(testReferenceDir, this.opco);
 	}
 	
 	@When("^my profile has a ([^\"]*) tariff with a ([^\"]*) usergroup$")
@@ -78,7 +82,7 @@ public class PurchaseOfferSteps extends StepBase {
 		
 		try {		
 			// get a partner user - TODO: check if we need to do this here or can do it later 
-			userNameToUse = cpp.getPartnerUserName(driver, basePartnerHelper, opco, myPartner);			
+			userNameToUse = pl.getPartnerUserName(driver, basePartnerHelper, opco, myPartner);			
 			log.info("username is " + userNameToUse);
 			if (userNameToUse.contains("ERROR")) {
 				log.error(" Helper did not return a valid username");
@@ -90,7 +94,7 @@ public class PurchaseOfferSteps extends StepBase {
 			driver.get(baseAdminUrl);
 			shortMsisdn = AdminFacade.msisdnFromAdmin(driver, opco, subscription, userGroup, myPartner);
 			
-			// handle the AA aspect
+			// handle the AA aspect and login
 			IdentityFacade.loginToPPE (driver, opco, myPartner, shortMsisdn , pinCode, baseUserUrl);
 			
 		} catch (Exception e){
@@ -114,13 +118,13 @@ public class PurchaseOfferSteps extends StepBase {
 		// There should be available offers for THIS MSISDN -
 		// if there are no offers this is probably an error
 		// the manage subscriptions section should be empty "you have no subscriptions..."
-		cpp.verifyAvailableOffersText(entpage);
+		pl.verifyOffersAvailableText(entpage);
 		CheckedScenarioScreenshot();	
 		  
 		log.info("selecting offer");
 		  
 		// TODO: put in check ok
-		cpp.validatePrePurchaseOffers(entpage);
+		pl.verifyPrePurchaseOffers(entpage);
 		  
 		if (cpp.selectPartnerOffer(myPartner, entpage)) {		  
 			//  on journey to accept offer
@@ -135,7 +139,7 @@ public class PurchaseOfferSteps extends StepBase {
 			log.info("TEST: Check Partner Offer");				 	 
 			// can now locate JSON parser reference file
 			String roughpath = refDir + opco + "/";
-			cpp.locateJsonParseFile(roughpath, reffilename);	
+			pl.createJsonParserFromFile(roughpath, reffilename);	
 			cpp.verifyOfferText(offer);
 			CheckedScenarioScreenshot();
 		}
@@ -162,7 +166,7 @@ public class PurchaseOfferSteps extends StepBase {
 		log.info("TEST: Check Internal Partner Offer");				 	 
 		// can now locate JSON parser reference file
 		String roughpath = refDir + opco + "/";
-		cpp.locateJsonParseFile(roughpath, reffilename);	
+		pl.createJsonParserFromFile(roughpath, reffilename);	
 		cpp.verifyOfferText(offer);
 		CheckedScenarioScreenshot();
 		return true;
@@ -204,7 +208,7 @@ public class PurchaseOfferSteps extends StepBase {
 				
 			// now go back to PPE and refresh and chec pwd
 			String urltouse = baseUserUrl + opco;			
-			boolean ppeopen = cpp.refreshPPE(driver, urltouse);				
+			boolean ppeopen = ep.refreshPPE(driver, urltouse, myPartner);				
 			CheckedScenarioScreenshot();
 			ErrorCollector.verifyTrue(ppeopen, "reopen failed");
 				

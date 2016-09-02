@@ -9,8 +9,8 @@ import cucumber.api.junit.Cucumber;
 		plugin = { "html:reports/cucumber-html-report",
 				   "json:reports/cucumber.json", 
 				  "pretty"},
-		features = {"src/test/java/com/ithr/ppe/test/cucumber/features"},
-//				features = {"/Users/Marcus/Documents/ithr/features"},
+//		features = {"src/test/java/com/ithr/ppe/test/cucumber/features"},
+				features = {"/Users/Marcus/Documents/ithr/features"},
 		tags = {"@dropboxpurchase, @netflixpurchase, @nowtvpurchase, @skypurchase, @spotifypurchase", "~@ignore"},
 		glue = {"com.ithr.ppe.test.cucumber.steps"}
 		)

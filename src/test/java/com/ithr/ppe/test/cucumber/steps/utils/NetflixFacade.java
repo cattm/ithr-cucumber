@@ -7,6 +7,7 @@ import com.ithr.ppe.test.commons.CommonConstants;
 import com.ithr.ppe.test.cucumber.pages.partners.NetflixLoginOrRegister;
 import com.ithr.ppe.test.cucumber.pages.partners.NetflixOffer;
 import com.ithr.ppe.test.cucumber.pages.partners.NetflixSuccess;
+import com.ithr.ppe.test.cucumber.steps.interfaces.IExternalPartner;
 
 
 public class NetflixFacade implements IExternalPartner{

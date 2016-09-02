@@ -12,6 +12,7 @@ import org.openqa.selenium.WebDriver;
 import com.ithr.ppe.test.commons.CommonConstants;
 import com.ithr.ppe.test.cucumber.pages.partners.DropBoxDownload;
 import com.ithr.ppe.test.cucumber.pages.partners.DropBoxSuccess;
+import com.ithr.ppe.test.cucumber.steps.interfaces.IVFPartner;
 
 public class VFDropboxFacade implements IVFPartner {
 	
