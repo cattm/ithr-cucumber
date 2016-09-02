@@ -9,7 +9,6 @@ import com.ithr.ppe.test.cucumber.pages.partners.SpotifyLogin;
 import com.ithr.ppe.test.cucumber.pages.partners.SpotifyLoginOrRegister;
 import com.ithr.ppe.test.cucumber.pages.partners.SpotifyRegistration;
 import com.ithr.ppe.test.cucumber.pages.partners.SpotifySuccess;
-import com.ithr.ppe.test.cucumber.steps.PurchaseSpotifyOffersSteps;
 import com.ithr.ppe.test.cucumber.steps.interfaces.IExternalPartner;
 
 public class SpotifyFacade implements IExternalPartner {

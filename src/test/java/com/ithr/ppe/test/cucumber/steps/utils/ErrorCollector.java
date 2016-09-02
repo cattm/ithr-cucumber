@@ -4,8 +4,6 @@ package com.ithr.ppe.test.cucumber.steps.utils;
 import org.apache.log4j.Logger;
 import org.junit.Assert;
 
-import com.ithr.ppe.test.cucumber.steps.PurchaseSpotifyOffersSteps;
-
 // TODO: Check this class is SAFE under all permutations
 public class ErrorCollector {
 	public static Logger log = Logger.getLogger(ErrorCollector.class);
