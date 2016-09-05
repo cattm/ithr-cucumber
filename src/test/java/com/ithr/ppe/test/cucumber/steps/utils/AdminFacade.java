@@ -56,8 +56,8 @@ public class AdminFacade {
 		// call the url to create user
 		driver.get(checkurl);
 			
-		// check/test goes here
-		userCreatedOk(driver, partner);
+		// check/test goes here - if its not created properly then we either corrupt the string or throw an exception
+		boolean userok = userCreatedOk(driver, partner);
 		
 		return msisdn;
 	}

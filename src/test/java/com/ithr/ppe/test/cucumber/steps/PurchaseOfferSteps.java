@@ -19,12 +19,10 @@ import com.ithr.ppe.test.cucumber.pages.UserEntertainment;
 import com.ithr.ppe.test.cucumber.steps.interfaces.IEpilog;
 import com.ithr.ppe.test.cucumber.steps.interfaces.IPartnerPurchase;
 import com.ithr.ppe.test.cucumber.steps.interfaces.IProlog;
-import com.ithr.ppe.test.cucumber.steps.utils.AdminFacade;
 import com.ithr.ppe.test.cucumber.steps.utils.CommonEpilog;
 import com.ithr.ppe.test.cucumber.steps.utils.CommonPartnerPurchase;
 import com.ithr.ppe.test.cucumber.steps.utils.CommonProlog;
 import com.ithr.ppe.test.cucumber.steps.utils.ErrorCollector;
-import com.ithr.ppe.test.cucumber.steps.utils.IdentityFacade;
 
 import cucumber.api.Scenario;
 import cucumber.api.java.After;
@@ -61,15 +59,17 @@ public class PurchaseOfferSteps extends StepBase {
 		super.tearDown();
 	}
 	
+	
+	// TOOD: it is vital that if any of the prolog methods fail the test fails need to make sure the exceptions are caught properly
+	// REVIEW this
 	@Given("^I am a \"([^\"]*)\" customer purchasing the \"([^\"]*)\" offer$")
 	public void PartnerCustomer(String opco, String partner) {
 	   log.info("Given: I am a " + opco + " customer purchasing " + partner + " offer");
 	   
-	   // convert string to enum;
-	   this.myPartner = Partners.valueOf(partner.toUpperCase());
-	   
+	   this.myPartner = Partners.valueOf(partner.toUpperCase());	   
 	   this.opco = opco.toLowerCase();	
 	   log.info("opco set to " + this.opco);
+	   
 	   // set up first check file for standard text
 	   pl.createCheckerToUse(testReferenceDir, this.opco);
 	}
@@ -90,12 +90,10 @@ public class PurchaseOfferSteps extends StepBase {
 			}
 			
 			// Need an MSISDN to log in
-			// we may have set this up in ER or not - handled in AdminActivities based on params
 			driver.get(baseAdminUrl);
-			shortMsisdn = AdminFacade.msisdnFromAdmin(driver, opco, subscription, userGroup, myPartner);
-			
+			shortMsisdn = pl.getNewMsisdn(driver, opco, subscription, userGroup, myPartner);
 			// handle the AA aspect and login
-			IdentityFacade.loginToPPE (driver, opco, myPartner, shortMsisdn , pinCode, baseUserUrl);
+			pl.LoginOk (driver, opco, myPartner, shortMsisdn , pinCode, baseUserUrl);
 			
 		} catch (Exception e){
 			log.error("Caught Exception: " + e);
@@ -106,7 +104,41 @@ public class PurchaseOfferSteps extends StepBase {
 		
 	}
 	
-	private boolean checkAndSelectExternal(String reffilename)  {
+	private void SelectExternal() {
+		UserEntertainment entpage = new UserEntertainment(driver);
+		try {
+			entpage.bodyLoaded();
+		} catch (InterruptedException e) {
+			log.error("interrupted page loaded check " + e);
+		}
+		
+		log.info("selecting offer");
+		if (cpp.selectPartnerOffer(myPartner, entpage)) {		  
+			//  on journey to accept offer
+			
+			BasicPartnerOffer offer = new BasicPartnerOffer(driver);
+			try {
+				offer.bodyLoaded();
+			} catch (InterruptedException e) {
+				log.error("interrupted page loaded check " + e);
+			}
+			offer.setTnC();			  
+
+			log.info("TEST: Check Partner Offer");				 	 	
+			cpp.verifyOfferText(offer);
+			CheckedScenarioScreenshot();
+		}
+		else {
+			  log.error("NO VALID OFFER  Visible");
+			  // TODO: check this out what is the correct behavior
+			  // this may be correct behavior for some combinations
+			  Assert.fail("No Valid Offer - Aborting Test");
+		}
+		
+		
+	}
+	
+	private boolean CheckExternal()  {	
 		// Entertainment page - offer page directly or click on image icon to get text
 		UserEntertainment entpage = new UserEntertainment(driver);
 		try {
@@ -120,53 +152,23 @@ public class PurchaseOfferSteps extends StepBase {
 		// the manage subscriptions section should be empty "you have no subscriptions..."
 		pl.verifyOffersAvailableText(entpage);
 		CheckedScenarioScreenshot();	
-		  
-		log.info("selecting offer");
-		  
+		  	  
 		// TODO: put in check ok
-		pl.verifyPrePurchaseOffers(entpage);
-		  
-		if (cpp.selectPartnerOffer(myPartner, entpage)) {		  
-			//  on journey to accept offer
-			BasicPartnerOffer offer = new BasicPartnerOffer(driver);
-			try {
-				offer.bodyLoaded();
-			} catch (InterruptedException e) {
-				log.error("interrupted page loaded check " + e);
-			}
-			offer.setTnC();			  
-
-			log.info("TEST: Check Partner Offer");				 	 
-			// can now locate JSON parser reference file
-			String roughpath = refDir + opco + "/";
-			pl.createJsonParserFromFile(roughpath, reffilename);	
-			cpp.verifyOfferText(offer);
-			CheckedScenarioScreenshot();
-		}
-		else {
-			  log.error("NO VALID OFFER  Visible");
-			  // TODO: check this out what is the correct behavior
-			  // this may be correct behavior for some combinations
-			  Assert.fail("No Valid Offer - Aborting Test");
-		}
-		
-		return true;
+		return pl.verifyPrePurchaseOffers(entpage);
 	}
 	
-	private boolean checkAndSelectInternal(String reffilename) {
-	//  page looks different to standard model - no mini icons to select....
+	private boolean SelectInternal() {
+		
+		//  page looks different to standard model - no mini icons to select....
 		BasicPartnerOffer offer = new BasicPartnerOffer(driver);
 		try {
 			offer.bodyLoaded();
 		} catch (InterruptedException e) {
 			log.error("interrupted page loaded check " + e);
-		}
-		offer.setTnC();			  
-				  
+		}				
+		offer.setTnC();		
+		
 		log.info("TEST: Check Internal Partner Offer");				 	 
-		// can now locate JSON parser reference file
-		String roughpath = refDir + opco + "/";
-		pl.createJsonParserFromFile(roughpath, reffilename);	
 		cpp.verifyOfferText(offer);
 		CheckedScenarioScreenshot();
 		return true;
@@ -177,18 +179,26 @@ public class PurchaseOfferSteps extends StepBase {
 	public void OfferContainsStringsFrom(String reffilename)  {
 		log.info("Then: my offer will come from " + reffilename + " file");
 		ErrorCollector.verifyFalse(!reffilename.contains("Not Valid"), "The Reference File is set to not valid");	
+		String roughpath = refDir + opco + "/";
+		pl.createJsonParserFromFile(roughpath, reffilename);	
 		
+		// now safe to initialise all parsers
+		// TODO: this could be a lot better!
+		cpp.initialiseChecks();
+
 		try {
 			// might be a short wait here....while new page loads...
 			  driver.manage().window().setSize(new Dimension(600, 600));
 			  switch (myPartner) {
-			  	case DROPBOX : checkAndSelectInternal(reffilename);
+			  	case DROPBOX : SelectInternal();
 			  	break;
-			    default : checkAndSelectExternal(reffilename);
+			    default : 
+			    	if (CheckExternal()) {
+			    		SelectExternal();
+			    	};		    
 			    break;
 			  }
-			  
-		  			  		 
+			  	  			  		 
 		} catch (Exception e){
 			log.error("caught Exception: " + e);
 			String name = this.getClass().getSimpleName();
@@ -201,14 +211,16 @@ public class PurchaseOfferSteps extends StepBase {
 	@And("^I will accept and confirm the offer$")
 	public void AcceptPartnerOffer() {		
 		log.info("And: I Will Accept the Offer ");
-		try {					
-			boolean offeraccepted = cpp.acceptTheOffer(driver, opco, myPartner);			
+		try {			
+			log.info("partner is currently " + myPartner.toString());
+			boolean offeraccepted = cpp.acceptTheOffer(driver, opco, myPartner, userNameToUse);			
 			CheckedScenarioScreenshot();
 			ErrorCollector.verifyTrue(offeraccepted,"offer not accepted");
 				
-			// now go back to PPE and refresh and chec pwd
-			String urltouse = baseUserUrl + opco;			
-			boolean ppeopen = ep.refreshPPE(driver, urltouse, myPartner);				
+			// now go back to PPE and refresh and check 
+			String urltouse = baseUserUrl + opco;	
+			ep.initialiseChecks();
+			boolean ppeopen = ep.refresh(driver, urltouse, myPartner);				
 			CheckedScenarioScreenshot();
 			ErrorCollector.verifyTrue(ppeopen, "reopen failed");
 				

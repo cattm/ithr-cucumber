@@ -8,10 +8,11 @@ import com.ithr.ppe.test.cucumber.pages.UserEntertainment;
 
 public interface IPartnerPurchase {
 	
+	public void initialiseChecks();
 	
 	public boolean selectPartnerOffer(Partners partner, UserEntertainment entpage);
 
-	public boolean acceptTheOffer(WebDriver driver, String opco, Partners partner);
+	public boolean acceptTheOffer(WebDriver driver, String opco, Partners partner, String partnerusername);
 	
 	public boolean verifyOfferText(BasicPartnerOffer offer );
 

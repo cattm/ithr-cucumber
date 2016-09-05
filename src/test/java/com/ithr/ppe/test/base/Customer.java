@@ -112,7 +112,7 @@ public class Customer {
 	}
 	
 	public void addOffer (String offer) {
-		// TODO:
+		this.offers.add(offer);
 	}
 	
 	public void cleanOffers () {

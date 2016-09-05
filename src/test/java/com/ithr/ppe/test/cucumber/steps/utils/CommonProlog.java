@@ -21,7 +21,7 @@ public class CommonProlog implements IProlog {
 	//private Partners myPartner = null;
 
 	public void createJsonParserFromFile (String path, String filename) {
-		log.info("going to search for :" + path + " and file " + filename);
+		log.info("going to search for :" + path + " and file " + filename + " for parser setup");
 		String fileToCheck = CommandExecutor.execFindExactJsonFile(path, filename + " v");
 		log.info("going to use json file: " + fileToCheck);
 		parser = JsonParser.getInstance();
@@ -29,17 +29,17 @@ public class CommonProlog implements IProlog {
 	}
 
 	public void createCheckerToUse(String file, String opco) {
+		log.info("going to setup Checker for : " + opco);
 		try {
 			checker = opcoTextChecker.getInstance();
 			checker.initialise(file, opco);
 		} catch (IOException e) {
 			log.error("Issue creating opcoTextchecker " + e);
+			ErrorCollector.fail("Failed to initialise checker correctly");
 		}
 	}
 	
-	/* This method will attempt get a partner username if required
-	 * 
-	 */
+	// TODO: make sure if any of the next 3 methods fail the test FAILS!!! 
 	public String getPartnerUserName(WebDriver driver, String adminurl, String opco, Partners partner) {	
 		switch (partner) {
 		case SPOTIFY :
@@ -49,6 +49,7 @@ public class CommonProlog implements IProlog {
 			} catch (Exception e) {
 				log.error("Cannot get Spotify user name");
 				partnerUserName = "ERROR";
+				ErrorCollector.fail("Did not get Partner username to use" );
 			}
 			break;
 			
@@ -67,6 +68,22 @@ public class CommonProlog implements IProlog {
 		return partnerUserName;
 	}
 	
+	public String getNewMsisdn(WebDriver driver, String opco, String subscription, String usergroup, Partners partner) {
+		return AdminFacade.msisdnFromAdmin(driver, opco, subscription, usergroup, partner);
+	}
+	
+	public boolean LoginOk(WebDriver driver, String opco, Partners partner, String msisdn, String pincode, String url) {
+		boolean ok = false;
+		try {
+			ok = IdentityFacade.loginToPPE (driver, opco, partner, msisdn , pincode, url);		
+		} catch (InterruptedException e) {
+			log.error("Login got interrupted " + e);
+			ErrorCollector.fail("Login did not work for: " + msisdn);
+			
+		}
+		return ok;
+	}
+
 	public boolean verifyOffersAvailableText(UserEntertainment entpage)  {
 		log.info("TEST: Verify Available Offers page");
 		String subtext = entpage.getSubscriptionText();
@@ -90,7 +107,7 @@ public class CommonProlog implements IProlog {
 	 * | netflix,sky |	 
 	 */
 	public boolean verifyPrePurchaseOffers(UserEntertainment entpage) {	
-		log.info("verifyPrePurchaseOffers NOT IMPLMENTED");
+		log.info("verifyPrePurchaseOffers NOT IMPLMENTED YET");
 		return true;
 	}
 	

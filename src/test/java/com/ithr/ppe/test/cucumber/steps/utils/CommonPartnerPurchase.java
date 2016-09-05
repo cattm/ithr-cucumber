@@ -7,20 +7,14 @@ package com.ithr.ppe.test.cucumber.steps.utils;
  * @author Marcus Catt (marcus.catt@ithrconsulting.com
  */
 
-import java.io.IOException;
-
 import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 
-import com.ithr.ppe.test.commons.CommandExecutor;
 import com.ithr.ppe.test.commons.CommonConstants;
-import com.ithr.ppe.test.commons.DateStamp;
 import com.ithr.ppe.test.commons.Partners;
 import com.ithr.ppe.test.cucumber.pages.BasicPartnerOffer;
-import com.ithr.ppe.test.cucumber.pages.PageBase;
 import com.ithr.ppe.test.cucumber.pages.UserEntertainment;
-import com.ithr.ppe.test.cucumber.pages.partners.DropBoxRefresh;
 import com.ithr.ppe.test.cucumber.steps.interfaces.IExternalPartner;
 import com.ithr.ppe.test.cucumber.steps.interfaces.IPartnerPurchase;
 import com.ithr.ppe.test.cucumber.steps.interfaces.IVFPartner;
@@ -30,8 +24,7 @@ public class CommonPartnerPurchase implements IPartnerPurchase {
 
 	private static JsonParser parser = null;
 	private static opcoTextChecker checker = null;
-	private static String partnerUserName = "none valid";
-	private static Partners myPartner = null;
+	private Partners myPartner = null;
 	
 /*
  * We analyse the offers
@@ -39,12 +32,16 @@ public class CommonPartnerPurchase implements IPartnerPurchase {
  * check the result page
  * 
  */
+	public void initialiseChecks() {
+		parser = JsonParser.getInstance();
+		checker = opcoTextChecker.getInstance();
+	}
 	public boolean selectPartnerOffer(Partners partner, UserEntertainment entpage)  {
 		// this is a very primative implementation
 		// we may have to cope with a situation where there are a number of offers from same partners
 		// we will need to select the correct one
 		// TODO: build a more comprehensive selection solution
-		
+		log.info("Setting mypartner to " + partner.toString());
 		myPartner = partner;
 		boolean found = false;
 		String imagestring = "";
@@ -117,11 +114,11 @@ public class CommonPartnerPurchase implements IPartnerPurchase {
 		return done;		
 	}
 	
-	public boolean acceptTheOffer(WebDriver driver, String opco, Partners partner)  {
+	public boolean acceptTheOffer(WebDriver driver, String opco, Partners partner, String partnerusername)  {
 		if (myPartner == null) {
 			myPartner = partner;
 		} else {
-			if (myPartner != partner) log.error("attempting to overwrite partner with new value");
+			if (myPartner != partner) log.error("attempting to overwrite partner with new value: why? > " + partner.toString());
 		}					
 
 	    BasicPartnerOffer offer = new BasicPartnerOffer(driver);	   
@@ -141,7 +138,7 @@ public class CommonPartnerPurchase implements IPartnerPurchase {
 		case SPOTIFY :	
 			try {
 				IExternalPartner spot = new SpotifyFacade();
-				registered = spot.register(driver, opco, partnerUserName);
+				registered = spot.register(driver, opco, partnerusername);
 			} catch (Exception e) {
 				log.error("Register for Spotify failed " + e);
 			}
@@ -149,7 +146,7 @@ public class CommonPartnerPurchase implements IPartnerPurchase {
 			
 		case NETFLIX :
 			IExternalPartner pa = new NetflixFacade();
-			registered = pa.register(driver, opco, partnerUserName);
+			registered = pa.register(driver, opco, partnerusername);
 			// at this point we need to return because there is nothing else to check for netflix
 			checkreturnpage = false;
 			break;
@@ -182,12 +179,13 @@ public class CommonPartnerPurchase implements IPartnerPurchase {
 		String crstripped = StringUtils.replace(offer.getOfferDetail(), "\n", " ");
 		String ntextstripped = parser.stripHTML(parser.getOffersText());
 		ErrorCollector.verifyEquals(crstripped, ntextstripped,"The offer detail is incorrect");
-
+		
 	  
 		// check T&C label from label
 		String offertncstripped = StringUtils.replace(offer.getOfferTnC(), "\n", " ");	
 		String tncstripped = parser.stripHTML(parser.getOffersTnCText());
 		ErrorCollector.verifyEquals(offertncstripped,tncstripped, "The T & C text is incorrect");
+	
 		return true;
 	}
 	

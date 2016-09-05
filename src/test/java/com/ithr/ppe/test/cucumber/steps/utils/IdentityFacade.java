@@ -15,7 +15,7 @@ import com.ithr.ppe.test.cucumber.pages.UserSMSChallenge;
 public class IdentityFacade {
 	public static Logger log = Logger.getLogger(IdentityFacade.class);
 	
-	public static void loginToPPE (WebDriver driver, String opco, Partners partner, String msisdn , String pin, String url) throws InterruptedException  {
+	public static boolean loginToPPE (WebDriver driver, String opco, Partners partner, String msisdn , String pin, String url) throws InterruptedException  {
 		
 		String myurl = url + opco;		
 		//append if dropbox
@@ -42,6 +42,6 @@ public class IdentityFacade {
 		log.info("Have Set Pin");
 		
 		smschallenge.clickRegisterButton();
-	
+		return true;
 	}
 }

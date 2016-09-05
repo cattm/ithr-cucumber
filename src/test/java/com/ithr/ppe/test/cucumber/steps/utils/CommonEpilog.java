@@ -17,13 +17,11 @@ public class CommonEpilog implements IEpilog
 	private static JsonParser parser = null;
 	private static opcoTextChecker checker = null;
 
-	private void loadParser() {
+	
+	public void initialiseChecks() {
+		checker = opcoTextChecker.getInstance();
 		parser = JsonParser.getInstance();
 	}
-	private void loadChecker(){
-		checker = opcoTextChecker.getInstance();
-	}
-	
 	private boolean refreshPPEDropBox(WebDriver driver, String url) {		
 		driver.get(url + "?partner=dropbox");		
 		DropBoxRefresh refreshpage = new DropBoxRefresh(driver);
@@ -92,10 +90,9 @@ public class CommonEpilog implements IEpilog
 	// it should verify the subscribed offer is in the correct location 
 	// it should select the subscribed offer and verify the text on the page
 	
-	public boolean refreshPPE(WebDriver driver, String baseopcourl, Partners partner) {
+	public boolean refresh(WebDriver driver, String baseopcourl, Partners partner) {
 		log.info("TEST: Reopen on home page displays correct offers");
-		loadParser();
-		loadChecker();
+	
 		
 		//TODO need to fix needing this - VERY FLAKY
 		try {
