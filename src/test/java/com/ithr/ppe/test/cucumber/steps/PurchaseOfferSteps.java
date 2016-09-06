@@ -71,7 +71,7 @@ public class PurchaseOfferSteps extends StepBase {
 	   log.info("opco set to " + this.opco);
 	   
 	   // set up first check file for standard text
-	   pl.createCheckerToUse(testReferenceDir, this.opco);
+	   pl.createChecker(testReferenceDir, this.opco);
 	}
 	
 	@When("^my profile has a ([^\"]*) tariff with a ([^\"]*) usergroup$")
@@ -180,7 +180,7 @@ public class PurchaseOfferSteps extends StepBase {
 		log.info("Then: my offer will come from " + reffilename + " file");
 		ErrorCollector.verifyFalse(!reffilename.contains("Not Valid"), "The Reference File is set to not valid");	
 		String roughpath = refDir + opco + "/";
-		pl.createJsonParserFromFile(roughpath, reffilename);	
+		pl.createParser(roughpath, reffilename);	
 		
 		// now safe to initialise all parsers
 		// TODO: this could be a lot better!
