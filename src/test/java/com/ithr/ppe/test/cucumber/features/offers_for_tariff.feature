@@ -1,5 +1,5 @@
 @ignore
-Feature: Offerd for each tariff Combination
+Feature: Offered for each tariff Combination
   This is a simple check that investigates the number of offers for each tariff combination match those expected
 
   Scenario: simple example of what should be seen on intial offer
