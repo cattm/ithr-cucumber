@@ -20,7 +20,7 @@ public class CommonProlog implements IProlog {
 	private String partnerUserName = "none valid";
 	//private Partners myPartner = null;
 
-	public void createJsonParserFromFile (String path, String filename) {
+	public void createParser (String path, String filename) {
 		log.info("going to search for :" + path + " and file " + filename + " for parser setup");
 		String fileToCheck = CommandExecutor.execFindExactJsonFile(path, filename + " v");
 		log.info("going to use json file: " + fileToCheck);
@@ -28,7 +28,7 @@ public class CommonProlog implements IProlog {
 		parser.initialise(path + fileToCheck);
 	}
 
-	public void createCheckerToUse(String file, String opco) {
+	public void createChecker(String file, String opco) {
 		log.info("going to setup Checker for : " + opco);
 		try {
 			checker = opcoTextChecker.getInstance();

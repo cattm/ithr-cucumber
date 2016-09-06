@@ -12,8 +12,8 @@ import com.ithr.ppe.test.cucumber.pages.UserEntertainment;
 
 public interface IProlog {
 
-	public void createJsonParserFromFile (String path, String filename);
-	public void createCheckerToUse(String file, String opco);
+	public void createParser (String path, String filename);
+	public void createChecker(String file, String opco);
 	
 	public String getPartnerUserName(WebDriver driver, String adminurl, String opco, Partners partner);
 	public String getNewMsisdn(WebDriver driver, String opco, String subscription, String usergroup, Partners partner);
