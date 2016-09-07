@@ -9,6 +9,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
+import com.ithr.ppe.test.commons.CommonConstants;
+
 
 /**
  * Implements the basic model of a partner offer page
@@ -100,7 +102,16 @@ public class BasicPartnerOffer extends PageBase {
 
 	// accept the offer 
 	public void clickAcceptOffer () {
-		   acceptOffer.click();
+	// we occasionally appear to get a race hazad on selecting this button
+		for (int i = 0; i < 5 && !acceptOffer.isDisplayed(); i++) {
+			try {
+				Thread.sleep(CommonConstants.FAST);
+			} catch (InterruptedException e) {
+				log.info("Timer interrupted");
+			}
+			log.info("waiting for button to appear: " + i);
+		}
+		acceptOffer.click();
 	}
 	   
 	// check the accept offer text
