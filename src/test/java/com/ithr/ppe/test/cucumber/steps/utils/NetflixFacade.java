@@ -1,5 +1,12 @@
 package com.ithr.ppe.test.cucumber.steps.utils;
-
+/**
+ * Implements the External Partner interface for Netflix
+ * There are problems with this Partner and there are some dummy wait loops to get it running
+ * We should be looking to remove these
+ * 
+ * 
+ * @author Marcus Catt (marcus.catt@ithrconsulting.com
+ */
 import org.apache.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 
@@ -14,12 +21,13 @@ public class NetflixFacade implements IExternalPartner{
 	
 	public static Logger log = Logger.getLogger(NetflixFacade.class);
 
+
 	public boolean register(WebDriver driver, String opco, String usernametouse) {
 		// have had to slow this baby down - site is very flaky
 		
-		log.info("Going to hit continue");
+		log.info("Going to continue");
 		try {
-			Thread.sleep(CommonConstants.FAST);
+			Thread.sleep(CommonConstants.SLOW);
 		} catch (InterruptedException e) {
 			log.error("sleep got interrupted " + e);
 		}
@@ -30,8 +38,7 @@ public class NetflixFacade implements IExternalPartner{
 		} catch (InterruptedException e) {
 			log.error("Interrupted exception while loading offer page " + e);
 		}
-		
-		
+			
 		offer.clickSubmit();
 		try {
 			Thread.sleep(CommonConstants.MEDIUM);
@@ -47,19 +54,18 @@ public class NetflixFacade implements IExternalPartner{
 		} catch (InterruptedException e) {
 			log.error("Interrupted exception while loading login or register page " + e);
 		}
+		
+		// Some really dodgy code as a work around
+		// try to set the params and then repeat if we get their JS error message
 		logorreg.setEmail(usernametouse);
-		try {
-			Thread.sleep(CommonConstants.FAST);
-		} catch (InterruptedException e) {
-			log.error("sleep got interrupted " + e);
-		}
-		logorreg.setPassword("passwordnf");
-		try {
-			Thread.sleep(CommonConstants.FAST);
-		} catch (InterruptedException e) {
-			log.error("sleep got interrupted " + e);
-		}
+		logorreg.setPassword("passwordnf");		
 		logorreg.clickContinue();
+		if (logorreg.getErrorMsg() != null) {
+			log.info("Repeating entry  ...." + logorreg.getErrorMsg()  + " Invalid Error Displayed");
+			logorreg.setEmail(usernametouse);
+			logorreg.setPassword("passwordnf");		
+			logorreg.clickContinue();
+		}
 		
 		log.info("Going to check success page for netflix");
 		try {
@@ -74,7 +80,7 @@ public class NetflixFacade implements IExternalPartner{
 		} catch (InterruptedException e) {
 			log.error("Interrupted exception while loading success page " + e);
 		}
-;
+
 		// TODO: this will be opco dependant - uk solution in place
 		if (netsuccess.getNetflixSuccess().contentEquals("Your Netflix membership, which begins with a free trial, has begun.")) {
 			return true;
