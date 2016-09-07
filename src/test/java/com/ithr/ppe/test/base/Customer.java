@@ -27,8 +27,10 @@ public class Customer {
 	private String userName = "";
 	private String email = "";
 	private List<String> offers = null;
+	private List<String> postOffers = null;
 	
 	private boolean offersValid = false;
+	private boolean postOffersValid = false;
 	
 	
 	public Customer () {
@@ -115,9 +117,27 @@ public class Customer {
 		this.offers.add(offer);
 	}
 	
+	public void setPostOffers (List<String> offers) {
+		this.postOffers = offers;
+		postOffersValid = true;
+	}
+	
+	public List<String> getPostOffers () {
+		if (postOffersValid) {
+			return this.postOffers;
+		}
+		return null;
+	}
+	
+	public void addPostOffer (String offer) {
+		this.postOffers.add(offer);
+	}
+	
 	public void cleanOffers () {
 		this.offers = null;
+		this.postOffers = null;
 		offersValid = false;
+		postOffersValid = false;
 	}
 	
 	

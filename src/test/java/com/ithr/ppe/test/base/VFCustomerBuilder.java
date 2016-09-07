@@ -44,28 +44,17 @@ public class VFCustomerBuilder implements ICustomerBuilder {
 		customer.setUserName(USERNAME);
 	}
 	
-	public void addToOffers(final String offer) {
+	public void addToPreOffers(final String offer) {
 		customer.addOffer(offer);
 	}
 	
-	/*
-	public String findOffer(final String tofind) {
-		String finding = "";
-		List<String> myoffers = customer.getOffers();
-		Iterator <String> iterator = myoffers.iterator();
-		while (iterator.hasNext()) {
-			String tocheck = iterator.next();
-			log.debug("checking offer :" + tocheck);			
-			if (tocheck.contains(tofind)) {
-				finding = tocheck;				  
-			}
-		}
-		return finding;
+	public void addToPostOffers(final String offer) {
+		customer.addPostOffer(offer);
 	}
-	*/
-
-	public void loadOffers (List<String> toload) {
-		customer.setOffers(toload);
+	
+	public void loadOffers (List<String> preload, List<String> postload) {
+		customer.setOffers(preload);
+		customer.setPostOffers(postload);
 	}
 	
 	public void initialBuild(String opco, Partners partner) {

@@ -22,6 +22,7 @@ import cucumber.api.java.en.Given;
 import cucumber.api.java.en.When;
 
 public class OfferCheckMaps {
+	private static final Exception NotFoundException = new Exception("Search item not found");
 	public static Logger log = Logger.getLogger(OfferCheckMaps.class);
 	private ArrayList<Map<String, String>> startOfferList = new ArrayList<Map<String,String>>();
 	private boolean startListLoaded = false;
@@ -64,7 +65,7 @@ public class OfferCheckMaps {
 		}	
 	}
 	
-	public String getStartingOffersFor(String subscription, String usergroup) {
+	public String getStartingOffersFor(String subscription, String usergroup) throws Exception {
 		String offer = "None Found";
 		boolean found = false;
 		Iterator <Map<String,String>> iterator = startOfferList.iterator();
@@ -76,10 +77,12 @@ public class OfferCheckMaps {
 				found = true;
 			}		
 		}
+		log.info("Offer found is " + offer);
+		if (!found) throw NotFoundException; 
 		return offer;
 	}
 	
-	public String getEndingOffersFor(String subscription, String usergroup) {
+	public String getEndingOffersFor(String subscription, String usergroup) throws Exception {
 		String offer = "None found";
 		boolean found = false;
 		Iterator <Map<String,String>> iterator = endOfferList.iterator();
@@ -91,50 +94,51 @@ public class OfferCheckMaps {
 				found = true;
 			}		
 		}
+		log.info("Offer found is " + offer);
+		if (!found) throw NotFoundException; 
 		return offer;
+	}
+	
+	public String [] SplitOffers(String offer) {
+		String [] tmp = null;
+		if (offer.contains(",")) {
+			tmp = offer.split(",");
+			for (int i = 0; i < tmp.length; i++) {
+				log.info("offer " + tmp[i]);
+			}
+		}
+		return tmp;
 	}
 	
 	@Given("^I am a \"([^\"]*)\" customer with:$")
 	public void LoadInitialOffersForThisMsisdn(String opco, List<Map<String, String>> offerlistmap) throws Throwable {
-		//   | package     | usergroup | shouldsee           |
-		//   | PK_4GTariff | 4glarge   | netflix, nowtv, sky |
 		this.opco = opco;		
 		
 		for (Map<String, String> mymap : offerlistmap) {
-			log.info("map is : " + mymap.toString() );
-			log.info("package is : " + mymap.get("package"));
-			log.info("usergroup is : " + mymap.get("usergroup"));
-			log.info("shouldsee is : " + mymap.get("shouldsee"));
+			log.debug("map is : " + mymap.toString() );
+			log.debug("package is : " + mymap.get("package"));
+			log.debug("usergroup is : " + mymap.get("usergroup"));
+			log.debug("shouldsee is : " + mymap.get("shouldsee"));
 			startOfferList.add(mymap);
 		}
-	    log.info("Loading Initial Offers for this MSISDN");
-	   
+	    log.info("Loading Initial Offers for this MSISDN");	   
 	    printStartMap();
-	    log.info("And we search : " + getStartingOffersFor("PK_4GTariff", "4glarge"));
 	
 	}
 
 	@When("^I have finished I will have:$")
 	public void LoadCompletedPurchaseOfferForThisMsisdn(List<Map<String, String>> mylistmap) throws Throwable {
-	    // Write code here that turns the phrase above into concrete actions
-	    // For automatic transformation, change DataTable to one of
-	    // List<YourType>, List<List<E>>, List<Map<K,V>> or Map<K,V>.
-	    // E,K,V must be a scalar (String, Integer, Date, enum etc)
-		
-		/*
-		   | package     | usergroup | nowsee  |
-		      | PK_4GTariff | 4glarge   | netflix |
-		      | PK_4GTariff | 4glarge   | sky     |
-		*/
+	
 		for (Map<String, String> mymap : mylistmap) {
-			log.info("map is : " + mymap.toString() );
-			log.info("package is : " + mymap.get("package"));
-			log.info("usergroup is : " + mymap.get("usergroup"));
-			log.info("nowsee is : " + mymap.get("nowsee"));
+			log.debug("map is : " + mymap.toString() );
+			log.debug("package is : " + mymap.get("package"));
+			log.debug("usergroup is : " + mymap.get("usergroup"));
+			log.debug("nowsee is : " + mymap.get("nowsee"));
 			endOfferList.add(mymap);
 		}
-		printEndMap();
 		log.info("Loading Completed Purchase Offers for this MSISDN");
+		printEndMap();
+
 	}
 	
 	
