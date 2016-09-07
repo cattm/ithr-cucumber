@@ -72,8 +72,10 @@ public class JsonParser {
 	private JSONObject getStartPoint () {
 		 String jsontextfile = fileToParse;
 		 log.info("checking file : " + jsontextfile);
-		 String jsonData = readFile(jsontextfile);
-		 return new JSONObject(jsonData);
+		 String jsondata = readFile(jsontextfile);
+		 // search for BOM and replace if required
+		 String nobomjson = jsondata.replace("\uFEFF", "");
+		 return new JSONObject(nobomjson);
 	}
 	
 	
