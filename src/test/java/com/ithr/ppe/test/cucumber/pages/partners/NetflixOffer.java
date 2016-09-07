@@ -1,10 +1,12 @@
 package com.ithr.ppe.test.cucumber.pages.partners;
 
+import org.apache.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
+import com.ithr.ppe.test.commons.CommonConstants;
 import com.ithr.ppe.test.cucumber.pages.PageBase;
 
 /**
@@ -13,7 +15,7 @@ import com.ithr.ppe.test.cucumber.pages.PageBase;
  * @author Marcus Catt (marcus.catt@ithrconsulting.com
  */
 public class NetflixOffer extends PageBase {
-
+	public static Logger log = Logger.getLogger(NetflixOffer.class);
 	@FindBy(css="button[type='submit']")
 	WebElement submit;
 	
@@ -25,10 +27,16 @@ public class NetflixOffer extends PageBase {
 	}
 	
 	public void clickSubmit() {	
+		for (int i = 0; i < 5 && !submit.isDisplayed(); i++) {
+			try {
+				Thread.sleep(CommonConstants.FAST);
+			} catch (InterruptedException e) {
+				log.error("Timer interrupted");
+			}
+			log.info("waiting for button to appear: " + i);
+		}
 		submit.click();
 	}
 
-	// probably a success page
-	// Your Netflix membership, which begins with a free trial, has begun.
-	// h2[data-reactid="12"]
+	
 }

@@ -1,14 +1,25 @@
 package com.ithr.ppe.test.cucumber.pages.partners;
-
+/**
+ * Implements the Page Model for the Netflix login or register function
+ * There are some issue with this page which have resulted in some rather ugly fixes 
+ * the page seems to be unclear about if it has loaded or not
+ * Added a wait loop on the submit button 
+ * overload values in the text entry boxes - stops an error being generated
+ * 
+ * @author Marcus Catt (marcus.catt@ithrconsulting.com
+ */
+import org.apache.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
+import com.ithr.ppe.test.commons.CommonConstants;
+import com.ithr.ppe.test.cucumber.pages.BasicPartnerOffer;
 import com.ithr.ppe.test.cucumber.pages.PageBase;
 
 public class NetflixLoginOrRegister extends PageBase {
-
+	public static Logger log = Logger.getLogger(NetflixLoginOrRegister.class);
 	// input[name="email"]
 	// input[name="password"]
 	// button[id="CC-startPaid"]
@@ -21,6 +32,9 @@ public class NetflixLoginOrRegister extends PageBase {
 	
 	@FindBy(id="CC-startPaid")
 	WebElement carryOn;
+	
+	@FindBy(css="div[class='input-message error']")
+	WebElement errorText;
 	
 	public  NetflixLoginOrRegister (WebDriver driver) {
 		  super(driver);
@@ -38,7 +52,25 @@ public class NetflixLoginOrRegister extends PageBase {
 		  password.sendKeys(pw);
 	}
 	
+	public String getErrorMsg() {
+		String result = null;
+		if (errorText.isDisplayed()){
+			result = errorText.getText();
+		}
+		return result;
+	}
+	
 	public void clickContinue() {	
+		// we occasionally appear to get a race hazad on selecting this button
+				for (int i = 0; i < 5 && !carryOn.isDisplayed(); i++) {
+					try {
+						Thread.sleep(CommonConstants.FAST);
+					} catch (InterruptedException e) {
+						log.error("Timer interrupted");
+					}
+					log.info("waiting for button to appear: " + i);
+				}
+		log.info("clickContinue NOW");
 		carryOn.click();
 	}
 }
