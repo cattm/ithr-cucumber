@@ -5,9 +5,9 @@ import java.io.IOException;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 
+import com.ithr.ppe.test.base.Customer;
 import com.ithr.ppe.test.commons.CommandExecutor;
 import com.ithr.ppe.test.commons.DateStamp;
-import com.ithr.ppe.test.commons.Partners;
 import com.ithr.ppe.test.cucumber.pages.UserEntertainment;
 import com.ithr.ppe.test.cucumber.steps.interfaces.IProlog;
 
@@ -40,12 +40,12 @@ public class CommonProlog implements IProlog {
 	}
 	
 	// TODO: make sure if any of the next 3 methods fail the test FAILS!!! 
-	public String getPartnerUserName(WebDriver driver, String adminurl, String opco, Partners partner) {	
-		switch (partner) {
+	public String getPartnerUserName(WebDriver driver, String adminurl, Customer customer) {	
+		switch (customer.getPartner()) {
 		case SPOTIFY :
 			try {
 				SpotifyFacade spot = new SpotifyFacade();
-				partnerUserName = spot.getUser (driver, adminurl, opco);
+				partnerUserName = spot.getUser (driver, adminurl, customer.getOpco());
 			} catch (Exception e) {
 				log.error("Cannot get Spotify user name");
 				partnerUserName = "ERROR";
@@ -68,18 +68,17 @@ public class CommonProlog implements IProlog {
 		return partnerUserName;
 	}
 	
-	public String getNewMsisdn(WebDriver driver, String opco, String subscription, String usergroup, Partners partner) {
-		return AdminFacade.msisdnFromAdmin(driver, opco, subscription, usergroup, partner);
+	public String getNewMsisdn(WebDriver driver, Customer customer) {
+		return AdminFacade.msisdnFromAdmin(driver, customer.getOpco(), customer.getSubscription(), customer.getUserGroup(), customer.getPartner());
 	}
 	
-	public boolean LoginOk(WebDriver driver, String opco, Partners partner, String msisdn, String pincode, String url) {
+	public boolean LoginOk(WebDriver driver, Customer customer, String pincode, String url) {
 		boolean ok = false;
 		try {
-			ok = IdentityFacade.loginToPPE (driver, opco, partner, msisdn , pincode, url);		
+			ok = IdentityFacade.loginToPPE (driver, customer.getOpco(), customer.getPartner(), customer.getMsisdn() , pincode, url);		
 		} catch (InterruptedException e) {
 			log.error("Login got interrupted " + e);
-			ErrorCollector.fail("Login did not work for: " + msisdn);
-			
+			ErrorCollector.fail("Login did not work for: " + customer.getMsisdn());		
 		}
 		return ok;
 	}

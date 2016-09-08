@@ -59,15 +59,6 @@ public class StepBase {
 	protected String 	pinCode;
 	protected Boolean 	embedAllImages;
 	
-	//required
-	protected String opco = "gb"; //default
-	protected String subscription;
-	protected String userGroup;
-	protected String shortMsisdn;
-	
-	//checks
-	protected String 			fileToCheck =  "";
-	protected Boolean 			refFileValid = false;
 	
 	public static Logger log = Logger.getLogger(StepBase.class);
 		  

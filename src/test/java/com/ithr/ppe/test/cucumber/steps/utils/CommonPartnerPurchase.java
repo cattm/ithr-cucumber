@@ -11,6 +11,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 
+import com.ithr.ppe.test.base.Customer;
 import com.ithr.ppe.test.commons.CommonConstants;
 import com.ithr.ppe.test.commons.Partners;
 import com.ithr.ppe.test.cucumber.pages.BasicPartnerOffer;
@@ -114,11 +115,13 @@ public class CommonPartnerPurchase implements IPartnerPurchase {
 		return done;		
 	}
 	
-	public boolean acceptTheOffer(WebDriver driver, String opco, Partners partner, String partnerusername)  {
+	public boolean acceptTheOffer(WebDriver driver, Customer customer)  {
+		String opco = customer.getOpco();
+		String partnerusername = customer.getUserName();
 		if (myPartner == null) {
-			myPartner = partner;
+			myPartner = customer.getPartner();
 		} else {
-			if (myPartner != partner) log.error("attempting to overwrite partner with new value: why? > " + partner.toString());
+			if (myPartner != customer.getPartner()) log.error("attempting to overwrite partner with new value: why? > " + customer.getPartner().toString());
 		}					
 
 	    BasicPartnerOffer offer = new BasicPartnerOffer(driver);	   

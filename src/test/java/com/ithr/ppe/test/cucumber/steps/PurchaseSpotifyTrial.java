@@ -36,7 +36,14 @@ public class PurchaseSpotifyTrial extends StepBase{
 	public static Logger log = Logger.getLogger(PurchaseSpotifyTrial.class);
 
 	String userNameToUse;
-	
+	protected String opco = "gb"; //default
+	protected String subscription;
+	protected String userGroup;
+	protected String shortMsisdn;
+
+	protected String 			fileToCheck =  "";
+	protected Boolean 			refFileValid = false;
+
 	public PurchaseSpotifyTrial() {
 		// return
 	}

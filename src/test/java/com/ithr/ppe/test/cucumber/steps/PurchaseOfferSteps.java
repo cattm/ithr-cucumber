@@ -12,7 +12,10 @@ import org.apache.log4j.Logger;
 import org.junit.Assert;
 import org.openqa.selenium.Dimension;
 
+import com.ithr.ppe.test.base.Customer;
+import com.ithr.ppe.test.base.ICustomerBuilder;
 import com.ithr.ppe.test.base.StepBase;
+import com.ithr.ppe.test.base.VFCustomerBuilder;
 import com.ithr.ppe.test.commons.Partners;
 import com.ithr.ppe.test.cucumber.pages.BasicPartnerOffer;
 import com.ithr.ppe.test.cucumber.pages.UserEntertainment;
@@ -39,21 +42,23 @@ public class PurchaseOfferSteps extends StepBase {
 	private IProlog pl = new CommonProlog();
 	private IPartnerPurchase cpp = new CommonPartnerPurchase();
 	private IEpilog ep = new CommonEpilog();
-	
-	private Partners myPartner = null;
-	private String userNameToUse = "";
+		
+	private Customer customer = null;
+	private ICustomerBuilder bd = new VFCustomerBuilder();
 	
 	public PurchaseOfferSteps() {
 		super();
 	}
 	
-	@Before("@dropboxpurchase, @netflixpurchase, @nowtvpurchase, @skypurchase, @spotifypurchase")
+	//@Before("@dropboxpurchase, @netflixpurchase, @nowtvpurchase, @skypurchase, @spotifypurchase")
+	@Before("@checkit")
 	public void setUp(Scenario scenario) throws Exception {
 		super.setUp(scenario);
 		log.info("SetUp");
 	}
 	
-	@After("@dropboxpurchase, @netflixpurchase, @nowtvpurchase, @skypurchase, @spotifypurchase")
+	//@After("@dropboxpurchase, @netflixpurchase, @nowtvpurchase, @skypurchase, @spotifypurchase")
+	@After("@checkit")
 	public void tearDown() {
 		log.info("TearDown");
 		super.tearDown();
@@ -66,40 +71,42 @@ public class PurchaseOfferSteps extends StepBase {
 	public void PartnerCustomer(String opco, String partner) {
 	   log.info("Given: I am a " + opco + " customer purchasing " + partner + " offer");
 	   
-	   this.myPartner = Partners.valueOf(partner.toUpperCase());	   
-	   this.opco = opco.toLowerCase();	
-	   log.info("opco set to " + this.opco);
+	   bd.initialBuild(opco, Partners.valueOf(partner.toUpperCase()));
+	   bd.Build();    	
 	   
 	   // set up first check file for standard text
-	   pl.createChecker(testReferenceDir, this.opco);
+	   pl.createChecker(testReferenceDir, opco);
 	}
 	
 	@When("^my profile has a ([^\"]*) tariff with a ([^\"]*) usergroup$")
 	public void PackageInGroup(String mypackage, String usergroup) {
 		log.info("When: I have a " + mypackage + " with a " + usergroup + " usergroup");
-		this.subscription = mypackage;
-		this.userGroup = usergroup;	
+		bd.appendToBuild(mypackage, usergroup);
+		customer = bd.getCustomer();	
 		
 		try {		
 			// get a partner user - TODO: check if we need to do this here or can do it later 
-			userNameToUse = pl.getPartnerUserName(driver, basePartnerHelper, opco, myPartner);			
-			log.info("username is " + userNameToUse);
-			if (userNameToUse.contains("ERROR")) {
+			
+			String username = pl.getPartnerUserName(driver, basePartnerHelper, customer);
+			customer.setUserName(username);
+			log.info("username is " + username);
+			if (username.contains("ERROR")) {
 				log.error(" Helper did not return a valid username");
 				Assert.fail("username is invalid - Aborting Test");
 			}
 			
 			// Need an MSISDN to log in
 			driver.get(baseAdminUrl);
-			shortMsisdn = pl.getNewMsisdn(driver, opco, subscription, userGroup, myPartner);
+			String msisdn = pl.getNewMsisdn(driver, customer);
+			customer.setMsisdn(msisdn);
 			// handle the AA aspect and login
-			pl.LoginOk (driver, opco, myPartner, shortMsisdn , pinCode, baseUserUrl);
+			pl.LoginOk (driver, customer, pinCode, baseUserUrl);
 			
 		} catch (Exception e){
 			log.error("Caught Exception: " + e);
 			String name = this.getClass().getSimpleName();
 			ReportScreen(name);
-			Assert.fail("Package In Group - Abort Test on Exception : MSISDN " + shortMsisdn); //To fail test in case of any element identification failure				
+			Assert.fail("Package In Group - Abort Test on Exception : MSISDN " + customer.getMsisdn()); //To fail test in case of any element identification failure				
 		}
 		
 	}
@@ -113,7 +120,7 @@ public class PurchaseOfferSteps extends StepBase {
 		}
 		
 		log.info("selecting offer");
-		if (cpp.selectPartnerOffer(myPartner, entpage)) {		  
+		if (cpp.selectPartnerOffer(customer.getPartner(), entpage)) {		  
 			//  on journey to accept offer
 			
 			BasicPartnerOffer offer = new BasicPartnerOffer(driver);
@@ -179,7 +186,7 @@ public class PurchaseOfferSteps extends StepBase {
 	public void OfferContainsStringsFrom(String reffilename)  {
 		log.info("Then: my offer will come from " + reffilename + " file");
 		ErrorCollector.verifyFalse(!reffilename.contains("Not Valid"), "The Reference File is set to not valid");	
-		String roughpath = refDir + opco + "/";
+		String roughpath = refDir + customer.getOpco() + "/";
 		pl.createParser(roughpath, reffilename);	
 		
 		// now safe to initialise all parsers
@@ -189,7 +196,7 @@ public class PurchaseOfferSteps extends StepBase {
 		try {
 			// might be a short wait here....while new page loads...
 			  driver.manage().window().setSize(new Dimension(600, 600));
-			  switch (myPartner) {
+			  switch (customer.getPartner()) {
 			  	case DROPBOX : SelectInternal();
 			  	break;
 			    default : 
@@ -203,24 +210,23 @@ public class PurchaseOfferSteps extends StepBase {
 			log.error("caught Exception: " + e);
 			String name = this.getClass().getSimpleName();
 			ReportScreen(name);
-			Assert.fail("OfferContainsStringsFrom - Abort Test on Exception : MSISDN " + shortMsisdn); //To fail test in case of any element identification failure				
+			Assert.fail("OfferContainsStringsFrom - Abort Test on Exception : MSISDN " + customer.getMsisdn()); //To fail test in case of any element identification failure				
 		}
 	}
-
 
 	@And("^I will accept and confirm the offer$")
 	public void AcceptPartnerOffer() {		
 		log.info("And: I Will Accept the Offer ");
 		try {			
-			log.info("partner is currently " + myPartner.toString());
-			boolean offeraccepted = cpp.acceptTheOffer(driver, opco, myPartner, userNameToUse);			
+			log.info("partner is currently " + customer.getPartner().toString());
+			boolean offeraccepted = cpp.acceptTheOffer(driver, customer);			
 			CheckedScenarioScreenshot();
 			ErrorCollector.verifyTrue(offeraccepted,"offer not accepted");
 				
 			// now go back to PPE and refresh and check 
-			String urltouse = baseUserUrl + opco;	
+			String urltouse = baseUserUrl + customer.getOpco();	
 			ep.initialiseChecks();
-			boolean ppeopen = ep.refresh(driver, urltouse, myPartner);				
+			boolean ppeopen = ep.refresh(driver, urltouse, customer.getPartner());				
 			CheckedScenarioScreenshot();
 			ErrorCollector.verifyTrue(ppeopen, "reopen failed");
 				
@@ -228,7 +234,7 @@ public class PurchaseOfferSteps extends StepBase {
 			log.error("caught Exception: " + e);			
 			String name = this.getClass().getSimpleName();
 			ReportScreen(name);
-			Assert.fail("Accept Partner Offer - Abort Test on Exception : MSISDN " + shortMsisdn); //To fail test in case of any element identification failure			
+			Assert.fail("Accept Partner Offer - Abort Test on Exception : MSISDN " + customer.getMsisdn()); //To fail test in case of any element identification failure			
 		}
 	}		  					
 		

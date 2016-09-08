@@ -45,7 +45,7 @@ public class Customer {
 		this.opco = opco;
 	}
 	
-	String getSubscription () {
+	public String getSubscription () {
 		return this.subscription;
 	}
 	
@@ -53,7 +53,7 @@ public class Customer {
 		this.subscription = subscription;
 	}
 	
-	String getUserGroup () {
+	public String getUserGroup () {
 		return this.userGroup;
 	}
 	
@@ -61,7 +61,7 @@ public class Customer {
 		this.userGroup = usergroup;
 	}
 	
-	String getUserName () {
+	public String getUserName () {
 		return this.userName;
 	}
 	
@@ -69,7 +69,7 @@ public class Customer {
 		this.userName = username;
 	}
 	
-	String getCountryCode () {
+	public String getCountryCode () {
 		return this.shortMsisdn;
 	}
 	
@@ -77,7 +77,7 @@ public class Customer {
 		this.shortMsisdn = msisdn;
 	}
 	
-	String getMsisdn () {
+	public String getMsisdn () {
 		return this.shortMsisdn;
 	}
 	
@@ -85,7 +85,7 @@ public class Customer {
 		this.shortMsisdn = msisdn;
 	}
 	
-	String getEmail () {
+	public String getEmail () {
 		return this.email;
 	}
 	
@@ -93,7 +93,7 @@ public class Customer {
 		this.email = email;
 	}
 	
-	Partners getPartner () {
+	public Partners getPartner () {
 		return this.myPartner;
 	}
 	
