@@ -129,4 +129,8 @@ public class UserEntertainment extends PageBase{
 		return elementLoaded(By.xpath("//article[@id='content__wrapper']/div[2]/div/div/div/div/div/div[2]/h3/span[2]"));		
 	  }
 	  
+	  public boolean isMyOfferPresent(String tofind) throws InterruptedException {
+		  return elementLoaded(By.cssSelector(tofind));
+	  
+	  }
 }

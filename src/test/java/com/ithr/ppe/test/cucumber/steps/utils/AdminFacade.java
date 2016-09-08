@@ -1,16 +1,5 @@
 package com.ithr.ppe.test.cucumber.steps.utils;
 
-/**
- * Implements the manipulation of the admin tool to get a new usable MSISDN
- * The model will sleect and create the required profile and check it or
- * just return an MSISDN from the required OPCO
- * Valid Text Combinations include all drop down list items for tariff and usergroup
- * Take notice of No parent subcription and No usergroup text offerings
- * Not Valid, Not Valid combination is used to simply return a raw MSISDN
- * 
- * @author Marcus Catt (marcus.catt@ithrconsulting.com
- */
-import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 

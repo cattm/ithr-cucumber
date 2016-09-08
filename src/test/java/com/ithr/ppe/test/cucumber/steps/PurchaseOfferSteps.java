@@ -154,13 +154,9 @@ public class PurchaseOfferSteps extends StepBase {
 		}
 		 		  
 		// There should be available offers for THIS MSISDN -
-		// if there are no offers this is probably an error
-		// the manage subscriptions section should be empty "you have no subscriptions..."
-		pl.verifyOffersAvailableText(entpage);
-		CheckedScenarioScreenshot();	
-		  	  
-		// TODO: put in check ok
-		return pl.verifyPrePurchaseOffers(entpage);
+		boolean ok = pl.verifyOffers(entpage, customer);
+		CheckedScenarioScreenshot();		  	  
+		return ok;
 	}
 	
 	private boolean SelectInternal() {
@@ -225,7 +221,7 @@ public class PurchaseOfferSteps extends StepBase {
 			// now go back to PPE and refresh and check 
 			String urltouse = baseUserUrl + customer.getOpco();	
 			ep.initialiseChecks();
-			boolean ppeopen = ep.refresh(driver, urltouse, customer.getPartner());				
+			boolean ppeopen = ep.refresh(driver, urltouse, customer);				
 			CheckedScenarioScreenshot();
 			ErrorCollector.verifyTrue(ppeopen, "reopen failed");
 				

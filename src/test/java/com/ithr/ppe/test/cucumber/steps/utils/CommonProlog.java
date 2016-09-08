@@ -82,6 +82,10 @@ public class CommonProlog implements IProlog {
 		}
 		return ok;
 	}
+	
+	public boolean verifyOffers(UserEntertainment entpage, Customer customer) {
+		return (verifyOffersAvailableText(entpage) && verifyPrePurchaseOffers( entpage,  customer));		
+	}
 
 	public boolean verifyOffersAvailableText(UserEntertainment entpage)  {
 		log.info("TEST: Verify Available Offers page");
@@ -105,9 +109,37 @@ public class CommonProlog implements IProlog {
 	 * | nowsee |
 	 * | netflix,sky |	 
 	 */
-	public boolean verifyPrePurchaseOffers(UserEntertainment entpage) {	
-		log.info("verifyPrePurchaseOffers NOT IMPLMENTED YET");
-		return true;
+	public boolean verifyPrePurchaseOffers(UserEntertainment entpage, Customer customer) {
+		OfferMap om = OfferMap.getInstance();
+		Boolean found = false;
+		if (om.getStartListLoaded()) {
+			log.info("verifyPrePurchaseOffers Required");
+			try {
+				String offers = om.getStartingOffersFor(customer.getSubscription(), customer.getUserGroup());
+				String [] splitoffers = om.SplitOffers(offers);
+				// now we check for each offer that there is something on the page
+				for (int i = 0; i < splitoffers.length; i++) {
+					String tmp = splitoffers[i].toLowerCase();
+					String tofind = "div[id='"+ customer.getOpco() + "-" + tmp.replace(" ", "-") + "']";
+					log.info("now checking for : " + tmp);
+					found = entpage.isMyOfferPresent(tofind);
+					log.info("And search returned " + found.toString());
+					if (!found) ErrorCollector.fail("required offer " + tmp + "not found on page");
+				}				
+			
+			}  catch (InterruptedException e)  {
+				log.error("Problem with Element locator " + e);
+				ErrorCollector.fail("Problem with Elemement loactor");
+			} catch (Exception e) {
+				log.error("No pre purchase offers defined for this customer " + e);
+				ErrorCollector.fail("No Pre Purchase offers defined for this customer");
+			}		
+			return found;
+		} else {
+			log.info("verifyPrePurchaseOffers NOT required");
+			return true;
+		}
+		
 	}
 	
 }

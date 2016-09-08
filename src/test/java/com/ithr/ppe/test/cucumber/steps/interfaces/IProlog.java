@@ -20,6 +20,6 @@ public interface IProlog {
 	public String getNewMsisdn(WebDriver driver, Customer customer);
 	public boolean LoginOk(WebDriver driver, Customer customer, String pincode, String url);
 
-	public boolean verifyOffersAvailableText(UserEntertainment entpage);
-	public boolean verifyPrePurchaseOffers(UserEntertainment entpage);
+	public boolean verifyOffers(UserEntertainment entpage, Customer customer);
+
 }

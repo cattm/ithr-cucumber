@@ -6,6 +6,7 @@ package com.ithr.ppe.test.cucumber.steps.interfaces;
  */
 import org.openqa.selenium.WebDriver;
 
+import com.ithr.ppe.test.base.Customer;
 import com.ithr.ppe.test.commons.Partners;
 
 /**
@@ -15,5 +16,5 @@ import com.ithr.ppe.test.commons.Partners;
  */
 public interface IEpilog {
 	public void initialiseChecks();
-	public boolean refresh(WebDriver driver, String baseopcourl, Partners partner);
+	public boolean refresh(WebDriver driver, String baseopcourl, Customer customer);
 }
