@@ -6,18 +6,12 @@ package com.ithr.ppe.test.cucumber.steps;
  * @author Marcus Catt (marcus.catt@ithrconsulting.com
  */
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
 import org.apache.log4j.Logger;
-import org.openqa.selenium.WebElement;
 
-import com.ithr.ppe.test.base.Offers;
-import com.ithr.ppe.test.base.StepBase;
-
-import cucumber.api.DataTable;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.When;
 
