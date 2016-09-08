@@ -31,8 +31,8 @@ public class OfferCheckMaps {
 			Map<String,String> element = iterator.next();
 			log.info("FROM MAP:  Package is " + element.get("package"));
 			log.info("FROM MAP:  usergroup is " + element.get("usergroup"));	
-			log.info("FROM MAP:  offers are " + element.get("shouldsee"));	
-			String offer = element.get("shouldsee");
+			log.info("FROM MAP:  offers are " + element.get("ishouldsee"));	
+			String offer = element.get("ishouldsee");
 			if (offer.contains(",")) {
 				String [] tmp = offer.split(",");
 				for (int i = 0; i < tmp.length; i++) {
@@ -48,8 +48,8 @@ public class OfferCheckMaps {
 			Map<String,String> element = iterator.next();
 			log.info("FROM MAP:  Package is " + element.get("package"));
 			log.info("FROM MAP:  usergroup is " + element.get("usergroup"));	
-			log.info("FROM MAP:  offers are " + element.get("nowsee"));	
-			String offer = element.get("nowsee");
+			log.info("FROM MAP:  offers are " + element.get("iwillnowsee"));	
+			String offer = element.get("iwillnowsee");
 			if (offer.contains(",")) {
 				String [] tmp = offer.split(",");
 				for (int i = 0; i < tmp.length; i++) {
@@ -67,7 +67,7 @@ public class OfferCheckMaps {
 			Map<String,String> element = iterator.next();
 			if ( subscription.equals(element.get("package")) && 
 				 usergroup.equals(element.get("usergroup")) ) {
-				offer = element.get("shouldsee");	
+				offer = element.get("ishouldsee");	
 				found = true;
 			}		
 		}
@@ -84,7 +84,7 @@ public class OfferCheckMaps {
 			Map<String,String> element = iterator.next();
 			if ( subscription.equals(element.get("package")) && 
 				 usergroup.equals(element.get("usergroup")) ) {
-				offer = element.get("nowsee");	
+				offer = element.get("iwillnowsee");	
 				found = true;
 			}		
 		}
@@ -112,7 +112,7 @@ public class OfferCheckMaps {
 			log.debug("map is : " + mymap.toString() );
 			log.debug("package is : " + mymap.get("package"));
 			log.debug("usergroup is : " + mymap.get("usergroup"));
-			log.debug("shouldsee is : " + mymap.get("shouldsee"));
+			log.debug("shouldsee is : " + mymap.get("ishouldsee"));
 			startOfferList.add(mymap);
 		}
 	    log.info("Loading Initial Offers for this MSISDN");	   
@@ -127,7 +127,7 @@ public class OfferCheckMaps {
 			log.debug("map is : " + mymap.toString() );
 			log.debug("package is : " + mymap.get("package"));
 			log.debug("usergroup is : " + mymap.get("usergroup"));
-			log.debug("nowsee is : " + mymap.get("nowsee"));
+			log.debug("nowsee is : " + mymap.get("iwillnowsee"));
 			endOfferList.add(mymap);
 		}
 		log.info("Loading Completed Purchase Offers for this MSISDN");
