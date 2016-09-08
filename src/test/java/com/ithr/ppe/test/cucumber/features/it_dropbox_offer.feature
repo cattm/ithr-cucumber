@@ -14,12 +14,6 @@ Feature: IT Purchase Dropbox for all Tariffs
     Examples: 
       | package   | usergroup           | contained in                |
       | Not Valid | 4guser              | Dropbox standalone          |
-      | Not Valid | gold                | Dropbox standalone          |
-      | Not Valid | silver              | Dropbox standalone          |
-      | Not Valid | bronze              | Dropbox standalone          |
-      | Not Valid | summer              | Dropbox standalone          |
-      | Not Valid | netflixpostpaid     | Dropbox standalone          |
-      | Not Valid | xmaspromo           | Dropbox standalone          |
       | Not Valid | No usergroup        | Dropbox standalone          |
       | Not Valid | ug_storage_premium1 | Dropbox standalone premium1 |
       | Not Valid | ug_storage_premium2 | Dropbox standalone premium2 |
