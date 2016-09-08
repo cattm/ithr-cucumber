@@ -47,13 +47,13 @@ public class PurchaseOfferSteps extends StepBase {
 		super();
 	}
 	
-	@Before("@dropboxpurchase, @netflixpurchase, @nowtvpurchase, @skypurchase, @spotifypurchase")
+	@Before("@checkit, @purchase")
 	public void setUp(Scenario scenario) throws Exception {
 		super.setUp(scenario);
 		log.info("SetUp");
 	}
 	
-	@After("@dropboxpurchase, @netflixpurchase, @nowtvpurchase, @skypurchase, @spotifypurchase")
+	@After("@checkit, @purchase")
 	public void tearDown() {
 		log.info("TearDown");
 		super.tearDown();
