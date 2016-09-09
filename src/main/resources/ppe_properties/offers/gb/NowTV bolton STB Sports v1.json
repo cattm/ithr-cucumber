@@ -33,7 +33,7 @@
 			"details": {
 				"settop": true,
 				"title": "<p>Only pay for the days you want to watch with a Day or Week Pass, or get a whole month of live sport with the new Month Pass.</p>",
-				"text": "<p>That's the biggest live matches and events from just £33.99. No contract.</p><p class=\"content_heading\">Sky Sports Month Pass</p><p>Or get a whole month of live sport.</p><p>Automatically renews each month, unless cancelled. To cancel got to offers.vodafone.com/gb</p><p>Don’t have an existing NOW TV account? Click on the SIGN UP button to create a new NOW TV account and activate your inclusive NOW TV Entertainment Pass</p>",
+				"text": "<p class=\"content_heading\">NOW TV Sky Sports Month Pass</p><p>Get a whole month of live sport.</p><p>Automatically renews each month, unless cancelled.</p><p>By clicking add you acknowledge you will lose your right to a refund should you cancel.</p>",
 				"checkbox": {
 					"label": "I accept <a href=\"#\" class=\"terms_link\">terms and conditions</a>",
 					"errorMessage": "To continue, you must agree to the terms & conditions",
@@ -59,7 +59,7 @@
 		"cancellation": {
 			"details": {
 				"settop": true,
-				"text": "<p>You have an active NOW TV Sky Sports Month Pass.  To cancel this from next month click on the red button to the right.  You can use the Pass in the meantime and will be able to sign up again if you wish once the pass has been cancelled.</p>",
+				"text": "<p>You have an active NOW TV Sky Sports Month Pass. To cancel this from next month click on the red button to the right. You can use the Pass in the meantime and will be able to sign up again if you wish once the pass has been cancelled.</p>",
 				"okButton": {
 					"label": "CANCEL NOW TV SKY SPORTS MONTH PASS",
 					"action": "#next"

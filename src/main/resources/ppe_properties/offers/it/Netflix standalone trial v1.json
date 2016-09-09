@@ -42,7 +42,8 @@
 				"text": "<p>Sul tuo numero è attivo l'abbonamento a Netflix. Per disattivare l'abbonamento clicca su &#171;Conferma Disattivazione&#187; </p>",
 				"getAppButton": {
 					"label": "Scarica l'APP di Netflix",
-					"action": "#getApp"
+					"action": "#getApp",
+					"txInformation": "<p>Narcos, una serie originale Netflix. Tutti gli episodi ora in streaming.</p>"
 				},
 				"okButton": {
 					"label": "Conferma Disattivazione",

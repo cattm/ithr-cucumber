@@ -53,7 +53,8 @@
 				},
 				"getAppButton": {
 					"label": "Get Netflix app",
-					"action": "#getApp"
+					"action": "#getApp",
+					"txInformation": "<p>Narcos, an original Netflix series. All episodes now streaming.</p>"
 				}
 			}
 		},
@@ -64,7 +65,8 @@
 				"text": "<p>As an existing Netflix subscriber, regular Netflix billing will resume at the end of the inclusive period. This can be managed at Netflix.com</p>",
 				"getAppButton": {
 					"label": "Get Netflix app",
-					"action": "#getApp"
+					"action": "#getApp",
+					"txInformation": "<p>Narcos, an original Netflix series. All episodes now streaming.</p>"
 				},
 				"customButton": {
 					"label": "MANAGE AT NETFLIX.COM",

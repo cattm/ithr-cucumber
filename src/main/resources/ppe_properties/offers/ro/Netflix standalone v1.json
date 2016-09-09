@@ -46,7 +46,8 @@
 				"text": "<p>Felicitări, abonamentul tău NETFLIX poate fi utilizat.</p><p>Dacă nu ai deja aplicaţia pe smartphone sau tabletă, o poţi descărca prin apăsarea butonului de mai jos.</p>",
 				"getAppButton": {
 					"label": "DESCARCĂ NETFLIX",
-					"action": "#getApp"
+					"action": "#getApp",
+					"txInformation": "<p>Narcos, un serial original Netflix. Toate episoadele disponibile online acum.</p>"
 				}
 			}
 		},
@@ -56,7 +57,8 @@
 				"text": "<p>Eşti abonat la NETFLIX.</p><p>Ai acces la cele mai populare emisiuni TV şi filme, seriale originale NETFLIX premiate şi o secţiune dedicată exclusiv copiilor.</p><p>Dacă doreşti să dezactivezi această ofertă, apasă butonul de mai jos.</p>",
 				"getAppButton": {
 					"label": "DESCARCĂ NETFLIX",
-					"action": "#getApp"
+					"action": "#getApp",
+					"txInformation": "<p>Narcos, un serial original Netflix. Toate episoadele disponibile online acum.</p>"
 				},
 				"okButton": {
 					"label": "DEZACTIVEAZĂ ABONAMENT",
@@ -75,11 +77,12 @@
 			"success": {
 				"title": "Ai fost dezabonat de la NETFLIX.",
 				"text": "<p>Abonamentul va fi dezactivat la sfârşitul lunii de abonament NETFLIX. Verifică data în contul tău NETFLIX, secţiunea My Account / Plan details.</p>",
+            	"notificationMsg": "Abonamentul tău NETFLIX se va dezactiva automat la sfârşitul lunii de abonament plătite.",
 				"getAppButton": {
 					"label": "DESCARCĂ NETFLIX",
-					"action": "#getApp"
-				},
-            	"notificationMsg": "Abonamentul tău NETFLIX se va dezactiva automat la sfârşitul lunii de abonament plătite."
+					"action": "#getApp",
+					"txInformation": "<p>Narcos, un serial original Netflix. Toate episoadele disponibile online acum.</p>"
+				}
 			}
 		}
 	}

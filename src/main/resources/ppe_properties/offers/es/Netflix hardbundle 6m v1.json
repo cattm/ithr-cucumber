@@ -47,7 +47,8 @@
 				"text": "<p>Tu promoción al servicio de Netflix se ha activado correctamente</p>",
 				"getAppButton": {
 					"label": "Descargar app",
-					"action": "#getApp"
+					"action": "#getApp",
+					"txInformation": "<p>Narcos, una serie original de Netflix. Todos los episodios ya disponsibles.</p>"
 				}
 			}
 		},
@@ -57,7 +58,8 @@
 				"text": "<p>Tus series y películas favoritas, los contenidos originales de Netflix y una sección especial para niños. Ves lo que quieres y cuando quieres. Sin publicidad. </p><p>¿Estas seguro que quieres darte de baja?</p><p>Para darse de baja del servicio Netflix, haz clic en el botón inferior. </p>",
 				"getAppButton": {
 					"label": "Descargar app",
-					"action": "#getApp"
+					"action": "#getApp",
+					"txInformation": "<p>Narcos, una serie original de Netflix. Todos los episodios ya disponsibles.</p>"
 				},
 				"okButton": {
 					"label": "Darse de baja",
@@ -78,7 +80,8 @@
 				"text": "<p>Te confirmamos que la baja de tu suscripción al servicio de Netflix se ha realizado correctamente.</p>",
 				"getAppButton": {
 					"label": "Descargar app",
-					"action": "#getApp"
+					"action": "#getApp",
+					"txInformation": "<p>Narcos, una serie original de Netflix. Todos los episodios ya disponsibles.</p>"
 				}
 			}
 		}

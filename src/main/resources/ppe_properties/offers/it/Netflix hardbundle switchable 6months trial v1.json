@@ -45,7 +45,8 @@
 				"text": "<p>La tua sottoscrizione a Netflix e' ora attiva, inizia a guardare film e serie TV quando e dove vuoi.</p><p>Se non l'hai gia' fatto scarica l'APP premendo il bottone qui sotto</p>",
 				"getAppButton": {
 					"label": "Scarica l'APP di Netflix",
-					"action": "#getApp"
+					"action": "#getApp",
+					"txInformation": "<p>Narcos, una serie originale Netflix. Tutti gli episodi ora in streaming.</p>"
 				}
 			}
 		},
@@ -55,7 +56,8 @@
 				"text": "E' attiva l’offerta che ti dà diritto a 6 mesi di Netflix offerti da Vodafone a 0 euro al mese anziché 9,99 euro al mese; il periodo di gratuità è valido finché la tua offerta è attiva.</p><p> Con la tua offerta Vodafone  hai 6 mesi inclusi di Netflix per poter guardare contenuti in HD e da 2 device in contemporanea. Il valore totale dell’offerta è di 59,94€. </p><p>Prima della fine dei 6 mesi, riceverai un SMS gratuito che ti informerà della scadenza della promozione. Al termine dei 6 mesi, il servizio si rinnoverà a 9,99€/mese che saranno addebitati sul tuo conto telefonico. </p><p>Se non l'hai gia' fatto scarica l'APP premendo il bottone qui sotto",
 				"getAppButton": {
 					"label": "Scarica l'APP di Netflix",
-					"action": "#getApp"
+					"action": "#getApp",
+					"txInformation": "<p>Narcos, una serie originale Netflix. Tutti gli episodi ora in streaming.</p>"
 				},
 				"okButton": {
 					"label": "Disattiva",

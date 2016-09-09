@@ -47,7 +47,8 @@
 				"text": "<p>Tu promoción al servicio de Netflix se ha activado correctamente</p>",
 				"getAppButton": {
 					"label": "Descargar app",
-					"action": "#getApp"
+					"action": "#getApp",
+					"txInformation": "<p>Narcos, una serie original de Netflix. Todos los episodios ya disponsibles.</p>"
 				}
 			}
 		}

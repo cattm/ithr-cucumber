@@ -48,7 +48,8 @@
 				"text": "<p>Your Netflix account is ready to use, you can now start watching your favorite TV shows or movies whenever you want. If you don't already have the mobile app, you can get it by clicking the button below </p>",
 				"getAppButton": {
 					"label": "Download Netflix app",
-					"action": "#getApp"
+					"action": "#getApp",
+					"txInformation": "<p>Narcos, an original Netflix series. All episodes now streaming.</p>"
 				}
 			}
 		},
@@ -59,7 +60,8 @@
 				"text": "<p>You can cancel on the button below to stop any further charges</p>",
 				"getAppButton": {
 					"label": "Download Netflix app",
-					"action": "#getApp"
+					"action": "#getApp",
+					"txInformation": "<p>Narcos, an original Netflix series. All episodes now streaming.</p>"
 				},
 				"okButton": {
 					"label": "CANCEL NETFLIX",

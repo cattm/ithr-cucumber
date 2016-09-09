@@ -19,6 +19,7 @@
 	"usergroups": [
 		"ug_ppe_tier1"
 	],
+	"packageId": "PK_Deezer24",
 
 	"pages": {
 		"cancellation": {

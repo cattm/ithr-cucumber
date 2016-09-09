@@ -41,11 +41,11 @@
 				},
 				"okButton": {
 					"label": "CREATE NOW TV ACCOUNT",
-					"action": "#setTopBoxSignIn"
+					"action": "#setTopBoxSignUp"
 				},
 				"customButton": {
 					"label": "SIGN IN TO NOW TV",
-					"action": "#setTopBoxSignUp",
+					"action": "#setTopBoxSignIn",
 					"description": "<p>Already have a NOW TV account? Click on the Sign In button if you have an existing NOW TV account.  If you have a Sky account you will need to sign in with your SKY ID details.  Forgotten your details? You can get a reminder of them <a target=\"_blank\" href=\"https://www.sky.com/help/articles/forgotten-username-or-password\">here</a>.</p>"
 				}
 			},

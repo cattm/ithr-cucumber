@@ -46,7 +46,8 @@
 				"text": "<p>Felicitări, abonamentul tău NETFLIX poate fi utilizat.</p><p>Dacă nu ai deja aplicaţia pe smartphone sau tabletă, o poţi descărca prin apăsarea butonului de mai jos.</p>",
 				"getAppButton": {
 					"label": "DESCARCĂ NETFLIX",
-					"action": "#getApp"
+					"action": "#getApp",
+					"txInformation": "<p>Narcos, un serial original Netflix. Toate episoadele disponibile online acum.</p>"
 				}
 			}
 		}

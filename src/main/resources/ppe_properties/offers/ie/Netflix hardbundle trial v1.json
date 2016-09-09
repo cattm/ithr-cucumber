@@ -23,7 +23,8 @@
 				"text": "<p>To stop the subscription please click the button below.</p>",
 				"getAppButton": {
 					"label": "Get Netflix app",
-					"action": "#getApp"
+					"action": "#getApp",
+					"txInformation": "<p>Narcos, an original Netflix series. All episodes now streaming.</p>"
 				},
 				"okButton": {
 					"label": "Cancel Netflix now",
@@ -42,14 +43,15 @@
 
 			"success": {
 				"text": "<p>You've been unsubscribed successfully from Netflix.</p>",
-				"getAppButton": {
-					"label": "Get Netflix app",
-					"action": "#getApp"
-				},
 				"customButton": {
 					"label": "Add more offers",
 					"action": "#moreOffers",
 					"description": "You might also be interested in these additional offers"
+				},
+				"getAppButton": {
+					"label": "Get Netflix app",
+					"action": "#getApp",
+					"txInformation": "<p>Narcos, an original Netflix series. All episodes now streaming.</p>"
 				}
 			}
 		}

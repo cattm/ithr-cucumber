@@ -38,7 +38,8 @@
 				"text": "<p>You have been successfully unsubscribed from Netflix from the end of your inclusive subscription</p>",
 				"getAppButton": {
 					"label": "Get Netflix app",
-					"action": "#getApp"
+					"action": "#getApp",
+					"txInformation": "<p>Narcos, an original Netflix series. All episodes now streaming.</p>"
 				}
 			}
 		}

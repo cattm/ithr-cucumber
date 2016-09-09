@@ -9,7 +9,7 @@
     "trial": false,
     "enabled": {
         "purchase": true,
-        "cancellation": true
+        "cancellation": false
     },
     "pricingText1": "MONTHLY",
     "heading": "Spotify Premium",
@@ -44,39 +44,6 @@
                 "getAppButton": {
                     "label": "Download da app Spotify",
                     "action": "#getApp"
-                }
-            }
-        },
-        "cancellation": {
-            "details": {
-                "text": "<p>Ouça as suas músicas favoritas onde quer que esteja com a Vodafone e o Spotify.</p>",
-                "getAppButton": {
-                    "label": "Download da app Spotify",
-                    "action": "#getApp"
-                },
-                "okButton": {
-                    "label": "Cancelar o serviço Spotify Premium",
-                    "action": "#next"
-                }
-            },
-            "details2": {
-                "text": "<p>A sua subscrição do serviço Spotify Premium vai ser cancelada.</p><p>Para concluir o pedido de cancelamento do Spotify Premium, clique no botão abaixo.</p>",
-                "okButton": {
-                    "label": "Cancelar Spotify Premium",
-                    "action": "#next"
-                }
-            },
-            "success": {
-                "text": "<p>O cancelamento da sua subscrição ficará concluído no final do ciclo de renovação do serviço.</p>",
-                "notificationMsg": "A sua subscrição Spotify Premium foi cancelada com sucesso",
-                "getAppButton": {
-                    "label": "Download da app Spotify",
-                    "action": "#getApp"
-                },
-                "customButton": {
-                    "label": "Adicionar mais ofertas",
-                    "action": "#moreOffers",
-                    "description": "Poderá estar interessado também nestas ofertas adicionais."
                 }
             }
         }

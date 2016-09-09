@@ -55,7 +55,8 @@
 				},
 				"getAppButton": {
 					"label": "Get Netflix app",
-					"action": "#getApp"
+					"action": "#getApp",
+					"txInformation": "<p>Narcos, an original Netflix series. All episodes now streaming.</p>"
 				}
 			}
 		},
@@ -66,7 +67,8 @@
 				"text": "<p>After the inclusive period you will continue to receive Netflix for £7.49 per month, or you can cancel below</p>",
 				"getAppButton": {
 					"label": "Get Netflix app",
-					"action": "#getApp"
+					"action": "#getApp",
+					"txInformation": "<p>Narcos, an original Netflix series. All episodes now streaming.</p>"
 				},
 				"okButton": {
 					"label": "STOP AT THE END OF INCLUSIVE PERIOD",
@@ -84,14 +86,15 @@
 
 			"success": {
 				"text": "<p>You have been successfully unsubscribed from Netflix from the end of your inclusive subscription</p>",
-				"getAppButton": {
-					"label": "Get Netflix app",
-					"action": "#getApp"
-				},
 				"customButton": {
 					"label": "Add more offers",
 					"action": "#moreOffers",
 					"description": "You might also be interested in these additional offers"
+				},
+				"getAppButton": {
+					"label": "Get Netflix app",
+					"action": "#getApp",
+					"txInformation": "<p>Narcos, an original Netflix series. All episodes now streaming.</p>"
 				}
 			}
 		}

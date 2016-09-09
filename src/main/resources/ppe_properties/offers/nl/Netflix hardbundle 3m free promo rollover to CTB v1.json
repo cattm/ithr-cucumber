@@ -53,7 +53,8 @@
 				},
 				"getAppButton": {
 					"label": "Netflix app downloaden",
-					"action": "#getApp"
+					"action": "#getApp",
+					"txInformation": "<p>NARCOS, EEN NETFLIX ORIGINAL-SERIE. Alle afleveringen Nu beschikbaar</p>"
 				}
 			}
 		},
@@ -67,7 +68,8 @@
 				},
 				"getAppButton": {
 					"label": "Netflix app downloaden",
-					"action": "#getApp"
+					"action": "#getApp",
+					"txInformation": "<p>NARCOS, EEN NETFLIX ORIGINAL-SERIE. Alle afleveringen Nu beschikbaar</p>"
 				}
 			},
 
