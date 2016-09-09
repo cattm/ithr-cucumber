@@ -37,6 +37,17 @@ public class Customer {
 		// blank constructor
 	}
 	
+	public void printCustomer () {
+		log.info("opco is " + opco);
+		log.info("subscription is " + subscription);
+		log.info("usergroup is    " + userGroup);
+		log.info("short msisdn is " + shortMsisdn);
+		log.info("country code is " + countryCode);
+		log.info("partner is      " + myPartner.toString());
+		log.info("username is     " + userName);
+		log.info("email is        " + email);
+	}
+	
 	public String getOpco () {
 		return this.opco;
 	}
