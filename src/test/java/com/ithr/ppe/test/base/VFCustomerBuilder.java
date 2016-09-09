@@ -57,7 +57,7 @@ public class VFCustomerBuilder implements ICustomerBuilder {
 		customer.setPostOffers(postload);
 	}
 	
-	public void initialBuild(String opco, Partners partner) {
+	public void updateBuild(String opco, Partners partner) {
 		customer.setOpco(opco);
 		customer.setPartner(partner);
 	}

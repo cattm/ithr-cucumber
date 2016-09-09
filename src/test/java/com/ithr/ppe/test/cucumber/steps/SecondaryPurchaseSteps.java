@@ -68,8 +68,8 @@ public class SecondaryPurchaseSteps extends StepBase {
 			file = mymap.get("contained in");
 		}
 		
-		bd.initialBuild(opco, Partners.valueOf(partner.toUpperCase()));
-		bd.Build();    	   
+		bd.Build();
+		bd.updateBuild(opco, Partners.valueOf(partner.toUpperCase()));		    	   
 		bd.appendToBuild(sub, group);
 		customer = bd.getCustomer();	
 		pl.createChecker(testReferenceDir, opco);
@@ -101,9 +101,9 @@ public class SecondaryPurchaseSteps extends StepBase {
 	@Given("^I am a \"([^\"]*)\" customer Who Initially purchases \"([^\"]*)\" offer:$")
 	public void aCustomerIntialPurchase(String opco, String partner, List<Map<String, String>> details) throws Throwable {
 		log.info("aCustomerInitialPurchase");
-		performInitialProlog(opco, partner, details);
-		performInitialPurchase();
-		checkInitialPurchaseOutcome();
+		boolean prologok = performInitialProlog(opco, partner, details);
+		boolean purchaseok = performInitialPurchase();
+		boolean postcheckok = checkInitialPurchaseOutcome();
 		// if any of these fail we need to abort and fail the test
 	}
 

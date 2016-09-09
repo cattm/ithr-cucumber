@@ -17,7 +17,7 @@ public interface ICustomerBuilder {
 	
 	public void loadOffers (List<String> preload, List<String> postload);
 	
-	public void initialBuild(String opco, Partners partner);
+	public void updateBuild(String opco, Partners partner);
 	
 	public void appendToBuild (String Subscription, String usergroup);
 	

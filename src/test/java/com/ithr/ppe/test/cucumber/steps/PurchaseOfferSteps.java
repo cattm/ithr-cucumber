@@ -69,10 +69,9 @@ public class PurchaseOfferSteps extends StepBase {
 	@Given("^I am a \"([^\"]*)\" customer purchasing the \"([^\"]*)\" offer$")
 	public void PartnerCustomer(String opco, String partner) {
 	   log.info("Given: I am a " + opco + " customer purchasing " + partner + " offer");
-	   
-	   bd.initialBuild(opco, Partners.valueOf(partner.toUpperCase()));
-	   bd.Build();    	
-	   
+	   bd.Build();
+	   bd.updateBuild(opco.toLowerCase(), Partners.valueOf(partner.toUpperCase()));
+	    	
 	   // set up first check file for standard text
 	   pl.createChecker(testReferenceDir, opco);
 	}
