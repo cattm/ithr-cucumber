@@ -71,7 +71,7 @@ public class CommonPartnerPurchase implements IPartnerPurchase {
 			if (found)
 				try {
 				entpage.clickOfferImage(imagestring);
-				} catch (InterruptedException e) {
+				} catch (Exception e) {
 				log.error("got interrupted while clicking on " + imagestring + " " + e);
 			}
 		}

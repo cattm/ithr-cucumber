@@ -9,7 +9,6 @@ package com.ithr.ppe.test.cucumber.steps;
  */
 
 import org.apache.log4j.Logger;
-import org.junit.Assert;
 import org.openqa.selenium.Dimension;
 
 import com.ithr.ppe.test.base.Customer;
@@ -90,7 +89,7 @@ public class PurchaseOfferSteps extends StepBase {
 			log.info("username is " + username);
 			if (username.contains("ERROR")) {
 				log.error(" Helper did not return a valid username");
-				Assert.fail("username is invalid - Aborting Test");
+				ErrorCollector.fail("username is invalid - Aborting Test");
 			}
 			
 			// Need an MSISDN to log in
@@ -104,7 +103,7 @@ public class PurchaseOfferSteps extends StepBase {
 			log.error("Caught Exception: " + e);
 			String name = this.getClass().getSimpleName();
 			ReportScreen(name);
-			Assert.fail("Package In Group - Abort Test on Exception : MSISDN " + customer.getMsisdn()); //To fail test in case of any element identification failure				
+			ErrorCollector.fail("Package In Group - Abort Test on Exception : MSISDN " + customer.getMsisdn()); //To fail test in case of any element identification failure				
 		}
 		
 	}
@@ -137,7 +136,7 @@ public class PurchaseOfferSteps extends StepBase {
 			  log.error("NO VALID OFFER  Visible");
 			  // TODO: check this out what is the correct behavior
 			  // this may be correct behavior for some combinations
-			  Assert.fail("No Valid Offer - Aborting Test");
+			  ErrorCollector.fail("No Valid Offer - Aborting Test");
 		}
 		
 		
@@ -204,7 +203,7 @@ public class PurchaseOfferSteps extends StepBase {
 			log.error("caught Exception: " + e);
 			String name = this.getClass().getSimpleName();
 			ReportScreen(name);
-			Assert.fail("OfferContainsStringsFrom - Abort Test on Exception : MSISDN " + customer.getMsisdn()); //To fail test in case of any element identification failure				
+			ErrorCollector.fail("OfferContainsStringsFrom - Abort Test on Exception : MSISDN " + customer.getMsisdn()); //To fail test in case of any element identification failure				
 		}
 	}
 
@@ -228,7 +227,7 @@ public class PurchaseOfferSteps extends StepBase {
 			log.error("caught Exception: " + e);			
 			String name = this.getClass().getSimpleName();
 			ReportScreen(name);
-			Assert.fail("Accept Partner Offer - Abort Test on Exception : MSISDN " + customer.getMsisdn()); //To fail test in case of any element identification failure			
+			ErrorCollector.fail("Accept Partner Offer - Abort Test on Exception : MSISDN " + customer.getMsisdn()); //To fail test in case of any element identification failure			
 		}
 	}		  					
 		

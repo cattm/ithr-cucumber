@@ -53,6 +53,7 @@ public class Customer {
 	}
 	
 	public void setOpco (String opco) {
+		log.info(opco);
 		this.opco = opco;
 	}
 	
@@ -61,6 +62,7 @@ public class Customer {
 	}
 	
 	public void setSubscription (String subscription) {
+		log.info(subscription);
 		this.subscription = subscription;
 	}
 	
@@ -69,6 +71,7 @@ public class Customer {
 	}
 	
 	public void setUserGroup (String usergroup) {
+		log.info(usergroup);
 		this.userGroup = usergroup;
 	}
 	
@@ -77,6 +80,7 @@ public class Customer {
 	}
 	
 	public void setUserName (String username) {
+		log.info(username);
 		this.userName = username;
 	}
 	
@@ -93,6 +97,7 @@ public class Customer {
 	}
 	
 	public void setMsisdn (String msisdn) {
+		log.info(msisdn);
 		this.shortMsisdn = msisdn;
 	}
 	
@@ -101,6 +106,7 @@ public class Customer {
 	}
 	
 	public void setEmail (String email) {
+		log.info(email);
 		this.email = email;
 	}
 	
@@ -109,6 +115,7 @@ public class Customer {
 	}
 	
 	public void setPartner (Partners partner) {
+		log.info(partner.toString());
 		this.myPartner = partner;
 	}
 	

@@ -6,12 +6,14 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.log4j.Logger;
+import org.openqa.selenium.Dimension;
 
 import com.ithr.ppe.test.base.Customer;
 import com.ithr.ppe.test.base.ICustomerBuilder;
 import com.ithr.ppe.test.base.StepBase;
 import com.ithr.ppe.test.base.VFCustomerBuilder;
 import com.ithr.ppe.test.commons.Partners;
+import com.ithr.ppe.test.cucumber.pages.BasicPartnerOffer;
 import com.ithr.ppe.test.cucumber.pages.UserEntertainment;
 import com.ithr.ppe.test.cucumber.steps.interfaces.IEpilog;
 import com.ithr.ppe.test.cucumber.steps.interfaces.IPartnerPurchase;
@@ -69,7 +71,7 @@ public class SecondaryPurchaseSteps extends StepBase {
 		}
 		
 		bd.Build();
-		bd.updateBuild(opco, Partners.valueOf(partner.toUpperCase()));		    	   
+		bd.updateBuild(opco.toLowerCase(), Partners.valueOf(partner.toUpperCase()));		    	   
 		bd.appendToBuild(sub, group);
 		customer = bd.getCustomer();	
 		pl.createChecker(testReferenceDir, opco);
@@ -77,16 +79,38 @@ public class SecondaryPurchaseSteps extends StepBase {
 		pl.createParser(roughpath, file);
 		
 		customer.setUserName(pl.getPartnerUserName(driver, baseAdminUrl, customer));
+		log.info("SETUP USERNAME");
+		driver.get(baseAdminUrl);
 		customer.setMsisdn(pl.getNewMsisdn(driver, customer));
+		log.info("GOT MSISDN");
 		pl.LoginOk(driver, customer, pinCode, baseUserUrl);
-		
+		log.info("LOGGED IN");
+		driver.manage().window().setSize(new Dimension(600, 600));
 		return true;
 	}
 	
 	private boolean performInitialPurchase() {
 		cpp.initialiseChecks();
+		/*
+		 * At this point we need to do some selecting 
+		 */
+		log.info("selecting offer");
 		UserEntertainment entpage = new UserEntertainment(driver);
-		cpp.selectPartnerOffer(customer.getPartner(), entpage);
+		try {
+			entpage.bodyLoaded();
+		} catch (InterruptedException e) {
+			log.error("interrupted page loaded check " + e);
+		}
+		if (cpp.selectPartnerOffer(customer.getPartner(), entpage)) {		  
+			//  on journey to accept offer		
+			BasicPartnerOffer offer = new BasicPartnerOffer(driver);
+			try {
+				offer.bodyLoaded();
+			} catch (InterruptedException e) {
+				log.error("interrupted page loaded check " + e);
+			}
+			offer.setTnC();	
+		} else log.info("could not select offer");
 		cpp.acceptTheOffer(driver, customer);
 		return true;		
 	}

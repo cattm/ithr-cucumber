@@ -66,7 +66,7 @@ public class UserEntertainment extends PageBase{
 					  Thread.sleep(CommonConstants.SLOW);
 					  log.info("Not displayed yet");
 				  }
-				  log.info("Click Element");
+				  log.info("Click Element " + thetext);
 				  element.click();
 				  return;
 			  }
