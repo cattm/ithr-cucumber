@@ -1,0 +1,54 @@
+{
+	"comment": "Initial import by DEV",
+
+	"opco": "tr",
+	"name": "Netflix hardbundle CTB",
+	"version": 1,
+	"partner": "netflix",
+	"type": "hardbundle",
+	"switchable": false,
+	"trial": false,
+
+	"enabled": {
+		"purchase": false,
+		"cancellation": true
+	},
+
+	"heading": "Red HD Netflix Paketi",
+
+	"pages": {
+		"cancellation": {
+			"details": {
+				"title": "Mevcut Netflix üyeliğiniz bulunuyor",
+				"text": "<p>Netflix üyeliğinizi iptal etmek için aşağıdaki butona tıklayın</p>",
+				"getAppButton": {
+					"label": "UYGULAMAYA GİT",
+					"action": "#getApp",
+					"txInformation": "<p>Herkes Pablo'nun peşinde. NETFLIX ORİJİNAL DİZİSİ. TÜM BÖLÜMLER Şimdi Yayında.</p>"
+				},
+				"okButton": {
+					"label": "Netflix üyeliğinizi iptal edin",
+					"action": "#next"
+				}
+			},
+
+			"details2": {
+				"text": "<p>Netflix üyeliğiniz iptal edilecektir. Üyeliğinizi iptal etmek için aşağıdaki butona tıklayın</p>",
+				"okButton": {
+					"label": "Netflix üyeliğini iptal et",
+					"action": "#next"
+				}
+			},
+
+			"success": {
+				"text": "<p>Netflix üyeliğiniz başarıyla iptal edilmiştir</p>",
+				"getAppButton": {
+					"label": "UYGULAMAYA GİT",
+					"action": "#getApp",
+					"txInformation": "<p>Herkes Pablo'nun peşinde. NETFLIX ORİJİNAL DİZİSİ. TÜM BÖLÜMLER Şimdi Yayında.</p>"
+				},
+            	"notificationMsg": "Netflix üyeliğiniz fatura döneminizin sonunda iptal edilecektir"
+			}
+		}
+	}
+}
