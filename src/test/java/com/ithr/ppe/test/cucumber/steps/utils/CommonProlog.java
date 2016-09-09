@@ -24,8 +24,13 @@ public class CommonProlog implements IProlog {
 		log.info("going to search for :" + path + " and file " + filename + " for parser setup");
 		String fileToCheck = CommandExecutor.execFindExactJsonFile(path, filename + " v");
 		log.info("going to use json file: " + fileToCheck);
-		parser = JsonParser.getInstance();
-		parser.initialise(path + fileToCheck);
+		if (fileToCheck.contains("NOT FOUND")) {
+			log.error("Issue creating Parser " + fileToCheck);
+			ErrorCollector.fail("Failed to initialise Parser correctly " + fileToCheck + " file to parse");			
+		} else {
+			parser = JsonParser.getInstance();
+			parser.initialise(path + fileToCheck);
+		}
 	}
 
 	public void createChecker(String file, String opco) {
@@ -87,7 +92,7 @@ public class CommonProlog implements IProlog {
 		return (verifyOffersAvailableText(entpage) && verifyPrePurchaseOffers( entpage,  customer));		
 	}
 
-	public boolean verifyOffersAvailableText(UserEntertainment entpage)  {
+	private boolean verifyOffersAvailableText(UserEntertainment entpage)  {
 		log.info("TEST: Verify Available Offers page");
 		String subtext = entpage.getSubscriptionText();
 		log.info("Text to check is: " + subtext);			  			
@@ -95,21 +100,7 @@ public class CommonProlog implements IProlog {
 		return true;
 	}
 	
-	
-	/*
-	 * TODO: the methods of this type are intended to verify the correct offers exist both pre and post the purchase activity
-	 * I an not sure if this is an intelligent thing to attempt - we may be going a step too far
-	 * I either have to model in a text file and read it in OR
-	 * Use Backgroud BDD label to set up maps/table for tariff something like
-	 *   Background: Previously Going to purchase Spotify
-	 *   Given I am a "GB" customer purchasing spotify with:
-	 * | package     | usergroup | shouldsee    |
-	 * | PK_4GTariff | 4glarge   |  netflix, nowtv, sky |
-	 *   AND when I have finished:
-	 * | nowsee |
-	 * | netflix,sky |	 
-	 */
-	public boolean verifyPrePurchaseOffers(UserEntertainment entpage, Customer customer) {
+	private boolean verifyPrePurchaseOffers(UserEntertainment entpage, Customer customer) {
 		OfferMap om = OfferMap.getInstance();
 		Boolean found = false;
 		if (om.getStartListLoaded()) {
@@ -126,7 +117,7 @@ public class CommonProlog implements IProlog {
 					log.info("And search returned " + found.toString());
 					if (!found) ErrorCollector.fail("required offer " + tmp + "not found on page");
 				}				
-			
+		
 			}  catch (InterruptedException e)  {
 				log.error("Problem with Element locator " + e);
 				ErrorCollector.fail("Problem with Elemement loactor");
