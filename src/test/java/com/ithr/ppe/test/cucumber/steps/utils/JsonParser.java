@@ -39,7 +39,7 @@ public class JsonParser {
 		jsonObject = getStartPoint();	
 	}
 	
-	// this method is implemented in 2 places - sort it out
+	// TODO: this method is implemented in 2 places - sort it out please
 	private String findActualFile (String path, String fileref) {
 		// assumes full path to file and first part of filename
 		// assumes the file will be of the form "path/Blah blah v2.0.json" and we are given "path/Blah blah"
