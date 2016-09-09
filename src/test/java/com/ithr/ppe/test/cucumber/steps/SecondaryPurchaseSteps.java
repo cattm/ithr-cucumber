@@ -21,6 +21,7 @@ import com.ithr.ppe.test.cucumber.steps.interfaces.IProlog;
 import com.ithr.ppe.test.cucumber.steps.utils.CommonEpilog;
 import com.ithr.ppe.test.cucumber.steps.utils.CommonPartnerPurchase;
 import com.ithr.ppe.test.cucumber.steps.utils.CommonProlog;
+import com.ithr.ppe.test.cucumber.steps.utils.ErrorCollector;
 
 import cucumber.api.DataTable;
 import cucumber.api.PendingException;
@@ -59,7 +60,6 @@ public class SecondaryPurchaseSteps extends StepBase {
 		super.tearDown();
 	}
 
-	
 	private boolean performInitialProlog(String opco, String partner, List<Map<String, String>> details) {
 		String sub = "";
 		String group = "";
@@ -79,14 +79,17 @@ public class SecondaryPurchaseSteps extends StepBase {
 		pl.createParser(roughpath, file);
 		
 		customer.setUserName(pl.getPartnerUserName(driver, baseAdminUrl, customer));
-		log.info("SETUP USERNAME");
+	
 		driver.get(baseAdminUrl);
-		customer.setMsisdn(pl.getNewMsisdn(driver, customer));
-		log.info("GOT MSISDN");
-		pl.LoginOk(driver, customer, pinCode, baseUserUrl);
-		log.info("LOGGED IN");
+		String msisdn = pl.getNewMsisdn(driver, customer);
+		if (!msisdn.equals("FAILED")) {
+			customer.setMsisdn(msisdn);
+		} else return false;
+		
+		boolean loginok = pl.LoginOk(driver, customer, pinCode, baseUserUrl);
 		driver.manage().window().setSize(new Dimension(600, 600));
-		return true;
+		CheckedScenarioScreenshot();
+		return loginok;
 	}
 	
 	private boolean performInitialPurchase() {
@@ -101,8 +104,11 @@ public class SecondaryPurchaseSteps extends StepBase {
 		} catch (InterruptedException e) {
 			log.error("interrupted page loaded check " + e);
 		}
+		
+		boolean ok = false;
 		if (cpp.selectPartnerOffer(customer.getPartner(), entpage)) {		  
-			//  on journey to accept offer		
+			//  on journey to accept offer	
+			CheckedScenarioScreenshot();
 			BasicPartnerOffer offer = new BasicPartnerOffer(driver);
 			try {
 				offer.bodyLoaded();
@@ -110,24 +116,31 @@ public class SecondaryPurchaseSteps extends StepBase {
 				log.error("interrupted page loaded check " + e);
 			}
 			offer.setTnC();	
+			ok = true;
 		} else log.info("could not select offer");
-		cpp.acceptTheOffer(driver, customer);
-		return true;		
+		if (ok) {
+			return cpp.acceptTheOffer(driver, customer);
+		}
+		return ok;		
 	}
 	
 	private boolean checkInitialPurchaseOutcome() {
 		String urltouse = baseUserUrl + customer.getOpco();	
 		ep.initialiseChecks();
-		ep.refresh(driver, urltouse, customer);
-		return true;
+		return ep.refresh(driver, urltouse, customer);
 	}
 	
 	@Given("^I am a \"([^\"]*)\" customer Who Initially purchases \"([^\"]*)\" offer:$")
 	public void aCustomerIntialPurchase(String opco, String partner, List<Map<String, String>> details) throws Throwable {
 		log.info("aCustomerInitialPurchase");
-		boolean prologok = performInitialProlog(opco, partner, details);
-		boolean purchaseok = performInitialPurchase();
-		boolean postcheckok = checkInitialPurchaseOutcome();
+		if (performInitialProlog(opco, partner, details)) {
+			CheckedScenarioScreenshot();
+			if (performInitialPurchase()) {
+				CheckedScenarioScreenshot();
+				checkInitialPurchaseOutcome();
+				CheckedScenarioScreenshot();
+			}
+		}	 
 		// if any of these fail we need to abort and fail the test
 	}
 
@@ -144,22 +157,49 @@ public class SecondaryPurchaseSteps extends StepBase {
 	@Given("^I can see the \"([^\"]*)\" offer$")
 	public void iCanSeeTheOffer(String partner) throws Throwable {
 		log.info("iCanSeeTheOffer from " + partner);	
-		// just check we can see the required offer
-		// if not fail the test
+		customer.setPartner(Partners.valueOf(partner.toUpperCase()));
+		customer.setUserName(pl.getPartnerUserName(driver, baseAdminUrl, customer));
+		// maybe check the offer is there? Or defer?
+		
 	}
 
 	@Then("^my offer details are ([^\"]*)$")
 	public void myOfferDetailsAreIn(String containedin) throws Throwable {
 		log.info("myOfferDetailsAreIn " + containedin);
-		// find the new definitions file
-		// if not there - fail the test
-		
+		String roughpath = refDir + customer.getOpco() + "/";
+		// rebase the parser
+		pl.createParser(roughpath, containedin);		
 	}
 
 	@And("^I will purchase the secondary offer$")
 	public void iWillPurchaseTheOffer() throws Throwable {
 		log.info("IWillPurchaseTheOffer");
-		// perform the purchase with validation and post steps
-		// any problem at any stage fail the test	
+		UserEntertainment entpage = new UserEntertainment(driver);
+		try {
+			entpage.bodyLoaded();
+		} catch (InterruptedException e) {
+			log.error("interrupted page loaded check " + e);
+		}
+		if (cpp.selectPartnerOffer(customer.getPartner(), entpage)) {
+			BasicPartnerOffer offer = new BasicPartnerOffer(driver);
+			try {
+				offer.bodyLoaded();
+			} catch (InterruptedException e) {
+				log.error("interrupted page loaded check " + e);
+			}
+			CheckedScenarioScreenshot();
+			offer.setTnC();	
+			cpp.verifyOfferText(offer);
+			if (cpp.acceptTheOffer(driver, customer)) {
+				String urltouse = baseUserUrl + customer.getOpco();	
+				ep.initialiseChecks();
+				CheckedScenarioScreenshot();
+				if (ep.refresh(driver, urltouse, customer)) {
+					log.info("Purchase Success");
+					CheckedScenarioScreenshot();
+				} else ErrorCollector.fail("Could not perform refresh checks correctly");
+			} else ErrorCollector.fail("Could not Accept the offer");			
+		} else ErrorCollector.fail("Could not select the offer");
+			 		 	
 	}
 }

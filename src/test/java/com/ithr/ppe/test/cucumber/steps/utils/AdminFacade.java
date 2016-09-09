@@ -47,8 +47,10 @@ public class AdminFacade {
 			
 		// check/test goes here - if its not created properly then we either corrupt the string or throw an exception
 		boolean userok = userCreatedOk(driver, partner);
-		
-		return msisdn;
+		if (userok) {
+			return msisdn;
+		}
+		else return "FAILED";
 	}
 	
 	private static String msisdnFromAdminNoCreate(WebDriver driver, String opco) {

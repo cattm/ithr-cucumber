@@ -5,6 +5,10 @@ package com.ithr.ppe.test.cucumber.steps;
  * This class will control the execution of the test
  * This class will capture screens as required
  * 
+ * Note the catch blocks here are for safety - in case I have not handled the exceptions properly at a lower level
+ * TODO: remove if possible
+ * 
+ * 
  * @author Marcus Catt (marcus.catt@ithrconsulting.com
  */
 
@@ -155,8 +159,7 @@ public class PurchaseOfferSteps extends StepBase {
 		boolean ok = pl.verifyOffers(entpage, customer);
 		CheckedScenarioScreenshot();		  	  
 		return ok;
-	}
-	
+	}	
 	private boolean SelectInternal() {
 		
 		//  page looks different to standard model - no mini icons to select....
@@ -173,8 +176,7 @@ public class PurchaseOfferSteps extends StepBase {
 		CheckedScenarioScreenshot();
 		return true;
 	}
-	
-	
+		
 	@Then("^my offer details will come from ([^\"]*)$")
 	public void OfferContainsStringsFrom(String reffilename)  {
 		log.info("Then: my offer will come from " + reffilename + " file");
@@ -223,7 +225,7 @@ public class PurchaseOfferSteps extends StepBase {
 			CheckedScenarioScreenshot();
 			ErrorCollector.verifyTrue(ppeopen, "reopen failed");
 				
-		}catch(Exception e){
+		}catch(Exception e){ 
 			log.error("caught Exception: " + e);			
 			String name = this.getClass().getSimpleName();
 			ReportScreen(name);
