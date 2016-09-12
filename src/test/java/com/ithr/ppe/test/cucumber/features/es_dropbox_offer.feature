@@ -1,5 +1,5 @@
 @purchase
-Feature: ES Purchase Dropbox for all Tariffs
+Feature: ES Purchase Dropbox
   This feature will take each package/usergroup combination and attempt to obtain the correct dropbox package.
   It will check all displayed text conforms to the expected json definition
   No previous alternate offers are assumed

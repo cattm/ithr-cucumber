@@ -1,5 +1,5 @@
 @purchase
-Feature: GB Purchasing SKY for all Tariffs
+Feature: GB Purchasing SKY
   This feature will take each package/usergroup combination and attempt to obtain the correct sky package.
   It will check all displayed text conforms to the expected json definition
   No previous alternate offers are assumed

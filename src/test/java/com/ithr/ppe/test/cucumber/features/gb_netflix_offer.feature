@@ -1,5 +1,5 @@
 @purchase
-Feature: GB Purchasing Netflix for all Tariffs
+Feature: GB Purchasing Netflix
   This feature will take each package/usergroup combination and attempt to obtain the correct Netflix package.
   It will check all displayed text conforms to the expected json definition
   No previous alternate offers are assumed

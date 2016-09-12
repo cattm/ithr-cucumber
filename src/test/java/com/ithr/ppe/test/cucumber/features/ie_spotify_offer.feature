@@ -1,5 +1,5 @@
 @purchase
-Feature: IE Purchase Spotify for all Tariffs
+Feature: IE Purchase Spotify
   This feature will take each package/usergroup combination and attempt to obtain the correct spotify package.
   It will check all displayed text conforms to the expected json definition
   No previous alternate offers are assumed
