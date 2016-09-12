@@ -33,11 +33,13 @@ import org.openqa.selenium.phantomjs.PhantomJSDriver;
 
 
 
+
 import com.ithr.ppe.test.commons.CommandExecutor;
 import com.ithr.ppe.test.commons.DateStamp;
 import com.ithr.ppe.test.commons.TestProperties;
 import com.ithr.ppe.test.cucumber.steps.utils.ErrorCollector;
 import com.ithr.ppe.test.cucumber.steps.utils.JsonParser;
+import com.ithr.ppe.test.cucumber.steps.utils.TandCRequired;
 import com.ithr.ppe.test.cucumber.steps.utils.opcoTextChecker;
 
 import cucumber.api.Scenario;
@@ -49,7 +51,9 @@ public class StepBase {
 	protected String browser;
 	protected String softwareVersion;
 	protected String ditEnv;
-	
+
+	// do we need TnC?
+	protected TandCRequired needTandC = null;
 	// from properties
 	protected String 	baseAdminUrl;
 	protected String 	baseUserUrl;
@@ -201,6 +205,12 @@ public class StepBase {
     		basePartnerHelper = basePartnerHelper.replace("dit", "dit2");	
     	}
      
+    	
+    	// TODO: make a property in itself?
+    	needTandC = TandCRequired.getInstance();
+    	needTandC.loadPropertyFile("src/main/resources/tandc.properties");
+ 
+    	
     	String dopictures = System.getProperty("test.allimages", TestProperties.DO_SCREENSHOTS);
     	embedAllImages = dopictures.matches("true");
    

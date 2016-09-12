@@ -115,7 +115,11 @@ public class SecondaryPurchaseSteps extends StepBase {
 			} catch (InterruptedException e) {
 				log.error("interrupted page loaded check " + e);
 			}
-			offer.setTnC();	
+			
+			if (needTandC.hasTnc(customer.getOpco().toUpperCase(), customer.getPartner().toString())) {
+				offer.setTnC();			  
+			}
+				
 			ok = true;
 		} else log.info("could not select offer");
 		if (ok) {
@@ -189,7 +193,7 @@ public class SecondaryPurchaseSteps extends StepBase {
 			}
 			CheckedScenarioScreenshot();
 			offer.setTnC();	
-			cpp.verifyOfferText(offer);
+			cpp.verifyOfferText(offer, customer);
 			if (cpp.acceptTheOffer(driver, customer)) {
 				String urltouse = baseUserUrl + customer.getOpco();	
 				ep.initialiseChecks();

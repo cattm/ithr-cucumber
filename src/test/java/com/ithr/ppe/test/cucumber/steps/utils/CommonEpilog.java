@@ -41,6 +41,16 @@ public class CommonEpilog implements IEpilog
 	}
 	
 	private boolean refreshPPEPartner(WebDriver driver, String url, Customer customer) {
+		switch (customer.getPartner()) {
+			case DEEZER : 
+			try {
+				Thread.sleep(CommonConstants.SLOW * 4);
+			} catch (InterruptedException e) {
+				log.error("Jumped out of delay loop waiting for DEEZER result to be available " + e);
+			}
+			break;
+			default : break;
+		}
 		driver.get(url);
 		UserEntertainment entpage = new UserEntertainment(driver);
 		try {

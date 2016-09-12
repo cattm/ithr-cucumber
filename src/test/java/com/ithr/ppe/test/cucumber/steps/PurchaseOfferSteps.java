@@ -130,10 +130,13 @@ public class PurchaseOfferSteps extends StepBase {
 			} catch (InterruptedException e) {
 				log.error("interrupted page loaded check " + e);
 			}
-			offer.setTnC();			  
-
+			
+			if (needTandC.hasTnc(customer.getOpco().toUpperCase(), customer.getPartner().toString())) {
+				offer.setTnC();			  
+			}
+			
 			log.info("TEST: Check Partner Offer");				 	 	
-			cpp.verifyOfferText(offer);
+			cpp.verifyOfferText(offer, customer);
 			CheckedScenarioScreenshot();
 		}
 		else {
@@ -168,11 +171,12 @@ public class PurchaseOfferSteps extends StepBase {
 			offer.bodyLoaded();
 		} catch (InterruptedException e) {
 			log.error("interrupted page loaded check " + e);
-		}				
+		}	
+		
 		offer.setTnC();		
 		
 		log.info("TEST: Check Internal Partner Offer");				 	 
-		cpp.verifyOfferText(offer);
+		cpp.verifyOfferText(offer, customer);
 		CheckedScenarioScreenshot();
 		return true;
 	}

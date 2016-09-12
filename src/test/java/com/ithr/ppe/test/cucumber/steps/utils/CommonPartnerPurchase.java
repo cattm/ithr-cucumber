@@ -132,6 +132,9 @@ public class CommonPartnerPurchase implements IPartnerPurchase {
 		boolean registered = true;
 		boolean checkreturnpage = true;
 		switch (myPartner) {
+		case DEEZER :
+			checkreturnpage = false;
+			break;
 		case DROPBOX :
 			// we finish at a download page
 			IVFPartner dropbox = new VFDropboxFacade();
@@ -166,17 +169,17 @@ public class CommonPartnerPurchase implements IPartnerPurchase {
 				
 	}
 		
-	public boolean verifyOfferText(BasicPartnerOffer offer){
+	public boolean verifyOfferText(BasicPartnerOffer offer, Customer customer){
 		/*
 		For some offers for some countries this field is not set
 		example - NL Netflix
 		I will comment out until I find a nice way of making it optional
 		*/
-		/*
-		log.info("TEST: Verify the Offer");
-		String textstripped = parser.stripHTML(parser.getOffersTitle());	
-		ErrorCollector.verifyEquals(offer.getUserOffer(),textstripped, "The offer title is incorrect");
-		*/
+		if (!(customer.getOpco().equalsIgnoreCase("NL") && customer.getPartner().toString().equalsIgnoreCase("Netflix"))) {
+			log.info("TEST: Verify the Offer");
+			String textstripped = parser.stripHTML(parser.getOffersTitle());	
+			ErrorCollector.verifyEquals(offer.getUserOffer(),textstripped, "The offer title is incorrect");
+		}
 	
 		// check the text bullets from text
 		String crstripped = StringUtils.replace(offer.getOfferDetail(), "\n", " ");
@@ -185,9 +188,13 @@ public class CommonPartnerPurchase implements IPartnerPurchase {
 		
 	  
 		// check T&C label from label
-		String offertncstripped = StringUtils.replace(offer.getOfferTnC(), "\n", " ");	
-		String tncstripped = parser.stripHTML(parser.getOffersTnCText());
-		ErrorCollector.verifyEquals(offertncstripped,tncstripped, "The T & C text is incorrect");
+		// some opcos dont have t and c
+		TandCRequired needTandC = TandCRequired.getInstance();
+		if (needTandC.hasTnc(customer.getOpco().toUpperCase(), customer.getPartner().toString())) {
+			String offertncstripped = StringUtils.replace(offer.getOfferTnC(), "\n", " ");	
+			String tncstripped = parser.stripHTML(parser.getOffersTnCText());
+			ErrorCollector.verifyEquals(offertncstripped,tncstripped, "The T & C text is incorrect");
+		}
 	
 		return true;
 	}

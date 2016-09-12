@@ -15,7 +15,7 @@ public interface IPartnerPurchase {
 
 	public boolean acceptTheOffer(WebDriver driver, Customer customer);
 	
-	public boolean verifyOfferText(BasicPartnerOffer offer );
+	public boolean verifyOfferText(BasicPartnerOffer offer, Customer customer );
 
 	public boolean verifyNextStepsText(BasicPartnerOffer offer);
 }
