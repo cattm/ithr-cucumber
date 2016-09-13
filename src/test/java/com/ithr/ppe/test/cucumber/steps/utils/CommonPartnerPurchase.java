@@ -47,9 +47,15 @@ public class CommonPartnerPurchase implements IPartnerPurchase {
 		boolean found = false;
 		String imagestring = "";
 		switch (myPartner) {
+		case DEEZER		: 
+			imagestring = "deezer";
+			break;
 		case DROPBOX    :
 			//dropbox is an example of where we do not need to find the correct offer to select
 			found = true;
+		case HBO		: 
+			imagestring = "hbo";
+			break;
 		case NETFLIX    : 
 			imagestring = "netflix";
 			break;
@@ -141,6 +147,14 @@ public class CommonPartnerPurchase implements IPartnerPurchase {
 			registered = acceptVFPOffer(dropbox, driver);
 			checkreturnpage = false;
 			break;
+		case HBO : 
+			try {
+				IExternalPartner hbo = new HBOFacade();
+				registered = hbo.register(driver, opco, partnerusername);
+			
+			} catch (Exception e) {
+				log.error("Register for HBO failed " + e);
+			}
 		case SPOTIFY :	
 			try {
 				IExternalPartner spot = new SpotifyFacade();
@@ -156,7 +170,8 @@ public class CommonPartnerPurchase implements IPartnerPurchase {
 			// at this point we need to return because there is nothing else to check for netflix
 			checkreturnpage = false;
 			break;
-						
+					
+		case SKY :
 		default : break;
 		}
 		

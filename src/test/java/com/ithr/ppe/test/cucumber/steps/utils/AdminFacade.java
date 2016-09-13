@@ -108,7 +108,7 @@ public class AdminFacade {
 		String checkurl = adminhome.getSubscriptionCheckUrl();	
 		
 		//TODO - need to post this url not GET
-		//driver.get(checkurl);
+		//driver.post(checkurl);
 		log.error("METHOD NOT PROPERLY IMPLEMENTED YET");
 		
 		AdminVerify verify = new AdminVerify(driver);
@@ -116,6 +116,19 @@ public class AdminFacade {
 			log.info(" Admin Created This: " + msisdn);
 		}
 		return msisdn;
+	}
+	
+	public static boolean addUserGroup (WebDriver driver, String checkurl, String oldgroup, String newgroup) {
+	// checkurl will be of the form 
+	// https://dit.offers.vodafone.com/purchaseTariff?msisdn=499713301678&userGroup=ug_ppe_red&opco=de&packageId=PK_RedTariff&chargingMethod=non_recurring
+	// replacement is of the form "ug_ppe_specialgroup"
+		String newurl = checkurl.replace(oldgroup, newgroup);
+		driver.get(newurl);
+		AdminVerify verify = new AdminVerify(driver);
+		if (verify.isInGroup(newgroup)) {
+			return true;
+		}
+		return false;
 	}
 	
 	public static String msisdnFromAdmin(WebDriver driver, String opco, String subscription, String usergroup, Partners partner) {

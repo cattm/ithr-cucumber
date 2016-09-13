@@ -106,6 +106,17 @@ public class UserEntertainment extends PageBase{
 	  }
 	  
 	  
+	  public boolean clickWithinSinglePartnerList(String partnerstring, String offerstring) {
+		  // assumes more than one offer from same partner
+		  // we build an offer string to search for
+		  // then we find the image?
+		  // string is something like deezer de-deezer-standalone-PK_DeezerFamily999 offer-wrapper
+		  // obviously wont find the element if the string is wrong!!!!
+		  String tofind = "div [class='" + partnerstring.toLowerCase() + " " + offerstring + " offer-wrapper']";
+		  WebElement we = driver.findElement(By.cssSelector(tofind));
+		  we.findElement(By.cssSelector("div.panel-inner-full.fl img.logo")).click();
+		  return true;
+	  }
 	  public String getMSISDN () {
 		  return msisdn.getText();
 		  
@@ -118,7 +129,6 @@ public class UserEntertainment extends PageBase{
 	  public String getManageText() {
 		  return manage.getText();
 	  }
-	  
 	  
 	  // TODO: see if we can make these VERY specific methods generic and sort the finders
 	  public String getManageSubscriptionText() {

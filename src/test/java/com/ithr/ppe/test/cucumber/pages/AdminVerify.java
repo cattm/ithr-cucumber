@@ -38,6 +38,22 @@ or
 			PageFactory.initElements(driver, this);
 		}
 	 
+	 public boolean isInGroup(String group) {
+		 Boolean outcome;
+		 
+		 String tmp = jsonToParse.getText();
+		 JSONObject myobject = new JSONObject(tmp);
+		
+		 if (tmp.contains("error")) {
+			 // it did not work - TODO: put in a more appropriate solution
+			 log.error(tmp);
+			 outcome = false;
+		 } else {
+			  outcome = group.contentEquals(myobject.getString("usergroup"));		 			 
+		 }
+		 return outcome.booleanValue();
+	 }
+	 
 	 public boolean isIndividualCreated() {
 		 Boolean outcome;
 		 
