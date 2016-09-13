@@ -11,16 +11,16 @@ Feature: IT Purchase Spotify
     Then my offer details will come from <contained in>
     And I will accept and confirm the offer
 
-    # TODO: there are several definition files not used in the scenario
-    # Check out exact circumstances and add/append them 
-    # Also to note - these are dependant upon priceplan being correct - if its wrong text may be wrong!
-    # And currently on DIT it is wrong
+    # TODO: there are several minor issues with this file
+    # It has not been checked for correctness
+    # the priceplan in DIT is incorrect - some invalid cases pass
+    # There appears to be a limit on the number of times we can access Spotify (quickly) - so we will not run all tests
     Examples: 
-      | package   | usergroup    | contained in                               |
-      | Not Valid | 4guser       | Spotify standalone all trial               |
-      | Not Valid | Not Valid    | Spotify standalone all trial               |
-      | Not Valid | gold         | Spotify standalone gold trial              |
-      | Not Valid | silver       | Spotify standalone switchable all trial    |
-      | Not Valid | bronze       | Spotify standalone all trial               |
-      | Not Valid | summer       | Spotify standalone switchable summer trial |
-      | Not Valid | No usergroup | Spotify standalone all                     |
+      | package   | usergroup    | contained in                            |
+      | Not Valid | 4guser       | Spotify standalone all trial            |
+      | Not Valid | Not Valid    | Spotify standalone all trial            |
+      | Not Valid | gold         | Spotify standalone gold trial           |
+      | Not Valid | silver       | Spotify standalone switchable all trial |
+      #     | Not Valid | bronze       | Spotify standalone all trial               |
+      #     | Not Valid | summer       | Spotify standalone switchable summer trial |
+      | Not Valid | No usergroup | Spotify standalone all                  |

@@ -11,7 +11,6 @@ Feature: DE Purchase Dropbox
     Then my offer details will come from <contained in>
     And I will accept and confirm the offer
 
-    # TODO: I can either HARD code the drop box uid - or grab a new one each time - so dont need it here
     Examples: 
       | package          | usergroup      | contained in                    |
       | Not Valid        | No usergroup   | Dropbox standalone no usergroup |
