@@ -121,7 +121,7 @@
         <configuration>
           <testFailureIgnore>true</testFailureIgnore>
           <includes>
-            <exclude>**/*CucumberRunner.java</exclude>    
+            <exclude>**/*MCTestRunner.java</exclude>    
           </includes>
         </configuration>
       </plugin>
@@ -142,7 +142,7 @@
               <cucumberOutput>reports/cucumber.json</cucumberOutput>
               <skippedFails>true</skippedFails>
               <enableFlashCharts>false</enableFlashCharts>
-              <buildNumber>101</buildNumber>
+              <buildNumber>SW is......101</buildNumber>
             </configuration>
           </execution>
         </executions>
