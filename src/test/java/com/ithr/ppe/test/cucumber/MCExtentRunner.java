@@ -25,11 +25,12 @@ public class MCExtentRunner {
         ExtentCucumberFormatter.initiateExtentCucumberFormatter();
         ExtentCucumberFormatter.loadConfig(new File("src/main/resources/extent-config.xml"));
 
-        ExtentCucumberFormatter.addSystemInfo("Browser Name", "Firefox");
-        ExtentCucumberFormatter.addSystemInfo("Browser version", "v47.0.1");
-        ExtentCucumberFormatter.addSystemInfo("Selenium version", "v2.53.1");
+       // ExtentCucumberFormatter.addSystemInfo("Browser Name", "Firefox");
+       // ExtentCucumberFormatter.addSystemInfo("Browser version", "v47.0.1");
+        //ExtentCucumberFormatter.addSystemInfo("Selenium version", "v2.53.1");
 
         Map systemInfo = new HashMap();
+        systemInfo.put("PPE Build", "ppe_r16-09-1_rc15 : 20160913-0853");
         systemInfo.put("Cucumber version", "v1.2.3");
         systemInfo.put("Extent Cucumber Reporter version", "v1.1.0");
         ExtentCucumberFormatter.addSystemInfo(systemInfo);
