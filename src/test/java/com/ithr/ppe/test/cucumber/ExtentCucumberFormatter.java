@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
+import com.ithr.ppe.test.commons.DateStamp;
 import com.relevantcodes.extentreports.DisplayOrder;
 import com.relevantcodes.extentreports.ExtentReports;
 import com.relevantcodes.extentreports.ExtentTest;
@@ -118,8 +119,10 @@ public class ExtentCucumberFormatter implements Reporter, Formatter  {
 	    }
 
 	    public static void initiateExtentCucumberFormatter() {
-	        String reportFilePath = "output" + File.separator + "Run_" + System.currentTimeMillis() + File.separator +
-	                "report.html";
+	    	DateStamp mydate = new DateStamp();	
+			String reportFilePath = "reports/Extent/" + mydate.getFileDayFormat() + "/" + mydate.getFileTimeFormat() + "_report.html";
+	       // String reportFilePath = "reports" + File.separator + "Run_" + System.currentTimeMillis() + File.separator +
+	       //         "report.html";
 	        initiateExtentCucumberFormatter(new File(reportFilePath));
 	    }
 
