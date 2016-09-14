@@ -52,12 +52,12 @@ public class SecondaryPurchaseSteps extends StepBase {
 	@Before("@checkit")
 	public void setUp(Scenario scenario) throws Exception {
 		super.setUp(scenario);
-		log.info("SetUp");
+		log.info("Steps SetUp");
 	}
 	
 	@After("@checkit")
 	public void tearDown() {
-		log.info("TearDown");
+		log.info("Steps TearDown");
 		super.tearDown();
 	}
 
@@ -79,13 +79,25 @@ public class SecondaryPurchaseSteps extends StepBase {
 		String roughpath = refDir + customer.getOpco() + "/";
 		pl.createParser(roughpath, file);
 		
-		customer.setUserName(pl.getPartnerUserName(driver, baseAdminUrl, customer));
+		String username = pl.getPartnerUserName(driver, baseAdminUrl, customer);
+		if (!username.contains("ERROR")) {
+			customer.setUserName(username);
+		} else {
+			log.error(" Helper did not return a valid USERNAME");
+			ErrorCollector.fail("USERNAME is invalid - Aborting Test");
+			return false;
+		}
+		
 	
 		driver.get(baseAdminUrl);
 		String msisdn = pl.getNewMsisdn(driver, customer);
-		if (!msisdn.equals("FAILED")) {
+		if (!msisdn.equals("ERROR")) {
 			customer.setMsisdn(msisdn);
-		} else return false;
+		} else {
+			log.error(" Helper did not return a valid MSISDN");
+			ErrorCollector.fail("MSISDN is invalid - Aborting Test");
+			return false;
+		}
 		
 		boolean loginok = pl.LoginOk(driver, customer, pinCode, baseUserUrl);
 		driver.manage().window().setSize(new Dimension(600, 600));
@@ -146,7 +158,7 @@ public class SecondaryPurchaseSteps extends StepBase {
 				CheckedScenarioScreenshot();
 			} //ErrorCollector.fail("Could not perform Initial Purchase");
 		}	//ErrorCollector.fail("Could not perform initial Prolog"); 
-		// if any of these fail we need to abort and fail the test
+		// if any of these fail we may need to abort and fail the test
 	}
 
 	
@@ -162,15 +174,7 @@ public class SecondaryPurchaseSteps extends StepBase {
 		if (!added) ErrorCollector.fail("Could not Add additional usergroup " + addgroup);
 	}
 	
-	/* we have msisdn
-	 * Need to refresh parsers
-	 * its a different service - get another username
-	 * select offer
-	 * accept offer
-	 * check post offer
-	 * signify success
-	 * 
-	 */
+
 	@Given("^I can see the \"([^\"]*)\" offer$")
 	public void iCanSeeTheOffer(String partner) throws Throwable {
 		log.info("iCanSeeTheOffer from " + partner);	
@@ -208,7 +212,9 @@ public class SecondaryPurchaseSteps extends StepBase {
 				log.error("interrupted page loaded check " + e);
 			}
 			CheckedScenarioScreenshot();
+			
 			// TODO: do I need to do a check again?
+			//if (needTandC.hasTnc(customer.getOpco().toUpperCase(), customer.getPartner().toString())) 
 			log.info("Setting TNC");
 			offer.setTnC();	
 			cpp.verifyOfferText(offer, customer);

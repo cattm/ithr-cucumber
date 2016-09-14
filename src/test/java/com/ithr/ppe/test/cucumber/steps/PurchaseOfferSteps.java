@@ -57,12 +57,12 @@ public class PurchaseOfferSteps extends StepBase {
 	@Before("@purchase")
 	public void setUp(Scenario scenario) throws Exception {
 		super.setUp(scenario);
-		log.info("SetUp");
+		log.info("Steps SetUp");
 	}
 	
 	@After("@purchase")
 	public void tearDown() {
-		log.info("TearDown");
+		log.info("Steps TearDown");
 		super.tearDown();
 	}
 	
@@ -85,20 +85,26 @@ public class PurchaseOfferSteps extends StepBase {
 		bd.appendToBuild(mypackage, usergroup);
 		customer = bd.getCustomer();	
 		
+		// try blocks in steps are really catch alls - in case I have not captured all at point of creation
 		try {		
-			// get a partner user - TODO: check if we need to do this here or can do it later 
 			
 			String username = pl.getPartnerUserName(driver, basePartnerHelper, customer);
 			customer.setUserName(username);
 			log.info("username is " + username);
 			if (username.contains("ERROR")) {
 				log.error(" Helper did not return a valid username");
-				ErrorCollector.fail("username is invalid - Aborting Test");
+				ErrorCollector.fail("USERNAME is invalid - Aborting Test");
+				return;
 			}
 			
 			// Need an MSISDN to log in
 			driver.get(baseAdminUrl);
 			String msisdn = pl.getNewMsisdn(driver, customer);
+			if (msisdn.contains("ERROR")) {
+				log.error(" Helper did not return a valid username");
+				ErrorCollector.fail("MSISDN is invalid - Aborting Test");
+				return;
+			}
 			customer.setMsisdn(msisdn);
 			// handle the AA aspect and login
 			pl.LoginOk (driver, customer, pinCode, baseUserUrl);
@@ -131,6 +137,7 @@ public class PurchaseOfferSteps extends StepBase {
 				log.error("interrupted page loaded check " + e);
 			}
 			
+			// amazingly some opco/partners do not need T&C
 			if (needTandC.hasTnc(customer.getOpco().toUpperCase(), customer.getPartner().toString())) {
 				offer.setTnC();			  
 			}
@@ -140,9 +147,11 @@ public class PurchaseOfferSteps extends StepBase {
 			CheckedScenarioScreenshot();
 		}
 		else {
-			  log.error("NO VALID OFFER  Visible");
+			  log.error("NO VALID OFFER to select");
 			  // TODO: check this out what is the correct behavior
 			  // this may be correct behavior for some combinations
+			  String name = this.getClass().getSimpleName();
+			  ReportScreen(name);
 			  ErrorCollector.fail("No Valid Offer - Aborting Test");
 		}
 		

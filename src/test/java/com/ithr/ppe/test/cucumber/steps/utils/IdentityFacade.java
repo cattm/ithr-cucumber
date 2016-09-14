@@ -33,13 +33,13 @@ public class IdentityFacade {
 	
 		msisdnentry.setShortMobile(msisdn);
 		msisdnentry.clickNextButton();
-		log.info("Have Set Mobile Number");
+		log.info("Have Set Mobile Number " + msisdn);
 		
 		// SMS Challenge - pin
 		UserSMSChallenge smschallenge = new UserSMSChallenge(driver);
 		smschallenge.bodyLoaded();
 		smschallenge.setSMS(pin);
-		log.info("Have Set Pin");
+		log.info("Have Set Pin " + pin);
 		
 		smschallenge.clickRegisterButton();
 		return true;

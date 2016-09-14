@@ -51,7 +51,7 @@ public class AdminFacade {
 		if (userok) {
 			return msisdn;
 		}
-		else return "FAILED";
+		else return "ERROR";
 	}
 	
 	private static String msisdnFromAdminNoCreate(WebDriver driver, String opco) {
