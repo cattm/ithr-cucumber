@@ -11,6 +11,7 @@ import java.util.Locale;
 import java.util.Map;
 
 import com.ithr.ppe.test.commons.DateStamp;
+import com.ithr.ppe.test.cucumber.steps.utils.JsonParser;
 import com.relevantcodes.extentreports.DisplayOrder;
 import com.relevantcodes.extentreports.ExtentReports;
 import com.relevantcodes.extentreports.ExtentTest;
@@ -32,7 +33,7 @@ import gherkin.formatter.model.Step;
 import gherkin.formatter.model.Tag;
 
 public class ExtentCucumberFormatter implements Reporter, Formatter  {
-	   private static ExtentReports extent;
+	    private static ExtentReports extent;
 	    private ExtentTest featureTest;
 	    private ExtentTest scenarioTest;
 	    private LinkedList<Step> testSteps = new LinkedList<Step>();
@@ -66,6 +67,7 @@ public class ExtentCucumberFormatter implements Reporter, Formatter  {
 	    public ExtentCucumberFormatter() {
 	    }
 
+	    
 	    public static void initiateExtentCucumberFormatter(File filePath, Boolean replaceExisting,
 	                                                       DisplayOrder displayOrder, NetworkMode networkMode,
 	                                                       Locale locale) {
