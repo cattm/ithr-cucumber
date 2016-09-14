@@ -10,6 +10,7 @@ import com.ithr.ppe.test.cucumber.pages.AdminVerify;
 public class AdminFacade {
 	public static Logger log = Logger.getLogger(AdminFacade.class);
 	private final static String DBUID = "597844980";
+	private static String checkUrl = "";
 	
 	private static String msisdnFromAdminWithCreate(WebDriver driver, String opco, String subscription, String usergroup, Partners partner) {
 		// open admin page and setup subscription in ER
@@ -40,10 +41,10 @@ public class AdminFacade {
 		log.info("MSISDN is : " + msisdn);
 			
 		// TODO: Put a Proper test here and if there is a problem then we need to advise - so test can exit or otherwise
-		String checkurl = adminhome.getSubscriptionCheckUrl();	
+		checkUrl = adminhome.getSubscriptionCheckUrl();	
 	
 		// call the url to create user
-		driver.get(checkurl);
+		driver.get(checkUrl);
 			
 		// check/test goes here - if its not created properly then we either corrupt the string or throw an exception
 		boolean userok = userCreatedOk(driver, partner);
@@ -116,6 +117,10 @@ public class AdminFacade {
 			log.info(" Admin Created This: " + msisdn);
 		}
 		return msisdn;
+	}
+	
+	public static String getCheckUrl() {
+		return checkUrl;
 	}
 	
 	public static boolean addUserGroup (WebDriver driver, String checkurl, String oldgroup, String newgroup) {

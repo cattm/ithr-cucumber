@@ -73,6 +73,13 @@ public class CommonPartnerPurchase implements IPartnerPurchase {
 			break;
 		}	
 		if (!found) { 
+			// small wait loop because it can be very slow - 
+			try {
+				Thread.sleep(CommonConstants.SLOW);
+			} catch (InterruptedException e) {
+				log.info("got interrupted while sleeping " +  e);
+			}
+			
 			found = entpage.checkOfferImagePresent(imagestring);
 			if (found)
 				try {

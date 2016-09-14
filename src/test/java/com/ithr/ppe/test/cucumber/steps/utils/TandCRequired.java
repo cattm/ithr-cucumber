@@ -75,7 +75,7 @@ public class TandCRequired {
 		String [] vals = tncMap.get(opco.toUpperCase());
 		boolean notnc = true;
 		for (int i = 0; i < vals.length; i++) {
-			System.out.println("Read back " + vals[i]);
+			log.info("Read back " + vals[i]);
 			if (partner.contentEquals(vals[i])) {
 				notnc = false;
 			}

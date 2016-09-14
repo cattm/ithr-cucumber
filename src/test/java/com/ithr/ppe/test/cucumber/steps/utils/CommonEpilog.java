@@ -81,6 +81,8 @@ public class CommonEpilog implements IEpilog
 	
 		
 		switch (customer.getPartner()) {
+		case DEEZER : ok = checker.checkDeezerSubscribedText(textfound);
+					break;
 		case SPOTIFY :	ok = checker.checkSpotifySubscibedText(textfound);
 					break;
 		case SKY : ok = checker.checkSkySubscibedText(textfound);

@@ -18,6 +18,7 @@ import com.ithr.ppe.test.cucumber.pages.UserEntertainment;
 import com.ithr.ppe.test.cucumber.steps.interfaces.IEpilog;
 import com.ithr.ppe.test.cucumber.steps.interfaces.IPartnerPurchase;
 import com.ithr.ppe.test.cucumber.steps.interfaces.IProlog;
+import com.ithr.ppe.test.cucumber.steps.utils.AdminFacade;
 import com.ithr.ppe.test.cucumber.steps.utils.CommonEpilog;
 import com.ithr.ppe.test.cucumber.steps.utils.CommonPartnerPurchase;
 import com.ithr.ppe.test.cucumber.steps.utils.CommonProlog;
@@ -143,11 +144,23 @@ public class SecondaryPurchaseSteps extends StepBase {
 				CheckedScenarioScreenshot();
 				checkInitialPurchaseOutcome();
 				CheckedScenarioScreenshot();
-			}
-		}	 
+			} //ErrorCollector.fail("Could not perform Initial Purchase");
+		}	//ErrorCollector.fail("Could not perform initial Prolog"); 
 		// if any of these fail we need to abort and fail the test
 	}
 
+	
+	
+
+	@And("^I have added secondary group \"([^\"]*)\"$")
+	public void addAnotherGroup(String addgroup) throws Throwable {
+		log.info("addAnotherGroup " + addgroup);
+		//need to have saved old check url;
+		String oldgroup = customer.getUserGroup();
+		String checkurl = AdminFacade.getCheckUrl();
+		Boolean added = AdminFacade.addUserGroup(driver, checkurl, oldgroup, addgroup);
+		if (!added) ErrorCollector.fail("Could not Add additional usergroup " + addgroup);
+	}
 	
 	/* we have msisdn
 	 * Need to refresh parsers
@@ -163,6 +176,8 @@ public class SecondaryPurchaseSteps extends StepBase {
 		log.info("iCanSeeTheOffer from " + partner);	
 		customer.setPartner(Partners.valueOf(partner.toUpperCase()));
 		customer.setUserName(pl.getPartnerUserName(driver, baseAdminUrl, customer));
+		String urltouse = baseUserUrl + customer.getOpco();
+		driver.get(urltouse);
 		// maybe check the offer is there? Or defer?
 		
 	}
@@ -175,6 +190,7 @@ public class SecondaryPurchaseSteps extends StepBase {
 		pl.createParser(roughpath, containedin);		
 	}
 
+	
 	@And("^I will purchase the secondary offer$")
 	public void iWillPurchaseTheOffer() throws Throwable {
 		log.info("IWillPurchaseTheOffer");
@@ -192,18 +208,22 @@ public class SecondaryPurchaseSteps extends StepBase {
 				log.error("interrupted page loaded check " + e);
 			}
 			CheckedScenarioScreenshot();
+			// TODO: do I need to do a check again?
+			log.info("Setting TNC");
 			offer.setTnC();	
 			cpp.verifyOfferText(offer, customer);
 			if (cpp.acceptTheOffer(driver, customer)) {
-				String urltouse = baseUserUrl + customer.getOpco();	
-				ep.initialiseChecks();
+			} else ErrorCollector.fail("Could not Accept the offer");	
+			
+			String urltouse = baseUserUrl + customer.getOpco();	
+			ep.initialiseChecks();
+			CheckedScenarioScreenshot();
+			if (ep.refresh(driver, urltouse, customer)) {
+				log.info("Purchase Success");
 				CheckedScenarioScreenshot();
-				if (ep.refresh(driver, urltouse, customer)) {
-					log.info("Purchase Success");
-					CheckedScenarioScreenshot();
-				} else ErrorCollector.fail("Could not perform refresh checks correctly");
-			} else ErrorCollector.fail("Could not Accept the offer");			
-		} else ErrorCollector.fail("Could not select the offer");
+			} // else ErrorCollector.fail("Refresh checks failed");
+			
+		} else ErrorCollector.fail("Could not Select the secondary offer");
 			 		 	
 	}
 }

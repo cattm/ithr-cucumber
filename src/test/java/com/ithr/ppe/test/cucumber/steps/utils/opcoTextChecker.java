@@ -84,6 +84,19 @@ public class opcoTextChecker {
 		return onpage.equals(tocompare);
 	}
 	
+	public boolean checkDeezerSubscribedText(String onpage) {
+		String str1 = "subscription.mainHeading";
+		String tocompare = "";
+		
+		switch (opco) {
+		case "de" :	tocompare=GetProperty(offset + str1);
+				break;
+		default: break;
+		}
+		
+		log.info("Reference Text is:        " + tocompare);
+		return onpage.equals(tocompare);
+	}
 	public boolean checkDropBoxSubscribedText(String onpage) {
 		String str1 = "subscription.mainHeading";
 		String tocompare = "";
