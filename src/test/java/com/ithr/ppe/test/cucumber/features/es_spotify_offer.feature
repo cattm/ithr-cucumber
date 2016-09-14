@@ -1,4 +1,4 @@
-@purchase
+@ignore
 Feature: ES Purchase Spotify
   This feature will take each package/usergroup combination and attempt to obtain the correct spotify package.
   It will check all displayed text conforms to the expected json definition

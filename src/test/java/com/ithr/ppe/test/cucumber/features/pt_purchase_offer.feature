@@ -1,6 +1,6 @@
 @purchase
-Feature: PT Purchase Spotify
-  This feature will take each package/usergroup combination and attempt to obtain the correct spotify package.
+Feature: PT Primary Purchase Offers
+  This feature will take each package/usergroup combination and attempt to obtain the correct partner package.
   It will check all displayed text conforms to the expected json definition
   No previous alternate offers are assumed
   Variant behaviour will be verified elsewhere
