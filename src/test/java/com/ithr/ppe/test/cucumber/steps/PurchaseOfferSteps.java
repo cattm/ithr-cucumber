@@ -120,10 +120,8 @@ public class PurchaseOfferSteps extends StepBase {
 	
 	private void SelectExternal() {
 		UserEntertainment entpage = new UserEntertainment(driver);
-		try {
-			entpage.bodyLoaded();
-		} catch (InterruptedException e) {
-			log.error("interrupted page loaded check " + e);
+		if (!entpage.bodyLoaded()) {
+			 log.error("Entertainement Page body did not load in time");
 		}
 		
 		log.info("selecting offer");
@@ -131,14 +129,13 @@ public class PurchaseOfferSteps extends StepBase {
 			//  on journey to accept offer
 			
 			BasicPartnerOffer offer = new BasicPartnerOffer(driver);
-			try {
-				offer.bodyLoaded();
-			} catch (InterruptedException e) {
-				log.error("interrupted page loaded check " + e);
-			}
+			 if (!offer.bodyLoaded()) {
+				 log.error("Offer Page body did not load in time");
+			 }
 			
 			// amazingly some opco/partners do not need T&C
 			if (needTandC.hasTnc(customer.getOpco().toUpperCase(), customer.getPartner().toString())) {
+				log.info("Setting TandC");
 				offer.setTnC();			  
 			}
 			
@@ -161,11 +158,10 @@ public class PurchaseOfferSteps extends StepBase {
 	private boolean CheckExternal()  {	
 		// Entertainment page - offer page directly or click on image icon to get text
 		UserEntertainment entpage = new UserEntertainment(driver);
-		try {
-			entpage.bodyLoaded();
-		} catch (InterruptedException e) {
-			log.error("interrupted page loaded check " + e);
+		if (!entpage.bodyLoaded()) {
+			 log.error("Entertainement Page body did not load in time");
 		}
+		
 		 		  
 		// There should be available offers for THIS MSISDN -
 		boolean ok = pl.verifyOffers(entpage, customer);
@@ -176,11 +172,10 @@ public class PurchaseOfferSteps extends StepBase {
 		
 		//  page looks different to standard model - no mini icons to select....
 		BasicPartnerOffer offer = new BasicPartnerOffer(driver);
-		try {
-			offer.bodyLoaded();
-		} catch (InterruptedException e) {
-			log.error("interrupted page loaded check " + e);
-		}	
+		if (!offer.bodyLoaded()) {
+			 log.error("Offer Page body did not load in time");
+		}
+			
 		
 		offer.setTnC();		
 		

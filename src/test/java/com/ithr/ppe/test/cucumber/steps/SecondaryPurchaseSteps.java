@@ -112,22 +112,21 @@ public class SecondaryPurchaseSteps extends StepBase {
 		 */
 		log.info("selecting offer");
 		UserEntertainment entpage = new UserEntertainment(driver);
-		try {
-			entpage.bodyLoaded();
-		} catch (InterruptedException e) {
-			log.error("interrupted page loaded check " + e);
+		if (!entpage.bodyLoaded()) {
+			 log.error("Entertainement Page body did not load in time");
 		}
+		
+		
 		
 		boolean ok = false;
 		if (cpp.selectPartnerOffer(customer.getPartner(), entpage)) {		  
 			//  on journey to accept offer	
 			CheckedScenarioScreenshot();
 			BasicPartnerOffer offer = new BasicPartnerOffer(driver);
-			try {
-				offer.bodyLoaded();
-			} catch (InterruptedException e) {
-				log.error("interrupted page loaded check " + e);
+			if (!offer.bodyLoaded()) {
+				 log.error("Offer Page body did not load in time");
 			}
+			
 			
 			if (needTandC.hasTnc(customer.getOpco().toUpperCase(), customer.getPartner().toString())) {
 				offer.setTnC();			  
@@ -199,17 +198,15 @@ public class SecondaryPurchaseSteps extends StepBase {
 	public void iWillPurchaseTheOffer() throws Throwable {
 		log.info("IWillPurchaseTheOffer");
 		UserEntertainment entpage = new UserEntertainment(driver);
-		try {
-			entpage.bodyLoaded();
-		} catch (InterruptedException e) {
-			log.error("interrupted page loaded check " + e);
+		if (!entpage.bodyLoaded()) {
+			 log.error("Entertainement Page body did not load in time");
 		}
+		
+		
 		if (cpp.selectPartnerOffer(customer.getPartner(), entpage)) {
 			BasicPartnerOffer offer = new BasicPartnerOffer(driver);
-			try {
-				offer.bodyLoaded();
-			} catch (InterruptedException e) {
-				log.error("interrupted page loaded check " + e);
+			if (!offer.bodyLoaded()) {
+				 log.error("Entertainement Page body did not load in time");
 			}
 			CheckedScenarioScreenshot();
 			
