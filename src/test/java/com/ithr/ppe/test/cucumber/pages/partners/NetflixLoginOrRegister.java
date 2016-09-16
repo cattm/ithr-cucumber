@@ -9,10 +9,13 @@ package com.ithr.ppe.test.cucumber.pages.partners;
  * @author Marcus Catt (marcus.catt@ithrconsulting.com
  */
 import org.apache.log4j.Logger;
+import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.ithr.ppe.test.commons.CommonConstants;
 import com.ithr.ppe.test.cucumber.pages.BasicPartnerOffer;
@@ -53,10 +56,9 @@ public class NetflixLoginOrRegister extends PageBase {
 	}
 	
 	public String getErrorMsg() {
-		String result = null;
-		if (errorText.isDisplayed()){
-			result = errorText.getText();
-		}
+		String result = null;	
+		WebElement tmp = waitVisible(errorText);
+		if (tmp != null) result = errorText.getText();
 		return result;
 	}
 	
