@@ -23,8 +23,7 @@ public class NetflixFacade implements IExternalPartner{
 
 
 	public boolean register(WebDriver driver, String opco, String usernametouse) {
-		// have had to slow this baby down - site is very flaky
-		
+		// have had to slow this baby down - site is very flaky	
 		log.info("Going to continue");
 		try {
 			Thread.sleep(CommonConstants.SLOW);
@@ -33,11 +32,10 @@ public class NetflixFacade implements IExternalPartner{
 		}
 		
 		NetflixOffer offer = new NetflixOffer(driver);
-		try {
-			offer.bodyLoaded();
-		} catch (InterruptedException e) {
-			log.error("Interrupted exception while loading offer page " + e);
+		if (!offer.bodyLoaded()) {
+			 log.error("Offer Page body did not load in time");
 		}
+		
 			
 		offer.clickSubmit();
 		try {
@@ -49,11 +47,10 @@ public class NetflixFacade implements IExternalPartner{
 		// check the page loaded before we hit stuff
 		log.info("Going to do username/password");
 		NetflixLoginOrRegister logorreg = new NetflixLoginOrRegister(driver);
-		try {
-			logorreg.bodyLoaded();
-		} catch (InterruptedException e) {
-			log.error("Interrupted exception while loading login or register page " + e);
+		if (!logorreg.bodyLoaded()) {
+			 log.error("Neflix Registration Page body did not load in time");
 		}
+		
 		
 		// Some really dodgy code as a work around
 		// try to set the params and then repeat if we get their JS error message
@@ -65,6 +62,8 @@ public class NetflixFacade implements IExternalPartner{
 			logorreg.setEmail(usernametouse);
 			logorreg.setPassword("passwordnf");		
 			logorreg.clickContinue();
+		} else {
+			log.info("No Netflix Register error message - Phew!");
 		}
 		
 		log.info("Going to check success page for netflix");
@@ -75,11 +74,10 @@ public class NetflixFacade implements IExternalPartner{
 		}
 		
 		NetflixSuccess netsuccess = new NetflixSuccess(driver);
-		try {
-			netsuccess.bodyLoaded();
-		} catch (InterruptedException e) {
-			log.error("Interrupted exception while loading success page " + e);
+		if (!netsuccess.bodyLoaded()) {
+			 log.error("Netflix success Page body did not load in time");
 		}
+		
 
 		// TODO: this will be opco dependant - uk solution in place
 		if (netsuccess.getNetflixSuccess().contentEquals("Your Netflix membership, which begins with a free trial, has begun.")) {

@@ -44,13 +44,10 @@ public class SpotifyFacade implements IExternalPartner {
   
 		// get success page and check (for piece of mind that we are on the correct page)
 		SpotifySuccess spotsuccess = new SpotifySuccess(driver);
-		try {
-			spotsuccess.bodyLoaded();
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			log.error("Interrupted exception while loading success page" + e);
-
-		} // give the page a chance to load
+		if (!spotsuccess.bodyLoaded()) {
+			 log.error("Spotify success Page body did not load in time");
+		}
+		
 		
 		// TODO: this text may change dependent upon country - so its not a good check
 		// This needs correction
@@ -82,11 +79,10 @@ public class SpotifyFacade implements IExternalPartner {
 		// TODO: move this test - its a common pattern of behaviour
 		// get success page and check (for piece of mind that we are on the correct page)
 		SpotifySuccess spotsuccess = new SpotifySuccess(driver);
-		try {
-			spotsuccess.bodyLoaded();
-		} catch (InterruptedException e) {
-			log.error("Interrupted exception while loading success page" + e);
-		} // give the page a chance to load
+		if (!spotsuccess.bodyLoaded()) {
+			 log.error("Spotify Success Page body did not load in time");
+		}
+		
 				
 		if (spotsuccess.getHello().contentEquals("hello world")) {
 			spotsuccess.hitOk();

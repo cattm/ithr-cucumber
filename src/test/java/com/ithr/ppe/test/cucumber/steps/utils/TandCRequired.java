@@ -73,14 +73,15 @@ public class TandCRequired {
 	public boolean hasTnc(String opco, String partner) {
 		
 		String [] vals = tncMap.get(opco.toUpperCase());
-		boolean notnc = true;
+		boolean tnc = true;
 		for (int i = 0; i < vals.length; i++) {
 			log.info("Read back " + vals[i]);
 			if (partner.contentEquals(vals[i])) {
-				notnc = false;
+				log.info("Setting TNC required to false");
+				tnc = false;
 			}
 		}
-		return notnc;
+		return tnc;
 		
 	}
 	public void loadPropertyFile (String file) throws IOException {

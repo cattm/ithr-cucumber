@@ -20,12 +20,11 @@ public class VFDropboxFacade implements IVFPartner {
 
 	
 	public boolean PurchaseOffer(WebDriver driver) {
-				DropBoxSuccess dbs = new DropBoxSuccess(driver);
-		try {
-			dbs.bodyLoaded();
-		} catch (InterruptedException e) {
-			log.error("Interrupted exception while loading success page" + e);
+		DropBoxSuccess dbs = new DropBoxSuccess(driver);
+		if (!dbs.bodyLoaded()) {
+			log.error("Dropbox Success Page body did not load in time");
 		}
+				
 		
 		String nt = dbs.getNotificicationText();	
 		log.info("Details: " + StringUtils.replace(dbs.getDetailsText(), "\n", " ") );
@@ -38,11 +37,10 @@ public class VFDropboxFacade implements IVFPartner {
 	
 	public boolean MoveToDownload(WebDriver driver) {
 		DropBoxDownload dbl = new DropBoxDownload(driver);
-		try {
-			dbl.bodyLoaded();
-		} catch (InterruptedException e) {
-			log.error("Interrupted exception while loading success page" + e);
+		if (!dbl.bodyLoaded()) {
+			 log.error("Dropbox download Page body did not load in time");
 		}
+		
 		String dltext = dbl.getDownlaodText();
 		log.info("Download text is: " + dltext);
 		return true;

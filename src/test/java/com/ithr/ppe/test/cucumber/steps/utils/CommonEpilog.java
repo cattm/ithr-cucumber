@@ -26,11 +26,10 @@ public class CommonEpilog implements IEpilog
 	private boolean refreshPPEDropBox(WebDriver driver, String url) {		
 		driver.get(url + "?partner=dropbox");		
 		DropBoxRefresh refreshpage = new DropBoxRefresh(driver);
-		try {
-			refreshpage.bodyLoaded();
-		} catch (InterruptedException e) {
-			log.error("Timed out on loading the DropBoxRefresh page " + e);
-		}		
+		if (!refreshpage.bodyLoaded()) {
+			 log.error("Refresh Page body did not load in time");
+		}
+				
 			
 		//TODO: there is more to check on this page!
 		// heading; title; text; button;
@@ -53,11 +52,10 @@ public class CommonEpilog implements IEpilog
 		}
 		driver.get(url);
 		UserEntertainment entpage = new UserEntertainment(driver);
-		try {
-			entpage.bodyLoaded();
-		} catch (InterruptedException e) {
-			log.error("Timed out on loading the UserEntertainment page " + e);
-		}					
+		if (!entpage.bodyLoaded()) {
+			 log.error("Entertainement Page body did not load in time");
+		}
+							
 		// TODO: doesnt check position. Loops around to wait for image - its a bit slow sometimes ?
 		String textfound = "";
 		try {
