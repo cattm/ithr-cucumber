@@ -75,9 +75,9 @@ public class CommonEpilog implements IEpilog
 	
 		String reftext = parser.getHeading();
 		log.info("The Parser would have returned: " + reftext);
-		//ok = textfound.equals(reftext);
+		ok = textfound.equals(reftext);
 	
-		
+		/*
 		switch (customer.getPartner()) {
 		case DEEZER : ok = checker.checkDeezerSubscribedText(textfound);
 					break;
@@ -91,7 +91,7 @@ public class CommonEpilog implements IEpilog
 					break;
 		default : break;	
 		}
-		
+		*/
 	    return ok;	   
 		
 	}
