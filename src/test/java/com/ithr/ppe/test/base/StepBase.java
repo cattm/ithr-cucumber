@@ -62,6 +62,7 @@ public class StepBase {
 	protected String 	refDir;
 	protected String 	pinCode;
 	protected Boolean 	embedAllImages;
+	protected Boolean	doDebugImages;
 	
 	
 	public static Logger log = Logger.getLogger(StepBase.class);
@@ -83,14 +84,16 @@ public class StepBase {
 	}
 
 	protected void GetDebugScreenShot(String reference)  {
-		DateStamp mydate = new DateStamp();	
-		File scrFile = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-		String location = "reports/screenshots/" + mydate.getFileDayFormat() + "/" + mydate.getFileTimeFormat() + "_"+ reference + ".jpg";
-		log.info("Storing picture to : " + location);
-		try {
-			FileUtils.copyFile(scrFile, new File(location));
-		} catch (IOException e) {
-			log.error("Cannot create File " + location);
+		if (doDebugImages) {
+			DateStamp mydate = new DateStamp();	
+			File scrFile = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+			String location = "reports/screenshots/" + mydate.getFileDayFormat() + "/" + mydate.getFileTimeFormat() + "_"+ reference + ".jpg";
+			log.info("Storing picture to : " + location);
+			try {
+				FileUtils.copyFile(scrFile, new File(location));
+			} catch (IOException e) {
+				log.error("Cannot create File " + location);
+			}
 		}
 	}
 	
@@ -211,8 +214,12 @@ public class StepBase {
     	needTandC.loadPropertyFile("src/main/resources/tandc.properties");
  
     	
+    	// set up the image reporting/saving
     	String dopictures = System.getProperty("test.allimages", TestProperties.DO_SCREENSHOTS);
     	embedAllImages = dopictures.matches("true");
+    	
+    	String dodebug = System.getProperty("test.debugimages", "false");
+    	doDebugImages = dodebug.matches("true");
    
     	findSWVersion();
     	
