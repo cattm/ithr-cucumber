@@ -211,9 +211,9 @@ public class SecondaryPurchaseSteps extends StepBase {
 			CheckedScenarioScreenshot();
 			
 			// TODO: do I need to do a check again?
-			//if (needTandC.hasTnc(customer.getOpco().toUpperCase(), customer.getPartner().toString())) 
 			log.info("Setting TNC");
-			offer.setTnC();	
+			if (needTandC.hasTnc(customer.getOpco().toUpperCase(), customer.getPartner().toString())) 
+			    offer.setTnC();	
 			cpp.verifyOfferText(offer, customer);
 			if (cpp.acceptTheOffer(driver, customer)) {
 			} else ErrorCollector.fail("Could not Accept the offer");	
