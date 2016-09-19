@@ -162,6 +162,7 @@ public class CommonPartnerPurchase implements IPartnerPurchase {
 			} catch (Exception e) {
 				log.error("Register for HBO failed " + e);
 			}
+			break;
 		case SPOTIFY :	
 			try {
 				IExternalPartner spot = new SpotifyFacade();

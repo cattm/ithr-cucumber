@@ -59,6 +59,7 @@ public class CommonProlog implements IProlog {
 			break;
 			
 		case NETFLIX :
+		case HBO:
 			DateStamp myds = new DateStamp();
 			String rn = myds.getRanDateFormat();
 			partnerUserName = "ithrtest" + rn + "@ithr.com";
