@@ -45,3 +45,13 @@ Feature: ES Primary Purchase Offers
       #      | PK_TVTariff         | tvtotal       | Spotify hardbundle 3 months trial             |
       #      | PK_TVTarriff         | hboreseller   | Spotify hardbundle 3 months trial             |
       | Not Valid              | No usergroup          | Spotify standalone trial          |
+
+  Scenario Outline: Purchase ES Offer from HBO
+    Given I am a "ES" customer purchasing the "HBO" offer
+    When my profile has a <package> tariff with a <usergroup> usergroup
+    Then my offer details will come from <contained in>
+    And I will accept and confirm the offer
+
+    Examples: 
+      | package      | usergroup     | contained in                        |
+      | PK_RedTariff | bundling_high | HBO hardbundle switchable agency 3m |
