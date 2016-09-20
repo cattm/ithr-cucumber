@@ -143,5 +143,11 @@ public class PageBase {
 	 	return present;
 	}
 	
-	
+	public void doWait(int millis) {
+		try {
+			Thread.sleep(millis);
+		} catch (InterruptedException e) {
+			log.info("SLEEP got interrupted " + e);
+		}
+	}
 }
