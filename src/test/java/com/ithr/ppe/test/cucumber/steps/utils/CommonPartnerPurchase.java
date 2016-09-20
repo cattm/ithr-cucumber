@@ -50,6 +50,9 @@ public class CommonPartnerPurchase implements IPartnerPurchase {
 		case BILDPLUS   : 
 			imagestring = "bildplus";
 			break;
+		case CHILITV    : 
+			imagestring = "chilitv";
+			break;
 		case DEEZER		: 
 			imagestring = "deezer";
 			break;
@@ -148,6 +151,14 @@ public class CommonPartnerPurchase implements IPartnerPurchase {
 		boolean registered = true;
 		boolean checkreturnpage = true;
 		switch (myPartner) {
+		case CHILITV :
+			try {
+				IExternalPartner chili = new ChiliFacade();
+				registered = chili.register(driver, opco, partnerusername);
+			} catch (Exception e) {
+				log.error("Register for ChiliTV failed " + e);
+			}
+			break;
 		case BILDPLUS :
 			checkreturnpage = false;
 			break;
@@ -198,14 +209,25 @@ public class CommonPartnerPurchase implements IPartnerPurchase {
 				
 	}
 		
+	private boolean titleValid(Customer customer) {
+		
+		if (customer.getOpco().equalsIgnoreCase("NL") && customer.getPartner().toString().equalsIgnoreCase("Netflix")) {
+			return false;
+		}
+		if (customer.getOpco().equalsIgnoreCase("IT") && customer.getPartner().toString().equalsIgnoreCase("ChiliTV")) {
+			return false;
+		}
+		return true;
+		
+	}
 	public boolean verifyOfferText(BasicPartnerOffer offer, Customer customer){
 		/*
 		For some offers for some countries this field is not set
 		example - NL Netflix
 		I will comment out until I find a nice way of making it optional
 		*/
-		if (!(customer.getOpco().equalsIgnoreCase("NL") && customer.getPartner().toString().equalsIgnoreCase("Netflix"))) {
-			log.info("TEST: Verify the Offer");
+		log.info("TEST: Verify the Offer");
+		if (titleValid(customer)) {
 			String textstripped = parser.stripHTML(parser.getOffersTitle());	
 			ErrorCollector.verifyEquals(offer.getUserOffer(),textstripped, "The offer title is incorrect");
 		}

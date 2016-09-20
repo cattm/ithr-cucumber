@@ -16,7 +16,7 @@ public class VFCustomerBuilder implements ICustomerBuilder {
 	private static final String USERGROUP =  "4gsmall";
 	private static final String OPCO = "gb";
 	private static final String MSISDN = "7801510596";
-	private static final Partners PARTNER = Partners.SKY;
+	private static final Partners PARTNER = Partners.NOPARTNER;
 	private static final String EMAIL = "testday@ithr.com";
 	private static final String USERNAME = "testday2018";
 	

@@ -58,6 +58,7 @@ public class CommonProlog implements IProlog {
 			}
 			break;
 			
+		case CHILITV :
 		case NETFLIX :
 		case HBO:
 			DateStamp myds = new DateStamp();
