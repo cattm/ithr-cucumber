@@ -16,9 +16,10 @@ import cucumber.api.junit.Cucumber;
 
 @RunWith(Cucumber.class)
 @CucumberOptions(	features = {"/Users/marcus/Documents/ithr/features"},
-					tags = {"@purchase, @checkit", "~@ignore"},
+					tags = {"@purchase, @secpurchase, @checkit", "~@ignore"},
 					glue = {"com.ithr.ppe.test.cucumber.steps"},
                     plugin = {"com.ithr.ppe.test.cucumber.ExtentCucumberFormatter", 
+							"html:reports/cucumber-html-report",
 							"junit:reports/cucumber-results.xml",
 							"json:reports/cucumber.json", 
 		  					"pretty"})
@@ -39,7 +40,7 @@ public class MCExtentRunner {
     private static String findSWVersion () {
 		// Temp Test colution
     	String sw = CommandExecutor.execCurlSoftwareVersion("https://dit.offers.vodafone.com/");
-    	//sw = StringUtils.replace(sw, "\n", " ");
+    	sw = StringUtils.replace(sw, "\n", " ");
     	sw = StringUtils.replace(sw, "\t", " ");
     	sw = StringUtils.replace(sw, "Manifest", "");
     	String softwareVersion = StringUtils.replace(sw, "date/time", "");

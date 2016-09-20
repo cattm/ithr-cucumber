@@ -49,13 +49,13 @@ public class SecondaryPurchaseSteps extends StepBase {
 	}
 	
 
-	@Before("@checkit")
+	@Before("@secpurchase")
 	public void setUp(Scenario scenario) throws Exception {
 		super.setUp(scenario);
 		log.info("Steps SetUp");
 	}
 	
-	@After("@checkit")
+	@After("@secpurchase")
 	public void tearDown() {
 		log.info("Steps TearDown");
 		super.tearDown();
