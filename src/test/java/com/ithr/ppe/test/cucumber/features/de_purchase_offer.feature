@@ -46,3 +46,14 @@ Feature: DE Primary Purchase Offers
     Examples: 
       | package      | usergroup  | contained in                     |
       | PK_RedTariff | ug_ppe_red | Deezer hardbundle 3 months trial |
+
+  Scenario Outline: Purchase DE Offer from BILD+
+    Given I am a "DE" customer purchasing the "BILDPLUS" offer
+    When my profile has a <package> tariff with a <usergroup> usergroup
+    Then my offer details will come from <contained in>
+    And I will accept and confirm the offer
+
+    Examples: 
+      | package                | usergroup  | contained in                       |
+      | PK_RedTariff           | ug_ppe_red | Bildplus hardbundle 3 months trial |
+      | No parent subscription | ug_ppe_sa  | Bildplus standalone 3 months       |
