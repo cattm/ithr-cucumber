@@ -41,6 +41,7 @@ public class CommonEpilog implements IEpilog
 	
 	private boolean refreshPPEPartner(WebDriver driver, String url, Customer customer) {
 		switch (customer.getPartner()) {
+			case BILDPLUS :
 			case DEEZER : 
 			try {
 				Thread.sleep(CommonConstants.SLOW * 4);

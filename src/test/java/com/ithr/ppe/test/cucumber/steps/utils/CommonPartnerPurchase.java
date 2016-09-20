@@ -47,6 +47,9 @@ public class CommonPartnerPurchase implements IPartnerPurchase {
 		boolean found = false;
 		String imagestring = "";
 		switch (myPartner) {
+		case BILDPLUS   : 
+			imagestring = "bildplus";
+			break;
 		case DEEZER		: 
 			imagestring = "deezer";
 			break;
@@ -145,6 +148,9 @@ public class CommonPartnerPurchase implements IPartnerPurchase {
 		boolean registered = true;
 		boolean checkreturnpage = true;
 		switch (myPartner) {
+		case BILDPLUS :
+			checkreturnpage = false;
+			break;
 		case DEEZER :
 			checkreturnpage = false;
 			break;
