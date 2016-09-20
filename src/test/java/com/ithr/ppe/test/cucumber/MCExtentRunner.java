@@ -15,8 +15,11 @@ import cucumber.api.junit.Cucumber;
 
 
 @RunWith(Cucumber.class)
-@CucumberOptions(	features = {"/Users/marcus/Documents/ithr/features"},
-					tags = {"@purchase, @secpurchase, @checkit", "~@ignore"},
+@CucumberOptions(	
+					//features = {"/Users/marcus/Documents/ithr/features"},
+					features = {"src/test/java/com/ithr/ppe/test/cucumber/features"},
+					//tags = {"@purchase, @secpurchase, @checkit", "~@ignore"},
+					tags = {"@checkit", "~@ignore"},
 					glue = {"com.ithr.ppe.test.cucumber.steps"},
                     plugin = {"com.ithr.ppe.test.cucumber.ExtentCucumberFormatter", 
 							"html:reports/cucumber-html-report",

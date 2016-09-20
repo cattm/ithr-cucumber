@@ -11,8 +11,8 @@ import cucumber.api.junit.Cucumber;
 				   "junit:reports/cucumber-results.xml",
 				  "pretty"},
 		features = {"src/test/java/com/ithr/ppe/test/cucumber/features"},
-//		tags = {"@purchase, @secpurchase, @checkit", "~@ignore"},
-		tags = {"@checkit", "~@ignore"},
+		tags = {"@purchase, @secpurchase", "~@ignore"},
+//		tags = {"@checkit", "~@ignore"},
 		glue = {"com.ithr.ppe.test.cucumber.steps"}
 		)
 public class CucumberRunner {
