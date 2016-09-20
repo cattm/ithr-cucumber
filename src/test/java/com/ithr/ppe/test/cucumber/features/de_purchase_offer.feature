@@ -19,7 +19,7 @@ Feature: DE Primary Purchase Offers
       #      | PK_RedTariff     | ug_ppe_tier1   | Dropbox standalone no usergroup  |
       | PK_RedPlusTariff | ug_ppe_redplus | Dropbox standalone no usergroup |
 
-  @ignore
+  @purchase
   Scenario Outline: Purchase DE Offers from SKY
     Given I am a "DE" customer purchasing the "SKY" offer
     When my profile has a <package> tariff with a <usergroup> usergroup
@@ -28,7 +28,8 @@ Feature: DE Primary Purchase Offers
 
     Examples: 
       # TODO - need to check this out as of 16/8/2016 on DIT I cant get an offer displayed for any combination
-      | package | usergroup | contained in |
+      | package                | usergroup | contained in     |
+      | No parent subscription | ug_ppe_sa | SkyTV standalone |
   #      | PK_RedTariff | ug_ppe_red   | SkyTV hardbundle 3 months trial |
   #      | PK_RedTariff | ug_ppe_young | SkyTV hardbundle 3 months trial |
   #       | PK_RedTariff | ug_ppe_tier1 | Not Valid |
