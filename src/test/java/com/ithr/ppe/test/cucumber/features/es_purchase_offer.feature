@@ -46,6 +46,7 @@ Feature: ES Primary Purchase Offers
       #      | PK_TVTarriff         | hboreseller   | Spotify hardbundle 3 months trial             |
       | Not Valid              | No usergroup          | Spotify standalone trial          |
 
+  @ignore
   Scenario Outline: Purchase ES Offer from HBO
     Given I am a "ES" customer purchasing the "HBO" offer
     When my profile has a <package> tariff with a <usergroup> usergroup
