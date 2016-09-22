@@ -79,7 +79,7 @@ public class SecondaryPurchaseSteps extends StepBase {
 		String roughpath = refDir + customer.getOpco() + "/";
 		pl.createParser(roughpath, file);
 		
-		String username = pl.getPartnerUserName(driver, baseAdminUrl, customer);
+		String username = pl.getPartnerUserName(driver, basePartnerHelper, customer);
 		if (!username.contains("ERROR")) {
 			customer.setUserName(username);
 		} else {
@@ -161,7 +161,15 @@ public class SecondaryPurchaseSteps extends StepBase {
 	}
 
 	
-	
+	@And("^I have changed group to \"([^\"]*)\"$")
+	public void changeGroup(String addgroup) throws Throwable {
+		log.info("changeGroup " + addgroup);
+		//need to have saved old check url;
+		String oldgroup = customer.getUserGroup();
+		String checkurl = AdminFacade.getCheckUrl();
+		Boolean added = AdminFacade.addUserGroup(driver, checkurl, oldgroup, addgroup);
+		if (!added) ErrorCollector.fail("Could not change usergroup " + addgroup);
+	}
 
 	@And("^I have added secondary group \"([^\"]*)\"$")
 	public void addAnotherGroup(String addgroup) throws Throwable {
@@ -178,7 +186,9 @@ public class SecondaryPurchaseSteps extends StepBase {
 	public void iCanSeeTheOffer(String partner) throws Throwable {
 		log.info("iCanSeeTheOffer from " + partner);	
 		customer.setPartner(Partners.valueOf(partner.toUpperCase()));
-		customer.setUserName(pl.getPartnerUserName(driver, baseAdminUrl, customer));
+		// not sure I need to call this a second time?
+		// of course if the offer is not the same partner as before then we might?
+		//customer.setUserName(pl.getPartnerUserName(driver, basePartnerHelper, customer));
 		String urltouse = baseUserUrl + customer.getOpco();
 		driver.get(urltouse);
 		// maybe check the offer is there? Or defer?
@@ -210,7 +220,7 @@ public class SecondaryPurchaseSteps extends StepBase {
 			}
 			CheckedScenarioScreenshot();
 			
-			// TODO: do I need to do a check again?
+			// TODO: do I need to do a check again or even set TnC 
 			log.info("Setting TNC");
 			if (needTandC.hasTnc(customer.getOpco().toUpperCase(), customer.getPartner().toString())) 
 			    offer.setTnC();	
