@@ -24,6 +24,15 @@ or
   "partner" : "dropbox",
   "dropboxUid" : "597844980"
 }
+
+or something like when modified
+{
+  "msisdn" : "499749777907",
+  "opco" : "de",
+  "usergroup" : "ug_ppe_redplus",
+  "individualCreated" : false,
+  "msisdnUpdated" : true
+}
  */
 	
 

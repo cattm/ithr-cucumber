@@ -53,6 +53,7 @@ public class PageBase {
 			element = wait.until(ExpectedConditions.visibilityOf(tofind));	
 		} catch (TimeoutException et) {
 			log.info("Element not visible after timeout " + et);
+			element = null;
 		}
 		
 		return element;
@@ -117,7 +118,7 @@ public class PageBase {
 			 	
 			 	// this will loop until the driver timeout is triggered or it becomes true
 			 	while (!present) {
-			 		present = isElementPresent (By.tagName("body"));
+			 		present = isElementPresent (By.tagName("body")); 
 			 		try {
 						Thread.sleep(CommonConstants.SLOW);
 					} catch (InterruptedException e) {
