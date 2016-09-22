@@ -12,39 +12,19 @@ import com.ithr.ppe.test.cucumber.pages.PageBase;
 public class ChiliRegister extends PageBase {
 	public static Logger log = Logger.getLogger(ChiliRegister.class);
 	
-	@FindBy(css=".wrapper-btn.margin-bottom60px")
+	/*
+	 * <div class="wrapper-btn margin-bottom60px">
+	 * <a class="action-dos margin-top30px ng-scope" translate="" ui-sref="register" href="/registration">Registrati</a>
+	 * </div>
+	 */
+	@FindBy(xpath="(//a[contains(text(),'Registrati')])[3]")
 	WebElement registerButton;
 	
-	@FindBy(id="registerKo")
-	WebElement carryOnButton;
-		
-	@FindBy(id="useremail")
-	WebElement email;
+	@FindBy(id="AcceptButton")
+	WebElement acceptCookieButton;
 	
-	@FindBy(id="emailConfirm")
-	WebElement emailConfirm;
-	
-	@FindBy(id="password")
-	WebElement password;
-			
-	@FindBy(id="acceptCondition")
-	WebElement acceptConditions;
-	
-	@FindBy(id="name")
-	WebElement firstName;
-	
-	@FindBy(id="surname")
-	WebElement surName;
-	
-	@FindBy(id="birthdateDay")
-	WebElement day;
-	
-	@FindBy(id="birthdateMonth")
-	WebElement month;
-	
-	@FindBy(id="birthdateYear")
-	WebElement year;
-
+	@FindBy(id="first-item")
+	WebElement someButton;
 			
 	public ChiliRegister(WebDriver driver) {
 		  super(driver);
@@ -55,55 +35,19 @@ public class ChiliRegister extends PageBase {
 		registerButton.click();
 	}
 	
-	public void clickCarryOn() {
-		carryOnButton.click();
-	}
-
-	public void setEmail(String mainemail) {
-		 email.clear();
-		 email.sendKeys(mainemail);
-	}
-	
-	public void setEmailConfirm(String email) {
-		emailConfirm.clear();
-		emailConfirm.sendKeys(email);
+	public void acceptCookies() {
+		WebElement toclick = waitClickable(acceptCookieButton);
+		if (toclick != null) {
+			log.info("accepting cookies");
+			toclick.click();
+		}
+		else log.info("No cookie accpet located ");
+		
 	}
 	
-	public void setPassword(String pw) {
-		password.clear();
-		password.sendKeys(pw);
+	public void clickSomeButton() {
+		someButton.click();
 	}
-	
-	public void clickTerms() {
-		acceptConditions.click();
-	}
-	
-	public void setFirstName(String name) {
-		firstName.clear();
-		firstName.sendKeys(name);
-	}
-
-	public void setLastName (String name) {
-		surName.clear();
-		surName.sendKeys(name);
-	}
-	
-	 public void setDob () {
-		 
-		 String val = "1970";
-		  Select dropdown = new Select(this.year);
-		  dropdown.selectByValue(val);
-		  
-		  val = "number:3";
-		  dropdown = new Select(this.month);
-		  dropdown.selectByValue(val);
-		  
-		  val = "number:21";
-		  dropdown = new Select(this.day);
-		  dropdown.selectByValue(val);
-	 }
-
-	
 	
 }
 
