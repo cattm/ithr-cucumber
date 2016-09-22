@@ -26,6 +26,7 @@ public class CommonPartnerPurchase implements IPartnerPurchase {
 	private static JsonParser parser = null;
 	private static opcoTextChecker checker = null;
 	private Partners myPartner = null;
+	private boolean firstpurchase = true;
 	
 /*
  * We analyse the offers
@@ -134,6 +135,17 @@ public class CommonPartnerPurchase implements IPartnerPurchase {
 		return done;		
 	}
 	
+	private boolean RegisterExternal (IExternalPartner external, WebDriver driver, String opco, String partnerusername) {
+		boolean registered = false;
+		try {
+			registered = external.register(driver, opco, partnerusername);
+		} catch (Exception e) {
+			log.error("External Partner Register failed " + e);
+			ErrorCollector.fail("External Partner register failed");
+		}
+		return registered;
+	}
+	
 	public boolean acceptTheOffer(WebDriver driver, Customer customer)  {
 		String opco = customer.getOpco();
 		String partnerusername = customer.getUserName();
@@ -152,11 +164,11 @@ public class CommonPartnerPurchase implements IPartnerPurchase {
 		boolean checkreturnpage = true;
 		switch (myPartner) {
 		case CHILITV :
-			try {
+			if (firstpurchase) {
+				log.info("Register for Chili");
 				IExternalPartner chili = new ChiliFacade();
-				registered = chili.register(driver, opco, partnerusername);
-			} catch (Exception e) {
-				log.error("Register for ChiliTV failed " + e);
+				registered = RegisterExternal(chili, driver, opco, partnerusername);
+				firstpurchase = false;
 			}
 			break;
 		case BILDPLUS :
@@ -172,28 +184,31 @@ public class CommonPartnerPurchase implements IPartnerPurchase {
 			checkreturnpage = false;
 			break;
 		case HBO : 
-			try {
+			if (firstpurchase) {
+				log.info("Register for HBO");
 				IExternalPartner hbo = new HBOFacade();
-				registered = hbo.register(driver, opco, partnerusername);
-			
-			} catch (Exception e) {
-				log.error("Register for HBO failed " + e);
+				registered = RegisterExternal(hbo, driver, opco, partnerusername);
+				firstpurchase = false;
 			}
 			break;
+			
 		case SPOTIFY :	
-			try {
+			if (firstpurchase) {
+				log.info("Register for Spotify");
 				IExternalPartner spot = new SpotifyFacade();
-				registered = spot.register(driver, opco, partnerusername);
-			} catch (Exception e) {
-				log.error("Register for Spotify failed " + e);
+				registered = RegisterExternal(spot, driver, opco, partnerusername);
+				firstpurchase = false;
 			}
 			break;
 			
 		case NETFLIX :
-			IExternalPartner pa = new NetflixFacade();
-			registered = pa.register(driver, opco, partnerusername);
-			// at this point we need to return because there is nothing else to check for netflix
-			checkreturnpage = false;
+			if (firstpurchase) {
+				log.info("Register for Netflix");
+				IExternalPartner pa = new NetflixFacade();
+				registered = RegisterExternal(pa, driver, opco, partnerusername);
+				firstpurchase = false;
+				checkreturnpage = false;
+			}
 			break;
 					
 		case SKY :
@@ -211,6 +226,9 @@ public class CommonPartnerPurchase implements IPartnerPurchase {
 		
 	private boolean titleValid(Customer customer) {
 		
+		if (customer.getOpco().equalsIgnoreCase("ES") && customer.getPartner().toString().equalsIgnoreCase("Spotify")) {
+			return false;
+		}
 		if (customer.getOpco().equalsIgnoreCase("NL") && customer.getPartner().toString().equalsIgnoreCase("Netflix")) {
 			return false;
 		}
@@ -220,6 +238,7 @@ public class CommonPartnerPurchase implements IPartnerPurchase {
 		return true;
 		
 	}
+	
 	public boolean verifyOfferText(BasicPartnerOffer offer, Customer customer){
 		/*
 		For some offers for some countries this field is not set

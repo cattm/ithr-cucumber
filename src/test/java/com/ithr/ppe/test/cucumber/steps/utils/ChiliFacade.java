@@ -4,6 +4,9 @@ import org.apache.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 
 import com.ithr.ppe.test.commons.CommonConstants;
+import com.ithr.ppe.test.cucumber.pages.partners.ChiliCompleteReg;
+import com.ithr.ppe.test.cucumber.pages.partners.ChiliDetails1;
+import com.ithr.ppe.test.cucumber.pages.partners.ChiliDetails2;
 import com.ithr.ppe.test.cucumber.pages.partners.ChiliRegister;
 import com.ithr.ppe.test.cucumber.steps.interfaces.IExternalPartner;
 
@@ -12,33 +15,54 @@ public class ChiliFacade implements IExternalPartner {
 	
 	public boolean register(WebDriver driver, String opco, String usernametouse) {
 		// this will be a popup web page to fill in
-		log.info("Going to continue");
+		log.info("Going to continue Register for Chili TV");
+		// this first page can take an age to load......
+		ChiliRegister reg = new ChiliRegister(driver);
+		// is there a probelm with cookie policy?
+		reg.bodyLoaded();
+		log.info("1");
+		reg.acceptCookies();
+		log.info("2");
 		try {
-			Thread.sleep(CommonConstants.SLOW);
+			Thread.sleep(5000);
 		} catch (InterruptedException e) {
-			log.error("sleep got interrupted " + e);
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
-	
-		ChiliRegister form = new ChiliRegister(driver);
-		form.bodyLoaded();
-		form.clickContinue();
+		reg.clickSomeButton();
+		reg.clickContinue();
+		log.info("3");
+
 		
 		log.info("Going to continue to put in username and password");
-		form.setEmail(usernametouse);
-		form.setEmailConfirm(usernametouse);
-		form.setPassword("password");
-		form.clickTerms();		
-		form.clickCarryOn();
-		log.info("Going to continue to names and date");
-		form.setFirstName("David");
-		form.setLastName("Jones");
-		form.setDob();	
-		form.clickCarryOn();
-		log.info("Going to continue back to Vf");
-		form.clickContinue();
+		ChiliDetails1 form1 = new ChiliDetails1(driver);
+		//form1.doWait(5000);
+		//form1.bodyLoaded();
+		form1.setEmail(usernametouse);
+		log.info("3");
+		form1.setEmailConfirm(usernametouse);
+		form1.setPassword("password");
+		form1.clickTerms();		
+		form1.clickCarryOn();
 		
+		log.info("Going to continue to names and date");
+		ChiliDetails2 form2 = new ChiliDetails2(driver);
+		//form2.doWait(5000);
+		//form2.bodyLoaded();
+		form2.setFirstName("David");
+		form2.setLastName("Jones");
+		form2.setDob();	
+		form2.clickCarryOn();
+		
+		log.info("Going to continue back to Vf");
+		ChiliCompleteReg creg = new ChiliCompleteReg(driver);
+		creg.doWait(5000);
+		creg.bodyLoaded();
+		creg.clickSomeButton();
+		creg.clickContinue();	
 		return true;
 	}
+	
 	public boolean login (WebDriver driver, String opco, String usernametouse) {
 		return false;
 	}

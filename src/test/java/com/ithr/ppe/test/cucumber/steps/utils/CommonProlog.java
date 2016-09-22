@@ -57,17 +57,16 @@ public class CommonProlog implements IProlog {
 				ErrorCollector.fail("Did not get Partner username to use" );
 			}
 			break;
-			
-		case CHILITV :
+		case SKY : // none required but we call it anyway
+		case DROPBOX :
+		case NOWTV :
+		case CHILITV : // We need one
 		case NETFLIX :
 		case HBO:
 			DateStamp myds = new DateStamp();
 			String rn = myds.getRanDateFormat();
 			partnerUserName = "ithrtest" + rn + "@ithr.com";
 			break;
-		case SKY : // none required
-		case DROPBOX :
-		case NOWTV :
 		default : 
 			break;
 		}

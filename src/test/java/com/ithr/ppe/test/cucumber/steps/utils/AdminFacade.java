@@ -126,9 +126,17 @@ public class AdminFacade {
 	public static boolean addUserGroup (WebDriver driver, String checkurl, String oldgroup, String newgroup) {
 	// checkurl will be of the form 
 	// https://dit.offers.vodafone.com/purchaseTariff?msisdn=499713301678&userGroup=ug_ppe_red&opco=de&packageId=PK_RedTariff&chargingMethod=non_recurring
-	// replacement is of the form "ug_ppe_specialgroup"
+	// replacement is of the form "ug_ppe_redplus"
+	// or maybe......https://dit.offers.vodafone.com/purchaseTariff?msisdn=399189938199&opco=it&userGroup=some_new_grpup
+	// look for "msisdnUpdated" : true
 		String newurl = checkurl.replace(oldgroup, newgroup);
-		driver.get(newurl);
+		//
+		// now strip end of url - &packageId=PK_RedTariff&chargingMethod=non_recurring onwards
+		int index = newurl.indexOf("&packageId");
+		String revised = newurl.substring(0, index);
+		log.info("Revised url is " + revised);
+			
+		driver.get(revised);
 		AdminVerify verify = new AdminVerify(driver);
 		if (verify.isInGroup(newgroup)) {
 			return true;
