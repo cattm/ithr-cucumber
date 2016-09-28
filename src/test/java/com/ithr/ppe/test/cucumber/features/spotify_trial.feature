@@ -1,6 +1,6 @@
 @trial
 Feature: Spotify Trial demonstration
-  This feature will test two spotify scenarios where the suer terminates an already purchased trial offer
+  This feature will test two spotify scenarios where the user terminates an already purchased trial offer
   and then looks to repeat the operation with either the same or changed MSISDN
   the trail should still be available if the MSISDN is changed
 
