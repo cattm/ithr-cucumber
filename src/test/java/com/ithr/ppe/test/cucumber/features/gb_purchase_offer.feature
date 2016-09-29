@@ -39,7 +39,8 @@ Feature: GB Primary Purchase Offers
     And I will accept and confirm the offer
 
     # TODO: there are several definition files not used in the scenario
-    # Check out exact circumstances and add/append them
+    # Check out exact circumstances and add/append/amend them
+    # These should not be considered correct
     Examples: 
       | package          | usergroup        | contained in   |
       | PK_4GTariff      | 4gsmall          | Sky hardbundle |
