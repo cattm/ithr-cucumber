@@ -72,6 +72,13 @@ public class opcoTextChecker {
 		return onpage.equals(tocompare);
 	}
 	
+	public boolean checkConfirmCancelText(String onpage) {
+		//example - partneroffers.88c34b82.success.notificationMsg.subscription=This offer has been scheduled for cancellation at the end of your current billing cycle.
+		String tocompare = GetProperty(offset + "success.notificationMsg.subscription");
+		log.info("Reference Text is:        " + tocompare);
+		return onpage.equals(tocompare);
+	}
+	
 	public boolean checkProcessMsg(String onpage) {
 		String tocompare = GetProperty(offset + "completing.processMsg");
 		log.info("Reference Text is:        " + tocompare);

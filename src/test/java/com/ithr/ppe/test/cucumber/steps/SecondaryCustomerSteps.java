@@ -243,45 +243,38 @@ public class SecondaryCustomerSteps extends StepBase {
 	}
 	
 	
-	@Given("^I can see the \"([^\"]*)\" subscription$")
-	public void subscriptionIsThere(String partner) throws Throwable {
+	@Given("^I can see the \"([^\"]*)\" subscription defined by ([^\"]*)$")
+	public void subscriptionIsThere(String partner, String refilename) throws Throwable {
 	   log.info("Subscription is there "  + partner);  
 	   ca.initialiseChecks();
-	   // are we on the correct page? we should have done a refresh check on pruchase
+	   // are we on the correct page? we should have done a refresh check on purchase
 	   // and it should have succeeded..... but just in case?
 	   String urltouse = baseUserUrl + customer.getOpco();	
 	   driver.get(urltouse);
 	   UserEntertainment entpage = new UserEntertainment(driver);
-	   if (ca.selectPartnerOffer(Partners.valueOf(partner.toUpperCase()), entpage)) {
+	   String tocancel = customer.getOpco() + "-" + refilename.replace(" ", "-");
+	   if (ca.selectPartnerToCancel(tocancel.toLowerCase(), entpage)) {
 		  log.info("found and selected partner subscription");
+		  CheckedScenarioScreenshot();
 	   } else {
-		  log.error("cannot find or select partner subscription to cancel");	  
-	   }   
+		   ErrorCollector.fail("Could not find subscription to cancel");	  
+	   }  
+	  
 	}
 
-	@Then("^I will cancel the offer ([^\"]*)$")
-	public void cancelOffer(String reffilename) throws Throwable {
-	    log.info("going to cancel offer defined by " + reffilename);
+	@Then("^I will cancel the offer$")
+	public void cancelOffer() throws Throwable {
+	    log.info("going to cancel offer ");	    
 	    if (ca.cancelTheOffer(driver, customer)) { 
 	    	  log.info("cancelled the partner subscription");
 		} else {
-			  log.error("cannot cancel subscription");	  
+			  ErrorCollector.fail("Could not cancel the subscription");
 		}
-	}
-	
-	@And("I will check the offer has been cancelled$")
-	public void checkCancelled() {
-		log.info("check cancelled");
-		/*
-		 * refresh should see additional offer go away
-		and this offer remain under manage subs
-		This is like ep.refresh but ever so slightly different
-	 
-		<div class="details-content">
-		<p>You have been successfully unsubscribed from Sky Sports Mobile pack 1 from the end of your inclusive subscription</p>
-		</div>
-		
-		This is cancellation:success
-		 */
+	    String urltouse = baseUserUrl + customer.getOpco();	
+		driver.get(urltouse);
+	    if (!ca.verifySuccessText(driver)) {
+	    	 log.info("Purchase Success");
+			 CheckedScenarioScreenshot();
+	    }
 	}
 }

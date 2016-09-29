@@ -16,8 +16,8 @@ import cucumber.api.junit.Cucumber;
 
 @RunWith(Cucumber.class)
 @CucumberOptions(	
-					//features = {"/Users/marcus/Documents/ithr/features"},
-					features = {"src/test/java/com/ithr/ppe/test/cucumber/features"},
+					features = {"/Users/marcus/Documents/ithr/features"},
+					//features = {"src/test/java/com/ithr/ppe/test/cucumber/features"},
 					//tags = {"@purchase, @secpurchase, @checkit", "~@ignore"},
 					tags = {"@checkit", "~@ignore"},
 					glue = {"com.ithr.ppe.test.cucumber.steps"},
@@ -25,7 +25,7 @@ import cucumber.api.junit.Cucumber;
 							"html:reports/cucumber-html-report",
 							"junit:reports/cucumber-results.xml",
 							"json:reports/cucumber.json", 
-		  					"pretty"})
+		  					"pretty:reports/cucumber-pretty.txt"})
 
 
 public class MCExtentRunner {

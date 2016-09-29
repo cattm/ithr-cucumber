@@ -14,6 +14,7 @@ import java.util.List;
 
 import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -44,6 +45,9 @@ public class UserEntertainment extends PageBase{
 	// TODO: - This is horrible
 	  @FindBy(xpath="//article[@id='content__wrapper']/div[2]/h2")
 	  private WebElement manage;
+	  
+	  @FindBy(css="div[class*='wrapper purchased__wrapper']")
+	  private WebElement managedOffers;
 	  
 	  public  UserEntertainment (WebDriver driver) {
 		  super(driver);
@@ -105,8 +109,31 @@ public class UserEntertainment extends PageBase{
 		  return result;
 	  }
 	  
-	  
+	  public boolean clickOfferToManage(String searchingfor) {
+		  String tofind = "div [class*='" + searchingfor + "']"; 
+		  log.info("offer to manage - finding " + tofind);
+		  WebElement offer;
+		  try {
+			  offer = managedOffers.findElement(By.cssSelector(tofind));
+		
+		  } catch (NoSuchElementException en) {
+			  log.info( "Cannot find an offer to manage for " + searchingfor + en);
+			  return false;
+		  }
+		  
+		  try {
+			  WebElement toclick = offer.findElement(By.cssSelector("img[class='logo']"));
+			  toclick.click();
+			  log.info("click");
+		  }	catch (NoSuchElementException en) {
+			  log.info( "Cannot find correct item to click" + en);
+			  return false;
+		  }  
+
+		  return true;
+	  }
 	  public boolean clickWithinSinglePartnerList(String partnerstring, String offerstring) {
+		  // NOT TESTED
 		  // assumes more than one offer from same partner
 		  // we build an offer string to search for
 		  // then we find the image?
@@ -117,6 +144,8 @@ public class UserEntertainment extends PageBase{
 		  we.findElement(By.cssSelector("div.panel-inner-full.fl img.logo")).click();
 		  return true;
 	  }
+	  
+	  
 	  public String getMSISDN () {
 		  return msisdn.getText();
 		  

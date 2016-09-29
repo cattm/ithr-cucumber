@@ -43,7 +43,8 @@ public class JsonParser {
 	private String findActualFile (String path, String fileref) {
 		// assumes full path to file and first part of filename
 		// assumes the file will be of the form "path/Blah blah v2.0.json" and we are given "path/Blah blah"
-		String compare = fileref + " v";
+		//String compare = fileref + " v";
+		String compare = fileref;
 		String check = CommandExecutor.execFindExactJsonFile(path, compare);
 		return check;
 	}
