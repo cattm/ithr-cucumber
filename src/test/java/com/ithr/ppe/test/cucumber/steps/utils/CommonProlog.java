@@ -22,7 +22,9 @@ public class CommonProlog implements IProlog {
 
 	public void createParser (String path, String filename) {
 		log.info("going to search for :" + path + " and file " + filename + " for parser setup");
-		String fileToCheck = CommandExecutor.execFindExactJsonFile(path, filename + " v");
+		//String fileToCheck = CommandExecutor.execFindExactJsonFile(path, filename + " v");
+		//29/09/2016 change:
+		String fileToCheck = CommandExecutor.execFindExactJsonFile(path, filename + ".json");
 		log.info("going to use json file: " + fileToCheck);
 		if (fileToCheck.contains("NOT FOUND")) {
 			log.error("Issue creating Parser " + fileToCheck);
