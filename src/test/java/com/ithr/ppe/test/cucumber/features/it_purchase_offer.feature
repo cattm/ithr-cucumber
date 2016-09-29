@@ -23,6 +23,19 @@ Feature: IT Primary Purchase Offers
     When my profile has a <package> tariff with a <usergroup> usergroup
     Then my offer details will come from <contained in>
     And I will accept and confirm the offer
+    
+# not exercised currently
+#Spotify standalone all 
+#Spotify standalone gold non-available  
+#Spotify standalone gold 
+#Spotify standalone non-available trial 
+#Spotify standalone silver non-available 
+#Spotify standalone summer trial 
+#Spotify standalone summer  
+#Spotify standalone switchable all 
+#Spotify standalone switchable gold trial 
+#Spotify standalone switchable summer trial 
+#Spotify standalone switchable summer 
 
     Examples: 
       | package   | usergroup    | contained in                            |
@@ -30,6 +43,4 @@ Feature: IT Primary Purchase Offers
       | Not Valid | Not Valid    | Spotify standalone all trial            |
       | Not Valid | gold         | Spotify standalone gold trial           |
       | Not Valid | silver       | Spotify standalone switchable all trial |
-      #     | Not Valid | bronze       | Spotify standalone all trial               |
-      #     | Not Valid | summer       | Spotify standalone switchable summer trial |
-      #		| Not Valid | No usergroup | Spotify standalone all                  |
+

@@ -57,7 +57,7 @@ Feature: GB Primary Purchase Offers
       | PK_4GTariffSIMO  | 4gsimomedium     | Sky hardbundle |
       | PK_4GTariffSIMO  | 4gsimoextralarge | Sky hardbundle |
 
-  Scenario Outline: Purchase GB Offers from spotify
+  Scenario Outline: Purchase GB Offers from SPOTIFY
     Given I am a "GB" customer purchasing the "SPOTIFY" offer
     When my profile has a <package> tariff with a <usergroup> usergroup
     Then my offer details will come from <contained in>
