@@ -1,0 +1,52 @@
+{
+	"comment": "Initial import by DEV",
+
+	"opco": "es",
+	"name": "HBO hardbundle Standard price",
+	"version": 1,
+	"partner": "hbo",
+	"type": "hardbundle",
+	"switchable": false,
+	"trial": false,
+
+	"enabled": {
+		"purchase": false,
+		"cancellation": true
+	},
+
+	"heading": "HBO España",
+
+	"pages": {
+		"cancellation": {
+			"details": {
+				"text": "<p>Con HBO España, The Home of Series, ya tienes acceso a más de 4.000 episodios de las mejores series, cientos de películas seleccionadas cuidadosamente y contenido para los más pequeños de la casa. Ponte cómodo y empieza a disfrutar del mejor entretenimiento del mundo.</p>",
+				"getAppButton": {
+					"label": "Descargar app",
+					"action": "#getApp"
+				},
+				"okButton": {
+					"label": "Darse de baja",
+					"action": "#next"
+				}
+			},
+
+			"details2": {
+				"title" : "<p>¿Estas seguro que quieres darte de baja?</p>",
+				"text": "<p>Recuerda, la baja en el servicio será efectiva al final de tu mes de suscripción.</p>",
+				"okButton": {
+					"label": "Darse de baja",
+					"action": "#next"
+				},
+				"duration": "30 días de regalo"
+			},
+
+			"success": {
+				"text": "<p>Te confirmamos que la baja de tu suscripción al servicio de HBO España se ha realizado correctamente.</p>",
+				"getAppButton": {
+					"label": "Descargar app",
+					"action": "#getApp"
+				}
+			}
+		}
+	}
+}

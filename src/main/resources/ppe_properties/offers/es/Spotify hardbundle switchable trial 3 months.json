@@ -1,0 +1,55 @@
+{
+	"comment": "Initial import by DEV",
+
+	"opco": "es",
+	"name": "Spotify hardbundle switchable trial 3 months",
+	"version": 1,
+	"partner": "spotify",
+	"type": "hardbundle",
+	"switchable": true,
+	"trial": true,
+
+	"enabled": {
+		"purchase": true,
+		"cancellation": false
+	},
+
+	"usergroups": [
+		"bundling_low",
+		"onetivo_high"
+	],
+
+	"heading": "Spotify Premium",
+
+	"pages": {
+		"purchase": {
+			"details": {
+				"text": "<p>Te informamos que con el cambio de tu tarifa Vodafone, puedes disfrutar de un periodo de prueba gratuito de 3 meses en el servicio Spotify Premium</p>",
+				"checkbox": {
+					"label": "<p>Haz clic en “Aceptar” para solicitar la activación de la promoción de 3 meses en el servicio Spotify Premium. Los primeros 3 meses son un periodo de prueba gratuito. Después de ese periodo, pagarás 8,99€/mes (impuestos incluidos). Antes de que esto suceda, recibirás un SMS gratuito avisándote. Recuerda que podrás ver los cargos de forma sencilla en tu factura Vodafone. </p>",
+					"errorMessage": "Por favor, debes aceptar y marcar la casilla inferior para continuar con el proceso de alta.",
+					"order": 1,
+					"mandatory": true
+				},
+				"accordion": {
+					"label": "Más info",
+					"text": "<p>Y además:</p><p>Para cualquier duda sobre el funcionamiento del servicio, accede a <a href=\"http://www.vodafone.es/ayuda/spotify\" target=\"_blank\">www.vodafone.es/ayuda/spotify</a></p> "
+				},
+				"okButton": {
+					"label": "Aceptar",
+					"action": "#next"
+				},
+				"duration": "3 meses de regalo"
+			},
+
+			"success": {
+				"title": "¡Proceso completado!",
+				"text": "<p>Tu promoción del servicio de Spotify Premium se ha activado correctamente.</p>",
+				"getAppButton": {
+					"label": "Descargar app",
+					"action": "#getApp"
+				}
+			}
+		}
+	}
+}

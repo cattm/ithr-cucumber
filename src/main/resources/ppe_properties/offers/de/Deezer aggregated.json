@@ -1,0 +1,21 @@
+{
+    "comment": "Initial import by DEV",
+    "opco": "de",
+    "name": "Deezer aggregated",
+    "version": 1,
+    "partner": "deezer",
+    "type": "aggregated",
+    "switchable": false,
+    "trial": false,
+    "enabled": {
+        "purchase": true,
+        "cancellation": false
+    },
+    "heading": "Deezer Family Musik-Flat",
+    "entitlement": {
+        "description": "Musik jederzeit und überall für die ganze Familie:",
+        "pricingDetails": "Musik-Streaming mit über 40 Millionen Songs und tausenden Hörbüchern und mehr. Nutze Deine Deezer Family Musik-Flat mit bis zu sechs Teilnehmern für nur 9,99 Euro pro Monat. Du kannst  jeden Monat kündigen. Keine Testphase.",
+        "banner": "/newui/assets/img/download-panel/deezer.jpg"
+    },
+    "uniqueName": "de/Deezer%20aggregated"
+}

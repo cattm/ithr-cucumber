@@ -1,0 +1,53 @@
+{
+	"comment": "Initial import by DEV",
+
+	"opco": "it",
+	"name": "Netflix hardbundle switchable 6months trial",
+	"version": 1,
+	"partner": "netflix",
+	"type": "hardbundle",
+	"switchable": true,
+	"trial": true,
+
+	"enabled": {
+		"purchase": false,
+		"cancellation": false
+	},
+
+	"usergroups": [
+		"netflixpostpaid"
+	],
+
+	"heading": "Netflix",
+
+	"pages": {
+		"purchase": {
+			"details": {
+				"title": "Con Vodafone hai 6 mesi di Netflix in HD incluso",
+				"text": "<h6>NETFLIX</h6> <ul>  <li>Serie TV, film, programmi originali e una sezione speciale dedicata ai bambini, tutto in HD</li>  <li>Disponibile su smartphone, tablet, PC, smart TV, game console e molto altro</li>  <li>Senza pubblicità</li>  <li>Disdici quando vuoi</li> </ul><p>Dopo i 6 mesi inclusi, l’offerta si rinnova  a 9,99€/mese.</p><p> Se sei già un cliente Netflix, sul tuo account saranno accreditati 59,94€.</p>",
+				"checkbox": {
+					"label": "Cliccando su attiva dichiari di accettare i <a href=\"#\" class=\"terms_link\">termini e le condizioni</a> del servizio",
+					"errorMessage": "Prima di poter attivare Netflix devi accettare i nostri termini e condizioni.",
+					"order": 1,
+					"mandatory": true
+				},
+				"accordion": {
+					"label": "Netflix",
+					"text": "<h6>Più informazioni su Netflix</h6><p>Con la tua offerta Vodafone  hai 6 mesi inclusi di Netflix per poter guardare contenuti in HD e da 2 device in contemporanea. Il valore totale dell’offerta è di 59,94€. </p><p>Prima della fine dei 6 mesi, riceverai un SMS gratuito che ti informerà della scadenza della promozione. Al termine dei 6 mesi, il servizio si rinnoverà a 9,99€/mese che saranno addebitati sul tuo conto telefonico. </p><p>Se sei già un cliente Netflix, sul tuo account saranno accreditati 59,94€. Esaurito questo credito, il tuo abbonamento tornerà a rinnovarsi normalmente.</p><p>Puoi comunque disattivare Netflix in qualsiasi momento. </p><h6>Costi di connessione Internet</h6><p>Puoi guardare i contenuti Netflix su tutti i dispositivi compatibili, anche in Wifi. Guardando i contenuti Netflix da rete mobile consumi GB di traffico Internet, che saranno tariffati secondo le condizioni della tua offerta.</p><h6>Device compatibili</h6><p>Netflix è compatibile con un'ampia gamma di smartphone e tablet, PC, TV connesse a Internet, game console. Per vedere tutti i device compatibili, visita il sito www.netflix.it</p><h6>Ulteriori informazioni</h6><p>Scopri di piú su Netflix nella pagina <a href=\"http://voda.it/infonetflix\">Domande frequenti.</a></p>"
+				},
+				"okButton": {
+					"label": "Attiva Netflix",
+					"action": "#next"
+				}
+			},
+
+			"success": {
+				"text": "<p>La tua sottoscrizione a Netflix e' ora attiva, inizia a guardare film e serie TV quando e dove vuoi.</p><p>Se non l'hai gia' fatto scarica l'APP premendo il bottone qui sotto</p>",
+				"getAppButton": {
+					"label": "Scarica l'APP di Netflix",
+					"action": "#getApp"
+				}
+			}
+		}
+	}
+}

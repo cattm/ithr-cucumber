@@ -1,0 +1,86 @@
+{
+	"comment": "Initial import by DEV",
+	"opco": "nl",
+	"name": "Dropbox standalone trial medium 25Gb 6m free then 1.99",
+	"version": 1,
+	"partner": "dropbox",
+	"type": "standalone",
+	"switchable": false,
+	"trial": true,
+	"enabled": {
+		"purchase": true,
+		"cancellation": true
+	},
+	"heading": "Dropbox",
+
+	"usergroups": [
+		"ug_storage_medium"
+	],
+
+	"deviceAvailability": [
+		"android",
+		"iPhone"
+	],
+	"pages": {
+		"purchase": {
+			"details": {
+				"title": "Goed nieuws!",
+				"text": "<p>We hebben een mooi aanbod voor je. Je ontvangt nu 6 maanden gratis 25GB extra opslagruimte in Dropbox.</p><ul><li>Volg tenminste 5 van de 7 Dropbox Get Started stappen om je extra opslagruimte te ontvangen.</li><li>Na 6 maanden betaal je €1,99 per maand voor de extra opslagruimte. Je kunt maandelijks opzeggen.</li></ul>",
+				"checkbox": {
+					"label": "Ik ga akkoord met de <a href=\"http://www.vodafone.com/content/apps/external-redirects/backupplus/promo_general/NL\" target=\"_blank\">actievoorwaarden</a>",
+					"errorMessage": "Je moet de actievoorwaarden van Vodafone accepteren voordat je van dit aanbod gebruik kunt maken.",
+					"confirmationMessage": "Ga voor deze deal en ontvang 6 maanden gratis 25GB extra opslagruimte in Dropbox. Daarna betaal je maar €1,99 per maand voor de extra ruimte. En afmelden kan maandelijks.",
+					"order": 1,
+					"mandatory": true
+				},
+				"accordion": {
+					"label": "Meer informatie",
+					"text": "<h6>25GB extra opslagruimte</h6><p>Koppel een nieuw of bestaand Dropbox account aan Backup+. Dan ontvang je 25GB extra opslagruimte bovenop je standaard Dropbox opslaglimiet.</p><h6>Zo werkt het</h6><p>Na het activeren van deze actie ontvang je direct 3GB extra opslagruimte. Volg tenminste 5 van de 7 Dropbox Get Started stappen om je extra opslagruimte volledig te ontgrendelen. Ga hiervoor naar www.dropbox.com/gs.</p><h6>Backup+ zonder extra opslag</h6><p>Je kunt Backup+ ook gebruiken zonder extra opslag. Dan heb je gewoon je standaard opslagruimte in Dropbox.<p><h6>Datakosten</h6><p>Gebruik je Backup+ via een mobiel netwerk? Dan betaal je onze gebruikelijke datakosten. Ook als je over je datalimiet gaat of online bent in het buitenland. Kijk in de Backup+ App onder Instellingen om alleen via Wifi te synchroniseren.<p><h6>Opzeggen</h6><p>De extra opslagruimte bij Backup+ ontvang je 6 maanden gratis. Twee weken voor het einde van de actie ontvang je een herinnering. Zonder tegenbericht betaal je na deze periode €1,99 per maand voor de 25GB extra Dropbox opslagruimte. Je kunt opzeggen via 'Mijn Account' in de Backup+ App.</p>"
+				},
+				"okButton": {
+					"label": "Activeren",
+					"action": "#next"
+				},
+				"customButton": {
+					"label": "Niet nu",
+					"action": "http://www.vodafone.com/content/apps/external-redirects/backupplus/open/NL"
+				}
+			},
+			"success": {
+				"title": "Goed geregeld!",
+				"text": "<p>Je hebt alvast 3GB extra opslagruimte in je Dropbox. Voltooi 5 van de 7 <a href=\"http://dropbox.com/gs\" target=\"_blank\">Dropbox Get Started</a> stappen om je 25GB bonus volledig te ontvangen.</p><p>Heb je de Dropbox Get Started stappen al voltooid? Dan ontvang je direct 25GB extra Dropbox opslag.</p>",
+				"customButton": {
+					"label": "Verder",
+					"action": "http://www.vodafone.com/content/apps/external-redirects/backupplus/open/NL"
+				},
+				"notificationMsg": "Activeren gelukt"
+			}
+		},
+		"cancellation": {
+			"details": {
+				"title": "Jouw Backup+ account",
+				"text": "<p>Goed geregeld! Je hebt 6 maanden gratis 25GB extra opslagruimte in Dropbox.</p><ul><li>Daarna betaal je slechts 25GB per maand</li><li>Je kunt opzeggen wanneer je wilt</li><li>Volg 5 <a href=\"http://dropbox.com/gs\" target=\"_blank\">Dropbox Get Started</a> stappen om je extra opslagruimte te ontvangen</li></ul><p><a href=\"http://www.vodafone.com/content/apps/external-redirects/backupplus/promo_general/NL\" target=\"_blank\">Actievoorwaarden</a></p>",
+				"accordion": {
+					"label": "Meer informatie",
+					"text": "<h6>25GB extra opslagruimte</h6><p>Koppel een nieuw of bestaand Dropbox account aan Backup+. Dan ontvang je 25GB extra opslagruimte bovenop je standaard Dropbox opslaglimiet.</p><h6>Zo werkt het</h6><p>Na het activeren van deze actie ontvang je direct 3GB extra opslagruimte. Volg tenminste 5 van de 7 Dropbox Get Started stappen om je extra opslagruimte volledig te ontgrendelen. Ga hiervoor naar www.dropbox.com/gs.</p><h6>Backup+ zonder extra opslag</h6><p>Je kunt Backup+ ook gebruiken zonder extra opslag. Dan heb je gewoon je standaard opslagruimte in Dropbox.<p><h6>Datakosten</h6><p>Gebruik je Backup+ via een mobiel netwerk? Dan betaal je onze gebruikelijke datakosten. Ook als je over je datalimiet gaat of online bent in het buitenland. Kijk in de Backup+ App onder Instellingen om alleen via Wifi te synchroniseren.<p><h6>Opzeggen</h6><p>De extra opslagruimte bij Backup+ ontvang je 6 maanden gratis. Twee weken voor het einde van de actie ontvang je een herinnering. Zonder tegenbericht betaal je na deze periode €1,99 per maand voor de 25GB extra Dropbox opslagruimte. Je kunt opzeggen via 'Mijn Account' in de Backup+ App.</p>"
+				},
+				"okButton": {
+					"label": "Opzeggen",
+					"action": "#next"
+				}
+			},
+			"details2": {
+				"title": "Extra opslagruimte opzeggen",
+				"text": "<p>Door je abonnement op te zeggen, verlies je de 25GB extra Dropbox opslagruimte.</p><p>Je kunt Backup+ blijven gebruiken om back-ups in Dropbox te maken, zolang je genoeg Dropbox opslagruimte hebt.</p><p>Weet je zeker dat je je extra Dropbox opslagruimte wilt opzeggen?</p>",
+				"okButton": {
+					"label": "Nu opzeggen",
+					"action": "#next"
+				}
+			},
+			"success": {
+				"text": "<p>Jouw extra Dropbox opslagruimte is opgezegd. Natuurlijk kun je Vodafone Backup+ gewoon blijven gebruiken in combinatie met je standaard Dropbox opslaglimiet.</p>",
+				"notificationMsg": "Het opzeggen van je extra Dropbox opslagruimte is gelukt."
+			}
+		}
+	}
+}

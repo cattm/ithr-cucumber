@@ -1,0 +1,92 @@
+{
+	"comment": "Initial import by DEV",
+
+	"opco": "nz",
+	"name": "Dropbox standalone 50Gb",
+	"version": 1,
+	"partner": "dropbox",
+	"type": "standalone",
+	"switchable": false,
+	"trial": false,
+
+	"enabled": {
+		"purchase": true,
+		"cancellation": true
+	},
+
+	"heading": "Dropbox",
+
+	"usergroups": [
+		"ug_storage_premium2"
+	],
+
+	"deviceAvailability": [
+		"android",
+		"iPhone"
+	],
+
+	"pages": {
+		"purchase": {
+			"details": {
+				"title": "Never lose the things that matter.",
+				"text": "<p>Your plan includes 50GB of Dropbox storage free!</p><ul class=\"offers_list\"><li>50GB storage</li><li>FREE for the life of your plan</li><li>Complete Dropbox Get Started steps to activate</li></ul>",
+				"checkbox": {
+					"label": "I accept the offer <a href=\"http://www.vodafone.co.nz/legal/terms-conditions/backup-plus/promo\" target=\"_blank\">terms</a>",
+					"errorMessage": "Please accept the terms to get this offer",
+					"confirmationMessage": "By selecting Activate Offer now you will activate the 50GB free Dropbox offer.",
+					"order": 1,
+					"mandatory": true
+				},
+				"accordion": {
+					"label": "Important things to know",
+					"text": "<h6>Get Started</h6><p>When you accept your offer you'll automatically receive 3GB of bonus Dropbox storage. To get your full 50GB you need to complete 5 steps in the Dropbox Get Started guide. For more info see www.dropbox.com/gs</p><h6>Additional space</h6><p>Your Backup+ storage is on top of any Dropbox storage you may already have. If you unsubscribe, change plans, or leave Vodafone your Dropbox storage amount may change but you can continue to access and retrieve the files you've already saved</p><h6>Internet charges</h6><p>Standard data allowances apply, as per your mobile or broadband plan, to use Backup+ and Dropbox.</p><h6>Stopping the offer</h6><p>You can unsubscribe from the offer any time via the Account page in the Backup+ app.</p>"
+				},
+				"okButton": {
+					"label": "Activate offer",
+					"action": "#next"
+				},
+				"customButton": {
+					"label": "Not now",
+					"action": "http://www.vodafone.com/content/apps/ext/backupplus/en_nz/open.html"
+				}
+			},
+
+			"success": {
+				"title": "Congratulations!",
+				"text": "<p>You now have 3GB of additional space in your Dropbox account, thanks to Backup+!</p><p>Don’t forget, to activate your full 50GB allowance you need to complete the Dropbox Get Started steps</p><p>Using your computer, go to www.dropbox.com/gs</p>",
+				"customButton": {
+					"label": "Continue",
+					"action": "http://www.vodafone.com/content/apps/ext/backupplus/en_nz/open.html"
+				},
+            	"notificationMsg": "Your Backup+ Offer has been activated"
+			}
+		},
+
+		"cancellation": {
+			"details": {
+				"title": "Your Offer",
+				"text": "<p>Your plan includes 50GB of Dropbox storage free!</p><ul><li>50GB</li><li>FREE for the life of your plan</li><li>Haven't got your full 50GB? Make sure you've completed the Dropbox Get Started guide at www.dropbox/GS</li></ul><p><u><a href=\"http://www.vodafone.co.nz/legal/terms-conditions/backup-plus/promo\" target=\"_blank\">Promo terms apply</a></u></p>",
+				"accordion": {
+					"label": "Important things to know",
+					"text": "<h6>Get Started</h6><p>When you accept your offer you'll automatically receive 3GB of bonus Dropbox storage. To get your full 50GB you need to complete 5 steps in the Dropbox Get Started guide. For more info see www.dropbox.com/gs</p><h6>Additional space</h6><p>Your Backup+ storage is on top of any Dropbox storage you may already have. If you unsubscribe, change plans, or leave Vodafone your Dropbox storage amount may change but you can continue to access and retrieve the files you've already saved</p><h6>Internet charges</h6><p>Standard data allowances apply, as per your mobile or broadband plan, to use Backup+ and Dropbox.</p><h6>Stopping the offer</h6><p>You can unsubscribe from the offer any time via the Account page in the Backup+ app.</p>"				},
+					"okButton": {
+					"label": "Unsubscribe",
+					"action": "#next"
+				}
+			},
+
+			"details2": {
+				"title": "Unsubscribe",
+				"text": "<p>By ending your subscription you will no longer be entitled to 50GB additional Dropbox storage to upload and save your items.</p><p>You can still use Backup+ and Dropbox for free to access and retrieve the files you've already saved.</p><p>To end your subscription, please click below</p>",
+				"okButton": {
+					"label": "Unsubscribe",
+					"action": "#next"
+				}
+			},
+
+			"success": {
+				"text": "<h6>You have successfully unsubscribed</h6>"
+			}
+		}
+	}
+}

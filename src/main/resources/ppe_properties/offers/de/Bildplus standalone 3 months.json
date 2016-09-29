@@ -1,0 +1,45 @@
+{
+   "comment": "Initial import by DEV",
+   "opco": "de",
+   "name": "Bildplus standalone 3 months",
+   "version": 2,
+   "partner": "bildplus",
+   "type": "standalone",
+   "switchable": false,
+   "trial": false,
+   "enabled": {
+      "purchase": true,
+      "cancellation": true
+   },
+   "heading": "BILDplus News-Flat",
+   "pages": {
+      "purchase": {
+         "details": {
+            "title": "Alle BILDplus Inhalte, Bundesliga bei BILD, jede Menge Infos, alle Spiele, alle Tore!",
+            "text": "<ul><li>Mehr als 500 BILDplus-Artikel pro Monat sowie alle Bundesliga-Highlights - inklusive Videos</li><li>Nur 4,99 Euro pro Monat</li><li>Du kannst monatlich kündigen</li></ul>",
+            "accordion": {
+               "label": "Mehr Infos",
+               "text": "<h6>Produktdetails:</h6><ul><li>BILD überall: im Web und als App für Smartphone und Tablet</li><li>BILD exklusiv: Live-Berichte, exklusive Interviews und mehr</li><li>BILD erklärt: Experten-Chats, Info-Grafiken, aktuelle Tests und Ratgeber</li><li>Alle News zu Deinem Verein</li><li>BILDplus auf BILD.de</li><li>Alle Apps für Smartphone und Tablet</li><li>Exklusive Gewinnspiele und Aktionen</li><li>Auf allen Web-Browsern, stationär und mobil</li></ul><h6>Buchungsdetails:</h6><ul><li>Bei Nutzung über das Mobilfunknetz werden Deine Frei-MB angerechnet.</li></ul>"
+            },
+            "okButton": {
+               "label": "Jetzt kaufen",
+               "action": "#next"
+            }
+         }
+      },
+      "cancellation": {
+         "details": {
+            "text": "<p>Wenn Du Deine BILDplus News-Flat jetzt kündigst, kannst Du diese nach Laufzeitende nicht mehr nutzen.</p><p>Innerhalb der Testphase wirst Du per SMS informiert, kurz bevor Deine Testphase ausläuft. Bis dahin kannst Du es wie gewohnt weiter nutzen.</p>",
+            "okButton": {
+               "label": "BILDplus News-Flat kündigen",
+               "action": "#next"
+            }
+         },
+         "success": {
+            "title": "Kündigung erfolgreich",
+            "text": "<p>Du hast Deine BILDplus News-Flat erfolgreich gekündigt.</p><p>Dein Paket bleibt bis zum Ende der Laufzeit weiterhin nutzbar.</p>"
+         }
+      }
+   },
+   "uniqueName": "de/Bildplus%20standalone%203%20months"
+}

@@ -1,0 +1,102 @@
+{
+	"comment": "Initial import by DEV",
+
+	"opco": "gb",
+	"name": "Sky bolton",
+	"version": 1,
+	"partner": "sky",
+	"type": "bolton",
+	"switchable": false,
+	"trial": false,
+
+	"enabled": {
+		"purchase": true,
+		"cancellation": true
+	},
+
+	"heading": "Sky Sports Mobile TV Pack 2",
+
+	"deviceAvailability": [
+		"android",
+		"iPhone"
+	],
+
+	"pages": {
+		"purchase": {
+			"details": {
+				"title": "Experience thrilling sporting moments with Sky Sports Mobile TV.",
+				"text": "<p>Enjoy Sky Sports Mobile TV Pack 2, including all the extra Sky Sports channels, for only £5.00 per month.</p><ul class=\"offers_list\"><li>Enjoy Pack 2 of Sky Sports Mobile TV, including all the extra Sky Sports channels.</li><li>Pack even more sports into your life and never miss live coverage of your favourite sports.</li><li>Available only on iPhones and selected Android phones.</li></ul><p><strong>For just £5.00 extra per month</strong></p>",
+				"checkbox": {
+					"label": "I accept <a href=\"#\" class=\"terms_link\">terms and conditions</a>",
+					"errorMessage": "To continue, you must agree to the terms & conditions.",
+					"order": 1,
+					"mandatory": true
+				},
+				"accordion": {
+					"label": "Info on Sky Sports TV",
+					"text": "<h6>Subscription</h6><p>Get unlimited access to Sky Sports 3 & 4, F1 and Sky News with Pack 2.</p><h6>Internet charges</h6><p>For internet charges whilst roaming and for internet charges outside of your allowance, standard internet charges apply to your plan. Usage will be taken from your internet allowance.</p><h6>Stopping the subscription</h6><p>You will be charged £5 a month and you can cancel anytime by going to http://offers.vodafone.com/gb and selecting manage subscriptions.</p><h6>Supported devices and limitations</h6><p>Sky Sports TV is only supported on Android and iPhones. In order to activate the subscription with Vodafone for the first time, the device must be connected to the mobile network using the SIM card linked to this subscription.</p>"
+				},
+				"okButton": {
+					"label": "SUBSCRIBE FOR £5.00 A MONTH",
+					"action": "#next"
+				}
+			},
+
+			"success": {
+				"title": "What happens next?",
+				"text": "<p>Congratulations, you’re now ready to get your Sky Sports Mobile TV app and start watching some great sport.</p><p>Download the Sky Sports Mobile TV app from your app store, open the app, select <strong>‘I subscribe to Mobile TV with Vodafone’</strong> and follow the instructions to start watching live sport on the go.</p><p><strong>Please note, you need to be on the Vodafone network for the first time you access the app. Remember to switch off WiFi.</strong></p>",
+				"customButton": {
+					"label": "Add more offers",
+					"action": "#moreOffers",
+					"description": "You might also be interested in these additional offers"
+				},
+				"getAppButton": {
+					"label": "Get Sky Sports Mobile TV app",
+					"action": "#getApp"
+				}
+			}
+		},
+
+		"cancellation": {
+			"details": {
+				"title": "You currently subscribe to Sky Sports Mobile TV pack 2 at £5.00 per month",
+				"text": "<p>You can cancel on the button below to stop any further charges</p>",
+				"getAppButton": {
+					"label": "Get Sky Sports Mobile TV app",
+					"action": "#getApp"
+				},
+				"okButton": {
+					"label": "CANCEL SKY SPORT MOBILE TV PACK 2",
+					"action": "#next"
+				}
+			},
+
+			"details2": {
+				"text": "<p>Please confirm your cancellation of Sky Sports Mobile TV pack 2</p>",
+				"okButton": {
+					"label": "CONFIRM CANCELLATION",
+					"action": "#next"
+				}
+			},
+
+			"success": {
+				"text": "<p>You have been successfully unsubscribed from Sky Sports Mobile pack 2</p>",
+				"getAppButton": {
+					"label": "Get Sky Sports Mobile TV app",
+					"action": "#getApp"
+				},
+				"customButton": {
+					"label": "Add more offers",
+					"action": "#moreOffers",
+					"description": "You might also be interested in these additional offers"
+				}
+			}
+		}
+	},
+
+	"entitlement": {
+		"description": "Experience thrilling sporting moments with Sky Sports Mobile TV.",
+		"pricingDetails": "£5.00 per month",
+		"banner": "/newui/assets/img/download-panels/sky.jpg"
+	}
+}

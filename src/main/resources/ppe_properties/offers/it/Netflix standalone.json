@@ -1,0 +1,66 @@
+{
+	"comment": "Initial import by DEV",
+
+	"opco": "it",
+	"name": "Netflix standalone",
+	"version": 1,
+	"partner": "netflix",
+	"type": "standalone",
+	"switchable": false,
+	"trial": false,
+
+	"enabled": {
+		"purchase": true,
+		"cancellation": true
+	},
+
+	"heading": "Netflix",
+
+	"pages": {
+		"purchase": {
+			"details": {
+				"text": "<p>Guarda tutto quello che vuoi, quando vuoi. Programmi TV, film e serie originali in streaming.</p><p>Inizia il tuo mese gratuito.</p><ul><li>Guarda su tutti i tuoi dispositivi</li><li>Niente pubblicità</li><li>Disdici quando vuoi</li></ul>",
+				"checkbox": {
+					"label": "Cliccando su attiva dichiari di accettare i <a href=\"#\" class=\"terms_link\">termini e le condizioni</a> del servizio",
+					"errorMessage": "Prima di poter attivare Netflix devi accettare i nostri termini e condizioni.",
+					"order": 1,
+					"mandatory": true
+				},
+				"accordion": {
+					"label": "Netflix",
+					"text": "<h6>Più informazioni su Netflix</h6><p>Con un'ampia selezione di serie TV e film, programmi originali Netflix pluripremiati e una sezione speciale dedicata ai bambini, c'è qualcosa per tutte le età e per tutti i gusti.</p><p>Se sei un nuovo iscritto, puoi provare il servizio gratis per un mese. Dal secondo mese inizierai a pagare in base al piano Netflix da te selezionato. Puoi disattivare Netflix in qualsiasi momento.</p><h6>Costi di connessione Internet</h6><p>Puoi guardare i contenuti Netflix su tutti i dispositivi compatibili, anche in Wifi. Guardando i contenuti Netflix da rete mobile consumi GB di traffico Internet, che saranno tariffati secondo le condizioni della tua offerta.</p><h6>Device compatibili</h6><p>Netflix è compatibile con un'ampia gamma di smartphone e tablet, PC, TV connesse a Internet, game console. Per vedere tutti i device compatibili, visita la pagina www.netflix.it</p><h6>Ulteriori informazioni</h6><p>Scopri di piú su Netflix nella pagina <a href=\"http://voda.it/infonetflix\">Domande frequenti.</a></p>"
+				},
+				"okButton": {
+					"label": "Attiva Netflix",
+					"action": "#next"
+				}
+			}
+		},
+
+		"cancellation": {
+			"details": {
+				"text": "<p>Sul tuo numero è attivo l'abbonamento a Netflix. Per disattivare l'abbonamento clicca su &#171;Conferma Disattivazione&#187; </p>",
+				"getAppButton": {
+					"label": "Scarica l'APP di Netflix",
+					"action": "#getApp"
+				},
+				"okButton": {
+					"label": "Conferma Disattivazione",
+					"action": "#next"
+				}
+			},
+
+			"details2": {
+				"text": "<p>La tua sottoscrizione Netflix sarà disattivata al termine del mese di promozione o del periodo per cui hai già pagato.</p><p>Per confermare la disattivazione di Netflix clicca su &#171;Conferma Disattivazione&#187;</p>",
+				"okButton": {
+					"label": "Conferma Disattivazione",
+					"action": "#next"
+				}
+			},
+
+			"success": {
+				"text": "<p>Il tuo account Netflix sarà disattivato al termine del mese di promozione o del periodo per cui hai già pagato.</p><p>La tua richiesta di disattivazione dell'abbonamento a Netflix è stata completata.</p>"
+			}
+		}
+	}
+}

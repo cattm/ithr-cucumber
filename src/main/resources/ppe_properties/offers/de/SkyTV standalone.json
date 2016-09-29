@@ -1,0 +1,64 @@
+{
+   "comment": "Initial import by DEV",
+   "opco": "de",
+   "name": "SkyTV standalone",
+   "version": 2,
+   "partner": "skytv",
+   "type": "standalone",
+   "switchable": false,
+   "trial": false,
+   "enabled": {
+      "purchase": true,
+      "cancellation": true
+   },
+   "heading": "Sky live bei MobileTV",
+   "pages": {
+      "purchase": {
+         "details": {
+            "title": "Genieße jetzt Vodafone MobileTV mit dem Sky Fußball-Bundesliga-Paket",
+            "text": "<ul><li>Die Bundesliga und 2. Bundesliga live und in der Zusammenfassung als Video</li><li>Auch unterwegs mit dem Smartphone oder Tablet nichts verpassen</li><li>Nur 12,95 Euro pro Monat</li><li>Du kannst monatlich kündigen</li></ul><p>Es gelten die Nutzungsbedingungen der Sky Deutschland GmbH und Co.KG (2Sky”), 85774 Unterföhring. Vertragspartner dieses Dienstes ist Sky.</p>",
+            "checkbox": {
+               "label": "Ich bin einverstanden, dass Vodafone die von mir bei Vertragsabschluss mit Vodafone angegebenen Daten samt meiner Vodafone-Mobilfunknummer zu Werbezwecken an die Sky Deutschland Fernsehen GmbH & Co. KG übermittelt und dass Sky diese Daten über die Laufzeit des hier mit Sky abgeschlossenen Vertrages hinaus bis zu meinem Widerruf zu Marktforschungs-, Analyse- und Marketingzwecken nutzt und mich zu diesen Zwecken per Post, E-Mail, Telefon und/oder SMS kontaktiert, um mich über aktuelle Angebote von Sky aus dem Bereich Pay-TV zu informieren. Ich kann diese Einwilligung jederzeit gegenüber Sky widerrufen (u.a. bei datenschutz@sky.de)",
+               "errorMessage": "Stimme bitte den allgemeinen Geschäftsbedingungen zu.",
+               "order": 1,
+               "mandatory": true
+            },
+            "accordion": {
+               "label": "Mehr Infos",
+               "text": "<h6>Produktdetails:</h6><ul><li>Aktuelle Tabellen und Spielübersichten</li><li>Verfügbar für Android Smartphones und Tablets sowie iPhone und iPad</li><li>Das Sky Fußball-Bundesliga-Paket ist innerhalb der Vodafone MobileTV-App nutzbar</li><li>Zugang über UMTS, LTE oder WLAN</li></ul><h6>Buchungsdetails:</h6><ul><li>Du zahlst nur 12,95 Euro pro Monat, bequem über Deine Mobilfunk-Rechnung</li><li>Bei Nutzung über das Mobilfunknetz werden Deine Frei-MB angerechnet</li><li>Durch Klicken auf „Jetzt kaufen“ beginnt die Inklusiv-Phase. Kündigst du innerhalb der Inklusiv-Phase, fallen keine Kosten an</li></ul>"
+            },
+            "okButton": {
+               "label": "JETZT KAUFEN",
+               "action": "#next"
+            }
+         },
+         "success": {
+            "title": "Sky Bundesliga-Paket erfolgreich gebucht.",
+            "text": "<p>Sky Bundesliga-Paket erfolgreich gebucht.</p><p>So geht's weiter:</p><ul><li>Du hast die MobileTV App schon? Dann öffne den Menüpunkt Sky-Fußball-Bundesliga-Paket in der App.</li><li>Du hast die MobileTV App noch nicht? Lad sie Dir einfach im App-Store herunter:</li><li>App starten und über die Navigationsleiste in den Sky Fußball-Bundesliga-Bereich wechseln</li><li>Fertig!</li></ul><p>Du brauchst für MobileTV einen Internet-Zugang über UMTS, LTE oder WLAN.</p>",
+            "getAppButton": {
+               "label": "Zur Sky-App",
+               "action": "#getApp"
+            }
+         }
+      },
+      "cancellation": {
+         "details": {
+            "title": "Sky bei MobileTV",
+            "text": "Wenn Du Dein Sky-Fußball-Bundesliga-Paket jetzt kündigst, kannst Du es nach Laufzeitende nicht mehr nutzen. </p><p>Innerhalb der Testphase wirst Du per SMS informiert, kurz bevor Deine Testphase ausläuft. Bis dahin kannst Du es wie gewohnt weiter nutzen.",
+            "okButton": {
+               "label": "Sky bei MobileTV kündigen",
+               "action": "#next"
+            },
+            "getAppButton": {
+               "label": "Zur Sky-App",
+               "action": "#getApp"
+            }
+         },
+         "success": {
+            "title": "Kündigung erfolgreich",
+            "text": "<p>Du hast Dein Sky-Fußball-Bundesliga-Paket erfolgreich gekündigt.</p><p>Dein Paket bleibt bis zum Ende der Laufzeit weiterhin nutzbar.</p>"
+         }
+      }
+   },
+   "uniqueName": "de/SkyTV%20standalone"
+}

@@ -1,0 +1,95 @@
+{
+	"comment": "Initial import by DEV",
+
+	"opco": "pt",
+	"name": "Netflix hardbundle 3 months",
+	"version": 1,
+	"partner": "netflix",
+	"type": "hardbundle",
+	"switchable": false,
+	"trial": false,
+
+	"enabled": {
+		"purchase": true,
+		"cancellation": true
+	},
+
+	"usergroups": [
+		"netflix3p"
+	],
+
+	"heading": "Netflix",
+
+	"pages": {
+		"purchase": {
+			"details": {
+				"title": "Netflix é na Tv da Vodafone",
+				"text": "<p>Os seus filmes e séries favoritos e conteúdos originais da Netflix na Tv Box da Vodafone, PC, Tablet ou Smartphone.</p><p>Para si a Netflix é grátis durante 3 meses (seguintes €9,99/mês) e sem fidelização. Veja todas as séries e filmes sempre que quiser, sem anúncios.</p>",
+				"checkbox": {
+					"label": "Aceito os <a href=\"#\" class=\"terms_link\">Termos e Condições</a>",
+					"errorMessage": "É necessário aceitar os Termos e Condições antes de adicionar este serviço à sua conta Vodafone.",
+					"order": 1,
+					"mandatory": true
+				},
+				"accordion": {
+					"label": "Netflix",
+					"text": "<p>Os seus filmes e séries favoritos e conteúdos originais da Netflix na Tv Box da Vodafone, PC, Tablet ou Smartphone.</p>"
+				},
+				"okButton": {
+					"label": "Obter o Netflix",
+					"action": "#next"
+				}
+			},
+
+			"success": {
+				"title": "A sua subscrição da Netflix está ativa.",
+				"text": "<p>Conta Netflix ativa. Está pronto para começar a utilizar o serviço.</p>",
+				"customButton": {
+					"label": "Adicionar mais ofertas",
+					"action": "#moreOffers",
+					"description": "Poderá estar interessado também nestas ofertas adicionais."
+				},
+				"getAppButton": {
+					"label": "Download da app Netflix",
+					"action": "#getApp"
+				}
+			}
+		},
+
+		"cancellation": {
+			"details": {
+				"text": "<p>Os seus filmes e séries favoritos e conteúdos originais da Netflix na Tv Box da Vodafone, PC, Tablet ou Smartphone.</p>",
+				"getAppButton": {
+					"label": "Download da app Netflix",
+					"action": "#getApp"
+				},
+				"okButton": {
+					"label": "Cancelar o serviço Netflix",
+					"action": "#next"
+				}
+			},
+
+			"details2": {
+					"text": "<p>A sua subscrição do serviço Netflix vai ser cancelada.</p><p>Para concluir o pedido de cancelamento da Netflix, clique no botão abaixo.</p>",
+					"okButton": {
+						"label": "Cancelar Netflix",
+						"action": "#next"
+					}
+			},
+
+			"success": {
+				"text": "<p>O cancelamento da sua subscrição ficará concluído no final do ciclo de renovação do serviço.</p>",
+				"notificationMsg": "A sua subscrição Netflix foi cancelada com sucesso",
+				"customButton": {
+					"label": "Adicionar mais ofertas",
+					"action": "#moreOffers",
+					"description": "Poderá estar interessado também nestas ofertas adicionais."
+				},
+				"getAppButton": {
+					"label": "Download da app Netflix",
+					"action": "#getApp"
+				}
+			}
+		}
+	}
+}

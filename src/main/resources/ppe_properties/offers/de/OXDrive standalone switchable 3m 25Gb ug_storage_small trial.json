@@ -1,0 +1,62 @@
+{
+	"comment": "Initial import by DEV",
+
+	"opco": "de",
+	"name": "OXDrive standalone switchable 3m 25Gb ug_storage_small trial",
+	"version": 1,
+	"partner": "oxdrive",
+	"type": "standalone",
+	"switchable": true,
+	"trial": true,
+
+	"enabled": {
+		"purchase": true,
+		"cancellation": false
+	},
+
+	"heading": "25Gb",
+
+	"usergroups": ["ug_storage_small"],
+
+	"deviceAvailability": [
+		"android",
+		"iPhone"
+	],
+
+	"pages": {
+		"purchase": {
+			"details": {
+				"title": "Dein persönliches Angebot!",
+				"text": "<h6>Mit Deinem Vodafone-Vertrag bekommst Du 25 GB Secure MyData-Speicherplatz für 3 Monate geschenkt.</h6><ul><li>Danach bezahlst Du 1.99 € pro Monat</li><li>Du kannst jeden Monat kündigen!</li></ul>",
+				"checkbox": {
+					"label": "<a href=\"http://www.vodafone.com/content/apps/external-redirects/backupplus/promo_ox/DE\" target=\"_blank\">Ich akzeptiere die Nutzungsbedingungen</a>",
+					"errorMessage": "Akzeptier bitte unsere Nutzungsbedingungen. Erst dann kannst Du das Angebot buchen.",
+					"confirmationMessage": "Klick auf \"Jetzt anmelden\". So aktivierst Du Dein gratis  Secure MyData-Angebot für 3 Monate. Danach wird's automatisch ein Abo für 1.99 € pro Monat. Du kannst jeden Monat während Deines gratis Angebots kündigen. Dann bezahlst Du nichts. Sind in Deinem Vertrag 25GB oder mehr inklusive, ersetzt das Angebot Deinen Speicher und wird nicht addiert.",
+					"order": 1,
+					"mandatory": true
+				},
+				"accordion": {
+					"label": "Details",
+					"text": "<h6>Zusätzlicher Speicher</h6><p>Hast Du schon ein  Secure MyData-Konto mit Speicherplatz? Dann erhältst Du diesen Speicherplatz noch zusätzlich.</p><h6>Internetkosten</h6><p>Du nutzt zuerst Dein Datenvolumen. Du bezahlst die Preise Deines Tarifs, wenn Du den Service im Ausland nutzt oder Du Deine Frei-GB aufgebraucht hast.</p><h6>Angebot beenden</h6><p>Du kannst das Angebot jederzeit über die Mein Angebot-Seite in Deiner Backup+ App kündigen.</p>"
+				},
+				"okButton": {
+					"label": "Jetzt anmelden",
+					"action": "#next"
+				},
+				"customButton": {
+					"label": "Nicht jetzt",
+					"action": "http://www.vodafone.com/content/apps/external-redirects/backupplus/open/DE"
+				}
+			},
+
+			"success": {
+				"title": "Glückwunsch!",
+				"text": "<p>Du erhälst 25 GB zusätzlichen  Secure MyData-Speicherplatz.</p>",
+				"customButton": {
+					"label": "Weiter",
+					"action": "http://www.vodafone.com/content/apps/external-redirects/backupplus/open/DE"
+				}
+			}
+		}
+	}
+}

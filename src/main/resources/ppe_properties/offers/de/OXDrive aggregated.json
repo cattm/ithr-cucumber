@@ -1,0 +1,21 @@
+{
+    "comment": "Initial import by DEV",
+    "opco": "de",
+    "name": "OXDrive aggregated",
+    "version": 1,
+    "partner": "oxdrive",
+    "type": "aggregated",
+    "switchable": false,
+    "trial": false,
+    "enabled": {
+        "purchase": true,
+        "cancellation": false
+    },
+    "heading": "1Tb",
+    "entitlement": {
+        "description": "Dein persönliches Angebot!",
+        "pricingDetails": "Mit Vodafone Backup+ bekommst Du 1 TB Secure MyData-Speicherplatz für nur 9.99 € im Monat.",
+        "banner": "/newui/assets/img/download-panel/oxdrive.jpg"
+    },
+    "uniqueName": "de/OXDrive%20aggregated"
+}
