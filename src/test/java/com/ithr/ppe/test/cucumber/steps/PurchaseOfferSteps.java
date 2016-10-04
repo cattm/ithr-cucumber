@@ -25,6 +25,7 @@ import com.ithr.ppe.test.cucumber.pages.UserEntertainment;
 import com.ithr.ppe.test.cucumber.steps.interfaces.IEpilog;
 import com.ithr.ppe.test.cucumber.steps.interfaces.IPartnerPurchase;
 import com.ithr.ppe.test.cucumber.steps.interfaces.IProlog;
+import com.ithr.ppe.test.cucumber.steps.utils.AdminFacade;
 import com.ithr.ppe.test.cucumber.steps.utils.CommonEpilog;
 import com.ithr.ppe.test.cucumber.steps.utils.CommonPartnerPurchase;
 import com.ithr.ppe.test.cucumber.steps.utils.CommonProlog;
@@ -106,8 +107,9 @@ public class PurchaseOfferSteps extends StepBase {
 				return;
 			}
 			customer.setMsisdn(msisdn);
+			// move this to offer step - this is too early 
 			// handle the AA aspect and login
-			pl.LoginOk (driver, customer, pinCode, baseUserUrl);
+			//pl.LoginOk (driver, customer, pinCode, baseUserUrl);
 			
 		} catch (Exception e){
 			log.error("Caught Exception: " + e);
@@ -118,6 +120,15 @@ public class PurchaseOfferSteps extends StepBase {
 		
 	}
 	
+	@And("^I have added group \"([^\"]*)\"$")
+	public void addAnotherGroup(String addgroup) throws Throwable {
+		log.info("addAnotherGroup " + addgroup);
+		//need to have saved old check url;
+		String oldgroup = customer.getUserGroup();
+		String checkurl = AdminFacade.getCheckUrl();
+		Boolean added = AdminFacade.addUserGroup(driver, checkurl, oldgroup, addgroup);
+		if (!added) ErrorCollector.fail("Could not Add usergroup " + addgroup);
+	}
 	private void SelectExternal() {
 		UserEntertainment entpage = new UserEntertainment(driver);
 		if (!entpage.bodyLoaded()) {
@@ -187,12 +198,14 @@ public class PurchaseOfferSteps extends StepBase {
 		
 	@Then("^my offer details will come from ([^\"]*)$")
 	public void OfferContainsStringsFrom(String reffilename)  {
+		// handle the AA aspect and login first off
+		pl.LoginOk (driver, customer, pinCode, baseUserUrl);
+		
 		log.info("Then: my offer will come from " + reffilename + " file");
 		ErrorCollector.verifyFalse(!reffilename.contains("Not Valid"), "The Reference File is set to not valid");	
 		String roughpath = refDir + customer.getOpco() + "/";
 		pl.createParser(roughpath, reffilename);	
 		
-		// now safe to initialise all parsers
 		// TODO: this could be a lot better!
 		cpp.initialiseChecks();
 
