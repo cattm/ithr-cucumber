@@ -30,8 +30,11 @@ public class BasicPartnerOffer extends PageBase {
 	@FindBy(css="div [class='table-panel-top main-offer-content'] a[class='btn event-btn cf btn--okButton']")
 	private WebElement acceptOffer;
 	
-	@FindBy(css="h4.offer-subtitle.bold-font")
+	//h4 class="offer__subtitle bold-font
+	//@FindBy(css="h4.offer-subtitle.bold-font")
+	@FindBy(css="h4.offer__subtitle.bold-font")
 	private WebElement theOffer;
+	
 	
 	@FindBy(css=".main-offer-content div.details-content")
 	private WebElement theOfferDetail;
