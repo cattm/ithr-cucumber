@@ -80,19 +80,23 @@ public class CommonPartnerPurchase implements IPartnerPurchase {
 			break;
 		}	
 		if (!found) { 
-			// small wait loop because it can be very slow - 
+			// TODO: small wait loop because it can be very slow - lest see if we can remove this please
 			try {
-				Thread.sleep(CommonConstants.SLOW);
+				Thread.sleep(CommonConstants.SLOW * 3);
 			} catch (InterruptedException e) {
 				log.info("got interrupted while sleeping " +  e);
 			}
 			
 			found = entpage.checkOfferImagePresent(imagestring);
-			if (found)
+			if (found) {
+				log.info("found the image - click()");
 				try {
-				entpage.clickOfferImage(imagestring);
+					entpage.clickOfferImage(imagestring);
 				} catch (Exception e) {
 				log.error("got interrupted while clicking on " + imagestring + " " + e);
+				}
+			} else {
+				log.error("did not find offer inage to click");
 			}
 		}
 		return found;
