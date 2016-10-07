@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+  #parse("/templates/headers.vm")
+  #includeTitle("ITHR PPE Overview")
+  <script type="text/javascript">
+  #parse("/templates/js/steps-chart.js")
+  #parse("/templates/js/scenarios-chart.js")
+  #parse("/templates/js/features-chart.js")
+  </script>
+</head>
+
+<body>
+
+#includeNavigation("features")
+
+#includeLead("Test Results Overview", "The following table describes the platform under test")
+<div class="container-fluid" id="management-info">
+  <div class="row">
+    <div class="col-md-6 col-md-offset-1">
+      <table class="table table-bordered">
+       <tr>
+    	  <th>ITHR Project</th><td>$build_project_name</td> 
+    	  <th>Features</th><td>$all_features.size()</td> 	  
+    	   <th>Scenarios Pass Percentage</th><td>$util.formatAsPercentage($report_summary.getPassedScenarios(), $report_summary.getScenarios())</td>     
+       </tr>
+       <tr>
+          <th>Build Number</th><td>$build_number</td>  
+          <th>Scenarios</th><td>$report_summary.getScenarios()</td>  
+           <th>Start Time </th><td>$build_time</td>               
+       </tr>
+       <tr>
+           <th>Software Tested</th><td>$ppebuild</td>
+           <th>Steps</th><td>$report_summary.getSteps()</td> 
+           <th>Elapsed</th><td>$report_summary.getFormattedDurations()</td>
+          
+       </tr>     
+      </table>
+    </div>
+  </div>
+</div>
+<br>
+#includeLead("Test Summary", "The following provides a brief overview of the test results")
+<br>
+
+#if(!$all_features.isEmpty())
+ <div class="col-md-6 col-md-offset-1">
+      <table class="table table-bordered">
+        <tbody>
+          <tr class="info">
+          <td>
+			<div class="container-fluid" id="charts"> 
+        		<canvas id="features-chart" class="text-centered"  ></canvas> 
+			</div>  
+			</td>
+          	<td>
+     		<div class="container-fluid" id="charts"> 
+        		<canvas id="scenarios-chart" class="text-centered"  ></canvas> 
+			</div>
+			</td>
+			<td>
+			<div class="container-fluid" id="charts"> 
+        		<canvas id="steps-chart" class="text-centered"  ></canvas> 
+			</div> 
+			</td>                  
+          </tr>
+        </tbody>
+      </table>
+ </div>
+ #end  
+<br>
+#if( $displaytable )
+<div class="container-fluid" id="summary">
+  <div class="row">
+    <div class="col-md-10 col-md-offset-1">
+      #includeStatsTable("Feature", $parallel, $all_features, $report_summary)
+    </div>
+  </div>
+</div>
+#end
+#include("/templates/footer.vm")
+
+</body>
+</html>
