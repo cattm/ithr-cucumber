@@ -236,6 +236,9 @@ public class CommonPartnerPurchase implements IPartnerPurchase {
 		if (customer.getOpco().equalsIgnoreCase("NL") && customer.getPartner().toString().equalsIgnoreCase("Netflix")) {
 			return false;
 		}
+		if (customer.getOpco().equalsIgnoreCase("IT") && customer.getPartner().toString().equalsIgnoreCase("Netflix")) {
+			return false;
+		}
 		if (customer.getOpco().equalsIgnoreCase("IT") && customer.getPartner().toString().equalsIgnoreCase("ChiliTV")) {
 			return false;
 		}

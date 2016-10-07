@@ -139,21 +139,31 @@ public class JsonParser {
 	
 	public String getOffersTitle () {
 		String title = "";	
-        JSONObject details = navigateToDetails(jsonObject);
-        title = details.getString("title").toString();
-        log.info("Purchase:Details:Title: " +  title);       
+		try {
+			JSONObject details = navigateToDetails(jsonObject);
+			title = details.getString("title").toString();
+			log.info("Purchase:Details:Title: " +  title);
+		} catch (Exception e) {
+			log.error("No Title in JSON " + e);
+			title = "No Title in JSON";
+		}
         return title;
 	}
 	public String getOffersText () {
 
-		String details = "";			 
-		JSONObject detail = navigateToDetails(jsonObject);         
-		details = detail.getString("text").toString();
-		log.debug("Purchase:Details:Text: " +  details);           
-      
+		String details = "";		
+		try {
+			JSONObject detail = navigateToDetails(jsonObject);         
+			details = detail.getString("text").toString();
+			log.debug("Purchase:Details:Text: " +  details);           
+		} catch (Exception e) {
+			log.error("No Details in JSON " + e);
+			details = "No Details in JSON";
+		}
 		return details;
 	}
 
+	//TODO: Extend the try blocks to every function
 	public String getOffersTnCText() {
 		String details = "";			 
 		JSONObject detail = navigateToDetails(jsonObject);         
