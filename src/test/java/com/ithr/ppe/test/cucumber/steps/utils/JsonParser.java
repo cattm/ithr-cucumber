@@ -64,6 +64,7 @@ public class JsonParser {
 	            line = br.readLine();
 	        }
 	        result = sb.toString();
+	        br.close();
 	    } catch(Exception e) {
 	        e.printStackTrace();
 	    }
@@ -154,67 +155,102 @@ public class JsonParser {
 		String details = "";		
 		try {
 			JSONObject detail = navigateToDetails(jsonObject);         
-			details = detail.getString("text").toString();
-			log.debug("Purchase:Details:Text: " +  details);           
+			details = detail.getString("text").toString();		         
 		} catch (Exception e) {
 			log.error("No Details in JSON " + e);
 			details = "No Details in JSON";
 		}
+		log.debug("Purchase:Details:Text: " +  details);  
 		return details;
 	}
 
 	//TODO: Extend the try blocks to every function
 	public String getOffersTnCText() {
-		String details = "";			 
-		JSONObject detail = navigateToDetails(jsonObject);         
-		JSONObject checkbox = detail.getJSONObject("checkbox");
-		details = checkbox.getString("label").toString();
-		log.debug("Purchase:Details:checkbox:label: " +  details);           
-		
+		String details = "";		
+		try {
+		    JSONObject detail = navigateToDetails(jsonObject);         
+		    JSONObject checkbox = detail.getJSONObject("checkbox");
+		    details = checkbox.getString("label").toString();          
+		}catch (Exception e) {
+			log.error("No TNC Text in JSON " + e);
+			details = "No TNC Text in JSON";
+		}
+		log.debug("Purchase:Details:checkbox:label: " +  details);    
 		return details;
 	}
 	
 	public String getOffersOkButton () {
 
 		String label = "";			 
-		JSONObject detail = navigateToDetails(jsonObject);         
-		JSONObject okbutton = detail.getJSONObject("okButton");
-		label = okbutton.getString("label").toString();
+		try {
+		    JSONObject detail = navigateToDetails(jsonObject);         
+		    JSONObject okbutton = detail.getJSONObject("okButton");
+		    label = okbutton.getString("label").toString();
+		} catch (Exception e) {
+			log.error("No Offers Ok Button text in JSON " + e);
+			label = "No Offers Ok Button text in JSON";
+		}
+		
 		log.debug("OK Button String is : " +  label);               
 		return label;
 	}
+	
+
 	public String getSubscribeSuccessTitle() {
 		String title = "";
-		JSONObject subscription = navigateToPurchase(jsonObject);         
-		JSONObject success = subscription.getJSONObject("success");
-		title = success.getString("What happens next?").toString();
+		try {
+		   JSONObject subscription = navigateToPurchase(jsonObject);         
+		   JSONObject success = subscription.getJSONObject("success");
+		   title = success.getString("What happens next?").toString();
+		}catch (Exception e) {
+			log.error("No Subscription success title in JSON " + e);
+			title = "No Subscription success title in JSON";
+		}
+		
 		log.debug("Success Title : " +  title);   
 		return title;
 	}
 	
 	public String getSubscribeSuccessText() {
 		String text = "";
-		JSONObject subscription = navigateToPurchase(jsonObject);         
-		JSONObject success = subscription.getJSONObject("success");
-		text = success.getString("text").toString();
+		try {
+		    JSONObject subscription = navigateToPurchase(jsonObject);         
+		    JSONObject success = subscription.getJSONObject("success");
+		    text = success.getString("text").toString();
+		}catch (Exception e) {
+			log.error("No Subscription success text in JSON " + e);
+			text = "No Subscription success text in JSON";
+		}
 		log.debug("Success Text : " +  text);
 		return text;
 	  
 	}
 
 	public String getCancelOkButton() {
-		String label = "";			 
-		JSONObject detail = navigateToCancelDetails(jsonObject);         
-		JSONObject okbutton = detail.getJSONObject("okButton");
-		label = okbutton.getString("label").toString();
+		String label = "";
+		try {
+		    JSONObject detail = navigateToCancelDetails(jsonObject);         
+		    JSONObject okbutton = detail.getJSONObject("okButton");
+		    label = okbutton.getString("label").toString();
+		} catch (Exception e) {
+			log.error("No Cancel Ok Text in JSON " + e);
+			label = "No Cancel Ok Text in JSON";
+		}
+		
 		log.debug("OK Button String is : " +  label);               
 		return label;
 	}
 	
 	public String getCancelTitle () {
 		String title = "";	
-        JSONObject details = navigateToCancelDetails(jsonObject);
+        try {
+		JSONObject details = navigateToCancelDetails(jsonObject);
         title = details.getString("title").toString();
+        }catch (Exception e) {
+			log.error("No Cancel Title Text in JSON " + e);
+			title = "No Cancel Title Text in JSON";
+		}
+        
         log.debug("Cancel:Details:Title: " +  title);       
         return title;
 	}
@@ -222,8 +258,14 @@ public class JsonParser {
 	public String getCancelText () {
 
 		String details = "";			 
+		try {
 		JSONObject detail = navigateToCancelDetails(jsonObject);         
 		details = detail.getString("text").toString();
+		} catch (Exception e) {
+			log.error("No Cancel Text in JSON " + e);
+			details = "No Cancel Text in JSON";
+		}
+		
 		log.debug("Cancel:Details:Text: " +  details);           
       
 		return details;
