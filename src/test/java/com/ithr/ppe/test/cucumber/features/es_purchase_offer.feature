@@ -69,3 +69,14 @@ Feature: ES Primary Purchase Offers
       | package      | usergroup     | contained in                |
       | PK_RedTariff | bundling_high | HBO hardbundle reseller 24m |
       | PK_RedTariff | bundling_low  | HBO hardbundle reseller 3m  |
+
+  Scenario Outline: Purchase ES Offers from NETFLIX
+    Given I am a "ES" customer purchasing the "NETFLIX" offer
+    When my profile has a <package> tariff with a <usergroup> usergroup
+    Then my offer details will come from <contained in>
+    And I will accept and confirm the offer
+
+    Examples: 
+      | package      | usergroup     | contained in                |
+      | Not Valid    | No usergroup  | Netflix standalone trial    |
+      | PK_RedTariff | bundling_high | Netflix hardbundle trial 6m |
