@@ -114,11 +114,11 @@ public class SecondaryCustomerSteps extends StepBase {
 		 * At this point we need to do some selecting 
 		 */
 		log.info("selecting offer");
+	
 		UserEntertainment entpage = new UserEntertainment(driver);
 		if (!entpage.bodyLoaded()) {
 			 log.error("Entertainement Page body did not load in time");
 		}
-		
 		
 		
 		boolean ok = false;
@@ -129,14 +129,13 @@ public class SecondaryCustomerSteps extends StepBase {
 			if (!offer.bodyLoaded()) {
 				 log.error("Offer Page body did not load in time");
 			}
-			
-			
+					
 			if (needTandC.hasTnc(customer.getOpco().toUpperCase(), customer.getPartner().toString())) {
 				offer.setTnC();			  
-			}
-				
+			}				
 			ok = true;
 		} else log.info("could not select offer");
+		
 		if (ok) {
 			return cpp.acceptTheOffer(driver, customer);
 		}
