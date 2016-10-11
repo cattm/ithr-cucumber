@@ -14,7 +14,7 @@ public class CommandExecutor {
     // TODO: not sure this model is 100% SAFE - take a fresh look at Statics
  
 	
-	private static String execCmd(String command, boolean anderror)
+	public static String execCmd(String command, boolean anderror)
     {
 	     String cmdOutput = "";
          try {
