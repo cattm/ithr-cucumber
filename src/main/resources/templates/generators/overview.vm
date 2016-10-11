@@ -27,7 +27,7 @@
        <tr>
           <th>Build Number</th><td>$build_number</td>  
           <th>Scenarios</th><td>$report_summary.getScenarios()</td>  
-           <th>Start Time </th><td>$build_time</td>               
+           <th>Start Time </th><td>$startedat</td>               
        </tr>
        <tr>
            <th>Software Tested</th><td>$ppebuild</td>
@@ -77,8 +77,25 @@
     </div>
   </div>
 </div>
+#else
+<div class="container-fluid" id="summary">
+  <div class="row">
+    <div class="col-md-10 col-md-offset-1">
+      <br>
+    </div>
+  </div>
+</div>
 #end
-#include("/templates/footer.vm")
 
+<nav class="navbar navbar-default" id="footer">
+  <div class="container-fluid">
+    <p class="navbar-text navbar-right">
+        <small>Learn more about ITHR via:&nbsp;</small>
+        <a class="navbar-link" href="http://www.ithrconsulting.com/">ITHR Consulting Ltd</a> |
+     
+        &nbsp;&nbsp;
+    </p>
+  </div>
+</nav>
 </body>
 </html>
