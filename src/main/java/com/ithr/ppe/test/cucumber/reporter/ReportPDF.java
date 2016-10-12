@@ -1,28 +1,5 @@
 package com.ithr.ppe.test.cucumber.reporter;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.OutputStream;
-import java.util.Date;
-import java.util.Locale;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
-import javax.xml.bind.JAXB;
-
-import org.apache.batik.transcoder.TranscoderInput;
-import org.apache.batik.transcoder.TranscoderOutput;
-import org.apache.batik.transcoder.image.PNGTranscoder;
-import org.apache.commons.io.FileUtils;
-import org.apache.commons.lang.ArrayUtils;
-import org.xhtmlrenderer.pdf.ITextRenderer;
-
-import com.cedarsoftware.util.io.JsonObject;
-import com.cedarsoftware.util.io.JsonReader;
-import com.github.mkolisnyk.cucumber.reporting.types.result.CucumberFeatureResult;
 
 public class ReportPDF {
 	
@@ -33,7 +10,7 @@ public class ReportPDF {
 	public String getPdfPageSize() {
 	        return pdfPageSize;
 	    }
-
+/*
 	
 	private void convertSvgToPng(File svg, File png) throws Exception {
 	        String svgUriInput = svg.toURI().toURL().toString();
@@ -95,6 +72,6 @@ public class ReportPDF {
 
 	        os.close();
 	}
-
+*/
 	    
 }

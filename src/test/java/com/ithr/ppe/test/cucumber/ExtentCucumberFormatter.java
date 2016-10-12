@@ -28,38 +28,11 @@ package com.ithr.ppe.test.cucumber;
  * EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  * 
  */
-import java.io.File;
-import java.io.IOException;
-import java.io.OutputStream;
-import java.net.URL;
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Locale;
-import java.util.Map;
+public class ExtentCucumberFormatter {
+	
 
-import com.ithr.ppe.test.commons.DateStamp;
-import com.ithr.ppe.test.cucumber.steps.utils.JsonParser;
-import com.relevantcodes.extentreports.DisplayOrder;
-import com.relevantcodes.extentreports.ExtentReports;
-import com.relevantcodes.extentreports.ExtentTest;
-import com.relevantcodes.extentreports.LogStatus;
-import com.relevantcodes.extentreports.NetworkMode;
-
-import cucumber.runtime.CucumberException;
-import cucumber.runtime.io.URLOutputStream;
-import gherkin.formatter.Formatter;
-import gherkin.formatter.Reporter;
-import gherkin.formatter.model.Background;
-import gherkin.formatter.model.Examples;
-import gherkin.formatter.model.Feature;
-import gherkin.formatter.model.Match;
-import gherkin.formatter.model.Result;
-import gherkin.formatter.model.Scenario;
-import gherkin.formatter.model.ScenarioOutline;
-import gherkin.formatter.model.Step;
-import gherkin.formatter.model.Tag;
-
+}
+/*
 public class ExtentCucumberFormatter implements Reporter, Formatter  {
 	    private static ExtentReports extent;
 	    private ExtentTest featureTest;
@@ -285,4 +258,4 @@ public class ExtentCucumberFormatter implements Reporter, Formatter  {
 	        }
 	    }
 
-}
+}*/

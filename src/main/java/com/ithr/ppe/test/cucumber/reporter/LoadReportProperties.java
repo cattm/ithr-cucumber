@@ -34,7 +34,7 @@ public class LoadReportProperties {
          DISPLAY_FEATURE_TABLE = Boolean.parseBoolean(prop.getProperty("report.display.features"));
          SEND_EMAIL = Boolean.parseBoolean(prop.getProperty("report.send.email"));
          DO_PDF = Boolean.parseBoolean(prop.getProperty("report.generate.pdf"));
-         REPORT_TITLE = prop.getProperty("report.project.name");
+         REPORT_TITLE = prop.getProperty("report.project.title");
          REPORT_BASE = prop.getProperty("report.generate.pathbase");
 	 }
 
