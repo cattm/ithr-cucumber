@@ -1,0 +1,137 @@
+[
+  {
+    "id": "marcus-test-random-ideas",
+    "tags": [
+      {
+        "name": "@purchase",
+        "line": 1
+      }
+    ],
+    "description": "",
+    "name": "Marcus Test random ideas",
+    "keyword": "Feature",
+    "line": 2,
+    "elements": [
+      {
+        "after": [
+          {
+            "result": {
+              "duration": 1080615000,
+              "status": "passed"
+            },
+            "match": {
+              "location": "PurchaseOfferSteps.tearDown()"
+            }
+          }
+        ],
+        "id": "marcus-test-random-ideas;purchase-es-offer-from-hbo;;2",
+        "tags": [
+          {
+            "name": "@purchase",
+            "line": 1
+          }
+        ],
+        "before": [
+          {
+            "result": {
+              "duration": 2238421000,
+              "status": "passed"
+            },
+            "match": {
+              "location": "PurchaseOfferSteps.setUp(Scenario)"
+            }
+          }
+        ],
+        "description": "",
+        "name": "Purchase ES Offer from HBO",
+        "keyword": "Scenario Outline",
+        "line": 13,
+        "steps": [
+          {
+            "result": {
+              "duration": 125610000,
+              "status": "passed"
+            },
+            "name": "I am a \"ES\" customer purchasing the \"HBO\" offer",
+            "keyword": "Given ",
+            "line": 6,
+            "match": {
+              "arguments": [
+                {
+                  "val": "ES",
+                  "offset": 8
+                },
+                {
+                  "val": "HBO",
+                  "offset": 37
+                }
+              ],
+              "location": "PurchaseOfferSteps.PartnerCustomer(String,String)"
+            }
+          },
+          {
+            "result": {
+              "duration": 3912967000,
+              "status": "passed"
+            },
+            "name": "my profile has a Not Valid tariff with a No usergroup usergroup",
+            "keyword": "When ",
+            "line": 7,
+            "match": {
+              "arguments": [
+                {
+                  "val": "Not Valid",
+                  "offset": 17
+                },
+                {
+                  "val": "No usergroup",
+                  "offset": 41
+                }
+              ],
+              "location": "PurchaseOfferSteps.PackageInGroup(String,String)"
+            },
+            "matchedColumns": [
+              0,
+              1
+            ]
+          },
+          {
+            "result": {
+              "duration": 53120297000,
+              "status": "passed"
+            },
+            "name": "my offer details will come from HBO standalone agency 1m trial",
+            "keyword": "Then ",
+            "line": 8,
+            "match": {
+              "arguments": [
+                {
+                  "val": "HBO standalone agency 1m trial",
+                  "offset": 32
+                }
+              ],
+              "location": "PurchaseOfferSteps.OfferContainsStringsFrom(String)"
+            },
+            "matchedColumns": [
+              2
+            ]
+          },
+          {
+            "result": {
+              "duration": 46766906000,
+              "status": "passed"
+            },
+            "name": "I will accept and confirm the offer",
+            "keyword": "And ",
+            "line": 9,
+            "match": {
+              "location": "PurchaseOfferSteps.AcceptPartnerOffer()"
+            }
+          }
+        ],
+        "type": "scenario"
+      }
+    ],
+    "uri": "yyy.feature"
+  }
+]

@@ -1,0 +1,250 @@
+[
+  {
+    "id": "this-is-a-test-feature-file-that-we-run-only-to-help-do-a-debug",
+    "description": "",
+    "name": "This is a test feature file that we run only to help do a debug",
+    "keyword": "Feature",
+    "line": 2,
+    "elements": [
+      {
+        "after": [
+          {
+            "result": {
+              "duration": 1088509000,
+              "status": "passed"
+            },
+            "match": {
+              "location": "PurchaseOfferSteps.tearDown()"
+            }
+          }
+        ],
+        "id": "this-is-a-test-feature-file-that-we-run-only-to-help-do-a-debug;purchase-gb-offers-from-nowtv;;2",
+        "tags": [
+          {
+            "name": "@checkit",
+            "line": 14
+          }
+        ],
+        "before": [
+          {
+            "result": {
+              "duration": 2267273000,
+              "status": "passed"
+            },
+            "match": {
+              "location": "PurchaseOfferSteps.setUp(Scenario)"
+            }
+          }
+        ],
+        "description": "",
+        "name": "Purchase GB Offers from NOWTV",
+        "keyword": "Scenario Outline",
+        "line": 23,
+        "steps": [
+          {
+            "result": {
+              "duration": 108427000,
+              "status": "passed"
+            },
+            "name": "I am a \"GB\" customer purchasing the \"NOWTV\" offer",
+            "keyword": "Given ",
+            "line": 16,
+            "match": {
+              "arguments": [
+                {
+                  "val": "GB",
+                  "offset": 8
+                },
+                {
+                  "val": "NOWTV",
+                  "offset": 37
+                }
+              ],
+              "location": "PurchaseOfferSteps.PartnerCustomer(String,String)"
+            }
+          },
+          {
+            "result": {
+              "duration": 6989124000,
+              "status": "passed"
+            },
+            "name": "my profile has a PK_4GTariff tariff with a 4gsmall usergroup",
+            "keyword": "When ",
+            "line": 17,
+            "match": {
+              "arguments": [
+                {
+                  "val": "PK_4GTariff",
+                  "offset": 17
+                },
+                {
+                  "val": "4gsmall",
+                  "offset": 43
+                }
+              ],
+              "location": "PurchaseOfferSteps.PackageInGroup(String,String)"
+            },
+            "matchedColumns": [
+              0,
+              1
+            ]
+          },
+          {
+            "result": {
+              "duration": 57440215000,
+              "status": "passed"
+            },
+            "name": "my offer details will come from NowTV hardbundle",
+            "keyword": "Then ",
+            "line": 18,
+            "match": {
+              "arguments": [
+                {
+                  "val": "NowTV hardbundle",
+                  "offset": 32
+                }
+              ],
+              "location": "PurchaseOfferSteps.OfferContainsStringsFrom(String)"
+            },
+            "matchedColumns": [
+              2
+            ]
+          },
+          {
+            "result": {
+              "duration": 98821606000,
+              "status": "passed"
+            },
+            "name": "I will accept and confirm the offer",
+            "keyword": "And ",
+            "line": 19,
+            "match": {
+              "location": "PurchaseOfferSteps.AcceptPartnerOffer()"
+            }
+          }
+        ],
+        "type": "scenario"
+      },
+      {
+        "after": [
+          {
+            "result": {
+              "duration": 69531000,
+              "status": "passed"
+            },
+            "match": {
+              "location": "PurchaseOfferSteps.tearDown()"
+            }
+          }
+        ],
+        "id": "this-is-a-test-feature-file-that-we-run-only-to-help-do-a-debug;purchase-gb-offers-from-nowtv;;3",
+        "tags": [
+          {
+            "name": "@checkit",
+            "line": 14
+          }
+        ],
+        "before": [
+          {
+            "result": {
+              "duration": 1288420000,
+              "status": "passed"
+            },
+            "match": {
+              "location": "PurchaseOfferSteps.setUp(Scenario)"
+            }
+          }
+        ],
+        "description": "",
+        "name": "Purchase GB Offers from NOWTV",
+        "keyword": "Scenario Outline",
+        "line": 24,
+        "steps": [
+          {
+            "result": {
+              "duration": 5319000,
+              "status": "passed"
+            },
+            "name": "I am a \"GB\" customer purchasing the \"NOWTV\" offer",
+            "keyword": "Given ",
+            "line": 16,
+            "match": {
+              "arguments": [
+                {
+                  "val": "GB",
+                  "offset": 8
+                },
+                {
+                  "val": "NOWTV",
+                  "offset": 37
+                }
+              ],
+              "location": "PurchaseOfferSteps.PartnerCustomer(String,String)"
+            }
+          },
+          {
+            "result": {
+              "duration": 6329396000,
+              "status": "passed"
+            },
+            "name": "my profile has a PK_4GTariff tariff with a 4gmedium usergroup",
+            "keyword": "When ",
+            "line": 17,
+            "match": {
+              "arguments": [
+                {
+                  "val": "PK_4GTariff",
+                  "offset": 17
+                },
+                {
+                  "val": "4gmedium",
+                  "offset": 43
+                }
+              ],
+              "location": "PurchaseOfferSteps.PackageInGroup(String,String)"
+            },
+            "matchedColumns": [
+              0,
+              1
+            ]
+          },
+          {
+            "result": {
+              "duration": 52639752000,
+              "status": "passed"
+            },
+            "name": "my offer details will come from NowTV hardbundle",
+            "keyword": "Then ",
+            "line": 18,
+            "match": {
+              "arguments": [
+                {
+                  "val": "NowTV hardbundle",
+                  "offset": 32
+                }
+              ],
+              "location": "PurchaseOfferSteps.OfferContainsStringsFrom(String)"
+            },
+            "matchedColumns": [
+              2
+            ]
+          },
+          {
+            "result": {
+              "duration": 91916423000,
+              "status": "passed"
+            },
+            "name": "I will accept and confirm the offer",
+            "keyword": "And ",
+            "line": 19,
+            "match": {
+              "location": "PurchaseOfferSteps.AcceptPartnerOffer()"
+            }
+          }
+        ],
+        "type": "scenario"
+      }
+    ],
+    "uri": "offers_for_tariff.feature"
+  }
+]
