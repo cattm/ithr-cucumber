@@ -109,15 +109,13 @@ public class opcoTextChecker {
 		String tocompare = "";
 		
 		switch (opco) {
-		case "it" :	tocompare=GetProperty(offset + str1);
-				break;
-		case "es" : tocompare=GetProperty(offset + str1);
-		break;
-		case "ie" : tocompare=GetProperty(offset + str1);
-		break;
+		case "it" :	
+		case "es" : 
+		case "ie" : 
 		case "nl" : tocompare=GetProperty(offset + str1);
 		break;
-		default: break;
+		default: tocompare=GetProperty(offset + str1);
+		break;
 		}
 		
 		log.info("Reference Text is:        " + tocompare);
