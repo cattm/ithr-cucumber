@@ -48,7 +48,8 @@ public class BasicPartnerOffer extends PageBase {
 	private WebElement confirmationText;
 	
 	// TODO: When Matt has adjusted the page constructs sort the finders - this works - but is not good
-	@FindBy(xpath="/html/body/div/div/article/div[1]/div/div[1]/div[1]/div[2]/div[1]/div[3]")
+	//@FindBy(xpath="/html/body/div/div/article/div[1]/div/div[1]/div[1]/div[2]/div[1]/div[3]")
+	@FindBy(css="div [class='details-content']")
 	private WebElement whatHappensNext;
 	
 	// TODO: this is a poor find - PURPLE really!! you should be ashamed
@@ -66,7 +67,7 @@ public class BasicPartnerOffer extends PageBase {
 	
 	// get the overall offer text
 	public String getUserOffer() {
-		   return theOffer.getText();
+		return theOffer.getText();
 	}
 	   
 	// get the specifics of the offer
