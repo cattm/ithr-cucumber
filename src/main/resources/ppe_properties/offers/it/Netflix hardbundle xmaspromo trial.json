@@ -32,13 +32,14 @@
 					"mandatory": true
 				},
 				"accordion": {
-					"label": "Netflix",
-					"text": "<h6>Più informazioni su Netflix</h6><p>Con la tua offerta Vodafone  hai 3 mesi inclusi di Netflix per poter guardare contenuti in HD e da 2 device in contemporanea. Il valore totale dell’offerta è di 29,97€.</p><p>Prima della fine dei 3 mesi, riceverai un SMS gratuito che ti informerà della scadenza della promozione. Al termine dei 3 mesi, il servizio si rinnoverà a 9,99€/mese che saranno addebitati sul tuo conto telefonico.</p><p>Se sei già un cliente Netflix, sul tuo account saranno accreditati 29,97€. Esaurito questo credito, il tuo abbonamento tornerà a rinnovarsi normalmente.</p><p>Puoi comunque disattivare Netflix in qualsiasi momento. </p><h6>Costi di connessione Internet</h6><p>Puoi guardare i contenuti Netflix su tutti i dispositivi compatibili, anche in Wifi. Guardando i contenuti Netflix da rete mobile consumi GB di traffico Internet, che saranno tariffati secondo le condizioni della tua offerta.</p><h6>Device compatibili</h6><p>Netflix è compatibile con un'ampia gamma di smartphone e tablet, PC, TV connesse a Internet, game console. Per vedere tutti i device compatibili, visita il sito www.netflix.it</p><h6>Ulteriori informazioni</h6><p>Scopri di piú su Netflix nella pagina <a href=\"http://voda.it/infonetflix\">Domande frequenti.</a></p>"
+					"label": "Più informazioni su Netflix",
+					"text": "<p>Con la tua offerta Vodafone  hai 3 mesi inclusi di Netflix per poter guardare contenuti in HD e da 2 device in contemporanea. Il valore totale dell’offerta è di 29,97€.</p><p>Prima della fine dei 3 mesi, riceverai un SMS gratuito che ti informerà della scadenza della promozione. Al termine dei 3 mesi, il servizio si rinnoverà a 9,99€/mese che saranno addebitati sul tuo conto telefonico.</p><p>Se sei già un cliente Netflix, sul tuo account saranno accreditati 29,97€. Esaurito questo credito, il tuo abbonamento tornerà a rinnovarsi normalmente.</p><p>Puoi comunque disattivare Netflix in qualsiasi momento.</p><h6>Costi di connessione Internet</h6><p>Puoi guardare i contenuti Netflix su tutti i dispositivi compatibili, anche in Wifi. Guardando i contenuti Netflix da rete mobile consumi GB di traffico Internet, che saranno tariffati secondo le condizioni della tua offerta.</p><h6>Device compatibili</h6><p>Netflix è compatibile con un'ampia gamma di smartphone e tablet, PC, TV connesse a Internet, game console. Per vedere tutti i device compatibili, visita il sito <a href='http://www.netflix.it'>www.netflix.it</a>.</p><h6>Ulteriori informazioni</h6><p>Scopri di piú su Netflix nella pagina Domande frequenti.</p>"
 				},
 				"okButton": {
 					"label": "Attiva Netflix",
 					"action": "#next"
-				}
+				},
+				"duration": "3 mesi inclusi"
 			},
 
 			"success": {

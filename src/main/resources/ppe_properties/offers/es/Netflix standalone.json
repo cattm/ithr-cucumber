@@ -34,7 +34,8 @@
 				"okButton": {
 					"label": "Activar Netflix",
 					"action": "#next"
-				}
+				},
+				"duration": "1 mes de regalo"
 			},
 
 			"success": {
@@ -49,7 +50,7 @@
 
 		"cancellation": {
 			"details": {
-				"text": "<p>Tus series y películas favoritas, los contenidos originales de Netflix y una sección especial para niños. Ves lo que quieres y cuando quieres. Sin publicidad. </p><p>¿Estas seguro que quieres darte de baja?</p><p>Para darse de baja del servicio Netflix, haz clic en el botón inferior. </p>",
+				"text": "<p>Tus series y películas favoritas, los contenidos originales de Netflix y una sección especial para niños. Ves lo que quieres y cuando quieres. Sin publicidad.</p><p>¿Estas seguro que quieres darte de baja?</p><p>Para darse de baja del servicio Netflix, haz clic en el botón inferior. </p>",
 				"getAppButton": {
 					"label": "Descargar app",
 					"action": "#getApp"

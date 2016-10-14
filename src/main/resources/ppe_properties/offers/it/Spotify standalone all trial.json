@@ -28,13 +28,14 @@
 					"mandatory": true
 				},
 				"accordion": {
-					"label": "Spotify",
-					"text": "<p>Informazioni su Spotify Premium</p><h6>Spotify Premium</h6><p>Puoi avere tutta la musica illimitata con Spotify per tutta la durata del tuo abbonamento.</p><h6>Costi di connessione internet</h6><p>L'utilizzo del servizio con rete Vodafone consuma i GB inclusi nella tua offerta.</p><h6>Disattiva \"Spotify Premium\"</h6><p>Per disattivare il tuo abbonamento \"Spotify Premium\" cliccahttp://voda.it/disattivaspotify.</p><h6>Telefoni compatibili</h6><p>Spotify è compatibile con un'ampia gamma di telefoni e tablet: Android, Windows, Apple iOS e tanti altri. Non è invece disponibile per BlackBerry 10.</p><h6>Domande Frequenti</h6><p>Per avere ulteriori informazioni consulta leDomande Frequenti su Spotify Premium.</p>"
+					"label": "Più informazioni su Spotify Premium",
+					"text": "<h6>Spotify Premium</h6><p>Puoi avere tutta la musica illimitata con Spotify per tutta la durata del tuo abbonamento.</p><h6>Costi di connessione internet</h6><p>L'utilizzo del servizio con rete Vodafone consuma i GB inclusi nella tua offerta.</p><h6>Disattiva \"Spotify Premium\"</h6><p>Per disattivare il tuo abbonamento \"Spotify Premium\" clicca http://voda.it/disattivaspotify.</p><h6>Telefoni compatibili</h6><p>Spotify è compatibile con un'ampia gamma di telefoni e tablet: Android, Windows, Apple iOS e tanti altri. Non è invece disponibile per BlackBerry 10.</p><h6>Domande Frequenti</h6><p>Per avere ulteriori informazioni consulta leDomande Frequenti su Spotify Premium</p>"
 				},
 				"okButton": {
 					"label": "Attiva Spotify Premium",
 					"action": "#next"
-				}
+				},
+				"duration": "1 mese incluso"
 			},
 
 			"success": {
@@ -48,7 +49,7 @@
 
 		"cancellation": {
 			"details": {
-				"text": "<p>E' attiva l’offerta che ti dà diritto a 1 mese di Spotify Premium offerti da Vodafone a 0 euro al mese anziché 9,99 euro al mese; il periodo di gratuità è valido finché la tua offerta è attiva: se disattivi la tua offerta il servizio Spotify Premium passa a 9,99€/mese.</p><p>Dopo il mese di promozionalità, il servizio Spotify Premium si rinnova a 8,99 euro al mese per i successivi 11 rinnovi. Successivamente Spotify Premium si rinnova a 9,99 euro al mese.  Se hai già sottoscritto uno dei contenuti dell’offerta Vodafone Entertainment, non potrai usufruire di questa promozione. </p><p>Se hai già usufruito di un periodo di promozionalità per il servizio Spotify Premium, non potrai usufruire di questa promozione.</p><p>Se non l'hai gia' fatto scarica l'APP premendo il bottone qui sotto.</p>",
+				"text": "<p>E' attiva l’offerta che ti dà diritto a 1 mese di Spotify Premium offerti da Vodafone a 0 euro al mese anziché 9,99 euro al mese; il periodo di gratuità è valido finché la tua offerta è attiva: se disattivi la tua offerta il servizio Spotify Premium passa a 9,99€/mese.</p><p>Dopo il mese di promozionalità, il servizio Spotify Premium si rinnova a 8,99 euro al mese per i successivi 11 rinnovi. Successivamente Spotify Premium si rinnova a 9,99 euro al mese.  Se hai già sottoscritto uno dei contenuti dell’offerta Vodafone Entertainment, non potrai usufruire di questa promozione.</p><p>Se hai già usufruito di un periodo di promozionalità per il servizio Spotify Premium, non potrai usufruire di questa promozione.</p><p>Se non l'hai gia' fatto scarica l'APP premendo il bottone qui sotto.</p>",
 				"getAppButton": {
 					"label": "Scarica l'APP di Spotify",
 					"action": "#getApp"

@@ -77,7 +77,7 @@
 
 			"details2": {
 				"title": "Dar de baja tu oferta",
-				"text": "<p>Al dar de baja tu suscripción a Backup+ premium no dispondrás de los 25GB de espacio adicional en Dropbox ni de RealTimes ilimitado. </p><p>Recuerda que podrás seguir usando Backup+ y guardando tus fotos, videos o música mientras tengas espacio disponible en Dropbox.</p><p>Para dar de baja tu suscripción, por favor pincha más abajo.</p>",
+				"text": "<p>Al dar de baja tu suscripción a Backup+ premium no dispondrás de los 25GB de espacio adicional en Dropbox ni de RealTimes ilimitado.</p><p>Recuerda que podrás seguir usando Backup+ y guardando tus fotos, videos o música mientras tengas espacio disponible en Dropbox.</p><p>Para dar de baja tu suscripción, por favor pincha más abajo.</p>",
 				"okButton": {
 					"label": "Darse de baja ahora",
 					"action": "#next"

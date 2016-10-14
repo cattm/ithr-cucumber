@@ -22,7 +22,7 @@
 				"title": "Ves lo que quieres, cuando quieres",
 				"text": "<ul class=\"offers_list\"><li>Tus  series y películas favoritas: El lobo de Wall Street, Sin límites, Breaking Bad,  Gotham, Arrow… los contenidos originales de Netflix como Narcos, Marvel - Daredevil, Marco Polo, House of Cards, Orange is the New Black, documentales aclamados por la crítica como Virunga o Mission Blue,  y una sección especial para niños con títulos como Kung Fu Panda, LEGO Ninjago: Masters of Spinjitzu o Madagascar.  Ves todo lo que quieres y cuando quieres. Sin publicidad</li><li>Integrado en Vodafone TV. Además, podrás disfrutar de todo el contenido en tu Smartphone, Tablet, PC/MAC y muchos más dispositivos</li><li>Sin compromiso</li></ul>",
 				"checkbox": {
-					"label": "Una vez hagas clic en “Activar Netflix”, serás redirigido a una página de Netflix para completar el alta en el servicio.",
+					"label": "Una vez hagas clic en \"Activar Netflix\", serás redirigido a una página de Netflix para completar el alta en el servicio.",
 					"errorMessage": "Por favor, debes aceptar y marcar la casilla para continuar con el proceso de alta.",
 					"order": 1,
 					"mandatory": true

@@ -32,7 +32,7 @@
 		"purchase": {
 			"details": {
 				"settop": true,
-				"title": "<p>The Sky Movies Month Pass. More of the year's biggest blockbusters. No contract.</p>",
+				"title": "The Sky Movies Month Pass. More of the year's biggest blockbusters. No contract.",
 				"text": "<p>Enjoy over 1,000 movies and up to 16 premieres a month for just £9.99 a month.</p><p>By clicking add you acknowledge you will lose your right to a refund should you cancel.</p>",
 				"checkbox": {
 					"label": "I accept <a href=\"#\" class=\"terms_link\">terms and conditions</a>",

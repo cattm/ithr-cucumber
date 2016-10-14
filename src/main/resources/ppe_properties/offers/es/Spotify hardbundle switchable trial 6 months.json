@@ -24,19 +24,20 @@
 	"pages": {
 		"purchase": {
 			"details": {
-				"text": "<p>Te informamos que con el cambio de tu tarifa Vodafone, puedes disfrutar de 6 meses adicionales de regalo en el servicio Spotify Premium</p>",
+				"title": "Ahora, con tu tarifa Vodafone, 6 meses de regalo",
+				"text": "<ul><li>Música ilimitada. Encuentra tus canciones preferidas, todas las novedades y crea tus propias listas</li><li>Escucha tu música favorita sin publicidad y en alta definición</li><li>Guarda tus canciones en tu dispositivo para escucharlas aunque no estés conectado a Internet</li><li>Accede al contenido de forma sincronizada desde tu Smartphone, Tablet, PC/MAC y muchos más dispositivos</li><li>Sin compromiso</li></ul>",
 				"checkbox": {
-					"label": "<p>Haz clic en “Aceptar” para solicitar la activación de la promoción de 6 meses de regalo en el servicio Spotify Premium. Después de ese periodo, pagarás 8,99€/mes (impuestos incluidos). Antes de que esto suceda, recibirás un SMS gratuito avisándote. Recuerda que podrás ver los cargos de forma sencilla en tu factura Vodafone. </p>",
-					"errorMessage": "Por favor, debes aceptar y marcar la casilla inferior para continuar con el proceso de alta.",
+					"label": "<p>Una vez hagas clic en \"Activar Spotify Premium\", serás redirigido a una página de Spotify para completar el alta en el servicio.</p><p>Pulsando en \"Activar Spotify Premium\" estás solicitando la activación de la promoción de 6 meses de regalo en el servicio Spotify Premium. Después de ese periodo, pagarás 8,99€/mes (impuestos incluidos). Antes de que esto suceda, recibirás un SMS gratuito avisándote. Recuerda que podrás ver los cargos de forma sencilla en tu factura Vodafone.</p>",
+					"errorMessage": "Por favor, debes aceptar y marcar la casilla para continuar con el proceso de alta.",
 					"order": 1,
 					"mandatory": true
 				},
 				"accordion": {
 					"label": "Más info",
-					"text": "<p>Y además:</p><p>Para cualquier duda sobre el funcionamiento del servicio, accede a <a href=\"http://www.vodafone.es/ayuda/spotify\" target=\"_blank\">www.vodafone.es/ayuda/spotify</a></p> "
+					"text": "<p>Y además:</p><p>Para cualquier duda sobre el funcionamiento del servicio, accede a <a href=\"http://support.spotify.com/es\" target=\"_blank\">http://support.spotify.com/es</a>. Podrás consultar preguntas frecuentes, acceder a un foro que es una comunidad de ayuda…</p>"
 				},
 				"okButton": {
-					"label": "Aceptar",
+					"label": "Activar Spotify Premium",
 					"action": "#next"
 				},
 				"duration": "6 meses de regalo"

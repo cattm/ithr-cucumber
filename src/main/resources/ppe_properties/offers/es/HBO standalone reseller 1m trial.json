@@ -25,8 +25,8 @@
 	"pages": {
 		"purchase": {
 			"details": {
-				"title": "Prueba ahora los 30 d\u00EDas de regalo",
-				"text": "<ul><li>HBO España, The Home of Series, con más de 4.000 episodios de las mejores series y cientos de peliculas seleccionadas cuidadosamente.</li><li>Todas las temporadas de tus series favoritas como Juego de Tronos, True Detective o Girls. Novedades en exclusiva como West World, Divorce o The Night Of y sin olvidarnos de los clásicos que tanto te gustan como Sexo en Nueva York o Los Sopranos.</li><li>Y además para los más pequeños Patrulla Canina, Pepa Pig, Bob Esponja, The Thundermans y mucho más.</li><li>Disfrútalo en Vodafone TV y en tus dispositivos conectados a Internet (smartphones, tablets, PC...).</li><li>Despúes de los 30 d\u00EDas de regalo, 7,99€/mes</li><li>Sin compromiso de permanencia.</li></ul>",
+				"title": "Prueba ahora los 30 días de regalo",
+				"text": "<ul><li>HBO España, The Home of Series, con más de 4.000 episodios de las mejores series y cientos de peliculas seleccionadas cuidadosamente.</li><li>Todas las temporadas de tus series favoritas como Juego de Tronos, True Detective o Girls. Novedades en exclusiva como West World, Divorce o The Night Of y sin olvidarnos de los clásicos modernos que tanto te gustan como Los Sopranos o Sexo en Nueva York.</li><li>Y además para los más pequeños Patrulla Canina, Pepa Pig, Bob Esponja, The Thundermans y mucho más.</li><li>Disfrútalo en Vodafone TV y en tus dispositivos conectados a Internet (smartphones, tablets, PC...).</li><li>Despúes de los 30 días de regalo, 7,99€/mes</li><li>Sin compromiso de permanencia.</li></ul>",
 				"checkbox": {
 					"label": "Soy mayor de edad y acepto <a href=\"#\" class=\"terms_link\">los Términos y Condiciones generales Vodafone del servicio HBO España</a>",
 					"errorMessage": "Por favor, debes aceptar y marcar la casilla para continuar con el proceso de alta.",
@@ -86,7 +86,7 @@
 
 			"success": {
 				"title": "¡Proceso completado!",
-				"text": "<p>El alta en el servicio de HBO España se ha completado correctamente.</p>",
+				"text": "<p>El alta en el servicio de HBO España se ha completado correctamente. <br />Recuerda que tus datos de acceso son el correo electrónico y la contraseña que acabas de introducir.</p>",
 				"getAppButton": {
 					"label": "Descargar app",
 					"action": "#getApp"

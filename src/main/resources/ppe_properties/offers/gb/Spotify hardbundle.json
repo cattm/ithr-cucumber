@@ -19,7 +19,7 @@
 	"pages": {
 		"purchase": {
 			"details": {
-				"title": "<p>Spotify Premium gives you instant access to over 30 million songs.</p>",
+				"title": "Spotify Premium gives you instant access to over 30 million songs.",
 				"text": "<ul class=\"offers_list\"><li>Unlimited music.</li><li>Listen on mobile, tablet, and laptop.</li><li>Save music to listen offline.</li><li>Better sound quality.</li><li>No ads.</li></ul>",
 				"checkbox": {
 					"label": "I accept <a href=\"#\" class=\"terms_link\">terms and conditions</a>",

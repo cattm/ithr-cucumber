@@ -27,13 +27,14 @@
                "mandatory": true
             },
             "accordion": {
-               "label": "Infinity TV",
-               "text": "<h6>Film, Serie TV, cartoni e molto altro senza limiti. Solo con Infinity il super HD ed il download sono inclusi.</h6><p>Grazie alla tua offerta Vodafone hai 12 mesi inclusi, senza costi aggiuntivi!</p><p>Scopri tutti i vantaggi di Infinity:</p><p><ul><li>Download&Go: scarica i tuoi contenuti e portali sempre con te. Anche senza connessione!</li><li>Accedi da 5 dispositivi diversi e guardi da 2 contemporaneamente.</li><li>Senza interruzioni pubblicitarie ed in super HD.</li></ul><p>L’offerta dà diritto a 12 mesi di Infinity offerti da Vodafone a 0 euro al mese anziché 7,99 euro al mese; il periodo di gratuità è valido finché la tua offerta è attiva: se disattivi la tua offerta il servizio Infinity  passa a 7,99€/mese.</p><p>Dopo i dodici mesi di promozionalità, il servizio Infinity si rinnova a 7,99 euro al mese.</p><p>Se hai già sottoscritto uno dei contenuti dell’offerta Vodafone Entertainment, non potrai usufruire di questa promozione. Se hai già usufruito di un periodo di promozionalità per il servizio Infinity, non potrai usufruire di questa promozione.</p>"
+               "label": "Più informazioni su Infinity TV",
+               "text": "<h6>Film, Serie TV, cartoni e molto altro senza limiti. Solo con Infinity il super HD ed il download sono inclusi.</h6><p>Grazie alla tua offerta Vodafone hai 12 mesi inclusi, senza costi aggiuntivi!</p><p>Scopri tutti i vantaggi di Infinity:</p><ul><li>Download&Go: scarica i tuoi contenuti e portali sempre con te. Anche senza connessione!</li><li>Accedi da 5 dispositivi diversi e guardi da 2 contemporaneamente.</li><li>Senza interruzioni pubblicitarie ed in super HD.</li></ul><p>L’offerta dà diritto a 12 mesi di Infinity offerti da Vodafone a 0 euro al mese anziché 7,99 euro al mese; il periodo di gratuità è valido finché la tua offerta è attiva: se disattivi la tua offerta il servizio Infinity  passa a 7,99€/mese.</p><p>Dopo i dodici mesi di promozionalità, il servizio Infinity si rinnova a 7,99 euro al mese.</p><p><strong>Se hai già usufruito di un periodo di promozionalità per il servizio Infinity, non potrai usufruire di questa promozione.</strong></p>"
             },
             "okButton": {
                "label": "Attiva Infinity",
                "action": "#next"
-            }
+            },
+            "duration": "12 mesi inclusi"
          }
       },
       "cancellation": {

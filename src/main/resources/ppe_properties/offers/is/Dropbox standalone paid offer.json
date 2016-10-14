@@ -33,7 +33,7 @@
                "text": "<h6>Auka geymslupláss</h6><p>Geymsluplássið sem þú færð með áskriftinni þinni bætist ofan á núverandi geymslupláss þitt hjá Dropbox.</p><h6>Gjaldskrá gagnamagns</h6><p>Þú borgar hefðbundinn gagnamagnskostnað þegar þú ert á reiki eða þegar þú hefur klárað innifalið gagnamagn með áskriftinni þinni.</p><h6>Segja upp áskriftinni</h6><p>Þú getur afskráð þig fyrir þjónustunni þegar þú vilt í gegnum 'Tilboðið þitt' í Backup+ appinu.</p>"
             },
             "okButton": {
-               "label": "Fá tilboðið mitt",
+               "label": "Kaupa áskrift",
                "action": "#next"
             },
             "customButton": {

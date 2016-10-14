@@ -55,7 +55,7 @@
 
 		"cancellation": {
 			"details": {
-				"text": "<p>Escucha tu música preferida, con o sin conexión de datos, sin anuncios y en alta definición.</p><p>Para darse de baja del servicio Spotify Premium, haz clic en el botón inferior. </p>",
+				"text": "<p>Escucha tu música preferida en cualquier lugar, con o sin conexión de datos, sin anuncios y en alta definición.</p><p>Para darse de baja del servicio Spotify Premium, haz clic en el botón inferior. </p>",
 				"getAppButton": {
 					"label": "Descargar app",
 					"action": "#getApp"
@@ -67,7 +67,7 @@
 			},
 
 			"details2": {
-				"title" : "<p>¿Estas seguro que quieres darte de baja?</p>",
+				"title": "<p>¿Estas seguro que quieres darte de baja?</p>",
 				"text": "<p>Recuerda, la baja en el servicio será efectiva al final de tu mes de suscripción.</p>",
 				"okButton": {
 					"label": "Darse de baja",

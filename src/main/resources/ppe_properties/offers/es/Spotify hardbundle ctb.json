@@ -31,8 +31,8 @@
 			},
 
 			"details2": {
-				"title" : "<p>¿Estas seguro que quieres darte de baja?</p>",
-				"text": "<p>Recuerda, la baja en el servicio será efectiva al final de tu ciclo de facturación.</p>",
+				"title": "<p>¿Estas seguro que quieres darte de baja?</p>",
+				"text": "<p>Recuerda, la baja en el servicio será efectiva al final de tu mes de suscripción.</p>",
 				"okButton": {
 					"label": "Darse de baja",
 					"action": "#next"

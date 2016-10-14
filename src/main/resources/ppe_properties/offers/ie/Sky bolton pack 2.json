@@ -13,7 +13,7 @@
       "purchase": true,
       "cancellation": true
    },
-   "heading": "Sky Sports Mobile TV pack 2",
+   "heading": "Sky Sports Mobile TV",
    "deviceAvailability": [
       "android",
       "iPhone"
@@ -22,7 +22,7 @@
       "purchase": {
          "details": {
             "title": "Never miss a moment again.",
-            "text": "<h6>Experience every thrilling sporting moment on the move with Sky sport Mobile TV subscription with Vodafone</h6><ul><li>Enjoy pack 1 of Sky Sports Mobile TV on Vodafone which gives you unlimited access to Sky Sports 1 &amp; 2 and pack even more sports into your life. Never miss live coverage of your favourite sports again<br></li><li>Available on iPhone and selected Android phones<br></li></ul><p>\n\n\n\n\n\n\n\n\n\n\n</p>",
+            "text": "<h6>Experience every thrilling sporting moment on the move with Sky sport Mobile TV subscription with Vodafone</h6><ul><li>Enjoy pack 2 of Sky Sports Mobile TV on Vodafone which gives you unlimited access to Sky Sports 1, 2, 3, 4, 5, F1 and Sky Sports News to pack even more sports into your life. Never miss live coverage of your favourite sports again<br></li><li>Available on iPhone and selected Android phones</li></ul>",
             "checkbox": {
                "label": "Vodafone <a href='#\">terms and conditions</a>",
                "errorMessage": "Please check the Vodafone terms and conditions box to continue",
@@ -31,16 +31,16 @@
             },
             "accordion": {
                "label": "Sky Sports Mobile TV",
-               "text": "<h6>Subscription</h6><p class=\"p2\">You get unlimited access to Sky Sports Mobile TV pack 1 for only €5.99 per month</p><h6>Internet charges</h6><h6>You pay standard internet charges while roaming or if your have exceeded your monthly allowance</h6><h6>Supported phones</h6><h6>Sky Sports Mobile TV is only available on iPhone and selected&nbsp;</h6>"
+               "text": "<h6>Subscription</h6><p class=\"p2\">You get unlimited access to Sky Sports Mobile TV pack 1 for only €7 per month</p><h6>Internet charges</h6><h6>You pay standard internet charges while roaming or if your have exceeded your monthly allowance</h6><h6>Supported phones</h6><h6>Sky Sports Mobile TV is only available on iPhone and selected</h6>"
             },
             "okButton": {
-               "label": "Add Sky Sports Mobile TV pack 1",
+               "label": "Add Sky Sports Mobile TV pack 2",
                "action": "#next"
             }
          },
          "success": {
             "title": "What happens next?",
-            "text": "<h6>Congratulations, you’re now ready to get your Sky sports Mobile TV app and start watching some great Sport</h6><h6>Download the Sky Sports Mobile TV app from the app store, open the app, select ‘I subscribe to Mobile TV with Vodafone’ and follow the instructions to start watching live sport on the go.</h6><h6>Please note, you need to be on the Vodafone network for the first time you access the app. Remember to switch off the WiFi</h6><h6>You can also get unlimited access to Sky Sports Mobile TV pack 2, including Sky Sports 3, 4, F1 and Sky Sports News for €12.99 per month.</h6><h6>You might be interested in this additional offer.</h6><h6>Sky Sports Mobile TV</h6><h6>Experience thrilling sporting moments with Sky sports Mobile TV.</h6><ul><li>Enjoy Sky sports Mobile TV pack 2, including all the extra Sky Sports channels for only €12.99 per month.<br></li><li>Enjoy pack 2 of Sky Sports Mobile TV, including all the extra Sky Sports channels<br></li><li>Pack even more sports into your life and never miss live coverage of your favourite sports.<br></li><li>Available only on iPhones and selected Android phones. &nbsp;<br></li></ul><h6>For just €12.99 per month</h6><h6>I accept terms and conditions.</h6><h6>Subscription</h6><h6>You get unlimited access to Sky Sports Mobile TV pack 2 including Sky Sports 3, 4, F1 and Sky Sports News</h6><h6>Internet charges</h6><h6>You pay standard internet charges while roaming or if your have exceeded your monthly allowance</h6><h6>Stopping the subscription</h6><h6>You will be charged €12.99 a month and can cancel at any time by going to https://offers.vodafone.com/ie/cancel</h6><h6>Supported phones</h6><h6>Sky Sports Mobile TV is only available on iPhone and selected Android phone</h6><p>\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n</p><h6>In order to activate your subscription through the Sky Sports Mobile TV app, your smartphone must be connected to the mobile network using you Vodafone sim linked to this subscription.</h6>",
+            "text": "<h6>Congratulations, you’re now ready to get your Sky sports Mobile TV app and start watching some great Spor</h6><h6>Download the Sky Sports Mobile TV app from the app store, open the app, select ‘I subscribe to Mobile TV with Vodafone’ and follow the instructions to start watching live sport on the go.</h6><h6>Please note, you need to be on the Vodafone network for the first time you access the app. Remember to switch off the WiFi</h6><h6>You can also get unlimited access to Sky Sports Mobile TV pack 2, including Sky Sports 3, 4, F1 and Sky Sports News for an additional €7 per month</h6><h6>You might be interested in this additional offer</h6><h6>Other available offers</h6><h6>Sky Sports Mobile TV</h6><h6>Experience thrilling sporting moments with Sky sports Mobile TV</h6><ul><li>Enjoy Sky sports Mobile TV pack 2, including all the extra Sky Sports channels for only €7 per month.</li><li>Enjoy pack 2 of Sky Sports Mobile TV, including all the extra Sky Sports channels</li><li>Pack even more sports into your life and never miss live coverage of your favourite sports.</li><li>Available only on iPhones and selected Android phones.</li></ul><h6>For just €8 extra per month</h6><h6>I accept terms and conditions.</h6><h6>Subscription</h6><h6>You get unlimited access to Sky Sports Mobile TV pack 2 including Sky Sports 3, 4, F1 and Sky Sports News</h6><h6>Internet charges</h6><h6>You pay standard internet charges while roaming or if your have exceeded your monthly allowance</h6><h6>Stopping the subscription</h6><h6>You will be charged €8 a month and can cancel at any time by going to https://offers.vodafone.com/ie/cancel</h6><h6>Supported phones</h6><h6>Sky Sports Mobile TV is only available on iPhone and selected Android phone</h6><h6>In order to activate your subscription through the Sky Sports Mobile TV app, your smartphone must be connected to the mobile network using you Vodafone sim linked to this subscription</h6>",
             "getAppButton": {
                "label": "Get Sky Sports Mobile TV app",
                "action": "#getApp"
@@ -50,10 +50,10 @@
       "cancellation": {
          "details": {
 			 "title": "<p>Sky Sports Mobile TV pack 2</p>",
-            "text": "<h6>Experience thrilling sporting moments with Sky sports Mobile TV</h6><h6>Enjoy Sky sports Mobile TV pack 2, including all the extra Sky Sports channels for only €7 per month.</h6><ul><li>Enjoy pack 2 of Sky Sports Mobile TV, including all the extra Sky Sports channels<br></li><li>Pack even more sports into your life and never miss live coverage of your favourite sports.<br></li><li>Available only on iPhones and selected Android phones.<br></li></ul><p>&nbsp;<br></p><h6>To stop your subscription please click the button below</h6>",
+            "text": "<h6>Experience thrilling sporting moments with Sky sports Mobile TV</h6><h6>Enjoy Sky sports Mobile TV pack 2, including all the extra Sky Sports channels for only €7 per month.</h6><ul><li>Enjoy pack 2 of Sky Sports Mobile TV, including all the extra Sky Sports channels</li><li>Pack even more sports into your life and never miss live coverage of your favourite sports.</li><li>Available only on iPhones and selected Android phones.</li></ul><h6>To stop your subscription please click the button below</h6>",
             "accordion": {
                "label": "Sky Sports Mobile TV",
-               "text": "<h6>Subscription</h6><p class=\"p2\">You get unlimited access to Sky Sports Mobile TV pack 1 for only €5.99 per month</p><h6>Internet charges</h6><h6>You pay standard internet charges while roaming or if your have exceeded your monthly allowance</h6><h6>Supported phones</h6><h6>Sky Sports Mobile TV is only available on iPhone and selected&nbsp;</h6>"
+               "text": "<h6>Subscription</h6><p class=\"p2\">You get unlimited access to Sky Sports Mobile TV pack 1 for only €7 per month</p><h6>Internet charges</h6><h6>You pay standard internet charges while roaming or if your have exceeded your monthly allowance</h6><h6>Supported phones</h6><h6>Sky Sports Mobile TV is only available on iPhone and selected</h6>"
             },
             "okButton": {
                "label": "Please confirm you wish to cancel Sky Sports Mobile TV pack 2",
@@ -67,7 +67,7 @@
          "details2": {
             "text": "<h6>Experience thrilling sporting moments with Sky sports Mobile TV</h6><h6>Enjoy Sky sports Mobile TV pack 2, including all the extra Sky Sports channels for only €8 per month.</h6><ul><li>Enjoy pack 2 of Sky Sports Mobile TV, including all the extra Sky Sports channels<br></li><li>Pack even more sports into your life and never miss live coverage of your favourite sports.<br></li><li>Available only on iPhones and selected Android phones.&nbsp;</li></ul><h6>To stop your subscription please click the button below.</h6>",
             "okButton": {
-               "label": "Cancel Sky Sports mobile TV pack 2 (€8 per month)",
+               "label": "Cancel Sky Sports mobile TV pack 2(€7 per month)",
                "action": "#next"
             }
          },

@@ -43,8 +43,8 @@
 				}
 			},
 			"success": {
-				"title": "Kündigung erfolgreich",
-				"text": "<p>Du hast Deine Deezer Musik-Flat erfolgreich gekündigt.</p><p>Dein Paket bleibt bis zum Ende der Laufzeit weiterhin nutzbar.</p>"
+				"title": "Kündigungsbestätigung",
+				"text": "<p>Du hast Deine Deezer Musik-Flat gekündigt.</p><p>Du kannst sie bis zum Ende der Laufzeit weiter nutzen.</p>"
 			}
 		}
 	},

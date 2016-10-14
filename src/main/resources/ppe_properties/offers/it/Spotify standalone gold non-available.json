@@ -27,8 +27,8 @@
 				"title": "Spotify Trial",
 				"text": "<p>Hai gia attivato questa offerta in passato, puoi avere Spotify Premium a €9,99 al mese per i primi 12 mesi.</p>",
 				"accordion": {
-					"label": "Spotify",
-					"text": "<p>Informazioni su Spotify Premium</p><h6>Spotify Premium</h6><p>Puoi avere tutta la musica illimitata con Spotify per tutta la durata del tuo abbonamento.</p><h6>Costi di connessione internet</h6><p>L'utilizzo del servizio con rete Vodafone consuma i GB inclusi nella tua offerta.</p><h6>Disattiva \"Spotify Premium\"</h6><p>Per disattivare il tuo abbonamento \"Spotify Premium\" cliccahttp://voda.it/disattivaspotify.</p><h6>Telefoni compatibili</h6><p>Spotify è compatibile con un'ampia gamma di telefoni e tablet: Android, Windows, Apple iOS e tanti altri. Non è invece disponibile per BlackBerry 10.</p><h6>Domande Frequenti</h6><p>Per avere ulteriori informazioni consulta leDomande Frequenti su Spotify Premium</p><p>Cliccando su «Attiva Spotify Premium» dichiari di accettare i termini e le condizioni del servizio</p>"
+					"label": "Più informazioni su Spotify Premium",
+					"text": "<h6>Spotify Premium</h6><p>Puoi avere tutta la musica illimitata con Spotify per tutta la durata del tuo abbonamento.</p><h6>Costi di connessione internet</h6><p>L'utilizzo del servizio con rete Vodafone consuma i GB inclusi nella tua offerta.</p><h6>Disattiva \"Spotify Premium\"</h6><p>Per disattivare il tuo abbonamento \"Spotify Premium\" clicca http://voda.it/disattivaspotify.</p><h6>Telefoni compatibili</h6><p>Spotify è compatibile con un'ampia gamma di telefoni e tablet: Android, Windows, Apple iOS e tanti altri. Non è invece disponibile per BlackBerry 10.</p><h6>Domande Frequenti</h6><p>Per avere ulteriori informazioni consulta leDomande Frequenti su Spotify Premium</p><p>Cliccando su «Attiva Spotify Premium» dichiari di accettare i termini e le condizioni del servizio</p>"
 				},
 				"okButton" : {
 					"label" : "Continua",
@@ -37,7 +37,8 @@
 				"customButton" : {
 					"label" : "Indietro",
 					"action" : "#moreOffers"
-				}
+				},
+				"duration": "12 mesi inclusi"
 			},
 
 			"success": {

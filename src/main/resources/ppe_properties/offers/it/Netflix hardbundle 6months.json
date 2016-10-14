@@ -31,7 +31,8 @@
 				"okButton": {
 					"label": "Disattiva",
 					"action": "#next"
-				}
+				},
+				"duration": "6 mesi inclusi"
 			},
 
 			"details2": {

@@ -27,13 +27,14 @@
 					"mandatory": true
 				},
 				"accordion": {
-					"label": "Chili",
-					"text": "<p>Più informazioni su Chili TV</p><h6>Costi di connessione Internet</h6><p>CHILI consuma GB di traffico Internet, che saranno tariffati secondo le condizioni della tua offerta</p><h6>Telefoni Compatibili</h6><p>ChiliTV è disponibile su Smart TV, Smart Blu-Ray, PC, Mac, Tablet, Smartphone e Smartkey TV. È inoltre possibile vedere i contenuti CHILI sul televisore con Chromecast, anche se non è uno Smart TV.</p><p>L’app CHILI è pre-installata su Smart TV e Smart Blu-Ray; su Tablet e Smartphone puoi scaricare gratuitamente l’app da Google Play, App Store, Windows Store e Windows Phone.</p><h6>Utilizzo all'estero</h6><p>I Film e le Serie TV del tuo profilo ChiliTV sono disponibili solo nel territorio italiano.</p><p>All'estero puoi vedere i contenuti che hai scaricato in Italia con la funzionalità “Download”</p><h6>Disattiva ChiliTV</h6><p>Puoi disattivare CHILI con VODAFONE dal tuo profilo CHILI o andando su http://voda.it/disattivachili</p><p>L’eventuale valore residuo sul Borsellino Elettronico sarà disponibile fino al termine del mese.</p><h6>Domande Frequenti</h6><p>Per avere ulteriori informazioni consulta le Domande Frequenti su ChiliTV.</p>"
+					"label": "Più informazioni su Chili",
+					"text": "<h6>Costi di connessione Internet</h6><p>CHILI consuma GB di traffico Internet, che saranno tariffati secondo le condizioni della tua offerta</p><h6>Telefoni Compatibili</h6><p>ChiliTV è disponibile su Smart TV, Smart Blu-Ray, PC, Mac, Tablet, Smartphone e Smartkey TV. È inoltre possibile vedere i contenuti CHILI sul televisore con Chromecast, anche se non è uno Smart TV.</p><p>L’app CHILI è pre-installata su Smart TV e Smart Blu-Ray; su Tablet e Smartphone puoi scaricare gratuitamente l’app da Google Play, App Store, Windows Store e Windows Phone.</p><h6>Utilizzo all'estero</h6><p>I Film e le Serie TV del tuo profilo CHILI sono disponibili solo nel territorio italiano.</p><p>All'estero puoi vedere i contenuti che hai scaricato in Italia con la funzionalità \"Download\"</p><h6>Disattiva CHILI</h6><p>Puoi disattivare CHILI con VODAFONE dal tuo profilo CHILI o andando su <a href=\"http://voda.it/disattivachili\">http://voda.it/disattivachili</a></p><p>L’eventuale valore residuo sul Borsellino Elettronico sarà disponibile fino al termine del mese.</p><h6>Domande Frequenti</h6><p>Per avere ulteriori informazioni consulta le Domande Frequenti su ChiliTV.</p>"
 				},
 				"okButton": {
 					"label": "Attiva Chili",
 					"action": "#next"
-				}
+				},
+				"duration": "2 mesi inclusi"
 			},
 
 			"success": {
