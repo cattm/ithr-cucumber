@@ -36,7 +36,27 @@ public class Customer {
 	public Customer () {
 		// blank constructor
 	}
-	
+
+	private void setCountryCodeFromOpco (String opco) {
+		switch (opco.toLowerCase()) {
+		case "al" : break;
+		case "de" : countryCode = "49"; break;
+		case "es" : countryCode = "34"; break;
+		case "gb" : countryCode = "44"; break;
+		case "gr" : break;
+		case "ie" : countryCode = "353"; break;
+		case "is" : break;
+		case "it" : countryCode = "39"; break;
+		case "nl" : countryCode = "31"; break;
+		case "nz" : countryCode = "64"; break;
+		case "pt" : countryCode = "351"; break;
+		case "ro" :
+		case "tr" :
+		case "za" :
+		default : countryCode = "666"; break;
+		
+		}
+	}
 	public void printCustomer () {
 		log.info("opco is " + opco);
 		log.info("subscription is " + subscription);
@@ -55,6 +75,7 @@ public class Customer {
 	public void setOpco (String opco) {
 		log.info(opco);
 		this.opco = opco;
+		setCountryCodeFromOpco(opco);
 	}
 	
 	public String getSubscription () {
@@ -85,11 +106,12 @@ public class Customer {
 	}
 	
 	public String getCountryCode () {
-		return this.shortMsisdn;
+		return this.countryCode;
 	}
 	
-	public void setCountryCode (String msisdn) {
-		this.shortMsisdn = msisdn;
+	public void setCountryCode (String code) {
+		log.info(code);
+		this.countryCode = code;
 	}
 	
 	public String getMsisdn () {

@@ -1,6 +1,5 @@
 package com.ithr.ppe.test.base;
 
-import java.util.Iterator;
 import java.util.List;
 
 import org.apache.log4j.Logger;
@@ -16,6 +15,7 @@ public class VFCustomerBuilder implements ICustomerBuilder {
 	private static final String USERGROUP =  "4gsmall";
 	private static final String OPCO = "gb";
 	private static final String MSISDN = "7801510596";
+	private static final String OPCOOFFSET = "44";
 	private static final Partners PARTNER = Partners.NOPARTNER;
 	private static final String EMAIL = "testday@ithr.com";
 	private static final String USERNAME = "testday2018";
@@ -40,6 +40,7 @@ public class VFCustomerBuilder implements ICustomerBuilder {
 		customer.setSubscription(SUBSCRIPTION);
 		customer.setUserGroup(USERGROUP);
 		customer.setMsisdn(MSISDN);
+		customer.setCountryCode(OPCOOFFSET);
 		customer.setEmail(EMAIL);
 		customer.setUserName(USERNAME);
 	}
