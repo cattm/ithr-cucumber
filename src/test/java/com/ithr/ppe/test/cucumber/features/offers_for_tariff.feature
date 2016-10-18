@@ -1,4 +1,4 @@
-@checkit
+@ignore
 Feature: This is a test feature file that we run only to help do a debug
 
   Scenario Outline: Purchase GB Offers from NETFLIX
