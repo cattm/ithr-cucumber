@@ -32,6 +32,7 @@ import cucumber.api.java.Before;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
+import cucumber.api.java.en.When;
 
 public class SecondaryCustomerSteps extends StepBase {
 	
@@ -61,7 +62,44 @@ public class SecondaryCustomerSteps extends StepBase {
 		log.info("Steps TearDown");
 		super.tearDown();
 	}
-
+	private void buildCustomer(String opco, String partner) {
+		bd.Build();
+		bd.updateBuild(opco.toLowerCase(), Partners.valueOf(partner.toUpperCase()));
+	}
+	
+	private boolean performInitialProlog(String pkg, String ugrp, String injson ) {
+		bd.appendToBuild(pkg, ugrp);
+		customer = bd.getCustomer();	
+		pl.createChecker(testReferenceDir, customer.getOpco());
+		String roughpath = refDir + customer.getOpco() + "/";
+		pl.createParser(roughpath, injson);
+		
+		String username = pl.getPartnerUserName(driver, basePartnerHelper, customer);
+		if (!username.contains("ERROR")) {
+			customer.setUserName(username);
+		} else {
+			log.error(" Helper did not return a valid USERNAME");
+			ErrorCollector.fail("USERNAME is invalid - Aborting Test");
+			return false;
+		}
+		
+	
+		driver.get(baseAdminUrl);
+		String msisdn = pl.getNewMsisdn(driver, customer);
+		if (!msisdn.equals("ERROR")) {
+			customer.setMsisdn(msisdn);
+		} else {
+			log.error(" Helper did not return a valid MSISDN");
+			ErrorCollector.fail("MSISDN is invalid - Aborting Test");
+			return false;
+		}
+		
+		boolean loginok = pl.LoginOk(driver, customer, pinCode, baseUserUrl);
+		driver.manage().window().setSize(new Dimension(600, 600));
+		CheckedScenarioScreenshot();
+		return loginok;
+	}
+	
 	private boolean performInitialProlog(String opco, String partner, List<Map<String, String>> details) {
 		String sub = "";
 		String group = "";
@@ -270,39 +308,45 @@ public class SecondaryCustomerSteps extends StepBase {
 	    String urltouse = baseUserUrl + customer.getOpco();	
 		driver.get(urltouse);
 	    if (!ca.verifySuccessText(driver)) {
-	    	 log.info("Cancel Success");
+	    	 log.info("Purchase Success");
 			 CheckedScenarioScreenshot();
 	    }
 	}
-	
-	@And("^I can cancel my \"([^\"]*)\" subscription defined by \"([^\"]*)\"$")
-	public void setupAndCancelPartnerOffer(String partner, String refilename) {
-		log.info("setupAndCancelPartnerOffer for "  + partner);  
-		ca.initialiseChecks();
-		   // are we on the correct page? we should have done a refresh check on purchase
-		   // and it should have succeeded..... but just in case?
-		String urltouse = baseUserUrl + customer.getOpco();	
-		driver.get(urltouse);
-		UserEntertainment entpage = new UserEntertainment(driver);
-		String tocancel = customer.getOpco() + "-" + refilename.replace(" ", "-");
-		if (ca.selectPartnerToCancel(tocancel.toLowerCase(), entpage)) {
-			log.info("found and selected partner subscription");
-			CheckedScenarioScreenshot();
-		} else {
-			ErrorCollector.fail("Could not find subscription to cancel");	  
-		}  
-		
-		if (ca.cancelTheOffer(driver, customer)) { 
-		    	  log.info("cancelled the partner subscription");
-		} else {
-				  ErrorCollector.fail("Could not cancel the subscription");
-		}
-		
-		driver.get(urltouse);
-		if (ca.verifySuccessText(driver)) {
-		    log.info("Cancel Success");
-			CheckedScenarioScreenshot();
-		}		
-		
+
+	@Given("^I am a \"([^\"]*)\" customer Who Initially purchases \"([^\"]*)\" offer$")
+	public void customerPurchasesOffer(String opco, String partner) throws Throwable {
+		log.info("customerPurchaseOffer");	
+		buildCustomer(opco, partner);
 	}
+
+	@And("^it is defined by package ([^\"]*) and usergroup ([^\"]*) with json ([^\"]*)$")
+	public void itIsDefinedBy(String mypackage, String myusergroup, String myjson) throws Throwable {
+		log.info("itISDefinedBy");	
+		if (performInitialProlog(mypackage, myusergroup, myjson)) {
+			CheckedScenarioScreenshot();
+			if (performInitialPurchase()) {
+				CheckedScenarioScreenshot();
+				checkInitialPurchaseOutcome();
+				CheckedScenarioScreenshot();
+			} //ErrorCollector.fail("Could not perform Initial Purchase");
+		}	//ErrorCollector.fail("Could not perform initial Prolog"); 
+		// if any of these fail we may need to abort and fail the test
+	}
+
+
+	@When("^I can see the \"([^\"]*)\" offer now defined by ([^\"]*)$")
+	public void seeOfferDefinedBy(String partner, String myjson) throws Throwable {
+		log.info("seeOfferDefinedBy");
+		customer.setPartner(Partners.valueOf(partner.toUpperCase()));
+		myOfferDetailsAreIn(myjson);
+	}
+
+	@Then("^I will purchase the new offer$")
+	public void purchaseNewOffer() throws Throwable {
+		log.info("purchaseNewOffer");
+		iWillPurchaseTheOffer();
+	}
+
 }
+
+	
