@@ -79,6 +79,10 @@ public class BasicPartnerOffer extends PageBase {
 	public String getOfferTnC() {
 		   return theOfferTnC.getText();
 	}
+	// retunr the text associated with terms and conditions for checking
+	public String getRawOfferTnC() {
+		   return theOfferTnC.getAttribute("innerHTML");
+	}
 	
 	// confirmation of a successful offer
 	public String getSuccessText() {

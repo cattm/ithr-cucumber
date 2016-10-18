@@ -1,13 +1,10 @@
 package com.ithr.ppe.test.cucumber.pages;
 
-import java.util.Iterator;
-
 import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.FindBys;
 import org.openqa.selenium.support.PageFactory;
 
 public class BasicPartnerCancel extends PageBase {
@@ -24,7 +21,7 @@ public class BasicPartnerCancel extends PageBase {
 	private WebElement cancel1;
 
 	
-	@FindBy(css="h4.offer-subtitle.bold-font")
+	@FindBy(css="h4.offer__subtitle.bold-font")
 	private WebElement theOffer;
 	
 	@FindBy(css=".main-offer-content div.details-content")

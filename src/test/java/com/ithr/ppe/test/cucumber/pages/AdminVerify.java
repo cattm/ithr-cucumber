@@ -1,6 +1,7 @@
 package com.ithr.ppe.test.cucumber.pages;
 
 import org.apache.log4j.Logger;
+import org.json.JSONArray;
 import org.json.JSONObject;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -56,6 +57,30 @@ or something like when modified
 		 outcome = group.contentEquals(myobject.getString("usergroup"));		 			 
 		 
 		 return outcome.booleanValue();
+	 }
+	 
+	 /*
+	  *   "opco" : "gb",
+	  *     "partner" : "sky",
+	  *      "message" : [ "Searching all active subscriptions for msisdn: 449535237861' for partner='sky'", "Cancelled 1 subscription" ]
+	  */
+	 public boolean isRemoved(String partnertoverify) {		 
+		 String tmp = jsonToParse.getText();
+		 JSONObject myobject = new JSONObject(tmp);
+		 log.debug(tmp);
+		 
+		 //String opco = myobject.getString("opco");
+		 String partner = myobject.getString("partner").toLowerCase();
+		 //message is actually in an JSON array 
+		 JSONArray myarray = myobject.getJSONArray("message");
+		 String message = myarray.getString(1);
+		 
+		 log.info("And the result message is: " + message);
+		 if (partnertoverify.toLowerCase().contentEquals(partner)) {
+			 if (message.contains("No subscriptions found")) return false;
+		 } else return false;
+		 
+		 return true;
 	 }
 	 
 	 public boolean isIndividualCreated() {
