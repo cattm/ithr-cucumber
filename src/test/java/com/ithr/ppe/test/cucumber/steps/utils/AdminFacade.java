@@ -144,6 +144,19 @@ public class AdminFacade {
 		return false;
 	}
 	
+	public static boolean deletePartnerSubscriptionsInER(WebDriver driver, String urlbase, String opco, String partner, String msisdn) {
+		//https://dit.offers.vodafone.com/new/cancelSubscription?msisdn=449451953699&opco=gb&partner=spotify
+		String urltouse = urlbase +  "new/cancelSubscription?msisdn="+ msisdn + "&opco=" + opco + "&partner=" + partner.toLowerCase();
+		driver.get(urltouse);
+		log.info("url to remove is" + urltouse);
+		
+		AdminVerify verify = new AdminVerify(driver);
+		if (verify.isRemoved(partner)) {
+			return true;
+		}
+		return false;
+	}
+	
 	public static String msisdnFromAdmin(WebDriver driver, String opco, String subscription, String usergroup, Partners partner) {
 		// check for special not valid
 		// TODO: take out the case of the string

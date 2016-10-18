@@ -5,7 +5,6 @@ import org.openqa.selenium.WebDriver;
 
 import com.ithr.ppe.test.base.Customer;
 import com.ithr.ppe.test.commons.CommonConstants;
-import com.ithr.ppe.test.commons.Partners;
 import com.ithr.ppe.test.cucumber.pages.UserEntertainment;
 import com.ithr.ppe.test.cucumber.pages.partners.DropBoxRefresh;
 import com.ithr.ppe.test.cucumber.steps.interfaces.IEpilog;

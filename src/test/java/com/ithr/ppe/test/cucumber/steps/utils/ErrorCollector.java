@@ -126,8 +126,13 @@ public class ErrorCollector {
     
     // These string checks will check the content equality not the object!
     public static void verifyEquals(String actual, String expected, String message) {
-		log.info("expected: " + expected);
-		log.info("actual  : " + actual);
+		log.info("expected: " + expected );
+		log.info("actual  : " + actual );
+		// replace any non printables in the strings
+		//String act = actual.replaceAll("\\P{Print}","X");
+		//String exp = expected.replaceAll("\\P{Print}","X");
+		//log.info("parsed expected: " + exp );
+		//log.info("parsed actual  : " + act );
     	if (doVerify) {
     		try {
     			assertTrue(actual.equals(expected), message);

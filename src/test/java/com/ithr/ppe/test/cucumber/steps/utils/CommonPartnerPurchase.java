@@ -268,7 +268,13 @@ public class CommonPartnerPurchase implements IPartnerPurchase {
 		// some opcos dont have t and c
 		TandCRequired needTandC = TandCRequired.getInstance();
 		if (needTandC.hasTnc(customer.getOpco().toUpperCase(), customer.getPartner().toString())) {
+			//log.info("Raw HTML from page : " + offer.getRawOfferTnC());
+			//log.info("Raw Text from HTML page : "+ offer.getOfferTnC() );
 			String offertncstripped = StringUtils.replace(offer.getOfferTnC(), "\n", " ");	
+			//debug
+			//log.info("Straight from JSON: " + parser.getOffersTnCText());
+			//log.info("And with nons replaced: " + parser.getOffersTnCText().replaceAll("\\P{Print}","X"));
+			//log.info("and in UTF8 form : " + parser.toUTF(parser.getOffersTnCText()));
 			String tncstripped = parser.stripHTML(parser.getOffersTnCText());
 			ErrorCollector.verifyEquals(offertncstripped,tncstripped, "The T & C text is incorrect");
 		}

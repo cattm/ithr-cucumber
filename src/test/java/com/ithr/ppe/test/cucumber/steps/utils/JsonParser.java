@@ -2,12 +2,12 @@ package com.ithr.ppe.test.cucumber.steps.utils;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
+import java.io.UnsupportedEncodingException;
 
 import org.apache.log4j.Logger;
 import org.json.JSONObject;
 import org.jsoup.Jsoup;
 
-import com.ithr.ppe.test.base.StepBase;
 import com.ithr.ppe.test.commons.CommandExecutor;
 // TODO: Review try/catch blocks ensure we fit in with general strategy
 
@@ -50,8 +50,20 @@ public class JsonParser {
 	}
 	
 	public String stripHTML(String withhtml) {
-		return Jsoup.parse(withhtml).text();
+		return Jsoup.parse(withhtml).body().text();
 	}
+	
+    public String toUTF (String source) {
+    	try { 		
+    		byte[] utf8Bytes = source.getBytes("UTF8");
+    	    String text = new String(utf8Bytes,"UTF8");
+    	    return text;
+    	}
+    	catch (UnsupportedEncodingException e) {
+    	    e.printStackTrace();
+    	}
+    	return "XX";
+    }
 	
 	public static String readFile(String filename) {
 	    String result = "";
@@ -138,6 +150,31 @@ public class JsonParser {
 		return outcome;
 	}
 	
+	private JSONObject navigateToCancelDetails2(JSONObject object) {
+		JSONObject outcome = null;
+		try {                 
+            JSONObject pages = object.getJSONObject("pages");        
+            JSONObject purchase =  pages.getJSONObject("cancellation");
+            outcome = purchase.getJSONObject("details2");         
+        } catch (Exception e) {
+        	log.error("Navigate to Cancel Details2 has failed for this file" + e);
+            e.printStackTrace();
+        }
+		return outcome;
+	}
+	
+	private JSONObject navigateToCancelSuccess(JSONObject object) {
+		JSONObject outcome = null;
+		try {                 
+            JSONObject pages = object.getJSONObject("pages");        
+            JSONObject purchase =  pages.getJSONObject("cancellation");
+            outcome = purchase.getJSONObject("success");         
+        } catch (Exception e) {
+        	log.error("Navigate to Cancel Success has failed for this file" + e);
+            e.printStackTrace();
+        }
+		return outcome;
+	}
 	public String getOffersTitle () {
 		String title = "";	
 		try {
@@ -241,6 +278,20 @@ public class JsonParser {
 		return label;
 	}
 	
+	public String getCancelConfirmButton() {
+		String label = "";
+		try {
+		    JSONObject detail = navigateToCancelDetails2(jsonObject);         
+		    JSONObject okbutton = detail.getJSONObject("okButton");
+		    label = okbutton.getString("label").toString();
+		} catch (Exception e) {
+			log.error("No Cancel Ok Text in JSON " + e);
+			label = "No Cancel Ok Text in JSON";
+		}
+		
+		log.debug("OK Button String is : " +  label);               
+		return label;
+	}
 	public String getCancelTitle () {
 		String title = "";	
         try {
@@ -267,6 +318,21 @@ public class JsonParser {
 		}
 		
 		log.debug("Cancel:Details:Text: " +  details);           
+      
+		return details;
+	}
+	
+	public String getCancelSuccessText() {
+		String details = "";			 
+		try {
+		JSONObject detail = navigateToCancelSuccess(jsonObject);         
+		details = detail.getString("text").toString();
+		} catch (Exception e) {
+			log.error("No Cancel Success Text in JSON " + e);
+			details = "No Cancel Success Text in JSON";
+		}
+		
+		log.debug("Cancel:Success:Text: " +  details);           
       
 		return details;
 	}
