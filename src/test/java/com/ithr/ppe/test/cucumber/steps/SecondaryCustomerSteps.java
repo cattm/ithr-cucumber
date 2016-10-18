@@ -26,8 +26,6 @@ import com.ithr.ppe.test.cucumber.steps.utils.CommonPartnerPurchase;
 import com.ithr.ppe.test.cucumber.steps.utils.CommonProlog;
 import com.ithr.ppe.test.cucumber.steps.utils.ErrorCollector;
 
-import cucumber.api.DataTable;
-import cucumber.api.PendingException;
 import cucumber.api.Scenario;
 import cucumber.api.java.After;
 import cucumber.api.java.Before;
@@ -272,8 +270,39 @@ public class SecondaryCustomerSteps extends StepBase {
 	    String urltouse = baseUserUrl + customer.getOpco();	
 		driver.get(urltouse);
 	    if (!ca.verifySuccessText(driver)) {
-	    	 log.info("Purchase Success");
+	    	 log.info("Cancel Success");
 			 CheckedScenarioScreenshot();
 	    }
+	}
+	
+	@And("^I can cancel my \"([^\"]*)\" subscription defined by \"([^\"]*)\"$")
+	public void setupAndCancelPartnerOffer(String partner, String refilename) {
+		log.info("setupAndCancelPartnerOffer for "  + partner);  
+		ca.initialiseChecks();
+		   // are we on the correct page? we should have done a refresh check on purchase
+		   // and it should have succeeded..... but just in case?
+		String urltouse = baseUserUrl + customer.getOpco();	
+		driver.get(urltouse);
+		UserEntertainment entpage = new UserEntertainment(driver);
+		String tocancel = customer.getOpco() + "-" + refilename.replace(" ", "-");
+		if (ca.selectPartnerToCancel(tocancel.toLowerCase(), entpage)) {
+			log.info("found and selected partner subscription");
+			CheckedScenarioScreenshot();
+		} else {
+			ErrorCollector.fail("Could not find subscription to cancel");	  
+		}  
+		
+		if (ca.cancelTheOffer(driver, customer)) { 
+		    	  log.info("cancelled the partner subscription");
+		} else {
+				  ErrorCollector.fail("Could not cancel the subscription");
+		}
+		
+		driver.get(urltouse);
+		if (ca.verifySuccessText(driver)) {
+		    log.info("Cancel Success");
+			CheckedScenarioScreenshot();
+		}		
+		
 	}
 }
