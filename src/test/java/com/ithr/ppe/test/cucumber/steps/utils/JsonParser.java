@@ -263,6 +263,21 @@ public class JsonParser {
 	  
 	}
 
+	public String getCustomCancelButton() {
+		String label = "";
+		try {
+		    JSONObject detail = navigateToCancelDetails(jsonObject);         
+		    JSONObject okbutton = detail.getJSONObject("customButton");
+		    label = okbutton.getString("label").toString();
+		} catch (Exception e) {
+			log.error("No Cancel Custom Text in JSON " + e);
+			label = "No Cancel Custom Text in JSON";
+		}
+		
+		log.debug("Custom Cancel Button String is : " +  label);               
+		return label;
+	}
+	
 	public String getCancelOkButton() {
 		String label = "";
 		try {
@@ -274,7 +289,7 @@ public class JsonParser {
 			label = "No Cancel Ok Text in JSON";
 		}
 		
-		log.debug("OK Button String is : " +  label);               
+		log.debug("Cancel OK Button String is : " +  label);               
 		return label;
 	}
 	

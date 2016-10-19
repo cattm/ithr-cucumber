@@ -5,6 +5,7 @@ import org.apache.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 
 import com.ithr.ppe.test.base.Customer;
+import com.ithr.ppe.test.commons.Partners;
 import com.ithr.ppe.test.commons.TestProperties;
 import com.ithr.ppe.test.cucumber.pages.BasicPartnerCancel;
 import com.ithr.ppe.test.cucumber.pages.UserEntertainment;
@@ -29,29 +30,58 @@ public class CommonPartnerCancel implements IPartnerCancel {
 		String urlbase = TestProperties.USER_BASEURL;
 		return AdminFacade.deletePartnerSubscriptionsInER(driver, urlbase, customer.getOpco(), customer.getPartner().toString(), msisdn);
 	}
+	
+	private String determineCancelButton(Partners partner) {
+		switch (partner) {
+		case NOWTV : return parser.getCustomCancelButton();
+		default    : return parser.getCancelOkButton();
+		}
+	}
+	
+	private String determineConfirmCancel(Partners partner ) {
+		switch (partner) {
+		case NOWTV : return "This requires a login to another outside site so stop";
+		default    : return parser.getCancelConfirmButton();
+		}
+	}
+	
+	private boolean canCancel(Partners partner) {
+		switch (partner) {
+		case NOWTV : return false;
+		default    : return true;
+		}
+	}
+	
 	public boolean cancelTheOffer(WebDriver driver, Customer customer) {
 
 		BasicPartnerCancel cancel = new BasicPartnerCancel(driver);
 		cancel.bodyLoaded();
-		// check cancel text
+		
+		// Test: check cancel text
 		verifyCancelText(cancel, customer);
 		
-		log.info("going to cancel");
-		cancel.clickCancel(parser.getCancelOkButton());
-		
-		// and then more details
-		// TODO: there is text to verify before we confirm	
-		cancel.clickCancel(parser.getCancelConfirmButton());
-		
-		// TODO: And then there is more text to check and confirm		
-		if (verifyConfirm(cancel)) {
-			log.info("Cancel Text is OK");
-			// TODO: And after ER there will be different text again?
-			return cancelInER(driver, customer);
-		} else {
-			log.info("Cancel confirm text check was not a good outcome");
-			return false;
-		}
+		if (canCancel(customer.getPartner())) {
+			String tofind = determineCancelButton(customer.getPartner());
+			log.info("going to cancel: " + tofind);
+			cancel.clickButton(tofind.toUpperCase());
+			
+			// and then more details and also som actions interact with outside sites
+			// TODO: there is text to verify before we confirm	
+			tofind =  determineConfirmCancel(customer.getPartner());
+			log.info("going to confirm cancel: " + tofind);	
+			cancel.clickButton(tofind.toUpperCase());
+				
+			// Test: check the confirm 
+			// TODO: And then there is more text to check and confirm		
+			if (verifyConfirm(cancel)) {
+				log.info("Cancel Text is OK");
+				// TODO: And after ER there will be different text again?
+				return cancelInER(driver, customer);
+			} else {
+				log.info("Cancel confirm text check was not a good outcome");
+				return false;
+			}
+		} else return false;
 
 	}
 	

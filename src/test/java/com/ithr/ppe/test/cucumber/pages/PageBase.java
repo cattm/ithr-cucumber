@@ -23,6 +23,16 @@ public class PageBase {
 		this.driver = driver;
 	}
 	
+	protected WebElement buttonFinderText(String tofind) {
+		log.info(tofind);
+		return driver.findElement(By.linkText(tofind));		
+	}
+	
+	protected WebElement buttonFinderPartialText(String tofind) {
+		log.info(tofind);
+		return driver.findElement(By.partialLinkText(tofind));		
+	}
+	
 	public WebElement waitClickable (By by) {
 	   WebElement element = null;
 	   WebDriverWait wait = new WebDriverWait(driver,CommonConstants.SLOWSECS * 2);

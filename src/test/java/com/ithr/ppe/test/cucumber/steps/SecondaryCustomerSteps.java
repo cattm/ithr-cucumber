@@ -193,6 +193,7 @@ public class SecondaryCustomerSteps extends StepBase {
 				CheckedScenarioScreenshot();
 				checkInitialPurchaseOutcome();
 				CheckedScenarioScreenshot();
+				GetDebugScreenShot("MRC");
 			} //ErrorCollector.fail("Could not perform Initial Purchase");
 		}	//ErrorCollector.fail("Could not perform initial Prolog"); 
 		// if any of these fail we may need to abort and fail the test
@@ -319,7 +320,7 @@ public class SecondaryCustomerSteps extends StepBase {
 		buildCustomer(opco, partner);
 	}
 
-	@And("^it is defined by package ([^\"]*) and usergroup ([^\"]*) with json ([^\"]*)$")
+	@And("^the offer is defined by package ([^\"]*) and usergroup ([^\"]*) with json ([^\"]*)$")
 	public void itIsDefinedBy(String mypackage, String myusergroup, String myjson) throws Throwable {
 		log.info("itISDefinedBy");	
 		if (performInitialProlog(mypackage, myusergroup, myjson)) {

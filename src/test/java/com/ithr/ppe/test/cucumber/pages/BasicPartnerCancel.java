@@ -20,7 +20,6 @@ public class BasicPartnerCancel extends PageBase {
 	*/
 	private WebElement cancel1;
 
-	
 	@FindBy(css="h4.offer__subtitle.bold-font")
 	private WebElement theOffer;
 	
@@ -30,16 +29,23 @@ public class BasicPartnerCancel extends PageBase {
 	@FindBy(css=".notification-jsx.pulse>p")
 	private WebElement confirmationText;
 	
+	@FindBy(css=".btn.event-btn.cf.btn--okButton")
+	private WebElement confirmCancel;
+	
 	public  BasicPartnerCancel (WebDriver driver) {
 		  super(driver);
 		  PageFactory.initElements(driver, this);	  
 	}
 	
-	private WebElement buttonFinder(String tofind) {
-		return driver.findElement(By.linkText(tofind));		
+	public void clickButton(String checkstring) {
+		buttonFinderText(checkstring).click();	
 	}
-	public void clickCancel(String checkstring) {
-		buttonFinder(checkstring).click();	
+	
+	public void clickButtonPartial(String tofind) {
+		buttonFinderPartialText(tofind).click();
+	}
+	public void clickCancel() {
+		confirmCancel.click();
 	}
 	
 	public String getSuccessText() {
