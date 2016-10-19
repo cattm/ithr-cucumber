@@ -55,13 +55,13 @@ public class PurchaseOfferSteps extends StepBase {
 	}
 	
 
-	@Before("@purchase, @checkit")
+	@Before("@purchase, @checkit, @trial")
 	public void setUp(Scenario scenario) throws Exception {
 		super.setUp(scenario);
 		log.info("Steps SetUp");
 	}
 	
-	@After("@purchase, @checkit")
+	@After("@purchase, @checkit, @trial")
 	public void tearDown() {
 		log.info("Steps TearDown");
 		super.tearDown();
