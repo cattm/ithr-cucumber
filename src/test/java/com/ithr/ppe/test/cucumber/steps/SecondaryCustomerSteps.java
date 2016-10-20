@@ -186,7 +186,7 @@ public class SecondaryCustomerSteps extends StepBase {
 	
 	@Given("^I am a \"([^\"]*)\" customer Who Initially purchases \"([^\"]*)\" offer:$")
 	public void aCustomerIntialPurchase(String opco, String partner, List<Map<String, String>> details) throws Throwable {
-		log.info("aCustomerInitialPurchase");
+		log.info("itISDefinedBy Start:");
 		if (performInitialProlog(opco, partner, details)) {
 			CheckedScenarioScreenshot();
 			if (performInitialPurchase()) {
@@ -194,9 +194,10 @@ public class SecondaryCustomerSteps extends StepBase {
 				checkInitialPurchaseOutcome();
 				CheckedScenarioScreenshot();
 				GetDebugScreenShot("MRC");
-			} //ErrorCollector.fail("Could not perform Initial Purchase");
+			} else ErrorCollector.fail("Could not perform Initial Purchase");
 		}	//ErrorCollector.fail("Could not perform initial Prolog"); 
 		// if any of these fail we may need to abort and fail the test
+		log.info("itISDefinedBy End");
 	}
 
 	
@@ -208,6 +209,7 @@ public class SecondaryCustomerSteps extends StepBase {
 		String checkurl = AdminFacade.getCheckUrl();
 		Boolean added = AdminFacade.addUserGroup(driver, checkurl, oldgroup, addgroup);
 		if (!added) ErrorCollector.fail("Could not change usergroup " + addgroup);
+		log.info("changeGroup End");
 	}
 
 	@And("^I have added secondary group \"([^\"]*)\"$")
@@ -218,6 +220,7 @@ public class SecondaryCustomerSteps extends StepBase {
 		String checkurl = AdminFacade.getCheckUrl();
 		Boolean added = AdminFacade.addUserGroup(driver, checkurl, oldgroup, addgroup);
 		if (!added) ErrorCollector.fail("Could not Add additional usergroup " + addgroup);
+		log.info("addAnotherGroup End");
 	}
 	
 
@@ -231,21 +234,22 @@ public class SecondaryCustomerSteps extends StepBase {
 		String urltouse = baseUserUrl + customer.getOpco();
 		driver.get(urltouse);
 		// maybe check the offer is there? Or defer?
-		
+		log.info("iCanSeeTheOffer End ");
 	}
 
 	@Then("^my offer details are ([^\"]*)$")
 	public void myOfferDetailsAreIn(String containedin) throws Throwable {
-		log.info("myOfferDetailsAreIn " + containedin);
+		log.info("myOfferDetailsAreIn Start " + containedin);
 		String roughpath = refDir + customer.getOpco() + "/";
 		// rebase the parser
-		pl.createParser(roughpath, containedin);		
+		pl.createParser(roughpath, containedin);
+		log.info("myOfferDetailsAreIn End ");
 	}
 
 	
 	@And("^I will purchase the secondary offer$")
 	public void iWillPurchaseTheOffer() throws Throwable {
-		log.info("IWillPurchaseTheOffer");
+		log.info("IWillPurchaseTheOffer Start");
 		UserEntertainment entpage = new UserEntertainment(driver);
 		if (!entpage.bodyLoaded()) {
 			 log.error("Entertainement Page body did not load in time");
@@ -270,18 +274,19 @@ public class SecondaryCustomerSteps extends StepBase {
 			String urltouse = baseUserUrl + customer.getOpco();	
 			ep.initialiseChecks();
 			if (ep.refresh(driver, urltouse, customer)) {
-				log.info("Purchase Success");
+				log.info("Secondary Purchase Success");
 				CheckedScenarioScreenshot();
+				GetDebugScreenShot("MRC");
 			} // else ErrorCollector.fail("Refresh checks failed");
 			
 		} else ErrorCollector.fail("Could not Select the secondary offer");
-			 		 	
+		log.info("IWillPurchaseTheOffer End");	 		 	
 	}
 	
 	
 	@Given("^I can see the \"([^\"]*)\" subscription defined by ([^\"]*)$")
 	public void subscriptionIsThere(String partner, String refilename) throws Throwable {
-	   log.info("Subscription is there "  + partner);  
+	   log.info("Subscription is there Start "  + partner);  
 	   ca.initialiseChecks();
 	   // are we on the correct page? we should have done a refresh check on purchase
 	   // and it should have succeeded..... but just in case?
@@ -295,12 +300,12 @@ public class SecondaryCustomerSteps extends StepBase {
 	   } else {
 		   ErrorCollector.fail("Could not find subscription to cancel");	  
 	   }  
-	  
+	   log.info("Subscription is there End"); 
 	}
 
 	@Then("^I will cancel the offer$")
 	public void cancelOffer() throws Throwable {
-	    log.info("going to cancel offer ");	    
+	    log.info("cancelOffer Start");	    
 	    if (ca.cancelTheOffer(driver, customer)) { 
 	    	  log.info("cancelled the partner subscription");
 		} else {
@@ -312,40 +317,45 @@ public class SecondaryCustomerSteps extends StepBase {
 	    	 log.info("Purchase Success");
 			 CheckedScenarioScreenshot();
 	    }
+	    log.info("cancelOffer End");
 	}
 
 	@Given("^I am a \"([^\"]*)\" customer Who Initially purchases \"([^\"]*)\" offer$")
 	public void customerPurchasesOffer(String opco, String partner) throws Throwable {
-		log.info("customerPurchaseOffer");	
+		log.info("customerPurchaseOffer Start:");	
 		buildCustomer(opco, partner);
+		log.info("customerPurchaseOffer End:");	
 	}
 
 	@And("^the offer is defined by package ([^\"]*) and usergroup ([^\"]*) with json ([^\"]*)$")
 	public void itIsDefinedBy(String mypackage, String myusergroup, String myjson) throws Throwable {
-		log.info("itISDefinedBy");	
+		log.info("itISDefinedBy Start:");	
 		if (performInitialProlog(mypackage, myusergroup, myjson)) {
 			CheckedScenarioScreenshot();
 			if (performInitialPurchase()) {
 				CheckedScenarioScreenshot();
 				checkInitialPurchaseOutcome();
 				CheckedScenarioScreenshot();
-			} //ErrorCollector.fail("Could not perform Initial Purchase");
+			} else ErrorCollector.fail("Could not perform Initial Purchase");
 		}	//ErrorCollector.fail("Could not perform initial Prolog"); 
 		// if any of these fail we may need to abort and fail the test
+		log.info("itISDefinedBy End:");
 	}
 
 
 	@When("^I can see the \"([^\"]*)\" offer now defined by ([^\"]*)$")
 	public void seeOfferDefinedBy(String partner, String myjson) throws Throwable {
-		log.info("seeOfferDefinedBy");
+		log.info("seeOfferDefinedBy Start");
 		customer.setPartner(Partners.valueOf(partner.toUpperCase()));
 		myOfferDetailsAreIn(myjson);
+		log.info("seeOfferDefinedBy End");
 	}
 
 	@Then("^I will purchase the new offer$")
 	public void purchaseNewOffer() throws Throwable {
-		log.info("purchaseNewOffer");
+		log.info("purchaseNewOffer Start");
 		iWillPurchaseTheOffer();
+		log.info("purchaseNewOffer End");
 	}
 
 }
