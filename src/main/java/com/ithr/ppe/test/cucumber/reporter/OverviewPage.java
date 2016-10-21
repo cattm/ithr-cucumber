@@ -6,7 +6,7 @@ import net.masterthought.cucumber.generators.AbstractPage;
 
 public class OverviewPage  extends AbstractPage {
 		
-		public static final String WEB_PAGE = "overview.html";
+		public static final String WEB_PAGE = "anoverview.html";
 
 		private PPEConfiguration myconfig;
 		
@@ -28,7 +28,7 @@ public class OverviewPage  extends AbstractPage {
 	        context.put("report_summary", report.getFeatureReport());
 	        context.put("parallel", myconfig.isParallelTesting());
 	        context.put("ppebuild", myconfig.getPPEBuild());
-	        context.put("startedat", myconfig.getBeginTime());
+	        context.put("finishedat", myconfig.getEndTime());
 	        context.put("displaytable", myconfig.getDisplayFeature());
 	    }
 

@@ -53,7 +53,7 @@ public class CommandExecutor {
 	public static int testCmnd() {
 		String mycommand = "ls -l";
 		String outcome = execCmd(mycommand, false);
-		log.debug("command returned : " + outcome);
+		log.info("command returned : " + outcome);
 		return 0;
 	}
 	public static int execCurlSpotifyTerminate (String param) {
@@ -88,6 +88,25 @@ public class CommandExecutor {
         return jsonfile; 
 	}
 	
+	public static String findValidResults(String file) {
+		String size = "NOT FOUND";
+		String mycommand = "./getrep.sh " + file;		
+		String outcome = execCmd(mycommand,false);
+
+    
+        String arr = outcome.replace("\n", "");
+    
+        	log.info(arr);
+        	if (arr.equals("0")) {
+        		log.info("file is there but empty : " + arr);
+        		size = arr;
+        	} else if (arr.equals("")){
+        		;
+        	} else {
+        		size = arr;
+        	}
+        return size; 
+	}
 	public boolean cmdErrored () {
 		return errored;
 	}

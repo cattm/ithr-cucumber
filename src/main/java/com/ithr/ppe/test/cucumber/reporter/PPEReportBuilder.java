@@ -1,5 +1,6 @@
 package com.ithr.ppe.test.cucumber.reporter;
 
+import java.io.File;
 import java.util.List;
 
 import net.masterthought.cucumber.ReportBuilder;
@@ -8,6 +9,8 @@ import net.masterthought.cucumber.ReportResult;
 import net.masterthought.cucumber.json.Feature;
 
 import org.apache.log4j.Logger;
+
+import com.ithr.ppe.test.commons.CommandExecutor;
 
 
 public class PPEReportBuilder  extends ReportBuilder {
@@ -48,16 +51,18 @@ public class PPEReportBuilder  extends ReportBuilder {
 		
 		public void pdfOverview() {
 			log.info("PDF THE OVERVIEW PAGE");
-			//there is a utility to do this - which I am not sure works
-			// build a code solution instead
-			/*
-			 * date=`date +%Y%m%d_%H%M%S`
-			 * cd reports/site/cucumber-reports
-			 * st=`wkhtmltopdf $flist cucumer-report-${date}.pdf`
-			 * exit 0
-			 */
-			// And I have a command executor class
-			
+			File reportdir = myconfiguration.getReportDirectory();
+			String command1 = "./pdfit.sh " + reportdir.getPath() + "/cucumber-html-reports/";
+			String result = CommandExecutor.execCmd(command1, true);
+			log.info("outcome of command1 is " + result);
+		}
+		
+		public void cleanArea() {
+			log.info("Clean the report Directory");
+			File dirtoclean = myconfiguration.getReportDirectory();
+			log.info("Going to clean " + dirtoclean.getPath());
+			String command2 = "rm -R " + dirtoclean.getPath() +"/";
+			String result = CommandExecutor.execCmd(command2, true);
 		}
 		
 		

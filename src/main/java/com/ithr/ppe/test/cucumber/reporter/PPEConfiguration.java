@@ -17,6 +17,7 @@ public class PPEConfiguration extends Configuration {
 	private String reportTitle = "";
 	private String ppebuild = "";
 	private String begin = "";
+	private String end = "";
 
 	public PPEConfiguration(File reportOutputDirectory, String projectName) {
 		super(reportOutputDirectory, projectName);
@@ -47,7 +48,13 @@ public class PPEConfiguration extends Configuration {
 	public String getBeginTime() {
 		return this.begin;
 	}
+	public void setEndTime(String endtime) {
+		this.end = endtime;
+	}
 	
+	public String getEndTime() {
+		return this.end;
+	}
 	private void setPPEBuild () {
 		ppebuild = findSWVersion();
 	}
