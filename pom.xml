@@ -151,7 +151,7 @@
         <configuration>
           <testFailureIgnore>true</testFailureIgnore>
           <includes>
-            <exclude>**/*MCTestRunner.java</exclude>    
+            <exclude>**/*CucumberRunner.java</exclude>    
           </includes>
         </configuration>
       </plugin>
