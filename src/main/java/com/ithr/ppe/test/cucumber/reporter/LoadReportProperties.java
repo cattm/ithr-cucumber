@@ -12,6 +12,7 @@ public class LoadReportProperties {
 	public static boolean DO_PDF;
 	public static String REPORT_TITLE;
 	public static String REPORT_BASE;
+	public static String JSON_BASE;
 	
 	private static boolean loaded = false;
 	
@@ -36,6 +37,7 @@ public class LoadReportProperties {
          DO_PDF = Boolean.parseBoolean(prop.getProperty("report.generate.pdf"));
          REPORT_TITLE = prop.getProperty("report.project.title");
          REPORT_BASE = prop.getProperty("report.generate.pathbase");
+         JSON_BASE = prop.getProperty("report.json.path");
 	 }
 
 }

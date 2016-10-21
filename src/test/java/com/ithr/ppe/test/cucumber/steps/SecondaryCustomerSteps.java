@@ -193,7 +193,7 @@ public class SecondaryCustomerSteps extends StepBase {
 				CheckedScenarioScreenshot();
 				checkInitialPurchaseOutcome();
 				CheckedScenarioScreenshot();
-				GetDebugScreenShot("MRC");
+				//GetDebugScreenShot("MRC");
 			} else ErrorCollector.fail("Could not perform Initial Purchase");
 		}	//ErrorCollector.fail("Could not perform initial Prolog"); 
 		// if any of these fail we may need to abort and fail the test
@@ -276,7 +276,7 @@ public class SecondaryCustomerSteps extends StepBase {
 			if (ep.refresh(driver, urltouse, customer)) {
 				log.info("Secondary Purchase Success");
 				CheckedScenarioScreenshot();
-				GetDebugScreenShot("MRC");
+				//GetDebugScreenShot("MRC");
 			} // else ErrorCollector.fail("Refresh checks failed");
 			
 		} else ErrorCollector.fail("Could not Select the secondary offer");

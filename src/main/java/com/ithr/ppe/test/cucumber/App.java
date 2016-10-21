@@ -24,6 +24,7 @@ public class App
 	private static boolean sendEmail = false;
 	private static String reportTitle = "";
 	private static String reportBase = "";
+	private static String jsonBase = "";
 	private static String produceoverview = "";
 
 	public static Logger log = Logger.getLogger(App.class);
@@ -90,11 +91,11 @@ public class App
 		configuration.setEndTime(endTime);
 		
 		List<String> jsonFiles = new ArrayList<String>();
-		jsonFiles.add("reports/cucumber.json");
+		jsonFiles.add(jsonBase + "/cucumber.json");
 		
 		// TODO: Add a test to see if these files exist and if they do......
-		//jsonFiles.add("reports/cucumber_rerun.json");
-		//jsonFiles.add("reports/cucumber-usage.json");	
+		//jsonFiles.add("target/reports/cucumber_rerun.json");
+		//jsonFiles.add("target/reports/cucumber-usage.json");	
 		
 		// only get here if we dont crash!			
 		PPEReportBuilder reportbuilder = new PPEReportBuilder(jsonFiles, configuration);
@@ -121,7 +122,7 @@ public class App
 		sendEmail = LoadReportProperties.SEND_EMAIL;
 		reportTitle = LoadReportProperties.REPORT_TITLE;   
 		reportBase = LoadReportProperties.REPORT_BASE;
-		
+		jsonBase = LoadReportProperties.JSON_BASE;
 		produceoverview = System.getProperty("report.run", "no");
 	}
 }

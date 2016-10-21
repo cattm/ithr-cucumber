@@ -87,7 +87,7 @@ public class StepBase {
 		if (doDebugImages) {
 			DateStamp mydate = new DateStamp();	
 			File scrFile = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-			String location = "reports/screenshots/" + mydate.getFileDayFormat() + "/" + mydate.getFileTimeFormat() + "_"+ reference + ".jpg";
+			String location = "target/reports/screenshots/" + mydate.getFileDayFormat() + "/" + mydate.getFileTimeFormat() + "_"+ reference + ".jpg";
 			log.info("Storing picture to : " + location);
 			try {
 				FileUtils.copyFile(scrFile, new File(location));
@@ -221,7 +221,7 @@ public class StepBase {
     	String dodebug = System.getProperty("test.debugimages", "false");
     	doDebugImages = dodebug.matches("true");
    
-    	findSWVersion();
+    	//findSWVersion();
     	
 	}
 	
