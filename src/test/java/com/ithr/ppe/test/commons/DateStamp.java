@@ -11,6 +11,10 @@ public class DateStamp {
 		this.theLocaleToUse = locale;
 	}
 	
+	public String getReportDateFormat() {
+		return new SimpleDateFormat("dd MMMM yyyy, HH:mm:ss", theLocaleToUse).format(new Date());
+	}
+	
 	public String getSimpleDateFormat() {
 		return new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss", theLocaleToUse).format(new Date());
 	}

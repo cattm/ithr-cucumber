@@ -11,6 +11,7 @@ Feature: This is a test feature file that we run only to help do a debug
       | package   | usergroup    | contained in             |
       | Not Valid | No usergroup | Netflix standalone trial |
 
+  
   Scenario Outline: Purchase GB Offers from NOWTV
     Given I am a "GB" customer purchasing the "NOWTV" offer
     When my profile has a <package> tariff with a <usergroup> usergroup
