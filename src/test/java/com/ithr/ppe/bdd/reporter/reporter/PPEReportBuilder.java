@@ -52,7 +52,7 @@ public class PPEReportBuilder  extends ReportBuilder {
 		public void pdfOverview() {
 			log.info("PDF THE OVERVIEW PAGE");
 			File reportdir = myconfiguration.getReportDirectory();
-			String command1 = "./pdfit.sh " + reportdir.getPath() + "/cucumber-html-reports/";
+			String command1 = "./src/test/bin/pdfit.sh " + reportdir.getPath() + "/cucumber-html-reports/";
 			String result = CommandExecutor.execCmd(command1, true);
 			log.info("outcome of command1 is " + result);
 		}
