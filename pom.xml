@@ -93,39 +93,9 @@
 	  <groupId>net.masterthought</groupId>
       <artifactId>cucumber-reporting</artifactId>
       <version>2.8.0</version>
-    </dependency>
-  <!--  
-    <dependency>
-      <groupId>com.relevantcodes</groupId>
-      <artifactId>extentreports</artifactId>
-      <version>2.41.1</version>
-      </dependency>
-      
-      <dependency>
-    <groupId>com.vimalselvam</groupId>
-    <artifactId>cucumber-extentsreport</artifactId>
-    <version>1.1.0</version>
-   </dependency>
-   
-    <dependency>
-      <groupId>com.github.mkolisnyk</groupId>
-      <artifactId>cucumber-reports</artifactId>
-      <version>1.0.6</version>
-   </dependency>
-   -->
-   
+    </dependency>  
   </dependencies>
   <build>
-<!--  
-    <testResources>
-      <testResource>
-        <directory>src/test/resources</directory>
-      </testResource>
-      <testResource>
-        <directory>src/main/resources</directory>
-      </testResource>
-    </testResources>
--->
     <plugins>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
@@ -144,7 +114,7 @@
         <configuration>
           <testFailureIgnore>true</testFailureIgnore>
           <includes>
-            <exclude>**/*MCTestRunner.java</exclude>    
+            <exclude>**/*CucumberRunner.java</exclude>    
           </includes>
         </configuration>
       </plugin>
@@ -166,32 +136,7 @@
     		<additionalClasspathElements>target/test-classes/</additionalClasspathElements>
     		<mainClass>com.ithr.ppe.bdd.reporter.reporter.TheReporterApp</mainClass>
     	</configuration>
-      </plugin>
- <!--  
- 	<plugin>
-        <groupId>net.masterthought</groupId>
-          <artifactId>maven-cucumber-reporting</artifactId>
-        <version>2.8.0</version>
-        <executions>
-          <execution>
-            <id>execution</id>
-            <phase>verify</phase>
-            <goals>
-              <goal>generate</goal>
-            </goals>
-            <configuration>
-              <projectName>cucumber</projectName>
-              <outputDirectory>reports/site/cucumber-reports</outputDirectory>
-              <cucumberOutput>reports/cucumber.json</cucumberOutput>
-              <skippedFails>true</skippedFails>
-              <enableFlashCharts>true</enableFlashCharts>
-              <buildNumber>151</buildNumber>
-            </configuration>
-          </execution>
-        </executions>
-      </plugin>
--->
-      
+      </plugin>     
     </plugins>
   </build>
 </project>
