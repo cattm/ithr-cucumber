@@ -1,7 +1,7 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
-  <groupId>com.ithr.ppe.test</groupId>
+  <groupId>com.ithr.ppe.bdd</groupId>
   <artifactId>cucumber</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   <packaging>jar</packaging>
@@ -116,6 +116,16 @@
    
   </dependencies>
   <build>
+<!--  
+    <testResources>
+      <testResource>
+        <directory>src/test/resources</directory>
+      </testResource>
+      <testResource>
+        <directory>src/main/resources</directory>
+      </testResource>
+    </testResources>
+-->
     <plugins>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
@@ -126,24 +136,7 @@
           <target>1.7</target>
         </configuration>
       </plugin>
-      <plugin>
-        <groupId>org.codehaus.mojo</groupId>
-        <artifactId>exec-maven-plugin</artifactId>
-        <version>1.5.0</version>
-        <executions>
-    		<execution>
-      			<id>my-execution</id>
-      			<phase>test</phase>
-      			<goals>
-        			<goal>java</goal>
-      			</goals>
-    		</execution>
-    	</executions>
-    	<configuration>
-    		<additionalClasspathElements>target/test-classes/</additionalClasspathElements>
-    		<mainClass>com.ithr.ppe.test.cucumber.App</mainClass>
-    	</configuration>
-      </plugin>
+        
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-surefire-plugin</artifactId>
@@ -151,11 +144,29 @@
         <configuration>
           <testFailureIgnore>true</testFailureIgnore>
           <includes>
-            <exclude>**/*CucumberRunner.java</exclude>    
+            <exclude>**/*MCTestRunner.java</exclude>    
           </includes>
         </configuration>
       </plugin>
-      
+ 
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>exec-maven-plugin</artifactId>
+        <version>1.5.0</version>
+        <executions>
+    		<execution>
+      			<id>my-execution</id>
+      			<phase>package</phase>
+      			<goals>
+        			<goal>java</goal>
+      			</goals>
+    		</execution>
+    	</executions>
+    	<configuration>
+    		<additionalClasspathElements>target/test-classes/</additionalClasspathElements>
+    		<mainClass>com.ithr.ppe.bdd.reporter.reporter.TheReporterApp</mainClass>
+    	</configuration>
+      </plugin>
  <!--  
  	<plugin>
         <groupId>net.masterthought</groupId>
