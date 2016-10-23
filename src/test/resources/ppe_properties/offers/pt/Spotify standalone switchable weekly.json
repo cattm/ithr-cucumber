@@ -1,0 +1,53 @@
+{
+    "comment": "Initial import by DEV",
+    "opco": "pt",
+    "name": "Spotify standalone switchable weekly",
+    "version": 3,
+    "partner": "spotify",
+    "type": "standalone",
+    "switchable": true,
+    "trial": false,
+    "enabled": {
+        "purchase": true,
+        "cancellation": false
+    },
+    "heading": "Spotify Premium",
+    "pricingText1": "WEEKLY",
+    "pages": {
+        "purchase": {
+            "details": {
+                "title": "Ouça as suas músicas favoritas onde quer que esteja com a Vodafone e o Spotify.",
+                "text": "<p>Utilize o Spotify Premium por apenas 2,49 EUR por semana, com 150 MB incluídos.</p>",
+                "checkbox": {
+                    "label": "Aceito os <a href=\"#\" class=\"terms_link\">Termos e Condições</a>",
+                    "errorMessage": "É necessário aceitares os Termos e Condições antes de adicionares este serviço à sua conta Vodafone.",
+                    "order": 1,
+                    "mandatory": true
+                },
+                "accordion": {
+                    "label": "Spotify Premium",
+                    "text": "<p>Ouça as suas músicas favoritas onde quer que esteja com a Vodafone e o Spotify.</p>"
+                },
+                "okButton": {
+                    "label": "Obter o Spotify Premium",
+                    "action": "#next"
+                }
+            },
+            "success": {
+                "title": "Ativação concluída com sucesso",
+                "text": "<p>Conta Spotify Premium ativa. Está pronto para começar a utilizar o serviço.</p>",
+                "customButton": {
+                    "label": "Adicionar mais ofertas",
+                    "action": "#moreOffers",
+                    "description": "Poderá estar interessado também nestas ofertas adicionais."
+                },
+                "getAppButton": {
+                    "label": "Download da app Spotify",
+                    "action": "#getApp"
+                },
+				"notificationMsg": "A sua subscrição foi efetuada com sucesso."
+            }
+        }
+    },
+    "uniqueName": "pt/Spotify%20standalone%20switchable%20weekly"
+}

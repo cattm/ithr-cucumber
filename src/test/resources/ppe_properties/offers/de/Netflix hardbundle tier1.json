@@ -1,0 +1,39 @@
+{
+	"comment": "Initial import by DEV",
+
+	"opco": "de",
+	"name": "Netflix hardbundle tier1",
+	"version": 1,
+	"partner": "netflix",
+	"type": "hardbundle",
+	"switchable": false,
+	"trial": false,
+
+	"enabled": {
+		"purchase": false,
+		"cancellation": true
+	},
+
+	"usergroups": [
+		"ug_ppe_tier1"
+	],
+
+	"heading": "Netflix",
+
+	"pages": {
+		"cancellation": {
+			"details": {
+				"text": "<p>Wenn Du Netflix jetzt kündigst, kannst Du es nach Laufzeitende nicht mehr nutzen.</p><p>Innerhalb der Testphase wirst Du per SMS informiert, kurz bevor Deine Testphase ausläuft. Bis dahin kannst Du es wie gewohnt weiter nutzen.</p>",
+				"okButton": {
+					"label": "Netflix kündigen",
+					"action": "#next"
+				}
+			},
+
+			"success": {
+				"title": "Kündigung erfolgreich",
+				"text": "<p>Du hast Dein Netflix-Paket erfolgreich gekündigt.</p><p>Dein Paket bleibt bis zum Ende der Laufzeit weiterhin nutzbar.</p>"
+			}
+		}
+	}
+}

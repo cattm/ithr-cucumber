@@ -1,0 +1,67 @@
+{
+   "comment": "Initial import by DEV",
+   "cancellable": false,
+   "cancelled": false,
+   "opco": "ie",
+   "name": "Spotify hardbundle",
+   "version": 4,
+   "partner": "spotify",
+   "type": "hardbundle",
+   "switchable": false,
+   "trial": false,
+   "enabled": {
+      "purchase": true,
+      "cancellation": true
+   },
+   "heading": "Spotify Premium",
+   "usergroups": [
+      "rover"
+   ],
+   "deviceAvailability": [
+      "android",
+      "iPhone"
+   ],
+   "pages": {
+      "purchase": {
+         "details": {
+            "title": "With Spotify Premium, your music is everywhere",
+            "text": "<ul><li>Instant access to over 30 million songs, Ad free<br></li><li>Ability to save songs offline for data free listening<br></li><li>Millions of playlists for every moment<br></li><li>Listen on all your devises<br></li><li>Amazing sound quality<br></li></ul><p>Please note, Spotify is not available on a Blackberry 10.<br data-mce-bogus=\"1\"></p>",
+            "checkbox": {
+               "label": "Vodafone <a href=\"#\">terms and conditions</a>",
+               "errorMessage": "Please check the Vodafone terms and conditions box to continue",
+               "order": 1,
+               "mandatory": true
+            },
+            "accordion": {
+               "label": "Spotify Premium",
+               "text": "<h6>Premium</h6><h6>You get unlimited music from Spotify for the duration of your plan included in Red Connect Essentials, Red Connect or Red Connect Super tariffs</h6><h6>If you already have a Spotify account we can help you upgrade or transfer it</h6><h6>Internet charges</h6><h6>You pay standard internet charges while roaming or if your have exceeded your monthly allowance</h6><h6>Supported phones</h6><h6>Spotify is supported by a wide range of mobile phones and home entertainment devices, including, android, windows, apple IOS, web and many more. Please note, It is not supported by Blackberry 10.</h6>"
+            },
+            "okButton": {
+               "label": "Add Spotify Premium",
+               "action": "#next"
+            }
+         },
+         "success": {
+            "title": "What happens next?",
+            "text": "<h6>Congratulations, you’re now ready to get your Spotify Premium app and start listening to some great music. Follow the sign up process and you will be directed to downloading the app.</h6><h6>Please note, you need to be on the Vodafone network for the first time you access the app. Remember to switch off the WiFi.</h6><h6>I accept terms and conditions</h6><h6>Subscription</h6><h6>You get unlimited access to Spotify Premium</h6><h6>Internet charges</h6><h6>You pay standard internet charges while roaming or if your have exceeded your monthly allowance</h6><h6>Supported phones</h6><h6>Spotify is supported by a wide range of mobile phones and home entertainment devices, including, android, windows, apple IOS, web and many more. Please note, it is not supported by Blackberry 10.</h6>",
+            "getAppButton": {
+               "label": "Get Spotify app",
+               "action": "#getApp"
+            }
+         }
+      },
+      "cancellation": {
+         "details": {
+            "text": "<h6>With Spotify Premium, your music is everywhere</h6><ul><li>Instant access to over 30 million songs, Ad free<br></li><li>Ability to save songs offline for data free listening<br></li><li>Millions of playlists for every moment<br></li><li>Listen on all your devices<br></li><li>Amazing sound quality<br></li></ul><h6>Please note, Spotify is not available on a Blackberry 10.</h6><p>This offer cannot be cancelled.</p>",
+            "accordion": {
+               "label": "Spotify Premium",
+				"text": "<h6>Premium</h6><h6>You get unlimited music from Spotify for the duration of your plan included in Red Connect Essentials, Red Connect or Red Connect Super tariffs</h6><h6>If you already have a Spotify account we can help you upgrade or transfer it</h6><h6>Internet charges</h6><h6>You pay standard internet charges while roaming or if your have exceeded your monthly allowance</h6><h6>Supported phones</h6><h6>Spotify is supported by a wide range of mobile phones and home entertainment devices, including, android, windows, apple IOS, web and many more. Please note, It is not supported by Blackberry 10.</h6>"
+            },
+            "getAppButton": {
+               "label": "Get Spotify app",
+               "action": "#getApp"
+            }
+         }
+      }
+   }
+}

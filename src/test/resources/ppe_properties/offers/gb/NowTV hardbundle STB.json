@@ -1,0 +1,82 @@
+{
+	"comment": "Initial import by DEV",
+
+	"opco": "gb",
+	"name": "NowTV hardbundle STB",
+	"version": 1,
+	"partner": "nowtv",
+	"type": "hardbundle",
+	"switchable": false,
+	"trial": false,
+
+	"enabled": {
+		"purchase": true,
+		"cancellation": false
+	},
+
+	"usergroups": [
+		"ugstb"
+	],
+
+	"heading": "NOW TV Entertainment Pass",
+
+	"deviceAvailability": [
+		"android",
+		"iPhone",
+		"setTopBox",
+		"desktop"
+	],
+
+	"pages": {
+		"purchase": {
+			"details": {
+				"settop": true,
+				"title": "Watch the latest must see pay TV Shows live or on catch up with a NOW TV Entertainment Pass.",
+				"text": "<ul class=\"offers_list\"><li>11 top channels you won't find on Freeview.</li><li>Incredible Box Sets of the latest and best pay TV shows from the UK and US.</li><li>Available on Vodafone TV, iPhone, selected Android devices, tablets and more</li></ul>",
+				"checkbox": {
+					"label": "I accept <a href=\"#\" class=\"terms_link\">terms and conditions</a>",
+					"errorMessage": "To continue, you must agree to the terms & conditions.",
+					"order": 1,
+					"mandatory": true
+				},
+				"okButton": {
+					"label": "CREATE NOW TV ACCOUNT",
+					"action": "#setTopBoxSignUp"
+				},
+				"customButton": {
+					"label": "SIGN IN TO NOW TV",
+					"action": "#setTopBoxSignIn",
+					"description": "<p>Already have a NOW TV account? Click on the Sign In button if you have an existing NOW TV account.  If you have a Sky account you will need to sign in with your SKY ID details.  Forgotten your details? You can get a reminder of them <a target=\"_blank\" href=\"https://www.sky.com/help/articles/forgotten-username-or-password\">here</a>.</p>"
+				}
+			},
+
+			"success": {
+				"title": "Congratulations, your NOW TV Entertainment Pass is now ready to use on Vodafone TV and on the NOW TV mobile and tablet apps.  To begin accessing all the great Entertainment open the NOW TV app in the Apps section of Vodafone TV and sign in with your NOW TV username and password.",
+				"text": "<p>If you don't already have the mobile app, you can get it by clicking the button below.</p>",
+				"getAppButton": {
+					"label": "Get NOW TV app",
+					"action": "#getApp",
+					"txInformation": "<p>Lost: Season 1-6 Box Set Available now. &copy; ABC Studios</p>"
+				}
+			}
+		},
+
+		"cancellation": {
+			"details": {
+				"settop": true,
+				"text": "<p>With your inclusive NOW TV Entertainment Pass you can keep up with the TV that everyone’s talking about, by accessing 11 of the best pay TV channels including Sky Atlantic and Sky 1. You can watch these via your Vodafone TV box and also via NOW TV apps on other devices.</p>",
+				"getAppButton": {
+					"label": "Get NOW TV app",
+					"action": "#getApp",
+					"txInformation": "<p>Lost: Season 1-6 Box Set Available now. &copy; ABC Studios</p>"
+				}
+			}
+		}
+	},
+
+	"entitlement": {
+		"description": "Watch the latest must see pay TV Shows live or on catch up with a NOW TV Entertainment Pass.",
+		"pricingDetails": "Free",
+		"banner": "/newui/assets/img/download-panels/nowtv.jpg"
+	}
+}

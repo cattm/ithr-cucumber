@@ -1,0 +1,21 @@
+{
+    "comment": "Initial import by DEV",
+    "opco": "pt",
+    "name": "Spotify aggregated",
+    "version": 1,
+    "partner": "spotify",
+    "type": "aggregated",
+    "switchable": false,
+    "trial": false,
+    "enabled": {
+        "purchase": true,
+        "cancellation": false
+    },
+    "heading": "Spotify Premium",
+    "entitlement": {
+        "description": "Ouve as tuas músicas favoritas onde quer que estejas com a Vodafone e o Spotify.",
+        "pricingDetails": "Utilize o Spotify Premium durante 3 meses por apenas €0,99. (*) Esta oferta aplica-se apenas à primeira ativação do serviço. Preço após período promocional: 2,49 EUR por semana ou 6,49 EUR por mês.",
+        "banner": "/newui/assets/img/download-panel/spotify.jpg"
+    },
+    "uniqueName": "pt/Spotify%20aggregated"
+}

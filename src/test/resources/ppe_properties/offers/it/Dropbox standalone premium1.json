@@ -1,0 +1,90 @@
+{
+	"comment": "Initial import by DEV",
+
+	"opco": "it",
+	"name": "Dropbox standalone premium1",
+	"version": 1,
+	"partner": "dropbox",
+	"type": "standalone",
+	"switchable": false,
+	"trial": false,
+
+	"enabled": {
+		"purchase": true,
+		"cancellation": true
+	},
+
+	"heading": "Dropbox",
+
+	"usergroups": ["ug_storage_premium1"],
+
+	"deviceAvailability": [
+		"android",
+		"iPhone"
+	],
+
+	"pages": {
+		"purchase": {
+			"details": {
+				"title": "Le tue foto, i tuoi video e la tua rubrica… Facili da archiviare e ripristinare",
+				"text": "<p>Ottime notizie!</p><p>Hai 25GB di spazio su Dropbox e RealTimes illimitato incluso gratis nella tua offerta Vodafone invece che a <s>2.49</s>€ al mese!</p><p>Completa la Guida Introduttiva di Dropbox per ottenere lo spazio extra grazie alla tua offerta.</p>",
+				"checkbox": {
+					"label": "Accetti i <a href=\"http://www.vodafone.com/content/apps/external-redirects/backupplus/promo_general/IT\" target=\"_blank\">termini e le condizioni del servizio</a>",
+					"errorMessage": "Accetta i Termini e le Condizioni di Servizio per attivare l'offerta.",
+					"confirmationMessage": "Seleziona Attiva per ottenere subito più spazio su Dropbox e RealTimes",
+					"order": 1,
+					"mandatory": true
+				},
+				"accordion": {
+					"label": "Dettagli",
+					"text": "<h6>Guida Introduttiva</h6><p>Per ottenere lo spazio extra, ricordati di completare almeno 5 dei 7 passi della Guida Introduttiva dopo aver collegato o creato il tuo account Dropbox con Backup+ (per ulteriori informazioni visita: www.dropbox.com/gs).</p><h6>Spazio aggiuntivo</h6><p>Lo spazio in più che hai incluso con la tua offerta Vodafone, viene aggiunto a quello giá presente sul tuo account Dropbox.</p><h6>Costi di connessione Internet</h6><p>Il caricamento dei contenuti non consuma i dati inclusi nella tua offerta Vodafone. In caso di roaming il costo della connessione a Internet verrà addebitato secondo il tuo piano tariffario.</p><h6>Disattivare l'offerta</h6><p>Puoi disattivare l'offerta in qualsiasi momento nella sezione \"Promo Dropbox\" dell'app di Backup+.</p>"
+				},
+				"okButton": {
+					"label": "Attiva l'offerta!",
+					"action": "#next"
+				},
+				"customButton": {
+					"label": "Non ora",
+					"action": "http://www.vodafone.com/content/apps/external-redirects/backupplus/open/IT"
+				}
+			},
+
+			"success": {
+				"title": "Hai attivato la tua offerta Backup+",
+				"text": "<h6>Congratulazioni!</h6><p>Ora hai 25GB di spazio aggiuntivo su Dropbox e RealTimes illimato inclusi nella tua offerta Vodafone</p><p>Ricordati di completare la Guida Introduttiva di Dropbox per ottenere il tuo spazio extra in regalo!</p>",
+				"customButton": {
+					"label": "Continua",
+					"action": "http://www.vodafone.com/content/apps/external-redirects/backupplus/open/IT"
+				}
+			}
+		},
+
+		"cancellation": {
+			"details": {
+				"title" : "La tua Promo",
+				"text": "<p>Hai 25GB di spazio su Dropbox incluso nella tua offerta</p><p>Non dimenticarti di completare la Guida Introduttiva di Dropbox per attivare l'offerta</p><p><a href=\"http://www.vodafone.com/content/apps/external-redirects/backupplus/promo_general/IT\"  target=\"_blank\">Termini & Condizioni</a>",
+				"accordion": {
+					"label": "Dettagli",
+					"text": "<h6>Guida Introduttiva</h6><p>Per ottenere lo spazio extra, ricordati di completare almeno 5 dei 7 passi della Guida Introduttiva dopo aver collegato o creato il tuo account Dropbox con Backup+ (per ulteriori informazioni visita: www.dropbox.com/gs).</p><h6>Spazio aggiuntivo</h6><p>Lo spazio in più che hai incluso con la tua offerta Vodafone, viene aggiunto a quello giá presente sul tuo account Dropbox.</p><h6>Costi di connessione Internet</h6><p>Il caricamento dei contenuti non consuma i dati inclusi nella tua offerta Vodafone. In caso di roaming il costo della connessione a Internet verrà addebitato secondo il tuo piano tariffario.</p><h6>Disattivare l'offerta</h6><p>Puoi disattivare l'offerta in qualsiasi momento nella sezione \"Promo Dropbox\" dell'app di Backup+.</p>"
+				},
+				"okButton": {
+					"label": "Disattiva",
+					"action": "#next"
+				}
+			},
+
+			"details2": {
+				"title": "Disattiva l'offerta",
+				"text": "<p>Disattivando l'offerta non avrai più a disposizione lo spazio extra di 25GB su Dropbox.</p><p>Non ti preoccupare: potrai comunque continuare ad utilizzare Backup+ per salvare i tuoi contenuti su Dropbox e sincronizzare la tua rubrica fino al completamento dello spazio disponibile.</p><p>Per disattivare clicca qui sotto.</p>",
+				"okButton": {
+					"label": "Disattiva",
+					"action": "#next"
+				}
+			},
+
+			"success": {
+				"text": "<p>La tua offerta Backup+ non verra' rinnovata.</p><p>Hai disattivato il tuo spazio extra su Dropbox.</p>"
+			}
+		}
+	}
+}

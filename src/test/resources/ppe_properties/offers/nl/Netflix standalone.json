@@ -1,0 +1,82 @@
+{
+	"comment": "Initial import by DEV",
+
+	"opco": "nl",
+	"name": "Netflix standalone",
+	"version": 1,
+	"partner": "netflix",
+	"type": "standalone",
+	"switchable": false,
+	"trial": false,
+
+	"enabled": {
+		"purchase": true,
+		"cancellation": true
+	},
+
+	"heading": "Netflix",
+
+	"pages": {
+		"purchase": {
+			"details": {
+				"text": "<ul><li>Naast je favoriete series en films die je op Netflix kunt streamen, zijn er ook altijd nieuwe bekroonde Netflix-originals te zien. Het aanbod series en films blijft groeien.</li><li>Je hoeft de series of film niet te downloaden.</li><li>Hoe relaxed? Er is geen reclame onderbreking.</li><li>Je ontvangt de eerst maand Netflix cadeau. Hierna betaal je makkelijk via je Vodafone rekening! Je kunt maandelijks opzeggen.</li></ul>",
+				"checkbox": {
+					"label": "Ik accepteer de <a href=\"#\" class=\"terms_link\">Dienstvoorwaarden</a> en dat er automatisch kosten in rekening worden gebracht voor mijn Netflix abonnement, tenzij ik me op tijd afmeld.",
+					"errorMessage": "Je moet de <a href=\"#\" class=\"terms_link\">Dienstvoorwaarden</a> van Vodafone accepteren voordat je Netflix kunt activeren.",
+					"order": 1,
+					"mandatory": true
+				},
+				"accordion": {
+					"label": "Meer informatie",
+					"text": "<h6>Bekijk je favoriete series en films, waar en wanneer je maar wilt.</h6>Je Netflix abonnement betaal je via je Vodafone rekening. De eerste maand is gratis.<ul><li>Kijk met de beste kwaliteit van Vodafone’s 4G netwerk, maar ook te zien op 3G en wifi</li><li>Zie www.netflix.com/TermsofUse voor meer informatie.</li><li>Aanbieding beschikbaar voor nieuwe leden en beperkt tot één gratis proefperiode per huishouden.</li><li>Breedbandinternet en apparaat voor streamen van Netflix vereist.</li></ul><h6>Internet kosten</h6><p>Netflix kun je onderweg of thuis kijken met het supersnelle Vodafone 4G-netwerk, 3G en wifi. Als je Netflix gebruikt via ons mobiele 4G/3G netwerk, verbruik je data uit je abonnement of databundel. Kijk je in het buitenland? Dan betaal je kosten voor data roaming.</p><h6>Ondersteunde systemen</h6><p>Met één account kun je Netflix kijken op al je apparaten: je smartphone, tablet, PC, Smart TV, gameconsole en veel meer.</p><h6>Netflix stopzetten</h6><p>Je kunt Netflix  maandelijks opzeggen via de Entertainment portal:https://offers.vodafone.com/nl/cancel</p><h6>Heb je nog vragen?</h6><p>Bel dan even met onze Klantenservice of kijk op ons forum: http://forum.vodafone.nl</p>"
+				},
+				"okButton": {
+					"label": "Activeer Netflix nu",
+					"action": "#next"
+				}
+			},
+
+			"success": {
+				"title": "Gelukt!",
+				"text": "<p>Je kunt Netflix nu gelijk gebruiken.</p><p>Heb je de Netflix app nog niet op je telefoon? Klik op de button en download de app nu. </p>",
+				"customButton": {
+					"label": "Activeer nog meer Entertainment",
+					"action": "#moreOffers",
+					"description": "Wil je een ander Entertainment pakket bestellen?"
+				},
+				"getAppButton": {
+					"label": "Netflix app downloaden",
+					"action": "#getApp",
+					"txInformation": "<p>NARCOS, EEN NETFLIX ORIGINAL-SERIE. Alle afleveringen Nu beschikbaar</p>"
+				}
+			}
+		},
+
+		"cancellation": {
+			"details": {
+				"text": "<p>Bekijk je favoriete series en films, waar en wanneer je maar wilt.</p><p>Bij ieder abonnement kun je bij Vodafone terecht voor de beste in Entertainment! Sluit nu een Netflix abonnement af.</p>",
+				"okButton": {
+					"label": "Netflix opzeggen",
+					"action": "#next"
+				},
+				"getAppButton": {
+					"label": "Netflix app downloaden",
+					"action": "#getApp",
+					"txInformation": "<p>NARCOS, EEN NETFLIX ORIGINAL-SERIE. Alle afleveringen Nu beschikbaar</p>"
+				}
+			},
+
+			"details2": {
+				"text": "<p>Om je Netflix abonnement op te zeggen, klik hieronder op Doorgaan met opzeggen.</p><p>Als je je Netflix account opzegt, kun je de films en series van Netflix niet meer op je mobiel of thuis kijken.</p>",
+				"okButton": {
+					"label": "Doorgaan met opzeggen",
+					"action": "#next"
+				}
+			},
+
+			"success": {
+				"text": "<p>Je hebt je Netflix abonnement opgezegd en je kunt blijven kijken zolang je abonnement nog loopt. Geniet er nog even van!</p>"
+			}
+		}
+	}
+}

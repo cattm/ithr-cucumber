@@ -1,0 +1,49 @@
+{
+	"comment": "Translations used for IT Netflix HB Xmaspromo after it moves to recurring hidden no-usergroup pricepoint",
+
+	"opco": "it",
+	"name": "Netflix hardbundle xmaspromo no-usergroup",
+	"version": 1,
+	"partner": "netflix",
+	"type": "hardbundle",
+	"switchable": false,
+	"trial": false,
+
+	"enabled": {
+		"purchase": false,
+		"cancellation": true
+	},
+
+	"packageId": "PK_NetflixPromoXmas",
+
+	"heading": "Netflix",
+
+	"pages": {
+		"cancellation": {
+			"details": {
+				"text": "E' attiva l’offerta che ti dà diritto a 3 mesi di Netflix offerti da Vodafone a 0 euro al mese anziché 9,99 euro al mese; il periodo di gratuità è valido finché la tua offerta è attiva.</p><p> Con la tua offerta Vodafone  hai 3 mesi inclusi di Netflix per poter guardare contenuti in HD e da 2 device in contemporanea. Il valore totale dell’offerta è di 29,97€. </p><p>Prima della fine dei 3 mesi, riceverai un SMS gratuito che ti informerà della scadenza della promozione. Al termine dei 3 mesi, il servizio si rinnoverà a 9,99€/mese che saranno addebitati sul tuo conto telefonico.</p><p>Se non l'hai gia' fatto scarica l'APP premendo il bottone qui sotto.</p>",
+				"getAppButton": {
+					"label": "Scarica l'APP di Netflix",
+					"action": "#getApp"
+				},
+				"okButton": {
+					"label": "Disattiva",
+					"action": "#next"
+				},
+				"duration": "3 mesi inclusi"
+			},
+
+			"details2": {
+				"text": "<p>La tua sottoscrizione Netflix sarà disattivata al termine del mese di promozione o del periodo per cui hai già pagato.</p><p>Per confermare la disattivazione di Netflix clicca su &#171;Conferma Disattivazione&#187;</p>",
+				"okButton": {
+					"label": "Conferma Disattivazione",
+					"action": "#next"
+				}
+			},
+
+			"success": {
+				"text": "<p>Il tuo account Netflix sarà disattivato al termine del mese di promozione o del periodo per cui hai già pagato.</p><p>La tua richiesta di disattivazione dell'abbonamento a Netflix è stata completata.</p>"
+			}
+		}
+	}
+}

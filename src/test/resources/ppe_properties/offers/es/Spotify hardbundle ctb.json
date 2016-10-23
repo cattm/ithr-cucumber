@@ -1,0 +1,51 @@
+{
+	"comment": "This is the offer shown after the Spotify HB trial offers recur to the monthly paid subscription",
+
+	"opco": "es",
+	"name": "Spotify hardbundle ctb",
+	"version": 1,
+	"partner": "spotify",
+	"type": "hardbundle",
+	"switchable": false,
+	"trial": false,
+
+	"enabled": {
+		"purchase": false,
+		"cancellation": true
+	},
+
+	"heading": "Spotify Premium",
+
+	"pages": {
+		"cancellation": {
+			"details": {
+				"text": "<p>Escucha tu música preferida, con o sin conexión de datos, sin anuncios y en alta definición.</p><p>Para darse de baja del servicio Spotify Premium, haz clic en el botón inferior. </p>",
+				"getAppButton": {
+					"label": "Descargar app",
+					"action": "#getApp"
+				},
+				"okButton": {
+					"label": "Darse de baja",
+					"action": "#next"
+				}
+			},
+
+			"details2": {
+				"title": "<p>¿Estas seguro que quieres darte de baja?</p>",
+				"text": "<p>Recuerda, la baja en el servicio será efectiva al final de tu mes de suscripción.</p>",
+				"okButton": {
+					"label": "Darse de baja",
+					"action": "#next"
+				}
+			},
+
+			"success": {
+				"text": "<p>Te confirmamos que la baja de tu suscripción al servicio de Spotify Premium se ha realizado correctamente.</p>",
+				"getAppButton": {
+					"label": "Descargar app",
+					"action": "#getApp"
+				}
+			}
+		}
+	}
+}

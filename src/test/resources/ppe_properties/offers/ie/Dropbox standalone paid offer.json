@@ -1,0 +1,79 @@
+{
+   "comment": "Initial import by DEV",
+   "opco": "ie",
+   "name": "Dropbox standalone paid offer",
+   "version": 1,
+   "partner": "dropbox",
+   "type": "standalone",
+   "switchable": false,
+   "trial": false,
+   "enabled": {
+      "purchase": true,
+      "cancellation": true
+   },
+   "heading": "Dropbox",
+   "deviceAvailability": [
+      "android",
+      "iPhone"
+   ],
+   "pages": {
+      "purchase": {
+         "details": {
+            "title": "Special offer just for you!",
+            "text": "<p>With Vodafone Backup+ you can get 25GB Dropbox space for only €1.99 per month</p><ul><li>25GB additional space</li><li>€1.99 per month</li><li>Cancel any time!</li></ul>",
+            "checkbox": {
+               "label": "I accept <a href=\"http://www.vodafone.com/content/apps/external-redirects/backupplus/promo_general/IE\"  target=\"_blank\">terms and conditions</a>",
+               "errorMessage": "Please accept the terms and conditions",
+               "confirmationMessage": "By accepting to subscribe now you will activate your Dropbox offer of 25GB for €1.99 per month. You will see this charge on your Vodafone bill. You can cancel at any time.  ",
+               "order": 1,
+               "mandatory": true
+            },
+            "accordion": {
+               "label": "Offer details",
+               "text": "<h6>Additional space</h6><p>The space given is on top of any current Dropbox space you may already have.</p><h6>Internet charges</h6><p>You'll pay our standard data charges to use this service when you're roaming or when you've exceeded your data allowance.</p><h6>Stopping the offer</h6><p>You can unsubscribe from the offer any time via the My Offer page in your Backup+ app.</p>"
+            },
+            "okButton": {
+               "label": "Subscribe now",
+               "action": "#next"
+            },
+            "customButton": {
+               "label": "Not now",
+               "action": "http://www.vodafone.com/content/apps/external-redirects/backupplus/open/IE"
+            }
+         },
+         "success": {
+            "title": "Congratulations!",
+            "text": "<p>You now have 25GB of Dropbox space for only €1.99 per month. You can cancel at any point from the ‘My Offer’ tab within your Backup+ app.</p>",
+            "customButton": {
+               "label": "Continue",
+               "action": "http://www.vodafone.com/content/apps/external-redirects/backupplus/open/IE"
+            }
+         }
+      },
+      "cancellation": {
+         "details": {
+            "title": "Your Offer",
+            "text": "<p>You’ve got 25GB of Dropbox space included in your Vodafone plan</p><ul><li>Pay €1.99 per month</li><li>Cancel any time!</li></ul><p><a href=\"http://www.vodafone.com/content/apps/external-redirects/backupplus/promo_general/IE\"  target=\"_blank\">Promo terms apply</a></p>",
+            "accordion": {
+               "label": " Offer Details",
+               "text": "<h6>Additional space</h6><p>The space given is on top of any current Dropbox space you may already have.</p><h6>Internet charges</h6><p>You'll pay our standard data charges to use this service when you're roaming or when you've exceeded your data allowance.</p><h6>Stopping the offer</h6><p>You can unsubscribe from the offer any time via the My Offer page in your Backup+ app.</p>"
+            },
+            "okButton": {
+               "label": "Unsubscribe",
+               "action": "#next"
+            }
+         },
+         "details2": {
+            "title": "Unsubscribe from your offer",
+            "text": "<p>By ending your offer you will lose your bonus 25GB of Dropbox space.</p><p>You will still be able to use Backup+ for syncing your contacts and backing up to Dropbox as long as you have enough Dropbox space.</p><p>Are you sure you want to unsubscribe?</p>",
+            "okButton": {
+               "label": "Unsubscribe",
+               "action": "#next"
+            }
+         },
+         "success": {
+            "text": "<p>Unsubscribe successful</p>"
+         }
+      }
+   }
+}

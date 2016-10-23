@@ -1,0 +1,78 @@
+{
+	"comment": "Initial import by DEV",
+
+	"opco": "it",
+	"name": "Spotify standalone gold",
+	"version": 1,
+	"partner": "spotify",
+	"type": "standalone",
+	"switchable": false,
+	"trial": false,
+
+	"enabled": {
+		"purchase": true,
+		"cancellation": true
+	},
+
+	"usergroups": [
+		"gold"
+	],
+
+	"heading": "Spotify Premium",
+
+	"pages": {
+		"purchase": {
+			"details": {
+				"title": "Ascolta la tua musica preferita sempre e ovunque, senza limiti e senza interruzioni!",
+				"text": "<p>Con Spotify Premium hai tutta la musica sul tuo smartphone, tablet e PC. Grazie alla tua offerta Vodafone hai 12 mesi inclusi, senza costi aggiuntivi!</p><p>Scopri tutti i vantaggi di Spotify Premium:</p><ul><li>Musica illimitata in alta qualità</li><li>Nessuna interruzione pubblicitaria</li><li>Playlist disponibili anche offline</li><li>Nessun vincolo</li></ul><p>Dopo i 12 mesi offerti da Vodafone, il servizio si rinnova a 9,99 euro al mese (salvo disattivazione).</p><p>Il periodo di gratuità è valido fino a che la tua offerta è attiva. Se disattivi la tua offerta il servizio Spotify viene disattivato. L’abbonamento non ha vincoli e può essere disattivato in qualsiasi momento.</p><p>Se hai gia attiva</p></p>Goditi la musica di Spotify Premium inclusa per 12 mesi!</><p>Se hai attivato l’offerta Spotify con Vodafone in passato, consulta i Termini e Condizioni, per maggiori dettagli.</p>",
+				"checkbox": {
+					"label": "Cliccando su attiva dichiari di accettare i <a href=\"#\" class=\"terms_link\">termini e le condizioni</a> del servizio",
+					"errorMessage": "Prima di poter attivare Spotify devi accettare i nostri termini e condizioni.",
+					"order": 1,
+					"mandatory": true
+				},
+				"accordion": {
+					"label": "Più informazioni su Spotify Premium",
+					"text": "<h6>Spotify Premium</h6><p>Puoi avere tutta la musica illimitata con Spotify per tutta la durata del tuo abbonamento.</p><h6>Costi di connessione internet</h6><p>L'utilizzo del servizio con rete Vodafone consuma i GB inclusi nella tua offerta.</p><h6>Disattiva \"Spotify Premium\"</h6><p>Per disattivare il tuo abbonamento \"Spotify Premium\" cliccahttp://voda.it/disattivaspotify.</p><h6>Telefoni compatibili</h6><p>Spotify è compatibile con un'ampia gamma di telefoni e tablet: Android, Windows, Apple iOS e tanti altri. Non è invece disponibile per BlackBerry 10.</p><h6>Domande Frequenti</h6><p>Per avere ulteriori informazioni consulta leDomande Frequenti su Spotify Premium</p><p>Cliccando su «Attiva Spotify Premium» dichiari di accettare i termini e le condizioni del servizio</p>"
+				},
+				"okButton": {
+					"label": "Attiva Spotify Premium",
+					"action": "#next"
+				},
+				"duration": "12 mesi inclusi"
+			},
+
+			"success": {
+				"text": "<p>La tua sottoscrizione a Spotify Premium e' ora attiva, inizia ad ascoltare la tua musica prefrita dove e quando vuoi.</p><p>Se non l'hai gia' fatto scarica l'APP premendo il bottone qui sotto.</p>",
+				"getAppButton": {
+					"label": "Scarica l'APP di Spotify",
+					"action": "#getApp"
+				}
+			}
+		},
+
+		"cancellation": {
+			"details": {
+				"text": "<p>E' attiva l’offerta che ti dà diritto a 12 mesi di Spotify Premium offerti da Vodafone a 0 euro al mese anziché 9,99 euro al mese; il periodo di gratuità è valido finché la tua offerta è attiva: se disattivi la tua offerta il servizio Spotify Premium passa a 9,99€/mese.</p><p>Dopo i dodici mesi di promozionalità, il servizio Spotify Premium si rinnova a 9,99 euro al mese. Se hai già sottoscritto uno dei contenuti dell’offerta Vodafone Entertainment, non potrai usufruire di questa promozione. Se hai già usufruito di un periodo di promozionalità per il servizio Spotify Premium, non potrai usufruire di questa promozione.</p><p>Se non l'hai gia' fatto scarica l'APP premendo il bottone qui sotto</p>",
+				"getAppButton": {
+					"label": "Scarica l'APP di Spotify",
+					"action": "#getApp"
+				},
+				"okButton": {
+					"label": "Disattiva",
+					"action": "#next"
+				}
+			},
+			"details2": {
+				"text": "<p>La tua sottoscrizione Spotify Premium sarà disattivata al termine del mese di promozione o del periodo per cui hai già pagato.</p><p>Per confermare la disattivazione di Spotify Premium clicca su &#171;Conferma Disattivazione&#187;</p>",
+				"okButton": {
+					"label": "Conferma Disattivazione",
+					"action": "#next"
+				}
+			},
+			"success": {
+				"text": "<p>Il tuo account Spotify Premium sarà disattivato al termine del mese di promozione o del periodo per cui hai già pagato.</p><p>La tua richiesta di disattivazione dell'abbonamento a Spotify Premium è stata completata."
+			}
+		}
+	}
+}

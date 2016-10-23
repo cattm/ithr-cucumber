@@ -1,0 +1,38 @@
+{
+	"comment": "Initial import by DEV",
+	"opco": "de",
+	"name": "Deezer hardbundle 3 months",
+	"version": 2,
+	"partner": "deezer",
+	"type": "hardbundle",
+	"switchable": false,
+	"trial": false,
+	"enabled": {
+		"purchase": false,
+		"cancellation": true
+	},
+
+	"usergroups": [
+		"ug_ppe_red",
+		"ug_ppe_tier1"
+	],
+
+	"heading": "Deezer Musik-Flat",
+
+	"pages": {
+		"cancellation": {
+			"details": {
+				"text": "<p>Wenn Du Deine Deezer-Musik-Flat jetzt kündigst, kannst Du diese nach Laufzeitende nicht mehr nutzen. <Br />Innerhalb der Testphase wirst Du per SMS informiert, kurz bevor Deine Testphase ausläuft. Bis dahin kannst Du es wie gewohnt weiter nutzen.</p>",
+				"okButton": {
+					"label": "Deezer Musik-Flat kündigen",
+					"action": "#next"
+				}
+			},
+			"success": {
+				"title": "Kündigungsbestätigung",
+				"text": "<p>Du hast Deine Deezer Musik-Flat gekündigt.</p><p>Du kannst sie bis zum Ende der Laufzeit weiter nutzen.</p>"
+			}
+		}
+	},
+	"uniqueName": "de/Deezer%20hardbundle%203%20months%20trial"
+}

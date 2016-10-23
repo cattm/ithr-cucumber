@@ -1,0 +1,34 @@
+{
+	"comment": "Initial import by DEV",
+	"opco": "de",
+	"name": "Deezer standalone switchable trial",
+	"version": 2,
+	"partner": "deezer",
+	"type": "standalone",
+	"switchable": true,
+	"trial": true,
+	"enabled": {
+		"purchase": true,
+		"cancellation": false
+	},
+
+	"heading": "Deezer Musik-Flat",
+
+	"pages": {
+		"purchase": {
+			"details": {
+				"title": "Hör Deine Lieblingsmusik jederzeit und überall",
+				"text": "<ul><li>Musik-Streaming mit über 40 Millionen Songs und tausenden Hörbüchern</li><li>Nutzbar auf Deinem Smartphone, Tablet, PC und vielem mehr</li><li>Du bezahlst nur 9,99 Euro pro Monat</li><li>Du kannst monatlich kündigen</li></ul>",
+				"accordion": {
+					"label": "Mehr Infos",
+					"text": "<h6>Produktdetails:</h6><ul><li>Stream all Deine Lieblingssongs – von alten Klassikern bis hin zu den neuesten Hits aus den Charts</li><li>Lad Dir mit dem Offline-Modus Playlists oder Alben auf Dein Gerät herunter und hör sie auch ohne Daten-Verbindung</li><li>Werbefrei und in bester Soundqualität</li></ul><h6>Buchungsdetails:</h6><ul><li>Du bezahlst nur 9,99 Euro pro Monat, bequem über Deine Mobilfunk-Rechnung</li></ul>"
+				},
+				"okButton": {
+					"label": "JETZT KAUFEN",
+					"action": "#next"
+				}
+			}
+		}
+	},
+	"uniqueName": "de/Deezer%20standalone%20trial"
+}

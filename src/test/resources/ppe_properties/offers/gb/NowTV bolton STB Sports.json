@@ -1,0 +1,86 @@
+{
+	"comment": "Initial import by DEV",
+
+	"opco": "gb",
+	"name": "NowTV bolton STB Sports",
+	"version": 1,
+	"partner": "nowtv",
+	"type": "bolton",
+	"switchable": false,
+	"trial": false,
+	"packageId": "PK_STB_NowTVSports",
+
+	"enabled": {
+		"purchase": true,
+		"cancellation": false
+	},
+
+	"usergroups": [
+		"ugstb"
+	],
+
+	"heading": "NOW TV Sky Sports Month Pass",
+
+	"deviceAvailability": [
+		"android",
+		"iPhone",
+		"setTopBox",
+		"desktop"
+	],
+
+	"pages": {
+		"purchase": {
+			"details": {
+				"settop": true,
+				"title": "<p>Only pay for the days you want to watch with a Day or Week Pass, or get a whole month of live sport with the new Month Pass.</p>",
+				"text": "<h6>NOW TV Sky Sports Month Pass</h6><p>Get a whole month of live sport.</p><p>Automatically renews each month, unless cancelled.</p><p>By clicking add you acknowledge you will lose your right to a refund should you cancel.</p>",
+				"checkbox": {
+					"label": "I accept <a href=\"#\" class=\"terms_link\">terms and conditions</a>",
+					"errorMessage": "To continue, you must agree to the terms & conditions",
+					"order": 1,
+					"mandatory": true
+				},
+				"okButton": {
+					"label": "ADD NOW TV SKY SPORTS PASS £33.99",
+					"action": "#next"
+				}
+			},
+
+			"success": {
+				"title": "Your NOW TV Sky Sports Month Pass is ready.",
+				"text": "<p>Congratulations, your NOW TV Sky Sports Month Pass is ready to use on Vodafone TV or other devices.</p>",
+				"getAppButton": {
+					"label": "Get NOW TV app",
+					"action": "#getApp",
+					"txInformation": "<p>Watch Live</p>"
+				}
+			}
+		},
+
+		"cancellation": {
+			"details": {
+				"settop": true,
+				"text": "<p>You have an active NOW TV Sky Sports Month Pass. To cancel this from next month click on the red button to the right. You can use the Pass in the meantime and will be able to sign up again if you wish once the pass has been cancelled.</p>",
+				"okButton": {
+					"label": "CANCEL NOW TV SKY SPORTS MONTH PASS",
+					"action": "#next"
+				},
+				"getAppButton": {
+					"label": "Get NOW TV app",
+					"action": "#getApp",
+					"txInformation": "<p>Watch Live</p>"
+				}
+			},
+			"success": {
+				"title": "You've been unsubscribed successfully from NOW TV Sky Sports Month Pass.",
+				"text": "<p>Your NOW TV Sky Sports Month Pass has been cancelled from next month.  You can use the Pass in the meantime and will be able to sign up again if you wish once the pass has been cancelled.</p>"
+			}
+		}
+	},
+
+	"entitlement": {
+		"description": "Only pay for the days you want to watch with a Day or Week Pass, or get a whole month of live sport with the new Month Pass.",
+		"pricingDetails": "£33.99",
+		"banner": "/newui/assets/img/download-panels/nowtv.jpg"
+	}
+}

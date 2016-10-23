@@ -1,0 +1,45 @@
+{
+	"comment": "Initial import by DEV",
+
+	"opco": "es",
+	"name": "Spotify standalone trial non-available",
+	"version": 1,
+	"partner": "spotify",
+	"type": "standalone",
+	"switchable": false,
+	"trial": true,
+	"packageId" : "erTrialSpotifyNonTrial",
+
+	"enabled": {
+		"purchase": true,
+		"cancellation": false
+	},
+
+	"heading": "Spotify Premium",
+
+	"pages": {
+		"purchase": {
+			"details": {
+				"title": "Primer mes gratis en Spotify Premium",
+				"text": "<p>Dado que ya has disfrutado del primer mes gratis en el servicio Spotify Premium, no puedes volver a disfrutarlo. Por ello, empezarás a pagar ya 8,99€/mes.</p>",
+				"okButton": {
+					"label": "Continuar",
+					"action": "#next"
+				},
+				"customButton" : {
+					"label" : "Ahora no",
+					"action" : "#moreOffers"
+				}
+			},
+
+			"success": {
+				"title": "¡Proceso completado!",
+				"text": "<p>El alta en el servicio de Spotify Premium se ha completado correctamente.</p>",
+				"getAppButton": {
+					"label": "Descargar app",
+					"action": "#getApp"
+				}
+			}
+		}
+	}
+}
