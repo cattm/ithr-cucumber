@@ -59,6 +59,7 @@ public class PPEReportBuilder  extends ReportBuilder {
 		
 		public void cleanArea() {
 			log.info("Clean the report Directory");
+			/*
 			File dirtoclean = myconfiguration.getReportDirectory();
 			log.info("Going to clean " + dirtoclean.getPath());
 			String command1 = "ls -l " + dirtoclean.getPath() +"/" + " | wc -l";
@@ -67,6 +68,7 @@ public class PPEReportBuilder  extends ReportBuilder {
 				String command2 = "rm -R " + dirtoclean.getPath() +"/";
 				result = CommandExecutor.execCmd(command2, true);
 			}
+			*/
 		}
 		
 		
