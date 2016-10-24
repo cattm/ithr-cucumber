@@ -61,8 +61,12 @@ public class PPEReportBuilder  extends ReportBuilder {
 			log.info("Clean the report Directory");
 			File dirtoclean = myconfiguration.getReportDirectory();
 			log.info("Going to clean " + dirtoclean.getPath());
-			String command2 = "rm -R " + dirtoclean.getPath() +"/";
-			String result = CommandExecutor.execCmd(command2, true);
+			String command1 = "ls -l " + dirtoclean.getPath() +"/" + " | wc -l";
+			String result = CommandExecutor.execCmd(command1, true);
+			if (Integer.parseInt(result.trim()) > 1) {
+				String command2 = "rm -R " + dirtoclean.getPath() +"/";
+				result = CommandExecutor.execCmd(command2, true);
+			}
 		}
 		
 		

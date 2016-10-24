@@ -69,7 +69,7 @@ public class TheReporterApp
 		
 		
 		String jenkinsBasePath = "";
-		log.info("XX" + System.getenv("BUILD_NUMBER") + "XX");
+		log.info(System.getenv("BUILD_NUMBER"));
 		String tmp = System.getenv("BUILD_NUMBER");
 		String buildNumber;
 		if (tmp == null) {
