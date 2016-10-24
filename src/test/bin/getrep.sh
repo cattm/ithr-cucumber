@@ -1,2 +1,2 @@
 #!/bin/sh
-ls -l $1 | cut -d' ' -f8- | awk '{print $1}'
+find $1 -size +1c | wc -l
