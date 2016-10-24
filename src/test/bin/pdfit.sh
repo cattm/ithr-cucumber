@@ -18,6 +18,7 @@ flist2="anoverview.html failures-overview.html"
 date=`date +%Y%m%d_%H%M%S`
 cd $1 
 #st=`/usr/local/bin/wkhtmltopdf --javascript-delay 5000 $flist cucumer-report-${date}.pdf`
+echo "Command is: $ptowk --javascript-delay 5000 $flist2 cucumer-report-${date}.pdf"
 st=`$ptowk --javascript-delay 5000 $flist2 cucumer-report-${date}.pdf`
 exit 0
 
