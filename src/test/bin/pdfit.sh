@@ -1,5 +1,5 @@
 #!/bin/sh
-ptowk="export DISPLAY=:99; /usr/bin/xvfb-run /usr/bin/wkhtmltopdf"
+ptowk="/usr/bin/xvfb-run /usr/bin/wkhtmltopdf"
 
 flist=""
 # improvment - path should be an env or param
@@ -13,6 +13,7 @@ date=`date +%Y%m%d_%H%M%S`
 cd $1 
 #st=`/usr/local/bin/wkhtmltopdf --javascript-delay 5000 $flist cucumer-report-${date}.pdf`
 echo "Command is: $ptowk --javascript-delay 5000 $flist2 cucumber-report-${date}.pdf"
+export DISPLAY=:0
 st=`$ptowk --javascript-delay 5000 $flist2 cucumber-report-${date}.pdf`
 exit 0
 
