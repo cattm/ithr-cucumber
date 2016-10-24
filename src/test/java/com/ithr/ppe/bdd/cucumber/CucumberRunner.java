@@ -19,8 +19,8 @@ import cucumber.api.junit.Cucumber;
 				   "junit:target/reports/cucumber-results.xml",
 				  "pretty:target/reports/cucumber-pretty.txt"},
 		features = {"src/test/java/com/ithr/ppe/bdd/cucumber/features/"},
-		tags = {"@purchase, @secpurchase, @cancel", "~@ignore"},
-//		tags = {"@checkit", "~@ignore"},
+//		tags = {"@purchase, @secpurchase, @cancel", "~@ignore"},
+		tags = {"@checkit", "~@ignore"},
 		glue = {"com.ithr.ppe.bdd.cucumber.steps"}
 		)
 public class CucumberRunner {
@@ -31,7 +31,6 @@ public class CucumberRunner {
 		try {
 			TestProperties.loadPropertyFile("test.properties");
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		String baseUserUrl = TestProperties.USER_BASEURL;
