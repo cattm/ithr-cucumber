@@ -1,6 +1,6 @@
-
+@ignore
 Feature: This is a test feature file that we run only to help do a debug
-@checkit
+
   Scenario Outline: Purchase GB Offers from NETFLIX
     Given I am a "GB" customer purchasing the "NETFLIX" offer
     When my profile has a <package> tariff with a <usergroup> usergroup
