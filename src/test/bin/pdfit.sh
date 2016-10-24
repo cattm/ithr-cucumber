@@ -1,5 +1,14 @@
 #!/bin/sh
-ptowk="/usr/bin/xvfb-run /usr/bin/wkhtmltopdf"
+
+tocheck="/usr/bin/xvfb-run"
+file=$1
+if [ -e $tocheck ]
+then
+	ptowk="/usr/bin/xvfb-run /usr/bin/wkhtmltopdf"
+else
+	ptowk="/usr/bin/wkhtmltopdf"
+fi
+
 
 flist=""
 # improvment - path should be an env or param
