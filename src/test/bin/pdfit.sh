@@ -1,5 +1,5 @@
 #!/bin/sh
-ptowk="/usr/bin/wkhtmltopdf"
+ptowk="/usr/bin/xvfb-run /usr/bin/wkhtmltopdf"
 
 flist=""
 # improvment - path should be an env or param
