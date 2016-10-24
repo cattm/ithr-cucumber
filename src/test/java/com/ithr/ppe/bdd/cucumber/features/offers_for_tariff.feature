@@ -1,4 +1,4 @@
-@ignore
+
 Feature: This is a test feature file that we run only to help do a debug
 
   Scenario Outline: Purchase GB Offers from NETFLIX
@@ -23,6 +23,7 @@ Feature: This is a test feature file that we run only to help do a debug
       | PK_4GTariff | 4gsmall   | NowTV hardbundle |
       | PK_4GTariff | 4gmedium  | NowTV hardbundle |
 
+@checkit
   Scenario Outline: Purchase GB Offers from SKY
     Given I am a "GB" customer purchasing the "SKY" offer
     When my profile has a <package> tariff with a <usergroup> usergroup
