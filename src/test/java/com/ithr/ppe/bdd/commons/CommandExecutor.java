@@ -90,7 +90,7 @@ public class CommandExecutor {
 	
 	public static String findValidResults(String file) {
 		String size = "NOT FOUND";
-		String mycommand = "./getrep.sh " + file;		
+		String mycommand = "./src/test/bin/getrep.sh " + file;		
 		String outcome = execCmd(mycommand,false);
 
     
