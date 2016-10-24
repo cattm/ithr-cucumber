@@ -1,12 +1,12 @@
 #!/bin/sh
-
+ptowk="/usr/bin/wkhtmltopdf"
 hostname=`hostname`
 if [ "$hostname" == "SSS_Mac01" ]
 then
-        ptowk="/usr/local/bin/wkhtmltopdf"
-else
-        ptowk="/bin/wkhtmltopdf"
+		echo "On Local machine"
+        ptowk="/usr/local/bin/wkhtmltopdf"       
 fi
+
 flist=""
 # improvment - path should be an env or param
 for f in $( ls $1/*.html | sort ); do
