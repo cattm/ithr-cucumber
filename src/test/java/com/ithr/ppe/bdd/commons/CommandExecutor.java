@@ -98,7 +98,7 @@ public class CommandExecutor {
     
         	log.info(arr);
         	if (arr.equals("0")) {
-        		log.info("file is there but empty : " + arr);
+        		log.info("file may be there but empty : " + arr);
         		size = arr;
         	} else if (arr.equals("")){
         		;

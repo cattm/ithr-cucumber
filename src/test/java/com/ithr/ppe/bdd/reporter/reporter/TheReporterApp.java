@@ -49,9 +49,9 @@ public class TheReporterApp
       
     		//TODO: this should be a property in both halves
     		String result = CommandExecutor.findValidResults(jsonBase + "/cucumber.json");
-    		log.info("cucumber file is size : " + result);
-    		Integer fred = new Integer(result);
-    		if (fred > 0) {
+    		log.info("cucumber reports file is : " + result);
+    		int tmp = Integer.parseInt(result.trim());
+    		if (tmp > 0) {
     			produceLocalReport();
     		} else {
     			log.error("Could not find required json files");
