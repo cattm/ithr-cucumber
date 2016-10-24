@@ -1,11 +1,11 @@
 #!/bin/sh
 ptowk="/usr/bin/wkhtmltopdf"
-hostname=`hostname`
-if [ "$hostname" == "SSS_Mac01" ]
-then
-		echo "On Local machine"
-        ptowk="/usr/local/bin/wkhtmltopdf"       
-fi
+#hostname=`hostname`
+#if [ "$hostname" == "SSS_Mac01" ]
+#then
+#		echo "On Local machine"
+#        ptowk="/usr/local/bin/wkhtmltopdf"       
+#fi
 
 flist=""
 # improvment - path should be an env or param
