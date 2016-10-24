@@ -41,7 +41,7 @@ public class TheReporterApp
     	
     	if (produceoverview.toLowerCase().contains("yes")) {
     		// TODO: mat need to have a sleep loop with a max timeout 
-    		log.info( "Marcus is checking for cucumber.json files" );
+    		log.info( "checking for cucumber.json files" );
     		// TODO - this is wrong - I just want to populate the report at the moment
     		DateStamp date = new DateStamp();;
     		endTime = date.getReportDateFormat();
@@ -108,6 +108,7 @@ public class TheReporterApp
 	
 		
 		if (createPDF) {
+			log.info("build the PDF to send");
 			reportbuilder.pdfOverview();
 		}
 		log.info("method to produce a report is done");

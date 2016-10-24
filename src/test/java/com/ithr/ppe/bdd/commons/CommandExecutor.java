@@ -16,6 +16,7 @@ public class CommandExecutor {
 	
 	public static String execCmd(String command, boolean anderror)
     {
+		log.info("command is " + command);
 	     String cmdOutput = "";
          try {
                 Process p = Runtime.getRuntime().exec(command);
@@ -34,7 +35,7 @@ public class CommandExecutor {
 
                 // read any errors from the attempted command
                 if (anderror) {
-                	log.error("Here is the standard error of the command (if any):\n");
+                	log.info("Here is the standard error of the command (if any):\n");
                 	while ((se = stdError.readLine()) != null) {
                 		log.error(se);
                 	}
