@@ -1,11 +1,5 @@
 #!/bin/sh
 ptowk="/usr/bin/wkhtmltopdf"
-#hostname=`hostname`
-#if [ "$hostname" == "SSS_Mac01" ]
-#then
-#		echo "On Local machine"
-#        ptowk="/usr/local/bin/wkhtmltopdf"       
-#fi
 
 flist=""
 # improvment - path should be an env or param
@@ -13,7 +7,7 @@ for f in $( ls $1/*.html | sort ); do
 	bname=`basename $f`
 	flist="$flist $bname"
 done
-echo "result is : $flist"
+echo "list of files found is : $flist"
 flist2="anoverview.html failures-overview.html"
 date=`date +%Y%m%d_%H%M%S`
 cd $1 
