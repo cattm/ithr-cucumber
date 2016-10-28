@@ -134,7 +134,7 @@ public class UserEntertainment extends PageBase{
 	  }
 	  public boolean clickWithinSinglePartnerList(String partnerstring, String offerstring) {
 		  // NOT TESTED
-		  // assumes more than one offer from same partner
+		  // assumes more than one offer from same partner is possible 
 		  // we build an offer string to search for
 		  // then we find the image?
 		  // string is something like deezer de-deezer-standalone-PK_DeezerFamily999 offer-wrapper

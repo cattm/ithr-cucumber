@@ -38,44 +38,47 @@ public class CommonPartnerPurchase implements IPartnerPurchase {
 		parser = JsonParser.getInstance();
 		checker = opcoTextChecker.getInstance();
 	}
+	
+	private String formButtonLocator() {
+		String prototype = parser.getOpco() + "-" + parser.getPartner()  + "-" + parser.getType();
+		
+		if (parser.getTrial().contentEquals("true")) {
+			prototype = prototype + "-trial";
+		}
+		if (parser.getpackageId().contentEquals("")) {
+			log.info("formed : " + prototype.toLowerCase());
+			return prototype.toLowerCase();
+		} else {
+			prototype = prototype +"-" + parser.getpackageId();
+			log.info("formed : " + prototype.toLowerCase());
+			return prototype.toLowerCase();
+		}
+
+	}
 	public boolean selectPartnerOffer(Partners partner, UserEntertainment entpage)  {
 		// this is a very primative implementation
 		// we may have to cope with a situation where there are a number of offers from same partners
 		// we will need to select the correct one
-		// TODO: build a more comprehensive selection solution
+		// TODO: build a more comprehensive selection solution -- clickWithinSinglePartnerList(String partnerstring, String offerstring);
+		
 		log.info("Setting mypartner to " + partner.toString());
 		myPartner = partner;
 		boolean found = false;
 		String imagestring = "";
 		switch (myPartner) {
 		case BILDPLUS   : 
-			imagestring = "bildplus";
-			break;
 		case CHILITV    : 
-			imagestring = "chilitv";
-			break;
 		case DEEZER		: 
-			imagestring = "deezer";
-			break;
+		case HBO		: 
+		case NETFLIX    : 
+		case NOWTV		:
+		case SPOTIFY 	: 		
+		case SKY 		: 
+			imagestring = formButtonLocator();
+			break;	
 		case DROPBOX    :
 			//dropbox is an example of where we do not need to find the correct offer to select
-			found = true;
-		case HBO		: 
-			imagestring = "hbo";
-			break;
-		case NETFLIX    : 
-			imagestring = "netflix";
-			break;
-		case NOWTV		:
-			imagestring = "nowtv";
-			break;
-		case SPOTIFY 	: 
-			imagestring = "spotify";
-			break;		
-		case SKY 		: 
-			imagestring = "sky";
-			break;		
-		
+			found = true;				
 		default : 
 			break;
 		}	
@@ -87,16 +90,13 @@ public class CommonPartnerPurchase implements IPartnerPurchase {
 				log.info("got interrupted while sleeping " +  e);
 			}
 			
-			found = entpage.checkOfferImagePresent(imagestring);
-			if (found) {
-				log.info("found the image - click()");
-				try {
-					entpage.clickOfferImage(imagestring);
-				} catch (Exception e) {
+			// found = entpage.checkOfferImagePresent(imagestring);
+			
+			try {
+					found = entpage.clickWithinSinglePartnerList(parser.getPartner(), imagestring);
+					//entpage.clickOfferImage(imagestring);
+			} catch (Exception e) {
 				log.error("got interrupted while clicking on " + imagestring + " " + e);
-				}
-			} else {
-				log.error("did not find offer inage to click");
 			}
 		}
 		return found;

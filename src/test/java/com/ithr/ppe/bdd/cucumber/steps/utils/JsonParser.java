@@ -93,9 +93,84 @@ public class JsonParser {
 	
 	
 	public String getHeading() {
-		String heading = (String) jsonObject.get("heading").toString();
-		return heading;
+		try {                 
+			String heading = (String) jsonObject.get("heading").toString();
+			return heading;    
+        } catch (Exception e) {
+        	log.error("Cannot locate heading for this file" + e);
+            e.printStackTrace();
+        }
+		return "";
 		
+		
+	}
+	public String getOpco() {	
+		try {                  
+			String str = (String) jsonObject.get("opco").toString();
+			return str;
+			
+        } catch (Exception e) {
+        	log.error("Cannot locate opco for this file" + e);
+            e.printStackTrace();
+        }
+		return "";
+	}
+	public String getPartner() {	
+		try {                  
+			String str = (String) jsonObject.get("partner").toString();
+			return str;
+			
+        } catch (Exception e) {
+        	log.error("Cannot locate partner for this file" + e);
+            e.printStackTrace();
+        }
+		return "";
+	}
+	public String getType() {	
+		try {                  
+			String str = (String) jsonObject.get("type").toString();
+			return str;
+			
+        } catch (Exception e) {
+        	log.error("Cannot locate type for this file" + e);
+            e.printStackTrace();
+        }
+		return "";
+	}
+	
+	public String getTrial() {	
+		try {                  
+			String str = (String) jsonObject.get("trial").toString();
+			return str;
+			
+        } catch (Exception e) {
+        	log.error("Cannot locate trail for this file" + e);
+            e.printStackTrace();
+        }
+		return "";
+	}
+	public String getpackageId() {	
+		try {                  
+			String str = (String) jsonObject.get("packageId").toString();
+			return str;
+			
+        } catch (Exception e) {
+        	log.error("Cannot locate packagId for this file" + e);
+            e.printStackTrace();
+        }
+		return "";
+	}
+	
+	public String getName() {	
+		try {                  
+			String str = (String) jsonObject.get("name").toString();
+			return str;
+			
+        } catch (Exception e) {
+        	log.error("Cannot locate name for this file" + e);
+            e.printStackTrace();
+        }
+		return "";
 	}
 	private JSONObject navigateToPurchase(JSONObject object) {
 		JSONObject outcome = null;

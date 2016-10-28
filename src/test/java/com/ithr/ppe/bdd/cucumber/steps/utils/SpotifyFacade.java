@@ -4,7 +4,7 @@ import org.apache.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 
 import com.ithr.ppe.bdd.commons.DateStamp;
-import com.ithr.ppe.bdd.cucumber.pages.SpotifyHelper;
+import com.ithr.ppe.bdd.cucumber.pages.partners.SpotifyHelper;
 import com.ithr.ppe.bdd.cucumber.pages.partners.SpotifyLogin;
 import com.ithr.ppe.bdd.cucumber.pages.partners.SpotifyLoginOrRegister;
 import com.ithr.ppe.bdd.cucumber.pages.partners.SpotifyRegistration;

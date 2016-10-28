@@ -1,4 +1,4 @@
-package com.ithr.ppe.bdd.cucumber.pages;
+package com.ithr.ppe.bdd.cucumber.pages.partners;
 
 import org.apache.log4j.Logger;
 import org.json.JSONObject;
@@ -6,6 +6,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+
+import com.ithr.ppe.bdd.cucumber.pages.PageBase;
 
 public class SpotifyHelper extends PageBase {
 	

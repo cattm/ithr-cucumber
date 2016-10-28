@@ -337,7 +337,7 @@ public class SecondaryCustomerSteps extends StepBase {
 				checkInitialPurchaseOutcome();
 				CheckedScenarioScreenshot();
 			} else ErrorCollector.fail("Could not perform Initial Purchase");
-		}	//ErrorCollector.fail("Could not perform initial Prolog"); 
+		}	// else ErrorCollector.fail("Could not perform initial Prolog"); 
 		// if any of these fail we may need to abort and fail the test
 		log.info("itISDefinedBy End:");
 	}
