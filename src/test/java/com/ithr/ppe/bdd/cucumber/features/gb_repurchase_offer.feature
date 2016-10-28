@@ -16,3 +16,16 @@ Feature: GB RePurchase Offers
     Examples: 
       | package     | usergroup | contained in   | now contained in |
       | PK_4GTariff | 4gsmall   | Sky hardbundle | Sky standalone   |
+
+  Scenario Outline: Purchase and then purchase again
+    Given I am a "GB" customer Who Initially purchases "NOWTV" offer
+    And the offer is defined by package <package> and usergroup <usergroup> with json <contained in>
+    When I can see the "NOWTV" offer now defined by <now contained in>
+    Then I will purchase the secondary offer
+
+    Examples: 
+      | package     | usergroup | contained in         | now contained in               |
+      | PK_TVTariff | ugstb     | NowTV hardbundle STB | NowTV bolton STB Movies        |
+      | PK_TVTariff | ugstb     | NowTV hardbundle STB | NowTV bolton STB Sports Daily  |
+      | PK_TVTariff | ugstb     | NowTV hardbundle STB | NowTV bolton STB Sports Weekly |
+      | PK_TVTariff | ugstb     | NowTV hardbundle STB | NowTV bolton STB Sports        |

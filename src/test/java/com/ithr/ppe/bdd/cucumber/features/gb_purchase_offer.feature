@@ -22,15 +22,16 @@ Feature: GB Primary Purchase Offers
     And I will accept and confirm the offer
 
     Examples: 
-      | package         | usergroup        | contained in     |
-      | PK_4GTariff     | 4gsmall          | NowTV hardbundle |
-      | PK_4GTariff     | 4gmedium         | NowTV hardbundle |
-      | PK_4GTariff     | 4glarge          | NowTV hardbundle |
-      | PK_4GTariff     | 4gextralarge     | NowTV hardbundle |
-      | PK_4GTariffSIMO | 4gsimosmall      | NowTV hardbundle |
-      | PK_4GTariffSIMO | 4gsimolarge      | NowTV hardbundle |
-      | PK_4GTariffSIMO | 4gsimomedium     | NowTV hardbundle |
-      | PK_4GTariffSIMO | 4gsimoextralarge | NowTV hardbundle |
+      | package         | usergroup        | contained in         |
+      | PK_4GTariff     | 4gsmall          | NowTV hardbundle     |
+      | PK_4GTariff     | 4gmedium         | NowTV hardbundle     |
+      | PK_4GTariff     | 4glarge          | NowTV hardbundle     |
+      | PK_4GTariff     | 4gextralarge     | NowTV hardbundle     |
+      | PK_4GTariffSIMO | 4gsimosmall      | NowTV hardbundle     |
+      | PK_4GTariffSIMO | 4gsimolarge      | NowTV hardbundle     |
+      | PK_4GTariffSIMO | 4gsimomedium     | NowTV hardbundle     |
+      | PK_4GTariffSIMO | 4gsimoextralarge | NowTV hardbundle     |
+      | PK_TVTariff     | ugstb            | NowTV hardbundle STB |
 
   Scenario Outline: Purchase GB Offers from SKY
     Given I am a "GB" customer purchasing the "SKY" offer
