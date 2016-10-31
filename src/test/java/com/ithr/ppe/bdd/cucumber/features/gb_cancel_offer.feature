@@ -28,7 +28,6 @@ Feature: GB Cancel Offers
       | Not Valid   | Not Valid | Spotify standalone trial |
 
   @ignore
-  # requires login to NowTV - not modelled
   Scenario Outline: Purchase and then Cancel NowTV
     Given I am a "GB" customer Who Initially purchases "NOWTV" offer
     And the offer is defined by package <package> and usergroup <usergroup> with json <contained in>
