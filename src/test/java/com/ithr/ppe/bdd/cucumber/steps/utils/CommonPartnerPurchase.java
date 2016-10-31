@@ -39,7 +39,7 @@ public class CommonPartnerPurchase implements IPartnerPurchase {
 		checker = opcoTextChecker.getInstance();
 	}
 	
-	private String formButtonLocator() {
+	private String formButtonLocator(boolean lower) {
 		String prototype = parser.getOpco() + "-" + parser.getPartner()  + "-" + parser.getType();
 		
 		if (parser.getTrial().contentEquals("true")) {
@@ -48,13 +48,17 @@ public class CommonPartnerPurchase implements IPartnerPurchase {
 		if (parser.getpackageId().contentEquals("")) {
 			log.info("formed : " + prototype.toLowerCase());
 			return prototype.toLowerCase();
-		} else {
+		} else if (lower) {
 			prototype = prototype +"-" + parser.getpackageId();
 			log.info("formed : " + prototype.toLowerCase());
 			return prototype.toLowerCase();
+		} else {
+			prototype = prototype +"-" + parser.getpackageId();
+			log.info("formed : " + prototype);
+			return prototype;
 		}
-
 	}
+	
 	public boolean selectPartnerOffer(Partners partner, UserEntertainment entpage)  {
 		// this is a very primative implementation
 		// we may have to cope with a situation where there are a number of offers from same partners
@@ -68,14 +72,16 @@ public class CommonPartnerPurchase implements IPartnerPurchase {
 		switch (myPartner) {
 		case BILDPLUS   : 
 		case CHILITV    : 
-		case DEEZER		: 
 		case HBO		: 
 		case NETFLIX    : 
 		case NOWTV		:
 		case SPOTIFY 	: 		
 		case SKY 		: 
-			imagestring = formButtonLocator();
+			imagestring = formButtonLocator(true);
 			break;	
+		case DEEZER		: 
+			imagestring = formButtonLocator(false);
+			break;
 		case DROPBOX    :
 			//dropbox is an example of where we do not need to find the correct offer to select
 			found = true;				
